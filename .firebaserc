@@ -2,6 +2,17 @@
   "projects": {
     "tofo": "todo-list-e7788"
   },
-  "targets": {},
+  "targets": {
+    "todo-list-e7788": {
+      "hosting": {
+        "main": [
+          "todo-list-e7788"
+        ],
+        "todo": [
+          "todo-cox-fam-com"
+        ]
+      }
+    }
+  },
   "etags": {}
 }
