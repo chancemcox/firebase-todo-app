@@ -2,7 +2,7 @@
 
 ## Prerequisites
 1. A Firebase project (create one at [Firebase Console](https://console.firebase.google.com/))
-2. PHP 8.0+ (Laravel 9 requires PHP 8.0+)
+2. PHP 8.0+ (TaskFlow requires PHP 8.0+)
 
 ## Setup Steps
 
@@ -112,4 +112,4 @@ Enable debug mode in `.env`:
 APP_DEBUG=true
 ```
 
-Check Laravel logs in `storage/logs/laravel.log`
+Check application logs in `storage/logs/laravel.log`

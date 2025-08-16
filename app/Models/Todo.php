@@ -6,25 +6,56 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Kreait\Firebase\Contract\Database;
 
+/**
+ * @OA\Schema(
+ *     schema="Todo",
+ *     title="Todo",
+ *     description="Todo model",
+ *     @OA\Property(property="id", type="string", example="todo123"),
+ *     @OA\Property(property="title", type="string", example="Complete project"),
+ *     @OA\Property(property="description", type="string", nullable=true, example="Finish the Laravel API project"),
+ *     @OA\Property(property="completed", type="boolean", example=false),
+ *     @OA\Property(property="user_id", type="integer", example=1),
+ *     @OA\Property(property="due_date", type="string", format="date", nullable=true, example="2024-12-31"),
+ *     @OA\Property(property="priority", type="string", enum={"low", "medium", "high"}, example="medium"),
+ *     @OA\Property(property="created_at", type="string", format="date-time", example="2024-01-01T00:00:00.000000Z"),
+ *     @OA\Property(property="updated_at", type="string", format="date-time", example="2024-01-01T00:00:00.000000Z")
+ * )
+ */
 class Todo extends Model
 {
     use HasFactory;
 
+    /**
+     * Firebase collection name
+     */
+    protected $collection = 'todos';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'title',
         'description',
         'completed',
         'user_id',
-        'due_date'
+        'due_date',
+        'priority',
     ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
     protected $casts = [
         'completed' => 'boolean',
-        'due_date' => 'datetime'
+        'due_date' => 'date',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
-
-    // Firebase collection name
-    protected $collection = 'todos';
 
     /**
      * Get Firebase database instance
@@ -32,6 +63,53 @@ class Todo extends Model
     public static function getFirebaseDatabase(): Database
     {
         return app('firebase.database');
+    }
+
+    /**
+     * Get collection name for Firebase
+     */
+    protected static function getCollectionName(): string
+    {
+        return (new static)->collection;
+    }
+
+    /**
+     * Get all todos for a specific user from Firebase
+     */
+    public static function getTodosForUser($userId)
+    {
+        $database = self::getFirebaseDatabase();
+        $ref = $database->getReference(self::getCollectionName());
+        $snapshot = $ref->orderByChild('user_id')->equalTo($userId)->getSnapshot();
+        
+        $todos = $snapshot->getValue() ?? [];
+        $result = [];
+        
+        foreach ($todos as $id => $todoData) {
+            $todo = new static($todoData);
+            $todo->id = $id;
+            $result[] = $todo;
+        }
+        
+        return collect($result);
+    }
+
+    /**
+     * Get a specific todo by ID from Firebase
+     */
+    public static function findInFirebase($id)
+    {
+        $database = self::getFirebaseDatabase();
+        $ref = $database->getReference(self::getCollectionName() . '/' . $id);
+        $todoData = $ref->getSnapshot()->getValue();
+        
+        if ($todoData) {
+            $todo = new static($todoData);
+            $todo->id = $id;
+            return $todo;
+        }
+        
+        return null;
     }
 
     /**
@@ -52,22 +130,55 @@ class Todo extends Model
     }
 
     /**
-     * Get all todos from Firebase
+     * Update a todo in Firebase
      */
-    public static function getAllFromFirebase()
+    public function updateInFirebase(array $data)
     {
         $database = self::getFirebaseDatabase();
-        $ref = $database->getReference(self::getCollectionName());
-        $snapshot = $ref->getSnapshot();
+        $ref = $database->getReference(self::getCollectionName() . '/' . $this->id);
         
-        return $snapshot->getValue() ?? [];
+        $updateData = array_merge($data, [
+            'updated_at' => now()->toISOString()
+        ]);
+        
+        $ref->update($updateData);
+        
+        // Update local model
+        foreach ($data as $key => $value) {
+            $this->$key = $value;
+        }
+        
+        return $this;
     }
 
     /**
-     * Get collection name for Firebase
+     * Delete a todo from Firebase
      */
-    protected static function getCollectionName(): string
+    public function deleteFromFirebase()
     {
-        return (new static)->collection;
+        $database = self::getFirebaseDatabase();
+        $ref = $database->getReference(self::getCollectionName() . '/' . $this->id);
+        $ref->remove();
+        
+        return true;
+    }
+
+    /**
+     * Toggle the completed status of a todo
+     */
+    public function toggle()
+    {
+        $this->completed = !$this->completed;
+        $this->updateInFirebase(['completed' => $this->completed]);
+        
+        return $this;
+    }
+
+    /**
+     * Get the user that owns the todo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

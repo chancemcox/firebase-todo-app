@@ -3,18 +3,18 @@ service: firebase-todo-app
 frameworkVersion: '3'
 
 provider:
-  name: firebase
-  runtime: nodejs18
-  region: us-central1
-  project: todo-list-e7788
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  stage: ${opt:stage, 'dev'}
+  environment:
+    FIREBASE_PROJECT: todo-list-e7788
 
 plugins:
-  - serverless-firebase
+  - serverless-offline
 
 custom:
-  firebase:
-    project: todo-list-e7788
-    credentials: ./storage/app/firebase-credentials.json
+  # Firebase configuration will be handled by environment variables
 
 functions:
   api:
@@ -61,19 +61,7 @@ functions:
           method: PATCH
           cors: true
 
-hosting:
-  public: public
-  ignore:
-    - firebase.json
-    - **/.*
-    - **/node_modules/**
-  rewrites:
-    - source: "/api/**"
-      function: api
-    - source: "/todos"
-      function: api
-    - source: "**"
-      destination: /index.html
+
 
 package:
   patterns:

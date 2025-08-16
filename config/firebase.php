@@ -8,7 +8,7 @@ return [
      * Default Firebase project
      * ------------------------------------------------------------------------
      */
-    'default' => env('FIREBASE_PROJECT', 'app'),
+    'default' => env('FIREBASE_PROJECT', 'todo-list-e7788'),
 
     /*
      * ------------------------------------------------------------------------
@@ -16,7 +16,7 @@ return [
      * ------------------------------------------------------------------------
      */
     'projects' => [
-        'app' => [
+        'todo-list-e7788' => [
             /*
              * ------------------------------------------------------------------------
              * Credentials / Service Account
@@ -128,7 +128,7 @@ return [
                  * override it here.
                  */
 
-                'default_bucket' => env('FIREBASE_STORAGE_DEFAULT_BUCKET'),
+                'default_bucket' => env('FIREBASE_STORAGE_DEFAULT_BUCKET', 'todo-list-e7788.appspot.com'),
             ],
 
             /*
@@ -149,7 +149,6 @@ return [
              * ------------------------------------------------------------------------
              *
              * Enable logging of HTTP interaction for insights and/or debugging.
-             *
              * Log channels are defined in config/logging.php
              *
              * Successful HTTP messages are logged with the log level 'info'.

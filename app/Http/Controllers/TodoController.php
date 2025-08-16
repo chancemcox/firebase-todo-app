@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Todo;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 use Kreait\Firebase\Contract\Database;
 
 class TodoController extends Controller
@@ -22,10 +23,20 @@ class TodoController extends Controller
     public function index(): JsonResponse
     {
         try {
+            $user = Auth::user();
             $todos = Todo::getAllFromFirebase();
+            
+            // Filter todos by the authenticated user
+            $userTodos = [];
+            foreach ($todos as $id => $todo) {
+                if (isset($todo['user_id']) && $todo['user_id'] === $user->email) {
+                    $userTodos[$id] = $todo;
+                }
+            }
+            
             return response()->json([
                 'success' => true,
-                'data' => $todos
+                'data' => $userTodos
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -37,8 +48,6 @@ class TodoController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -50,22 +59,42 @@ class TodoController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'due_date' => 'nullable|date',
-            'user_id' => 'nullable|string'
-        ]);
-
         try {
-            $todoId = Todo::createInFirebase($request->all());
+            \Log::info('Task creation started', ['request_data' => $request->all()]);
             
+            $request->validate([
+                'title' => 'required|string|max:255',
+                'description' => 'nullable|string',
+                'due_date' => 'nullable|date',
+            ]);
+
+            $user = Auth::user();
+            \Log::info('Authenticated user', ['user_id' => $user->id, 'user_email' => $user->email]);
+            
+            // Automatically link the todo to the authenticated user
+            $todoData = array_merge($request->all(), [
+                'user_id' => $user->email, // Use email as user identifier
+                'user_name' => $user->name, // Store user name for display
+            ]);
+
+            \Log::info('Todo data prepared', ['todo_data' => $todoData]);
+
+            $todoId = Todo::createInFirebase($todoData);
+            \Log::info('Todo created in Firebase', ['todo_id' => $todoId]);
+
             return response()->json([
                 'success' => true,
                 'message' => 'Todo created successfully',
                 'data' => ['id' => $todoId]
             ], 201);
         } catch (\Exception $e) {
+            \Log::error('Task creation failed', [
+                'error' => $e->getMessage(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
             return response()->json([
                 'success' => false,
                 'message' => 'Failed to create todo: ' . $e->getMessage()
@@ -79,16 +108,25 @@ class TodoController extends Controller
     public function show(string $id): JsonResponse
     {
         try {
+            $user = Auth::user();
             $ref = $this->database->getReference('todos/' . $id);
             $todo = $ref->getSnapshot()->getValue();
-            
+
             if (!$todo) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Todo not found'
                 ], 404);
             }
-            
+
+            // Check if the todo belongs to the authenticated user
+            if (!isset($todo['user_id']) || $todo['user_id'] !== $user->email) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Unauthorized access to this todo'
+                ], 403);
+            }
+
             return response()->json([
                 'success' => true,
                 'data' => $todo
@@ -103,9 +141,6 @@ class TodoController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Todo  $todo
-     * @return \Illuminate\Http\Response
      */
     public function edit(Todo $todo)
     {
@@ -125,22 +160,31 @@ class TodoController extends Controller
         ]);
 
         try {
+            $user = Auth::user();
             $ref = $this->database->getReference('todos/' . $id);
             $todo = $ref->getSnapshot()->getValue();
-            
+
             if (!$todo) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Todo not found'
                 ], 404);
             }
-            
+
+            // Check if the todo belongs to the authenticated user
+            if (!isset($todo['user_id']) || $todo['user_id'] !== $user->email) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Unauthorized access to this todo'
+                ], 403);
+            }
+
             $updateData = array_merge($todo, $request->all(), [
                 'updated_at' => now()->toISOString()
             ]);
-            
+
             $ref->set($updateData);
-            
+
             return response()->json([
                 'success' => true,
                 'message' => 'Todo updated successfully',
@@ -160,18 +204,27 @@ class TodoController extends Controller
     public function destroy(string $id): JsonResponse
     {
         try {
+            $user = Auth::user();
             $ref = $this->database->getReference('todos/' . $id);
             $todo = $ref->getSnapshot()->getValue();
-            
+
             if (!$todo) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Todo not found'
                 ], 404);
             }
-            
+
+            // Check if the todo belongs to the authenticated user
+            if (!isset($todo['user_id']) || $todo['user_id'] !== $user->email) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Unauthorized access to this todo'
+                ], 403);
+            }
+
             $ref->remove();
-            
+
             return response()->json([
                 'success' => true,
                 'message' => 'Todo deleted successfully'
@@ -190,21 +243,30 @@ class TodoController extends Controller
     public function toggleComplete(string $id): JsonResponse
     {
         try {
+            $user = Auth::user();
             $ref = $this->database->getReference('todos/' . $id);
             $todo = $ref->getSnapshot()->getValue();
-            
+
             if (!$todo) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Todo not found'
                 ], 404);
             }
-            
+
+            // Check if the todo belongs to the authenticated user
+            if (!isset($todo['user_id']) || $todo['user_id'] !== $user->email) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Unauthorized access to this todo'
+                ], 403);
+            }
+
             $todo['completed'] = !($todo['completed'] ?? false);
             $todo['updated_at'] = now()->toISOString();
-            
+
             $ref->set($todo);
-            
+
             return response()->json([
                 'success' => true,
                 'message' => 'Todo status updated',
