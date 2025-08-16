@@ -268,7 +268,7 @@ class TodoController extends Controller
         ]);
 
         // Update the todo with new data
-        $todo->update($request->all());
+        $todo->updateInFirebase($request->all());
 
         // Return success response with updated todo data
         return response()->json([
@@ -382,13 +382,13 @@ class TodoController extends Controller
         }
 
         // Toggle the completion status
-        $todo->update([
+        $todo->updateInFirebase([
             'completed' => !$todo->completed
         ]);
 
         // Return success response with updated todo data
         return response()->json([
-            'message' => 'Todo status updated',
+            'message' => 'Todo status toggled successfully',
             'todo' => $todo,
         ]);
     }

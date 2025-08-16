@@ -47,15 +47,11 @@ class Todo extends Model
 
     /**
      * The attributes that should be cast.
+     * Note: Disabled Eloquent casting for Firebase compatibility
      *
      * @var array<string, string>
      */
-    protected $casts = [
-        'completed' => 'boolean',
-        'due_date' => 'date',
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
-    ];
+    protected $casts = [];
 
     /**
      * Get Firebase database instance
@@ -80,15 +76,17 @@ class Todo extends Model
     {
         $database = self::getFirebaseDatabase();
         $ref = $database->getReference(self::getCollectionName());
-        $snapshot = $ref->orderByChild('user_id')->equalTo($userId)->getSnapshot();
+        $snapshot = $ref->getSnapshot();
         
         $todos = $snapshot->getValue() ?? [];
         $result = [];
         
         foreach ($todos as $id => $todoData) {
-            $todo = new static($todoData);
-            $todo->id = $id;
-            $result[] = $todo;
+            if (isset($todoData['user_id']) && $todoData['user_id'] == $userId) {
+                $todo = new static($todoData);
+                $todo->id = $id;
+                $result[] = $todo;
+            }
         }
         
         return collect($result);
@@ -180,5 +178,22 @@ class Todo extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Resolve the model for route model binding
+     */
+    public function resolveRouteBinding($value, $field = null)
+    {
+        return static::findInFirebase($value);
+    }
+
+    /**
+     * Resolve the model for route model binding with a custom query
+     */
+    public function resolveRouteBindingQuery($query, $value, $field = null)
+    {
+        // Override to prevent Eloquent from trying to use database
+        return static::findInFirebase($value);
     }
 }

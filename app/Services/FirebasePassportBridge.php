@@ -2,10 +2,6 @@
 
 namespace App\Services;
 
-use Laravel\Passport\PersonalAccessTokenFactory;
-use Laravel\Passport\Token;
-use Laravel\Passport\Client;
-use Laravel\Passport\PersonalAccessClient;
 use Illuminate\Support\Str;
 
 class FirebasePassportBridge
@@ -47,7 +43,8 @@ class FirebasePassportBridge
             now()->addDays(30)
         );
 
-        return new Token([
+        // Return a simple object instead of Passport's Token class
+        return (object) [
             'id' => $accessToken->id,
             'user_id' => $accessToken->user_id,
             'client_id' => $accessToken->client_id,
@@ -55,7 +52,7 @@ class FirebasePassportBridge
             'revoked' => $accessToken->revoked,
             'created_at' => $accessToken->created_at,
             'updated_at' => $accessToken->updated_at,
-        ]);
+        ];
     }
 
     /**
@@ -91,15 +88,17 @@ class FirebasePassportBridge
             return null;
         }
 
-        return new Token([
-            'id' => $token->id,
-            'user_id' => $token->user_id,
-            'client_id' => $token->client_id,
-            'scopes' => $token->scopes,
-            'revoked' => $token->revoked,
-            'created_at' => $token->created_at,
-            'updated_at' => $token->updated_at,
-        ]);
+        // Return a simple object instead of Passport's Token class
+        // Provide default values for missing fields
+        return (object) [
+            'id' => $token->id ?? $tokenId,
+            'user_id' => $token->user_id ?? null,
+            'client_id' => $token->client_id ?? null,
+            'scopes' => $token->scopes ?? [],
+            'revoked' => $token->revoked ?? false,
+            'created_at' => $token->created_at ?? null,
+            'updated_at' => $token->updated_at ?? null,
+        ];
     }
 
     /**
@@ -113,7 +112,8 @@ class FirebasePassportBridge
             return null;
         }
 
-        return new Client([
+        // Return a simple object instead of Passport's Client class
+        return (object) [
             'id' => $client->id,
             'user_id' => $client->user_id,
             'name' => $client->name,
@@ -125,7 +125,7 @@ class FirebasePassportBridge
             'revoked' => $client->revoked,
             'created_at' => $client->created_at,
             'updated_at' => $client->updated_at,
-        ]);
+        ];
     }
 
     /**
@@ -139,11 +139,12 @@ class FirebasePassportBridge
             return null;
         }
 
-        return new PersonalAccessClient([
+        // Return a simple object instead of Passport's PersonalAccessClient class
+        return (object) [
             'id' => 1,
             'client_id' => $client->id,
             'created_at' => $client->created_at,
             'updated_at' => $client->updated_at,
-        ]);
+        ];
     }
 }

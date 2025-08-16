@@ -30,10 +30,7 @@ class AppServiceProvider extends ServiceProvider
             return new FirebasePassportBridge($app[FirebaseOAuthStorage::class]);
         });
 
-        // Initialize OAuth clients in Firebase if they don't exist
-        $this->app->booted(function () {
-            $firebaseStorage = app(FirebaseOAuthStorage::class);
-            $firebaseStorage->initializeDefaultClients();
-        });
+        // Note: OAuth clients are now initialized only when needed (e.g., during tests)
+        // to avoid Firebase connection timeouts during application boot
     }
 }

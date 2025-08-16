@@ -39,7 +39,7 @@ class FirebaseApiAuth
         }
 
         // Get user
-        $user = User::find($accessToken->user_id);
+        $user = User::findInFirebase($accessToken->user_id);
 
         if (!$user) {
             return response()->json(['message' => 'User not found'], 401);

@@ -88,12 +88,14 @@ class FirebaseOAuthStorage
      */
     public function getUserAccessTokens($userId)
     {
-        $tokens = $this->database->getReference($this->accessTokensPath)->orderByChild('user_id')->equalTo($userId)->getValue();
+        $tokens = $this->database->getReference($this->accessTokensPath)->getValue();
         if (!$tokens) return [];
 
         $result = [];
         foreach ($tokens as $id => $token) {
-            $result[] = (object) array_merge(['id' => $id], $token);
+            if (isset($token['user_id']) && $token['user_id'] === $userId) {
+                $result[] = (object) array_merge(['id' => $id], $token);
+            }
         }
         return $result;
     }

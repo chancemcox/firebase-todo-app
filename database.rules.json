@@ -1,1 +1,39 @@
-{"rules": {"todos": {".read": true, ".write": true}}}
+{
+  "rules": {
+    "users": {
+      ".indexOn": ["email"],
+      ".read": true,
+      ".write": true
+    },
+    "todos": {
+      ".indexOn": ["user_id"],
+      ".read": true,
+      ".write": true
+    },
+    "oauth": {
+      "clients": {
+        ".read": true,
+        ".write": true
+      },
+      "personal_access_clients": {
+        ".read": true,
+        ".write": true
+      },
+      "access_tokens": {
+        ".indexOn": ["user_id"],
+        ".read": true,
+        ".write": true
+      },
+      "refresh_tokens": {
+        ".indexOn": ["access_token_id"],
+        ".read": true,
+        ".write": true
+      },
+      "auth_codes": {
+        ".indexOn": ["user_id"],
+        ".read": true,
+        ".write": true
+      }
+    }
+  }
+}

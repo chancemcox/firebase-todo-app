@@ -98,8 +98,9 @@ Route::get('/todos', function () {
 })->middleware(['auth'])->name('todos.index');
 
 // Todo API Routes - Protected by auth middleware (for web interface with session authentication)
-// These routes are prefixed with /api but use web middleware for session support
-Route::middleware('auth')->prefix('api')->group(function () {
+// These routes are prefixed with /web-api but use web middleware for session support
+// Note: Changed from /api to /web-api to avoid conflicts with token-based API routes
+Route::middleware('auth')->prefix('web-api')->group(function () {
     // Get all todos for the authenticated user
     Route::get('/todos', [App\Http\Controllers\Api\TodoApiController::class, 'index']);
     
