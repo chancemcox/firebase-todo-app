@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App API Documentation</title>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@5.27.1/swagger-ui.css" />
+    <style>
+        html {
+            box-sizing: border-box;
+            overflow: -moz-scrollbars-vertical;
+            overflow-y: scroll;
+        }
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+        body {
+            margin:0;
+            background: #fafafa;
+        }
+        .swagger-ui .topbar {
+            background-color: #2c3e50;
+        }
+        .swagger-ui .topbar .download-url-wrapper .select-label {
+            color: #fff;
+        }
+        .swagger-ui .topbar .download-url-wrapper input[type=text] {
+            border: 2px solid #34495e;
+        }
+        .swagger-ui .topbar .download-url-wrapper .btn-download {
+            background-color: #3498db;
+            border-color: #3498db;
+        }
+        .api-info {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        .api-info h2 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .endpoint {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #e9ecef;
+        }
+        .endpoint h4 {
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+        }
+        .method {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            margin-right: 10px;
+        }
+        .method.get { background-color: #61affe; }
+        .method.post { background-color: #49cc90; }
+        .method.put { background-color: #fca130; }
+        .method.delete { background-color: #f93e3e; }
+        .method.patch { background-color: #50e3c2; }
+    </style>
+</head>
+<body>
+    <div id="swagger-ui"></div>
+    
+    <!-- API Information Section -->
+    <div class="api-info">
+        <h2>🔥 Firebase Todo App API</h2>
+        <p><strong>Base URL:</strong> <code>https://todo.cox-fam.com/api</code></p>
+        <p><strong>Authentication:</strong> OAuth2 Bearer Token</p>
+        <p><strong>Database:</strong> Firebase Realtime Database</p>
+        
+        <h3>Quick Start</h3>
+        <ol>
+            <li>Register a new user: <code>POST /api/auth/register</code></li>
+            <li>Login to get access token: <code>POST /api/auth/login</code></li>
+            <li>Use the token in Authorization header: <code>Bearer {token}</code></li>
+            <li>Test the protected endpoints below</li>
+        </ol>
+    </div>
+
+    <!-- API Endpoints Overview -->
+    <div class="api-info">
+        <h3>Available Endpoints</h3>
+        
+        <div class="endpoint">
+            <h4><span class="method post">POST</span> /api/auth/register</h4>
+            <p>Register a new user account</p>
+            <p><strong>Body:</strong> name, email, password</p>
+        </div>
+        
+        <div class="endpoint">
+            <h4><span class="method post">POST</span> /api/auth/login</h4>
+            <p>Authenticate user and get access token</p>
+            <p><strong>Body:</strong> email, password</p>
+        </div>
+        
+        <div class="endpoint">
+            <h4><span class="method get">GET</span> /api/todos</h4>
+            <p>Get all todos for authenticated user</p>
+            <p><strong>Auth:</strong> Required</p>
+        </div>
+        
+        <div class="endpoint">
+            <h4><span class="method post">POST</span> /api/todos</h4>
+            <p>Create a new todo</p>
+            <p><strong>Body:</strong> title, description, due_date, priority</p>
+            <p><strong>Auth:</strong> Required</p>
+        </div>
+        
+        <div class="endpoint">
+            <h4><span class="method get">GET</span> /api/todos/{id}</h4>
+            <p>Get a specific todo by ID</p>
+            <p><strong>Auth:</strong> Required</p>
+        </div>
+        
+        <div class="endpoint">
+            <h4><span class="method put">PUT</span> /api/todos/{id}</h4>
+            <p>Update an existing todo</p>
+            <p><strong>Body:</strong> title, description, due_date, priority</p>
+            <p><strong>Auth:</strong> Required</p>
+        </div>
+        
+        <div class="endpoint">
+            <h4><span class="method delete">DELETE</span> /api/todos/{id}</h4>
+            <p>Delete a todo</p>
+            <p><strong>Auth:</strong> Required</p>
+        </div>
+        
+        <div class="endpoint">
+            <h4><span class="method patch">PATCH</span> /api/todos/{id}/toggle</h4>
+            <p>Toggle todo completion status</p>
+            <p><strong>Auth:</strong> Required</p>
+        </div>
+        
+        <div class="endpoint">
+            <h4><span class="method get">GET</span> /api/user/profile</h4>
+            <p>Get authenticated user profile</p>
+            <p><strong>Auth:</strong> Required</p>
+        </div>
+        
+        <div class="endpoint">
+            <h4><span class="method put">PUT</span> /api/user/profile</h4>
+            <p>Update user profile</p>
+            <p><strong>Body:</strong> name, email</p>
+            <p><strong>Auth:</strong> Required</p>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/swagger-ui-dist@5.27.1/swagger-ui-bundle.js"></script>
+    <script src="https://unpkg.com/swagger-ui-dist@5.27.1/swagger-ui-standalone-preset.js"></script>
+    <script>
+        window.onload = function() {
+            // Create a simple OpenAPI spec for the endpoints
+            const openApiSpec = {
+                openapi: "3.0.0",
+                info: {
+                    title: "Firebase Todo App API",
+                    description: "A RESTful API for managing todos with Firebase backend and OAuth2 authentication",
+                    version: "1.0.0",
+                    contact: {
+                        name: "API Support",
+                        url: "https://todo.cox-fam.com"
+                    }
+                },
+                servers: [
+                    {
+                        url: "https://todo.cox-fam.com/api",
+                        description: "Production server"
+                    }
+                ],
+                components: {
+                    securitySchemes: {
+                        bearerAuth: {
+                            type: "http",
+                            scheme: "bearer",
+                            bearerFormat: "JWT"
+                        }
+                    }
+                },
+                security: [
+                    {
+                        bearerAuth: []
+                    }
+                ],
+                paths: {
+                    "/auth/register": {
+                        post: {
+                            summary: "Register a new user",
+                            tags: ["Authentication"],
+                            requestBody: {
+                                required: true,
+                                content: {
+                                    "application/json": {
+                                        schema: {
+                                            type: "object",
+                                            required: ["name", "email", "password"],
+                                            properties: {
+                                                name: { type: "string", example: "John Doe" },
+                                                email: { type: "string", format: "email", example: "john@example.com" },
+                                                password: { type: "string", example: "password123" }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            responses: {
+                                "201": {
+                                    description: "User registered successfully",
+                                    content: {
+                                        "application/json": {
+                                            schema: {
+                                                type: "object",
+                                                properties: {
+                                                    message: { type: "string" },
+                                                    user: { type: "object" },
+                                                    access_token: { type: "string" }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "/auth/login": {
+                        post: {
+                            summary: "Authenticate user",
+                            tags: ["Authentication"],
+                            requestBody: {
+                                required: true,
+                                content: {
+                                    "application/json": {
+                                        schema: {
+                                            type: "object",
+                                            required: ["email", "password"],
+                                            properties: {
+                                                email: { type: "string", format: "email", example: "john@example.com" },
+                                                password: { type: "string", example: "password123" }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            responses: {
+                                "200": {
+                                    description: "Login successful",
+                                    content: {
+                                        "application/json": {
+                                            schema: {
+                                                type: "object",
+                                                properties: {
+                                                    message: { type: "string" },
+                                                    user: { type: "object" },
+                                                    access_token: { type: "string" }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "/todos": {
+                        get: {
+                            summary: "Get user's todos",
+                            tags: ["Todos"],
+                            security: [{ bearerAuth: [] }],
+                            responses: {
+                                "200": {
+                                    description: "List of todos",
+                                    content: {
+                                        "application/json": {
+                                            schema: {
+                                                type: "object",
+                                                properties: {
+                                                    message: { type: "string" },
+                                                    todos: {
+                                                        type: "array",
+                                                        items: { type: "object" }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        post: {
+                            summary: "Create a new todo",
+                            tags: ["Todos"],
+                            security: [{ bearerAuth: [] }],
+                            requestBody: {
+                                required: true,
+                                content: {
+                                    "application/json": {
+                                        schema: {
+                                            type: "object",
+                                            required: ["title"],
+                                            properties: {
+                                                title: { type: "string", example: "Buy groceries" },
+                                                description: { type: "string", example: "Get milk, bread, and eggs" },
+                                                due_date: { type: "string", format: "date", example: "2024-01-15" },
+                                                priority: { type: "string", enum: ["low", "medium", "high"], example: "medium" }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            responses: {
+                                "201": {
+                                    description: "Todo created successfully",
+                                    content: {
+                                        "application/json": {
+                                            schema: {
+                                                type: "object",
+                                                properties: {
+                                                    message: { type: "string" },
+                                                    todo: { type: "object" }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "/todos/{id}": {
+                        get: {
+                            summary: "Get a specific todo",
+                            tags: ["Todos"],
+                            security: [{ bearerAuth: [] }],
+                            parameters: [
+                                {
+                                    name: "id",
+                                    in: "path",
+                                    required: true,
+                                    schema: { type: "string" }
+                                }
+                            ],
+                            responses: {
+                                "200": {
+                                    description: "Todo details",
+                                    content: {
+                                        "application/json": {
+                                            schema: {
+                                                type: "object",
+                                                properties: {
+                                                    message: { type: "string" },
+                                                    todo: { type: "object" }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        put: {
+                            summary: "Update a todo",
+                            tags: ["Todos"],
+                            security: [{ bearerAuth: [] }],
+                            parameters: [
+                                {
+                                    name: "id",
+                                    in: "path",
+                                    required: true,
+                                    schema: { type: "string" }
+                                }
+                            ],
+                            requestBody: {
+                                required: true,
+                                content: {
+                                    "application/json": {
+                                        schema: {
+                                            type: "object",
+                                            properties: {
+                                                title: { type: "string" },
+                                                description: { type: "string" },
+                                                due_date: { type: "string", format: "date" },
+                                                priority: { type: "string", enum: ["low", "medium", "high"] }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            responses: {
+                                "200": {
+                                    description: "Todo updated successfully",
+                                    content: {
+                                        "application/json": {
+                                            schema: {
+                                                type: "object",
+                                                properties: {
+                                                    message: { type: "string" },
+                                                    todo: { type: "object" }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        delete: {
+                            summary: "Delete a todo",
+                            tags: ["Todos"],
+                            security: [{ bearerAuth: [] }],
+                            parameters: [
+                                {
+                                    name: "id",
+                                    in: "path",
+                                    required: true,
+                                    schema: { type: "string" }
+                                }
+                            ],
+                            responses: {
+                                "200": {
+                                    description: "Todo deleted successfully",
+                                    content: {
+                                        "application/json": {
+                                            schema: {
+                                                type: "object",
+                                                properties: {
+                                                    message: { type: "string" }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "/todos/{id}/toggle": {
+                        patch: {
+                            summary: "Toggle todo completion",
+                            tags: ["Todos"],
+                            security: [{ bearerAuth: [] }],
+                            parameters: [
+                                {
+                                    name: "id",
+                                    in: "path",
+                                    required: true,
+                                    schema: { type: "string" }
+                                }
+                            ],
+                            responses: {
+                                "200": {
+                                    description: "Todo status toggled",
+                                    content: {
+                                        "application/json": {
+                                            schema: {
+                                                type: "object",
+                                                properties: {
+                                                    message: { type: "string" },
+                                                    todo: { type: "object" }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "/user/profile": {
+                        get: {
+                            summary: "Get user profile",
+                            tags: ["User"],
+                            security: [{ bearerAuth: [] }],
+                            responses: {
+                                "200": {
+                                    description: "User profile",
+                                    content: {
+                                        "application/json": {
+                                            schema: {
+                                                type: "object",
+                                                properties: {
+                                                    message: { type: "string" },
+                                                    user: { type: "object" }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        put: {
+                            summary: "Update user profile",
+                            tags: ["User"],
+                            security: [{ bearerAuth: [] }],
+                            requestBody: {
+                                required: true,
+                                content: {
+                                    "application/json": {
+                                        schema: {
+                                            type: "object",
+                                            properties: {
+                                                name: { type: "string" },
+                                                email: { type: "string", format: "email" }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            responses: {
+                                "200": {
+                                    description: "Profile updated successfully",
+                                    content: {
+                                        "application/json": {
+                                            schema: {
+                                                type: "object",
+                                                properties: {
+                                                    message: { type: "string" },
+                                                    user: { type: "object" }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            const ui = SwaggerUIBundle({
+                spec: openApiSpec,
+                dom_id: '#swagger-ui',
+                deepLinking: true,
+                presets: [
+                    SwaggerUIBundle.presets.apis,
+                    SwaggerUIStandalonePreset
+                ],
+                plugins: [
+                    SwaggerUIBundle.plugins.DownloadUrl
+                ],
+                layout: "StandaloneLayout",
+                validatorUrl: null,
+                docExpansion: 'list',
+                defaultModelsExpandDepth: 1,
+                defaultModelExpandDepth: 1,
+                displayRequestDuration: true,
+                filter: true,
+                showExtensions: true,
+                showCommonExtensions: true,
+                tryItOutEnabled: true,
+                requestInterceptor: function(request) {
+                    // Add Bearer token if available
+                    const token = localStorage.getItem('access_token');
+                    if (token) {
+                        request.headers.Authorization = 'Bearer ' + token;
+                    }
+                    return request;
+                },
+                onComplete: function() {
+                    // Add login form to the page
+                    const topbar = document.querySelector('.swagger-ui .topbar');
+                    if (topbar) {
+                        const loginForm = document.createElement('div');
+                        loginForm.style.cssText = 'margin: 10px; padding: 10px; background: #f8f9fa; border-radius: 4px;';
+                        loginForm.innerHTML = `
+                            <h4 style="margin: 0 0 10px 0; color: #2c3e50;">API Authentication</h4>
+                            <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                                <input type="email" id="login-email" placeholder="Email" style="padding: 5px; border: 1px solid #ddd; border-radius: 3px;">
+                                <input type="password" id="login-password" placeholder="Password" style="padding: 5px; border: 1px solid #ddd; border-radius: 3px;">
+                                <button onclick="login()" style="padding: 5px 15px; background: #3498db; color: white; border: none; border-radius: 3px; cursor: pointer;">Login</button>
+                                <button onclick="logout()" style="padding: 5px 15px; background: #e74c3c; color: white; border: none; border-radius: 3px; cursor: pointer;">Logout</button>
+                            </div>
+                            <div id="login-status" style="margin-top: 10px; font-size: 12px;"></div>
+                        `;
+                        topbar.appendChild(loginForm);
+                    }
+                }
+            });
+        };
+
+        function login() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const statusDiv = document.getElementById('login-status');
+
+            if (!email || !password) {
+                statusDiv.innerHTML = '<span style="color: #e74c3c;">Please enter both email and password</span>';
+                return;
+            }
+
+            fetch('https://todo.cox-fam.com/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.access_token) {
+                    localStorage.setItem('access_token', data.access_token);
+                    statusDiv.innerHTML = '<span style="color: #27ae60;">Login successful! You can now test protected endpoints.</span>';
+                    // Refresh the page to update Swagger UI
+                    setTimeout(() => location.reload(), 1000);
+                } else {
+                    statusDiv.innerHTML = '<span style="color: #e74c3c;">Login failed: ' + (data.message || 'Unknown error') + '</span>';
+                }
+            })
+            .catch(error => {
+                statusDiv.innerHTML = '<span style="color: #e74c3c;">Login failed: ' + error.message + '</span>';
+            });
+        }
+
+        function logout() {
+            const token = localStorage.getItem('access_token');
+            if (token) {
+                fetch('https://todo.cox-fam.com/api/auth/logout', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer ' + token,
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(() => {
+                    localStorage.removeItem('access_token');
+                    document.getElementById('login-status').innerHTML = '<span style="color: #27ae60;">Logged out successfully</span>';
+                    setTimeout(() => location.reload(), 1000);
+                })
+                .catch(error => {
+                    console.error('Logout error:', error);
+                    localStorage.removeItem('access_token');
+                    document.getElementById('login-status').innerHTML = '<span style="color: #27ae60;">Logged out successfully</span>';
+                    setTimeout(() => location.reload(), 1000);
+                });
+            } else {
+                document.getElementById('login-status').innerHTML = '<span style="color: #f39c12;">No active session</span>';
+            }
+        }
+    </script>
+</body>
+</html>

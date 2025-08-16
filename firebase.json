@@ -27,7 +27,7 @@
       },
       {
         "source": "/apidoc",
-        "destination": "https://todo.cox-fam.com/apidoc"
+        "destination": "/apidoc/index.html"
       },
       {
         "source": "**",
