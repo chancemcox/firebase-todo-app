@@ -1,0 +1,90 @@
+service: firebase-todo-app
+
+frameworkVersion: '3'
+
+provider:
+  name: firebase
+  runtime: nodejs18
+  region: us-central1
+  project: todo-list-e7788
+
+plugins:
+  - serverless-firebase
+
+custom:
+  firebase:
+    project: todo-list-e7788
+    credentials: ./storage/app/firebase-credentials.json
+
+functions:
+  api:
+    handler: api/index.handler
+    events:
+      - http:
+          path: /api/{proxy+}
+          method: ANY
+          cors: true
+      - http:
+          path: /todos
+          method: GET
+          cors: true
+      - http:
+          path: /
+          method: GET
+          cors: true
+
+  todos:
+    handler: functions/todos.handler
+    events:
+      - http:
+          path: /api/todos
+          method: GET
+          cors: true
+      - http:
+          path: /api/todos
+          method: POST
+          cors: true
+      - http:
+          path: /api/todos/{id}
+          method: GET
+          cors: true
+      - http:
+          path: /api/todos/{id}
+          method: PUT
+          cors: true
+      - http:
+          path: /api/todos/{id}
+          method: DELETE
+          cors: true
+      - http:
+          path: /api/todos/{id}/toggle
+          method: PATCH
+          cors: true
+
+hosting:
+  public: public
+  ignore:
+    - firebase.json
+    - **/.*
+    - **/node_modules/**
+  rewrites:
+    - source: "/api/**"
+      function: api
+    - source: "/todos"
+      function: api
+    - source: "**"
+      destination: /index.html
+
+package:
+  patterns:
+    - '!node_modules/**'
+    - '!storage/logs/**'
+    - '!tests/**'
+    - '!vendor/**'
+    - '!.git/**'
+    - '!.env*'
+    - '!composer.lock'
+    - '!package-lock.json'
+    - '!serverless.yml'
+    - '!FIREBASE_SETUP.md'
+    - '!README.md'

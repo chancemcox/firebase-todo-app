@@ -1,0 +1,63 @@
+;;
+;; Domain:     chancecox.com.
+;; Exported:   2025-08-16 18:32:50
+;;
+;; This file is intended for use for informational and archival
+;; purposes ONLY and MUST be edited before use on a production
+;; DNS server.  In particular, you must:
+;;   -- update the SOA record with the correct authoritative name server
+;;   -- update the SOA record with the contact e-mail address information
+;;   -- update the NS record(s) with the authoritative name servers for this domain.
+;;
+;; For further information, please consult the BIND documentation
+;; located on the following website:
+;;
+;; http://www.isc.org/
+;;
+;; And RFC 1035:
+;;
+;; http://www.ietf.org/rfc/rfc1035.txt
+;;
+;; Please note that we do NOT offer technical support for any use
+;; of this zone data, the BIND name server, or any other third-party
+;; DNS software.
+;;
+;; Use at your own risk.
+;; SOA Record
+chancecox.com	3600	IN	SOA	curt.ns.cloudflare.com. dns.cloudflare.com. 2050703577 10000 2400 604800 3600
+
+;; NS Records
+chancecox.com.	86400	IN	NS	curt.ns.cloudflare.com.
+chancecox.com.	86400	IN	NS	marge.ns.cloudflare.com.
+
+;; A Records
+contact.chancecox.com.	1	IN	A	192.241.140.198 ; cf_tags=cf-proxied:false
+docker.chancecox.com.	1	IN	A	192.168.86.172 ; cf_tags=cf-proxied:false
+ha.chancecox.com.	1	IN	A	192.168.86.172 ; cf_tags=cf-proxied:false
+home.chancecox.com.	1	IN	A	99.2.3.235 ; cf_tags=cf-proxied:false
+
+;; CNAME Records
+_99515250277aacc5d89905ad3709e2ec.chancecox.com.	1	IN	CNAME	_4f62b88b4cc477884691dce6abe8d44f.hkvuiqjoua.acm-validations.aws. ; cf_tags=cf-proxied:false
+api.chancecox.com.	1	IN	CNAME	w821qis8r7.execute-api.us-east-1.amazonaws.com. ; cf_tags=cf-proxied:false
+api.template.chancecox.com.	1	IN	CNAME	d-vqax01xh4d.execute-api.us-east-1.amazonaws.com. ; cf_tags=cf-proxied:true
+cbportal.chancecox.com.	1	IN	CNAME	d22a7e8nkgmfc0.cloudfront.net. ; cf_tags=cf-proxied:false
+*.chancecox.com.	1	IN	CNAME	d4kf21seu5pln.cloudfront.net. ; cf_tags=cf-proxied:false
+chancecox.com.	1	IN	CNAME	chancecox.com.s3-website-us-east-1.amazonaws.com. ; cf_tags=cf-proxied:true
+_dnslink.nftgen.chancecox.com.	1	IN	CNAME	_dnslink.damp-rain-0931.on.fleek.co. ; cf_tags=cf-proxied:false
+links-api.chancecox.com.	1	IN	CNAME	di3mchbxyb.execute-api.us-east-1.amazonaws.com. ; cf_tags=cf-proxied:false
+lit-farms.chancecox.com.	1	IN	CNAME	d1r686rfj5ky7j.cloudfront.net. ; cf_tags=cf-proxied:false
+nftgen.chancecox.com.	1	IN	CNAME	12821c77e7cfd1ed9869.b-cdn.net. ; cf_tags=cf-proxied:false
+nftgen-dev.chancecox.com.	1	IN	CNAME	bf653c6d8d4bef0c98ae.b-cdn.net. ; cf_tags=cf-proxied:false
+resume.chancecox.com.	1	IN	CNAME	resume.chancecox.com.s3-website-us-east-1.amazonaws.com. ; cf_tags=cf-proxied:true
+v.chancecox.com.	1	IN	CNAME	dui72f7l2bgrp.cloudfront.net. ; cf_tags=cf-proxied:false
+
+;; MX Records
+call.chancecox.com.	1	IN	MX	10 inbound-smtp.us-west-2.amazonaws.com.
+chancecox.com.	1	IN	MX	10 6eea3c6eed364599eabbb03053fb8a.pamx1.hotmail.com.
+sms.chancecox.com.	1	IN	MX	10 inbound-smtp.us-west-2.amazonaws.com.
+
+;; TXT Records
+_amazonses.call.chancecox.com.	1	IN	TXT	"cB06z2ZGBHUkutM0V3qJta5k4SPvRC0ss2/et8H7Z8k="
+_amazonses.chancecox.com.	1	IN	TXT	"BMiFN6Luu+FoHDPdjAEIJfYzbgslQOMnHRCQqTQvdNg="
+_amazonses.sms.chancecox.com.	1	IN	TXT	"UIjtMXFaIXrLjioRYfmpNbkcBrhggEIFbefsiqVHbbQ="
+chancecox.com.	1	IN	TXT	"google-site-verification=LYIcM5A3_qSIlcced4bbHfphd6BBq4jk3o53253m-jU"

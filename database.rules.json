@@ -1,0 +1,34 @@
+{
+  "rules": {
+    "todos": {
+      ".read": true,
+      ".write": true,
+      "$todoId": {
+        ".read": true,
+        ".write": true,
+        ".validate": "newData.hasChildren(['title', 'created_at', 'updated_at'])",
+        "title": {
+          ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 255"
+        },
+        "description": {
+          ".validate": "newData.isString() || newData.val() == null"
+        },
+        "completed": {
+          ".validate": "newData.isBoolean()"
+        },
+        "user_id": {
+          ".validate": "newData.isString()"
+        },
+        "due_date": {
+          ".validate": "newData.isString() || newData.val() == null"
+        },
+        "created_at": {
+          ".validate": "newData.isString()"
+        },
+        "updated_at": {
+          ".validate": "newData.isString()"
+        }
+      }
+    }
+  }
+}
