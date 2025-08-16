@@ -26,12 +26,16 @@
         "destination": "https://todo.cox-fam.com/todos"
       },
       {
+        "source": "/",
+        "destination": "/apidoc/index.html"
+      },
+      {
         "source": "/apidoc",
         "destination": "/apidoc/index.html"
       },
       {
         "source": "**",
-        "destination": "/index.html"
+        "destination": "/apidoc/index.html"
       }
     ],
     "headers": [
