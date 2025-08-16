@@ -18,6 +18,10 @@
     ],
     "rewrites": [
       {
+        "source": "/",
+        "destination": "https://todo.cox-fam.com/"
+      },
+      {
         "source": "/api/**",
         "destination": "https://todo.cox-fam.com/api/**"
       },
@@ -26,15 +30,7 @@
         "destination": "https://todo.cox-fam.com/todos"
       },
       {
-        "source": "/",
-        "destination": "/apidoc/index.html"
-      },
-      {
         "source": "/apidoc",
-        "destination": "/apidoc/index.html"
-      },
-      {
-        "source": "**",
         "destination": "/apidoc/index.html"
       }
     ],
