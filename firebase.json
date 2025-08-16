@@ -1,28 +1,58 @@
 {
   "hosting": {
-    "public": "public/build",
+    "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**"
+      "**/node_modules/**",
+      "**/vendor/**",
+      "**/storage/**",
+      "**/tests/**",
+      "**/app/**",
+      "**/bootstrap/**",
+      "**/config/**",
+      "**/database/**",
+      "**/lang/**",
+      "**/resources/**",
+      "**/routes/**"
     ],
     "rewrites": [
       {
         "source": "/api/**",
-        "function": "api"
+        "destination": "https://todo.cox-fam.com/api/**"
       },
       {
         "source": "/todos",
-        "function": "api"
+        "destination": "https://todo.cox-fam.com/todos"
+      },
+      {
+        "source": "/apidoc",
+        "destination": "https://todo.cox-fam.com/apidoc"
       },
       {
         "source": "**",
         "destination": "/index.html"
       }
+    ],
+    "headers": [
+      {
+        "source": "/api/**",
+        "headers": [
+          {
+            "key": "Access-Control-Allow-Origin",
+            "value": "*"
+          },
+          {
+            "key": "Access-Control-Allow-Methods",
+            "value": "GET, POST, PUT, DELETE, OPTIONS"
+          },
+          {
+            "key": "Access-Control-Allow-Headers",
+            "value": "Content-Type, Authorization, X-Requested-With"
+          }
+        ]
+      }
     ]
-  },
-  "functions": {
-    "source": "functions"
   },
   "database": {
     "rules": "database.rules.json"

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Todo App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .api-link {
+            display: block;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #4285f4;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        .api-link:hover {
+            background-color: #3367d6;
+        }
+        .info {
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .warning {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔥 Firebase Todo App</h1>
+        
+        <div class="info">
+            <p><strong>Status:</strong> Firebase Hosting Frontend</p>
+            <p><strong>Backend:</strong> Laravel PHP at https://todo.cox-fam.com/</p>
+            <p><strong>Database:</strong> Firebase Realtime Database</p>
+            <p><strong>Authentication:</strong> OAuth2 Token-based</p>
+        </div>
+
+        <div class="warning">
+            <p><strong>Note:</strong> This is the Firebase Hosting frontend. The actual Laravel PHP application runs at your domain.</p>
+        </div>
+
+        <a href="https://todo.cox-fam.com/apidoc" class="api-link" target="_blank" rel="noopener">📚 View API Documentation</a>
+        
+        <div class="info">
+            <h3>Architecture</h3>
+            <p><strong>Frontend:</strong> Firebase Hosting (this page)</p>
+            <p><strong>Backend:</strong> Laravel PHP at todo.cox-fam.com</p>
+            <p><strong>Database:</strong> Firebase Realtime Database</p>
+            <p><strong>Authentication:</strong> Laravel Passport with Firebase storage</p>
+        </div>
+
+        <div class="info">
+            <h3>API Endpoints</h3>
+            <p><strong>Base URL:</strong> https://todo.cox-fam.com/api</p>
+            <p><strong>Authentication:</strong> POST /auth/register, POST /auth/login</p>
+            <p><strong>Todos:</strong> GET, POST, PUT, DELETE /todos</p>
+            <p><strong>User:</strong> GET, PUT /user/profile</p>
+        </div>
+
+        <div class="info">
+            <h3>Local Development</h3>
+            <p>To run Laravel locally:</p>
+            <ol>
+                <li><code>php artisan serve</code> (runs on http://localhost:8000)</li>
+                <li>Update .env with your Firebase credentials</li>
+                <li>Access API at http://localhost:8000/api/*</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>
