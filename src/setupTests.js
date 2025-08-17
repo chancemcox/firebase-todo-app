@@ -33,10 +33,10 @@ jest.mock('firebase/firestore', () => ({
   where: jest.fn(),
   orderBy: jest.fn(),
   onSnapshot: jest.fn((query, callback) => {
-    // Mock successful data callback
+    // Mock successful data callback with realistic data
     callback({
       forEach: (fn) => {
-        // Mock empty data to avoid loading state
+        // Mock todo data to avoid loading state
         fn({
           id: 'test-todo-1',
           data: () => ({
@@ -49,6 +49,20 @@ jest.mock('firebase/firestore', () => ({
             updatedAt: new Date(),
             dueDateTime: null,
             tags: []
+          })
+        });
+        fn({
+          id: 'test-todo-2',
+          data: () => ({
+            title: 'Another Todo',
+            description: 'Another Description',
+            priority: 'high',
+            completed: true,
+            userId: 'test-user-id',
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            dueDateTime: null,
+            tags: ['work', 'important']
           })
         });
       }

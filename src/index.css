@@ -39,7 +39,7 @@ code {
 @media (max-width: 768px) {
   .mobile-nav-tabs {
     @apply overflow-x-auto;
-    -webkit-overflow-scrolling: touch;
+    /* Modern scrollbar hiding for better browser support */
     scrollbar-width: none;
     -ms-overflow-style: none;
   }

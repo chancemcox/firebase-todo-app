@@ -76,21 +76,40 @@
             line-height: 1.4;
         }
         
-        .cta-button {
-            display: inline-block;
-            background: rgba(255,255,255,0.2);
-            color: white;
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .auth-button {
+            flex: 1;
             padding: 1rem 2rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            margin-top: 2rem;
             transition: all 0.3s ease;
             border: 2px solid rgba(255,255,255,0.3);
         }
-        
-        .cta-button:hover {
+
+        .auth-button.primary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        .auth-button.primary:hover {
             background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .auth-button.secondary {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        .auth-button.secondary:hover {
+            background: rgba(255,255,255,0.2);
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
@@ -146,6 +165,15 @@
             .features {
                 grid-template-columns: 1fr;
             }
+            
+            .auth-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .auth-button {
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -180,7 +208,10 @@
             </div>
         </div>
         
-        <a href="/app" class="cta-button">🚀 Launch App</a>
+        <div class="auth-buttons">
+            <a href="/app" class="auth-button primary">🚀 Launch App</a>
+            <a href="/app" class="auth-button secondary">🔐 Login / Sign Up</a>
+        </div>
         
         <div class="tech-stack">
             <h3>Built with modern technologies</h3>

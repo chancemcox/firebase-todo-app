@@ -45,6 +45,6 @@
   },
   "firestore": {
     "rules": "firestore.rules",
-    "indexes": "firebase.indexes.json"
+    "indexes": "firestore.indexes.json"
   }
 }
