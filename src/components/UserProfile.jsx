@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { doc, getDoc, updateDoc, onSnapshot } from 'firebase/firestore';
+import { doc, updateDoc, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase';
 
 const UserProfile = () => {
@@ -148,13 +148,13 @@ const UserProfile = () => {
       </div>
 
       {/* Profile Header */}
-      <div className="flex items-center space-x-6 mb-8">
-        <div className="relative">
+      <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-6 mb-8">
+        <div className="relative profile-container">
           {hasValidPhoto(profile.photoURL) ? (
             <img
               src={profile.photoURL}
               alt="Profile"
-              className="w-24 h-24 rounded-full object-cover border-4 border-gray-200"
+              className="profile-picture profile-picture-desktop border-4 border-gray-200"
               onError={(e) => {
                 e.target.style.display = 'none';
                 e.target.nextSibling.style.display = 'flex';
@@ -162,7 +162,7 @@ const UserProfile = () => {
             />
           ) : null}
           <div 
-            className={`w-24 h-24 rounded-full border-4 border-gray-200 flex items-center justify-center text-2xl font-bold text-gray-600 ${
+            className={`profile-picture profile-picture-desktop profile-initials border-4 border-gray-200 ${
               hasValidPhoto(profile.photoURL) ? 'hidden' : 'flex'
             }`}
           >
@@ -170,7 +170,7 @@ const UserProfile = () => {
           </div>
         </div>
         
-        <div className="flex-1">
+        <div className="flex-1 text-center md:text-left">
           {editing ? (
             <div className="space-y-3">
               <input
@@ -180,7 +180,7 @@ const UserProfile = () => {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg font-semibold"
                 placeholder="Enter display name"
               />
-              <div className="flex space-x-2">
+              <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
                 <button
                   onClick={handleSaveProfile}
                   disabled={saving || !newDisplayName.trim()}
@@ -222,13 +222,13 @@ const UserProfile = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-600 mb-1">User ID</label>
-            <p className="text-sm text-gray-800 font-mono bg-white px-3 py-2 rounded border">
+            <p className="text-sm text-gray-800 font-mono bg-white px-3 py-2 rounded border break-all">
               {profile.uid}
             </p>
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-600 mb-1">Email</label>
-            <p className="text-sm text-gray-800 bg-white px-3 py-2 rounded border">
+            <p className="text-sm text-gray-800 bg-white px-3 py-2 rounded border break-all">
               {profile.email}
             </p>
           </div>
@@ -292,7 +292,7 @@ const UserProfile = () => {
 
       {/* Real-time status */}
       <div className="mt-8 pt-6 border-t border-gray-200">
-        <div className="flex items-center justify-between text-sm text-gray-600">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm text-gray-600 space-y-2 sm:space-y-0">
           <span>Last updated: {new Date().toLocaleTimeString()}</span>
           <div className="flex items-center">
             <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>

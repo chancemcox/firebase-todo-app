@@ -15,3 +15,54 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Custom profile picture styles for better mobile support */
+.profile-picture {
+  @apply rounded-full object-cover;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.profile-picture-mobile {
+  @apply w-8 h-8;
+}
+
+.profile-picture-desktop {
+  @apply w-24 h-24;
+}
+
+/* Ensure profile pictures don't overflow on mobile */
+.profile-container {
+  @apply relative overflow-hidden;
+}
+
+/* Mobile-specific navigation improvements */
+@media (max-width: 768px) {
+  .mobile-nav-tabs {
+    @apply overflow-x-auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .mobile-nav-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .mobile-profile-menu {
+    @apply w-full max-w-xs;
+    right: 0.5rem;
+  }
+}
+
+/* Profile picture fallback improvements */
+.profile-initials {
+  @apply flex items-center justify-center font-medium text-white;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Ensure profile pictures are properly sized on all devices */
+img[alt="Profile"] {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
