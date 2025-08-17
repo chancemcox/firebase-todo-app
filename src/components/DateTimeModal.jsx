@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const DateTimeModal = ({ isOpen, onClose, onSave, initialDateTime = null }) => {
   const [dateTime, setDateTime] = useState('');
@@ -50,7 +50,6 @@ const DateTimeModal = ({ isOpen, onClose, onSave, initialDateTime = null }) => {
   };
 
   const handleQuickSelect = (option) => {
-    const now = new Date();
     let targetDate = new Date();
 
     switch (option) {
