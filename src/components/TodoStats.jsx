@@ -11,6 +11,7 @@ const TodoStats = () => {
     active: 0,
     completionRate: 0,
     priorityBreakdown: { low: 0, medium: 0, high: 0 },
+    dueDateBreakdown: { overdue: 0, dueToday: 0, dueTomorrow: 0, dueLater: 0, noDueDate: 0 },
     recentActivity: []
   });
   const [loading, setLoading] = useState(true);
@@ -39,7 +40,8 @@ const TodoStats = () => {
             id: doc.id,
             ...doc.data(),
             createdAt: doc.data().createdAt?.toDate?.() || new Date(),
-            updatedAt: doc.data().updatedAt?.toDate?.() || new Date()
+            updatedAt: doc.data().updatedAt?.toDate?.() || new Date(),
+            dueDateTime: doc.data().dueDateTime ? new Date(doc.data().dueDateTime) : null
           });
         });
 
@@ -56,6 +58,36 @@ const TodoStats = () => {
           high: todos.filter(todo => todo.priority === 'high').length
         };
 
+        // Due date breakdown
+        const now = new Date();
+        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+
+        const dueDateBreakdown = {
+          overdue: todos.filter(todo => 
+            !todo.completed && 
+            todo.dueDateTime && 
+            new Date(todo.dueDateTime) < now
+          ).length,
+          dueToday: todos.filter(todo => 
+            !todo.completed && 
+            todo.dueDateTime && 
+            new Date(todo.dueDateTime).toDateString() === now.toDateString()
+          ).length,
+          dueTomorrow: todos.filter(todo => 
+            !todo.completed && 
+            todo.dueDateTime && 
+            new Date(todo.dueDateTime).toDateString() === tomorrow.toDateString()
+          ).length,
+          dueLater: todos.filter(todo => 
+            !todo.completed && 
+            todo.dueDateTime && 
+            new Date(todo.dueDateTime) > tomorrow
+          ).length,
+          noDueDate: todos.filter(todo => !todo.dueDateTime).length
+        };
+
         // Recent activity (last 5 todos)
         const recentActivity = todos.slice(0, 5);
 
@@ -65,6 +97,7 @@ const TodoStats = () => {
           active,
           completionRate,
           priorityBreakdown,
+          dueDateBreakdown,
           recentActivity
         });
 
@@ -180,55 +213,109 @@ const TodoStats = () => {
         </div>
       </div>
 
+      {/* Due Date Breakdown */}
+      <div className="mb-8">
+        <h3 className="text-xl font-semibold mb-4 text-gray-700">Due Date Overview</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="bg-red-100 p-4 rounded-lg border-l-4 border-red-500">
+            <h4 className="font-semibold text-red-800">Overdue</h4>
+            <p className="text-2xl font-bold text-red-600">{stats.dueDateBreakdown.overdue}</p>
+            <p className="text-xs text-red-600">Past due date</p>
+          </div>
+          <div className="bg-orange-100 p-4 rounded-lg border-l-4 border-orange-500">
+            <h4 className="font-semibold text-orange-800">Due Today</h4>
+            <p className="text-2xl font-bold text-orange-600">{stats.dueDateBreakdown.dueToday}</p>
+            <p className="text-xs text-orange-600">Must complete today</p>
+          </div>
+          <div className="bg-blue-100 p-4 rounded-lg border-l-4 border-blue-500">
+            <h4 className="font-semibold text-blue-800">Due Tomorrow</h4>
+            <p className="text-2xl font-bold text-blue-600">{stats.dueDateBreakdown.dueTomorrow}</p>
+            <p className="text-xs text-blue-600">Coming up soon</p>
+          </div>
+          <div className="bg-green-100 p-4 rounded-lg border-l-4 border-green-500">
+            <h4 className="font-semibold text-green-800">Due Later</h4>
+            <p className="text-2xl font-bold text-green-600">{stats.dueDateBreakdown.dueLater}</p>
+            <p className="text-xs text-green-600">Future deadlines</p>
+          </div>
+          <div className="bg-gray-100 p-4 rounded-lg border-l-4 border-gray-500">
+            <h4 className="font-semibold text-gray-800">No Due Date</h4>
+            <p className="text-2xl font-bold text-gray-600">{stats.dueDateBreakdown.noDueDate}</p>
+            <p className="text-xs text-gray-600">Flexible timing</p>
+          </div>
+        </div>
+      </div>
+
       {/* Recent Activity */}
       <div>
         <h3 className="text-xl font-semibold mb-4 text-gray-700">Recent Activity</h3>
         {stats.recentActivity.length > 0 ? (
           <div className="space-y-3">
-            {stats.recentActivity.map((todo) => (
-              <div 
-                key={todo.id} 
-                className={`p-4 rounded-lg border-l-4 transition-all duration-300 ${
-                  todo.completed 
-                    ? 'bg-green-50 border-green-400' 
-                    : 'bg-blue-50 border-blue-400'
-                }`}
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex-1">
-                    <h4 className={`font-medium ${
-                      todo.completed ? 'text-green-800 line-through' : 'text-blue-800'
-                    }`}>
-                      {todo.title}
-                    </h4>
-                    {todo.description && (
-                      <p className={`text-sm mt-1 ${
-                        todo.completed ? 'text-green-600' : 'text-blue-600'
+            {stats.recentActivity.map((todo) => {
+              const getDueDateStatus = (dueDateTime) => {
+                if (!dueDateTime) return { text: 'No due date', color: 'text-gray-500' };
+                
+                const now = new Date();
+                const dueDate = new Date(dueDateTime);
+                const isPast = dueDate < now;
+                const isToday = dueDate.toDateString() === now.toDateString();
+                const isTomorrow = dueDate.toDateString() === new Date(now.getTime() + 86400000).toDateString();
+                
+                if (isPast) return { text: 'Overdue', color: 'text-red-600' };
+                if (isToday) return { text: 'Due today', color: 'text-orange-600' };
+                if (isTomorrow) return { text: 'Due tomorrow', color: 'text-blue-600' };
+                return { text: 'Due later', color: 'text-green-600' };
+              };
+
+              const dueDateStatus = getDueDateStatus(todo.dueDateTime);
+              
+              return (
+                <div 
+                  key={todo.id} 
+                  className={`p-4 rounded-lg border-l-4 transition-all duration-300 ${
+                    todo.completed 
+                      ? 'bg-green-50 border-green-400' 
+                      : 'bg-blue-50 border-blue-400'
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex-1">
+                      <h4 className={`font-medium ${
+                        todo.completed ? 'text-green-800 line-through' : 'text-blue-800'
                       }`}>
-                        {todo.description}
-                      </p>
-                    )}
+                        {todo.title}
+                      </h4>
+                      {todo.description && (
+                        <p className={`text-sm mt-1 ${
+                          todo.completed ? 'text-green-600' : 'text-blue-600'
+                        }`}>
+                          {todo.description}
+                        </p>
+                      )}
+                      <div className="flex items-center space-x-2 mt-2">
+                        <span className={`px-2 py-1 text-xs font-medium rounded-full ${
+                          todo.priority === 'high' ? 'bg-red-100 text-red-800' :
+                          todo.priority === 'medium' ? 'bg-yellow-100 text-yellow-800' :
+                          'bg-green-100 text-green-800'
+                        }`}>
+                          {todo.priority}
+                        </span>
+                        <span className={`px-2 py-1 text-xs font-medium rounded-full ${
+                          todo.completed ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'
+                        }`}>
+                          {todo.completed ? 'Completed' : 'Active'}
+                        </span>
+                        <span className={`text-xs ${dueDateStatus.color}`}>
+                          {dueDateStatus.text}
+                        </span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-                      todo.priority === 'high' ? 'bg-red-100 text-red-800' :
-                      todo.priority === 'medium' ? 'bg-yellow-100 text-yellow-800' :
-                      'bg-green-100 text-green-800'
-                    }`}>
-                      {todo.priority}
-                    </span>
-                    <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-                      todo.completed ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'
-                    }`}>
-                      {todo.completed ? 'Completed' : 'Active'}
-                    </span>
+                  <div className="text-xs text-gray-500 mt-2">
+                    {todo.createdAt.toLocaleDateString()} at {todo.createdAt.toLocaleTimeString()}
                   </div>
                 </div>
-                <div className="text-xs text-gray-500 mt-2">
-                  {todo.createdAt.toLocaleDateString()} at {todo.createdAt.toLocaleTimeString()}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         ) : (
           <div className="text-center py-8 text-gray-500">

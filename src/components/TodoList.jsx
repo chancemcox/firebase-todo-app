@@ -2,15 +2,25 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { collection, query, where, onSnapshot, orderBy, addDoc, updateDoc, deleteDoc, doc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase';
+import DateTimeModal from './DateTimeModal';
 
 const TodoList = () => {
   const { currentUser } = useAuth();
   const [todos, setTodos] = useState([]);
-  const [newTodo, setNewTodo] = useState({ title: '', description: '', priority: 'medium', tags: [] });
+  const [newTodo, setNewTodo] = useState({ 
+    title: '', 
+    description: '', 
+    priority: 'medium', 
+    tags: [],
+    dueDateTime: null,
+    reminder: 'none'
+  });
   const [filter, setFilter] = useState('all');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [newTag, setNewTag] = useState('');
+  const [showDateTimeModal, setShowDateTimeModal] = useState(false);
+  const [editingTodo, setEditingTodo] = useState(null);
 
   useEffect(() => {
     if (!currentUser) return;
@@ -35,7 +45,8 @@ const TodoList = () => {
             id: doc.id,
             ...doc.data(),
             createdAt: doc.data().createdAt?.toDate?.() || new Date(),
-            updatedAt: doc.data().updatedAt?.toDate?.() || new Date()
+            updatedAt: doc.data().updatedAt?.toDate?.() || new Date(),
+            dueDateTime: doc.data().dueDateTime ? new Date(doc.data().dueDateTime) : null
           });
         });
 
@@ -69,6 +80,8 @@ const TodoList = () => {
         tags: newTodo.tags.filter(tag => tag.trim()),
         completed: false,
         userId: currentUser.uid,
+        dueDateTime: newTodo.dueDateTime,
+        reminder: newTodo.reminder,
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp()
       };
@@ -76,7 +89,14 @@ const TodoList = () => {
       await addDoc(collection(db, 'todos'), todoData);
       
       // Reset form
-      setNewTodo({ title: '', description: '', priority: 'medium', tags: [] });
+      setNewTodo({ 
+        title: '', 
+        description: '', 
+        priority: 'medium', 
+        tags: [],
+        dueDateTime: null,
+        reminder: 'none'
+      });
     } catch (error) {
       console.error('Error creating todo:', error);
       setError('Failed to create todo');
@@ -105,6 +125,20 @@ const TodoList = () => {
     }
   };
 
+  const handleUpdateDueDate = async (todoId, dueDateData) => {
+    try {
+      const todoRef = doc(db, 'todos', todoId);
+      await updateDoc(todoRef, {
+        dueDateTime: dueDateData.dueDateTime,
+        reminder: dueDateData.reminder,
+        updatedAt: serverTimestamp()
+      });
+    } catch (error) {
+      console.error('Error updating due date:', error);
+      setError('Failed to update due date');
+    }
+  };
+
   const addTag = () => {
     if (newTag.trim() && !newTodo.tags.includes(newTag.trim())) {
       setNewTodo(prev => ({
@@ -122,9 +156,69 @@ const TodoList = () => {
     }));
   };
 
+  const openDateTimeModal = (todo = null) => {
+    if (todo) {
+      setEditingTodo(todo);
+      setShowDateTimeModal(true);
+    } else {
+      setEditingTodo(null);
+      setShowDateTimeModal(true);
+    }
+  };
+
+  const handleDateTimeSave = (dueDateData) => {
+    if (editingTodo) {
+      // Editing existing todo
+      handleUpdateDueDate(editingTodo.id, dueDateData);
+    } else {
+      // Setting due date for new todo
+      setNewTodo(prev => ({
+        ...prev,
+        dueDateTime: dueDateData.dueDateTime,
+        reminder: dueDateData.reminder
+      }));
+    }
+  };
+
+  const getDueDateDisplay = (dueDateTime) => {
+    if (!dueDateTime) return null;
+    
+    const now = new Date();
+    const dueDate = new Date(dueDateTime);
+    const isPast = dueDate < now;
+    const isToday = dueDate.toDateString() === now.toDateString();
+    const isTomorrow = dueDate.toDateString() === new Date(now.getTime() + 86400000).toDateString();
+    
+    let displayText = '';
+    let colorClass = '';
+    
+    if (isPast) {
+      displayText = `Overdue: ${dueDate.toLocaleDateString()} at ${dueDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+      colorClass = 'text-red-600 bg-red-50 border-red-200';
+    } else if (isToday) {
+      displayText = `Due today at ${dueDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+      colorClass = 'text-orange-600 bg-orange-50 border-orange-200';
+    } else if (isTomorrow) {
+      displayText = `Due tomorrow at ${dueDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+      colorClass = 'text-blue-600 bg-blue-50 border-blue-200';
+    } else {
+      displayText = `Due ${dueDate.toLocaleDateString()} at ${dueDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+      colorClass = 'text-green-600 bg-green-50 border-green-200';
+    }
+    
+    return { text: displayText, colorClass };
+  };
+
   const filteredTodos = todos.filter(todo => {
     if (filter === 'active') return !todo.completed;
     if (filter === 'completed') return todo.completed;
+    if (filter === 'overdue') return todo.dueDateTime && new Date(todo.dueDateTime) < new Date() && !todo.completed;
+    if (filter === 'due-today') {
+      const today = new Date();
+      return todo.dueDateTime && 
+             new Date(todo.dueDateTime).toDateString() === today.toDateString() && 
+             !todo.completed;
+    }
     return true;
   });
 
@@ -220,60 +314,102 @@ const TodoList = () => {
           />
         </div>
 
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Tags
-          </label>
-          <div className="flex items-center space-x-2 mb-2">
-            <input
-              type="text"
-              value={newTag}
-              onChange={(e) => setNewTag(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addTag())}
-              className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="Add a tag..."
-            />
-            <button
-              type="button"
-              onClick={addTag}
-              className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-            >
-              Add
-            </button>
-          </div>
-          {newTodo.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2">
-              {newTodo.tags.map((tag, index) => (
-                <span
-                  key={index}
-                  className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800"
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Due Date & Time
+            </label>
+            <div className="flex space-x-2">
+              <button
+                type="button"
+                onClick={() => openDateTimeModal()}
+                className={`flex-1 px-3 py-2 border rounded-md text-sm font-medium transition-colors ${
+                  newTodo.dueDateTime
+                    ? 'border-green-300 bg-green-50 text-green-700 hover:bg-green-100'
+                    : 'border-gray-300 bg-white text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                {newTodo.dueDateTime 
+                  ? new Date(newTodo.dueDateTime).toLocaleDateString() + ' ' + 
+                    new Date(newTodo.dueDateTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                  : 'Set Due Date'
+                }
+              </button>
+              {newTodo.dueDateTime && (
+                <button
+                  type="button"
+                  onClick={() => setNewTodo(prev => ({ ...prev, dueDateTime: null, reminder: 'none' }))}
+                  className="px-3 py-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-md transition-colors"
+                  title="Remove due date"
                 >
-                  {tag}
-                  <button
-                    type="button"
-                    onClick={() => removeTag(tag)}
-                    className="ml-1 text-blue-600 hover:text-blue-800"
-                  >
-                    ×
-                  </button>
-                </span>
-              ))}
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              )}
             </div>
-          )}
+            {newTodo.reminder !== 'none' && (
+              <p className="text-xs text-gray-600 mt-1">
+                Reminder: {newTodo.reminder === 'custom' ? 'Custom' : `${newTodo.reminder} before`}
+              </p>
+            )}
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Tags
+            </label>
+            <div className="flex items-center space-x-2 mb-2">
+              <input
+                type="text"
+                value={newTag}
+                onChange={(e) => setNewTag(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addTag())}
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Add a tag..."
+              />
+              <button
+                type="button"
+                onClick={addTag}
+                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              >
+                Add
+              </button>
+            </div>
+            {newTodo.tags.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {newTodo.tags.map((tag, index) => (
+                  <span
+                    key={index}
+                    className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800"
+                  >
+                    {tag}
+                    <button
+                      type="button"
+                      onClick={() => removeTag(tag)}
+                      className="ml-1 text-blue-600 hover:text-blue-800"
+                    >
+                      ×
+                    </button>
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
 
         <button
           type="submit"
           disabled={!newTodo.title.trim()}
-          className="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           Add Todo
         </button>
       </form>
 
       {/* Filter Buttons */}
-      <div className="flex space-x-2 mb-6">
-        {['all', 'active', 'completed'].map((filterType) => (
+      <div className="flex flex-wrap gap-2 mb-6">
+        {['all', 'active', 'completed', 'overdue', 'due-today'].map((filterType) => (
           <button
             key={filterType}
             onClick={() => setFilter(filterType)}
@@ -283,7 +419,11 @@ const TodoList = () => {
                 : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
             }`}
           >
-            {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+            {filterType === 'all' && 'All'}
+            {filterType === 'active' && 'Active'}
+            {filterType === 'completed' && 'Completed'}
+            {filterType === 'overdue' && 'Overdue'}
+            {filterType === 'due-today' && 'Due Today'}
           </button>
         ))}
       </div>
@@ -299,81 +439,109 @@ const TodoList = () => {
         </div>
       ) : (
         <div className="space-y-4">
-          {filteredTodos.map((todo) => (
-            <div
-              key={todo.id}
-              className={`p-4 border rounded-lg transition-all duration-200 ${
-                todo.completed
-                  ? 'bg-green-50 border-green-200'
-                  : 'bg-white border-gray-200 hover:shadow-md'
-              }`}
-            >
-              <div className="flex items-start justify-between">
-                <div className="flex-1">
-                  <div className="flex items-center space-x-3">
-                    <input
-                      type="checkbox"
-                      checked={todo.completed}
-                      onChange={() => handleToggleComplete(todo.id, todo.completed)}
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <h3 className={`text-lg font-medium ${
-                      todo.completed ? 'text-green-800 line-through' : 'text-gray-800'
-                    }`}>
-                      {todo.title}
-                    </h3>
-                    <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-                      todo.priority === 'high' ? 'bg-red-100 text-red-800' :
-                      todo.priority === 'medium' ? 'bg-yellow-100 text-yellow-800' :
-                      'bg-green-100 text-green-800'
-                    }`}>
-                      {todo.priority}
-                    </span>
+          {filteredTodos.map((todo) => {
+            const dueDateDisplay = getDueDateDisplay(todo.dueDateTime);
+            
+            return (
+              <div
+                key={todo.id}
+                className={`p-4 border rounded-lg transition-all duration-200 ${
+                  todo.completed
+                    ? 'bg-green-50 border-green-200'
+                    : 'bg-white border-gray-200 hover:shadow-md'
+                }`}
+              >
+                <div className="flex items-start justify-between">
+                  <div className="flex-1">
+                    <div className="flex items-center space-x-3">
+                      <input
+                        type="checkbox"
+                        checked={todo.completed}
+                        onChange={() => handleToggleComplete(todo.id, todo.completed)}
+                        className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                      />
+                      <h3 className={`text-lg font-medium ${
+                        todo.completed ? 'text-green-800 line-through' : 'text-gray-800'
+                      }`}>
+                        {todo.title}
+                      </h3>
+                      <span className={`px-2 py-1 text-xs font-medium rounded-full ${
+                        todo.priority === 'high' ? 'bg-red-100 text-red-800' :
+                        todo.priority === 'medium' ? 'bg-yellow-100 text-yellow-800' :
+                        'bg-green-100 text-green-800'
+                      }`}>
+                        {todo.priority}
+                      </span>
+                    </div>
+                    
+                    {todo.description && (
+                      <p className={`mt-2 ${
+                        todo.completed ? 'text-green-600' : 'text-gray-600'
+                      }`}>
+                        {todo.description}
+                      </p>
+                    )}
+
+                    {/* Due Date Display */}
+                    {dueDateDisplay && (
+                      <div className={`mt-3 inline-flex items-center px-3 py-1 rounded-full text-sm font-medium border ${dueDateDisplay.colorClass}`}>
+                        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v16a2 2 0 002 2z" />
+                        </svg>
+                        {dueDateDisplay.text}
+                      </div>
+                    )}
+                    
+                    {todo.tags.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mt-3">
+                        {todo.tags.map((tag, index) => (
+                          <span
+                            key={index}
+                            className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    
+                    <div className="text-xs text-gray-500 mt-3">
+                      Created: {todo.createdAt.toLocaleDateString()} at {todo.createdAt.toLocaleTimeString()}
+                      {todo.updatedAt !== todo.createdAt && (
+                        <span className="ml-4">
+                          Updated: {todo.updatedAt.toLocaleDateString()} at {todo.updatedAt.toLocaleTimeString()}
+                        </span>
+                      )}
+                    </div>
                   </div>
                   
-                  {todo.description && (
-                    <p className={`mt-2 ${
-                      todo.completed ? 'text-green-600' : 'text-gray-600'
-                    }`}>
-                      {todo.description}
-                    </p>
-                  )}
-                  
-                  {todo.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2 mt-3">
-                      {todo.tags.map((tag, index) => (
-                        <span
-                          key={index}
-                          className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                  
-                  <div className="text-xs text-gray-500 mt-3">
-                    Created: {todo.createdAt.toLocaleDateString()} at {todo.createdAt.toLocaleTimeString()}
-                    {todo.updatedAt !== todo.createdAt && (
-                      <span className="ml-4">
-                        Updated: {todo.updatedAt.toLocaleDateString()} at {todo.updatedAt.toLocaleTimeString()}
-                      </span>
-                    )}
+                  <div className="flex items-center space-x-2 ml-4">
+                    {/* Due Date Button */}
+                    <button
+                      onClick={() => openDateTimeModal(todo)}
+                      className="p-2 text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-md transition-colors"
+                      title="Edit due date"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v16a2 2 0 002 2z" />
+                      </svg>
+                    </button>
+                    
+                    {/* Delete Button */}
+                    <button
+                      onClick={() => handleDeleteTodo(todo.id)}
+                      className="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-md transition-colors"
+                      title="Delete todo"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      </svg>
+                    </button>
                   </div>
                 </div>
-                
-                <button
-                  onClick={() => handleDeleteTodo(todo.id)}
-                  className="ml-4 p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-md transition-colors"
-                  title="Delete todo"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                  </svg>
-                </button>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
 
@@ -387,6 +555,14 @@ const TodoList = () => {
           </div>
         </div>
       </div>
+
+      {/* DateTime Modal */}
+      <DateTimeModal
+        isOpen={showDateTimeModal}
+        onClose={() => setShowDateTimeModal(false)}
+        onSave={handleDateTimeSave}
+        initialDateTime={editingTodo ? editingTodo.dueDateTime : null}
+      />
     </div>
   );
 };
