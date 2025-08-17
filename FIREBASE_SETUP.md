@@ -2,7 +2,7 @@
 
 ## Prerequisites
 1. A Firebase project (create one at [Firebase Console](https://console.firebase.google.com/))
-2. PHP 8.0+ (TaskFlow requires PHP 8.0+)
+2. Node.js 18+ and npm
 
 ## Setup Steps
 
@@ -12,8 +12,8 @@
 3. Enter your project name
 4. Follow the setup wizard
 
-### 2. Enable Realtime Database
-1. In your Firebase project, go to "Realtime Database"
+### 2. Enable Firestore Database
+1. In your Firebase project, go to "Firestore Database"
 2. Click "Create Database"
 3. Choose a location
 4. Start in test mode (we'll update security rules later)
@@ -29,47 +29,65 @@
 Add these to your `.env` file:
 
 ```env
-FIREBASE_PROJECT=your-project-id
-FIREBASE_CREDENTIALS=storage/app/firebase-credentials.json
-FIREBASE_DATABASE_URL=https://your-project-id-default-rtdb.firebaseio.com
-FIREBASE_STORAGE_DEFAULT_BUCKET=your-project-id.appspot.com
+NODE_ENV=development
+PORT=5000
+
+# Firebase Configuration
+REACT_APP_FIREBASE_API_KEY=your-api-key-here
+REACT_APP_FIREBASE_AUTH_DOMAIN=todo-list-e7788.firebaseapp.com
+REACT_APP_FIREBASE_PROJECT_ID=todo-list-e7788
+REACT_APP_FIREBASE_STORAGE_BUCKET=todo-list-e7788.appspot.com
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your-sender-id-here
+REACT_APP_FIREBASE_APP_ID=your-app-id-here
+
+# Frontend URL
+REACT_APP_API_URL=http://localhost:5000/api
+
+# Optional: Use Firestore emulator for local development
+REACT_APP_USE_FIRESTORE_EMULATOR=false
 ```
 
-### 5. Update Security Rules
-In Firebase Console > Realtime Database > Rules, update to:
+### 5. Update Firestore Security Rules
+In Firebase Console > Firestore Database > Rules, update to:
 
-```json
-{
-  "rules": {
-    "todos": {
-      ".read": true,
-      ".write": true
+```javascript
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /todos/{todoId} {
+      allow read, write: if request.auth != null && request.auth.uid == resource.data.userId;
+      allow create: if request.auth != null && request.auth.uid == request.resource.data.userId;
+    }
+    
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
     }
   }
 }
 ```
 
-**Note**: These rules allow public read/write access. For production, implement proper authentication.
+**Note**: These rules allow authenticated users to read/write their own todos. For production, implement proper authentication and authorization.
 
 ## Testing the App
 
 ### Run Tests
 ```bash
-php artisan test
+npm test
 ```
 
 ### Start Development Server
 ```bash
-php artisan serve
+./scripts/dev.sh
 ```
 
 ### Access the App
-- Web Interface: http://localhost:8000/todos
-- API Endpoints: http://localhost:8000/api/todos
+- Frontend: http://localhost:3000
+- Backend: http://localhost:5000
+- Health check: http://localhost:5000/health
 
 ## API Endpoints
 
-- `GET /api/todos` - Get all todos
+- `GET /api/todos` - Get all todos for authenticated user
 - `POST /api/todos` - Create new todo
 - `GET /api/todos/{id}` - Get specific todo
 - `PUT /api/todos/{id}` - Update todo
@@ -83,12 +101,19 @@ php artisan serve
   "title": "Todo title",
   "description": "Todo description",
   "completed": false,
-  "user_id": "user-identifier",
-  "due_date": "2024-01-01",
-  "created_at": "2024-01-01T00:00:00.000Z",
-  "updated_at": "2024-01-01T00:00:00.000Z"
+  "userId": "user-identifier",
+  "priority": "low|medium|high",
+  "dueDate": "2024-01-01T00:00:00.000Z",
+  "tags": ["tag1", "tag2"],
+  "createdAt": "2024-01-01T00:00:00.000Z",
+  "updatedAt": "2024-01-01T00:00:00.000Z"
 }
 ```
+
+## Firestore Collections
+
+- **todos**: User's todo items
+- **users**: User profile information
 
 ## Troubleshooting
 
@@ -99,17 +124,24 @@ php artisan serve
    - Check file permissions
 
 2. **Database connection failed**
-   - Verify `FIREBASE_DATABASE_URL` is correct
-   - Check if Realtime Database is enabled
+   - Verify Firestore is enabled in Firebase Console
+   - Check if security rules allow access
 
 3. **Permission denied**
-   - Update Firebase security rules
+   - Update Firestore security rules
    - Check service account permissions
 
 ### Debug Mode
 Enable debug mode in `.env`:
 ```env
-APP_DEBUG=true
+NODE_ENV=development
 ```
 
-Check application logs in `storage/logs/laravel.log`
+Check application logs in the console
+
+### Local Development with Emulator
+To use Firestore emulator locally:
+
+1. Install Firebase CLI: `npm install -g firebase-tools`
+2. Start emulator: `firebase emulators:start`
+3. Set environment variable: `REACT_APP_USE_FIRESTORE_EMULATOR=true`

@@ -1,0 +1,16 @@
+/* Custom styles that complement TailwindCSS */
+.App {
+  /* Background and layout handled by TailwindCSS classes */
+}
+
+.App-header {
+  /* Spacing handled by TailwindCSS classes */
+}
+
+.App-header h1 {
+  /* Text styling handled by TailwindCSS classes */
+}
+
+main {
+  /* Layout handled by TailwindCSS classes */
+}

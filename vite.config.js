@@ -1,14 +1,22 @@
-import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
+const { defineConfig } = require('vite')
+const react = require('@vitejs/plugin-react')
 
-export default defineConfig({
-    plugins: [
-        laravel({
-            input: [
-                'resources/css/app.scss',
-                'resources/js/app.js',
-            ],
-            refresh: true,
-        }),
-    ],
-});
+module.exports = defineConfig({
+  plugins: [react()],
+  server: {
+    port: 3000,
+    open: true
+  },
+  build: {
+    outDir: 'dist',
+    sourcemap: true
+  },
+  css: {
+    postcss: './postcss.config.js',
+    modules: false,
+    devSourcemap: true
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom']
+  }
+})

@@ -1,65 +1,144 @@
-import axios from 'axios';
+import { 
+  collection, 
+  addDoc, 
+  updateDoc, 
+  deleteDoc, 
+  doc, 
+  query, 
+  where, 
+  orderBy, 
+  getDocs,
+  serverTimestamp 
+} from 'firebase/firestore';
+import { db } from '../firebase';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
-
-// Create axios instance with base configuration
-const apiClient = axios.create({
-  baseURL: API_BASE_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
-
-// Request interceptor for logging
-apiClient.interceptors.request.use(
-  (config) => {
-    console.log('API Request:', config.method?.toUpperCase(), config.url);
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
+// Create a new todo
+export const createTodo = async (todoData, userId) => {
+  try {
+    console.log('Creating todo with data:', { todoData, userId });
+    console.log('Firestore db instance:', db);
+    
+    const todoRef = await addDoc(collection(db, 'todos'), {
+      ...todoData,
+      userId,
+      createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp(),
+      completed: false
+    });
+    
+    console.log('Todo created successfully with ID:', todoRef.id);
+    return { id: todoRef.id, ...todoData };
+  } catch (error) {
+    console.error('Error creating todo:', error);
+    console.error('Error details:', {
+      code: error.code,
+      message: error.message,
+      stack: error.stack
+    });
+    throw error;
   }
-);
+};
 
-// Response interceptor for error handling
-apiClient.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  (error) => {
-    console.error('API Error:', error.response?.data || error.message);
-    return Promise.reject(error);
+// Get todos for a specific user
+export const getUserTodos = async (userId) => {
+  try {
+    console.log('Fetching todos for user:', userId);
+    
+    const q = query(
+      collection(db, 'todos'),
+      where('userId', '==', userId),
+      orderBy('createdAt', 'desc')
+    );
+    
+    const querySnapshot = await getDocs(q);
+    const todos = [];
+    
+    querySnapshot.forEach((doc) => {
+      todos.push({
+        id: doc.id,
+        ...doc.data(),
+        createdAt: doc.data().createdAt?.toDate?.() || new Date(),
+        updatedAt: doc.data().updatedAt?.toDate?.() || new Date()
+      });
+    });
+    
+    console.log('Fetched todos:', todos);
+    return todos;
+  } catch (error) {
+    console.error('Error getting user todos:', error);
+    console.error('Error details:', {
+      code: error.code,
+      message: error.message,
+      stack: error.stack
+    });
+    throw error;
   }
-);
+};
 
-export const todoService = {
-  // Get all todos
-  getAllTodos: async () => {
-    return apiClient.get('/todos');
-  },
+// Update a todo
+export const updateTodo = async (todoId, updates) => {
+  try {
+    console.log('Updating todo:', { todoId, updates });
+    
+    const todoRef = doc(db, 'todos', todoId);
+    await updateDoc(todoRef, {
+      ...updates,
+      updatedAt: serverTimestamp()
+    });
+    
+    console.log('Todo updated successfully');
+    return { id: todoId, ...updates };
+  } catch (error) {
+    console.error('Error updating todo:', error);
+    console.error('Error details:', {
+      code: error.code,
+      message: error.message,
+      stack: error.stack
+    });
+    throw error;
+  }
+};
 
-  // Get a specific todo
-  getTodo: async (id) => {
-    return apiClient.get(`/todos/${id}`);
-  },
+// Delete a todo
+export const deleteTodo = async (todoId) => {
+  try {
+    console.log('Deleting todo:', todoId);
+    
+    await deleteDoc(doc(db, 'todos', todoId));
+    
+    console.log('Todo deleted successfully');
+    return todoId;
+  } catch (error) {
+    console.error('Error deleting todo:', error);
+    console.error('Error details:', {
+      code: error.code,
+      message: error.message,
+      stack: error.stack
+    });
+    throw error;
+  }
+};
 
-  // Create a new todo
-  createTodo: async (todoData) => {
-    return apiClient.post('/todos', todoData);
-  },
-
-  // Update a todo
-  updateTodo: async (id, todoData) => {
-    return apiClient.put(`/todos/${id}`, todoData);
-  },
-
-  // Delete a todo
-  deleteTodo: async (id) => {
-    return apiClient.delete(`/todos/${id}`);
-  },
-
-  // Toggle todo completion status
-  toggleTodo: async (id) => {
-    return apiClient.patch(`/todos/${id}/toggle`);
-  },
+// Toggle todo completion
+export const toggleTodoCompletion = async (todoId, completed) => {
+  try {
+    console.log('Toggling todo completion:', { todoId, completed });
+    
+    const todoRef = doc(db, 'todos', todoId);
+    await updateDoc(todoRef, {
+      completed: !completed,
+      updatedAt: serverTimestamp()
+    });
+    
+    console.log('Todo completion toggled successfully');
+    return { id: todoId, completed: !completed };
+  } catch (error) {
+    console.error('Error toggling todo completion:', error);
+    console.error('Error details:', {
+      code: error.code,
+      message: error.message,
+      stack: error.stack
+    });
+    throw error;
+  }
 };

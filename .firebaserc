@@ -1,6 +1,7 @@
 {
   "projects": {
-    "tofo": "todo-list-e7788"
+    "tofo": "todo-list-e7788",
+    "staging": "todo-list-e7788"
   },
   "targets": {
     "todo-list-e7788": {

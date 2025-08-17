@@ -2,13 +2,19 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "preview": "vite preview",
+        "server": "node server/server.js",
+        "server:dev": "nodemon server/server.js",
+        "start": "concurrently \"npm run server\" \"npm run dev\""
     },
     "devDependencies": {
         "@babel/core": "^7.28.3",
         "@babel/preset-env": "^7.28.3",
         "@babel/preset-react": "^7.27.1",
+        "@playwright/test": "^1.42.1",
         "@tailwindcss/forms": "^0.5.2",
+        "@vitejs/plugin-react": "^4.7.0",
         "alpinejs": "^3.4.2",
         "autoprefixer": "^10.4.2",
         "axios": "^1.11.0",
@@ -21,6 +27,9 @@
         "sass": "^1.90.0",
         "serverless": "^4.18.0",
         "serverless-firebase": "^0.0.1",
+        "serverless-plugin-log-retention": "^2.1.0",
+        "serverless-prune-plugin": "^2.1.0",
+        "serverless-s3-sync": "^3.4.0",
         "style-loader": "^4.0.0",
         "tailwindcss": "^3.1.0",
         "vite": "^4.0.0",
@@ -29,10 +38,20 @@
         "webpack-dev-server": "^5.2.2"
     },
     "dependencies": {
-        "@reduxjs/toolkit": "^2.8.2",
-        "react": "^19.1.1",
-        "react-dom": "^19.1.1",
-        "react-redux": "^9.2.0",
-        "react-router-dom": "^7.8.1"
+        "@reduxjs/toolkit": "^1.9.5",
+        "concurrently": "^9.2.0",
+        "cors": "^2.8.5",
+        "express-oauth-server": "^2.0.0",
+        "firebase": "^10.7.1",
+        "helmet": "^7.1.0",
+        "morgan": "^1.10.0",
+        "nodemon": "^3.1.10",
+        "oauth2-server": "^3.1.1",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-redux": "^8.1.2",
+        "react-router-dom": "^6.15.0",
+        "swagger-jsdoc": "^6.2.8",
+        "swagger-ui-express": "^5.0.0"
     }
 }
