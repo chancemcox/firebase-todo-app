@@ -1,347 +1,391 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { useAuth } from '../contexts/AuthContext';
-import { 
-  addTodo, 
-  toggleComplete, 
-  deleteTodo, 
-  updateTodo, 
-  setFilter,
-  fetchUserTodos,
-  clearError 
-} from '../store/todoSlice.js';
+import { collection, query, where, onSnapshot, orderBy, addDoc, updateDoc, deleteDoc, doc, serverTimestamp } from 'firebase/firestore';
+import { db } from '../firebase';
 
 const TodoList = () => {
-  const [newTodo, setNewTodo] = useState({
-    title: '',
-    description: '',
-    priority: 'medium',
-    tags: []
-  });
-  const [tagInput, setTagInput] = useState('');
-
-  const todos = useSelector((state) => state.todos.todos);
-  const filter = useSelector((state) => state.todos.filter);
-  const status = useSelector((state) => state.todos.status);
-  const loading = useSelector((state) => state.todos.loading);
-  const error = useSelector((state) => state.todos.error);
-  
-  const dispatch = useDispatch();
   const { currentUser } = useAuth();
+  const [todos, setTodos] = useState([]);
+  const [newTodo, setNewTodo] = useState({ title: '', description: '', priority: 'medium', tags: [] });
+  const [filter, setFilter] = useState('all');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [newTag, setNewTag] = useState('');
 
-  // Fetch todos when component mounts or user changes
   useEffect(() => {
-    if (currentUser?.uid) {
-      dispatch(fetchUserTodos(currentUser.uid));
-    }
-  }, [currentUser?.uid, dispatch]);
+    if (!currentUser) return;
 
-  // Clear error after 5 seconds
-  useEffect(() => {
-    if (error) {
-      const timer = setTimeout(() => {
-        dispatch(clearError());
-      }, 5000);
-      return () => clearTimeout(timer);
+    setLoading(true);
+    setError(null);
+
+    try {
+      // Create real-time listener for todos
+      const todosRef = collection(db, 'todos');
+      const q = query(
+        todosRef,
+        where('userId', '==', currentUser.uid),
+        orderBy('createdAt', 'desc')
+      );
+
+      // Set up real-time listener
+      const unsubscribe = onSnapshot(q, (snapshot) => {
+        const todosData = [];
+        snapshot.forEach((doc) => {
+          todosData.push({
+            id: doc.id,
+            ...doc.data(),
+            createdAt: doc.data().createdAt?.toDate?.() || new Date(),
+            updatedAt: doc.data().updatedAt?.toDate?.() || new Date()
+          });
+        });
+
+        setTodos(todosData);
+        setLoading(false);
+      }, (error) => {
+        console.error('Error listening to todos:', error);
+        setError('Failed to load todos');
+        setLoading(false);
+      });
+
+      // Cleanup listener on unmount
+      return () => unsubscribe();
+    } catch (error) {
+      console.error('Error setting up real-time listener:', error);
+      setError('Failed to set up real-time updates');
+      setLoading(false);
     }
-  }, [error, dispatch]);
+  }, [currentUser]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (newTodo.title.trim() && currentUser?.uid) {
-      try {
-        // Add user ID to the todo
-        const todoWithUser = {
-          ...newTodo,
-          userEmail: currentUser.email,
-          userName: currentUser.displayName || currentUser.email
-        };
-        
-        await dispatch(addTodo({ todoData: todoWithUser, userId: currentUser.uid })).unwrap();
-        
-        // Reset form
-        setNewTodo({
-          title: '',
-          description: '',
-          priority: 'medium',
-          tags: []
-        });
-      } catch (error) {
-        console.error('Failed to add todo:', error);
-      }
-    }
-  };
+    
+    if (!newTodo.title.trim()) return;
 
-  const handleAddTag = () => {
-    if (tagInput.trim() && !newTodo.tags.includes(tagInput.trim())) {
-      setNewTodo({
-        ...newTodo,
-        tags: [...newTodo.tags, tagInput.trim()]
-      });
-      setTagInput('');
-    }
-  };
-
-  const handleRemoveTag = (tagToRemove) => {
-    setNewTodo({
-      ...newTodo,
-      tags: newTodo.tags.filter(tag => tag !== tagToRemove)
-    });
-  };
-
-  const handleToggleComplete = async (todoId, currentCompleted) => {
     try {
-      await dispatch(toggleComplete({ id: todoId, completed: currentCompleted })).unwrap();
+      const todoData = {
+        title: newTodo.title.trim(),
+        description: newTodo.description?.trim() || '',
+        priority: newTodo.priority,
+        tags: newTodo.tags.filter(tag => tag.trim()),
+        completed: false,
+        userId: currentUser.uid,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp()
+      };
+
+      await addDoc(collection(db, 'todos'), todoData);
+      
+      // Reset form
+      setNewTodo({ title: '', description: '', priority: 'medium', tags: [] });
     } catch (error) {
-      console.error('Failed to toggle todo:', error);
+      console.error('Error creating todo:', error);
+      setError('Failed to create todo');
+    }
+  };
+
+  const handleToggleComplete = async (todoId, currentStatus) => {
+    try {
+      const todoRef = doc(db, 'todos', todoId);
+      await updateDoc(todoRef, {
+        completed: !currentStatus,
+        updatedAt: serverTimestamp()
+      });
+    } catch (error) {
+      console.error('Error updating todo:', error);
+      setError('Failed to update todo');
     }
   };
 
   const handleDeleteTodo = async (todoId) => {
     try {
-      await dispatch(deleteTodo(todoId)).unwrap();
+      await deleteDoc(doc(db, 'todos', todoId));
     } catch (error) {
-      console.error('Failed to delete todo:', error);
+      console.error('Error deleting todo:', error);
+      setError('Failed to delete todo');
     }
   };
 
-  // Filter todos by current user
-  const userTodos = todos.filter(todo => todo.userId === currentUser?.uid);
-  
-  const filteredTodos = userTodos.filter(todo => {
-    if (filter === 'all') return true;
-    if (filter === 'completed') return todo.completed;
+  const addTag = () => {
+    if (newTag.trim() && !newTodo.tags.includes(newTag.trim())) {
+      setNewTodo(prev => ({
+        ...prev,
+        tags: [...prev.tags, newTag.trim()]
+      }));
+      setNewTag('');
+    }
+  };
+
+  const removeTag = (tagToRemove) => {
+    setNewTodo(prev => ({
+      ...prev,
+      tags: prev.tags.filter(tag => tag !== tagToRemove)
+    }));
+  };
+
+  const filteredTodos = todos.filter(todo => {
     if (filter === 'active') return !todo.completed;
+    if (filter === 'completed') return todo.completed;
     return true;
   });
 
-  if (status === 'loading' && todos.length === 0) {
+  if (loading) {
     return (
-      <div className="flex justify-center items-center py-12">
-        <div className="text-white text-lg">Loading your todos...</div>
+      <div className="bg-white rounded-lg shadow-lg p-6">
+        <div className="animate-pulse">
+          <div className="h-8 bg-gray-200 rounded w-1/3 mb-6"></div>
+          <div className="h-64 bg-gray-200 rounded mb-6"></div>
+          <div className="space-y-3">
+            {[1, 2, 3].map(i => (
+              <div key={i} className="h-16 bg-gray-200 rounded"></div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="bg-white rounded-lg shadow-lg p-6">
+        <div className="text-center text-red-600">
+          <h2 className="text-2xl font-bold mb-4">Todo List</h2>
+          <p className="text-lg">{error}</p>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          >
+            Retry
+          </button>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="space-y-6">
-      {/* Error Display */}
-      {error && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-md">
-          <strong>Error:</strong> {error}
-          <button
-            onClick={() => dispatch(clearError())}
-            className="ml-2 text-red-700 hover:text-red-900 font-bold"
-          >
-            ×
-          </button>
+    <div className="bg-white rounded-lg shadow-lg p-6">
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-2xl font-bold text-gray-800">Todo List</h2>
+        <div className="flex items-center">
+          <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse mr-2"></div>
+          <span className="text-sm text-green-600 font-medium">Live Updates</span>
         </div>
-      )}
+      </div>
 
       {/* Add Todo Form */}
-      <div className="bg-white rounded-lg p-6 shadow-md">
-        <h3 className="text-lg font-semibold mb-4 text-gray-800">Add New Todo</h3>
-        
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
-                Title *
-              </label>
-              <input
-                type="text"
-                id="title"
-                value={newTodo.title}
-                onChange={(e) => setNewTodo({ ...newTodo, title: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="What needs to be done?"
-                required
-                disabled={loading}
-              />
-            </div>
-            
-            <div>
-              <label htmlFor="priority" className="block text-sm font-medium text-gray-700 mb-1">
-                Priority
-              </label>
-              <select
-                id="priority"
-                value={newTodo.priority}
-                onChange={(e) => setNewTodo({ ...newTodo, priority: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                disabled={loading}
-              >
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
-              </select>
-            </div>
-          </div>
-          
+      <form onSubmit={handleSubmit} className="mb-8 p-6 bg-gray-50 rounded-lg">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div>
-            <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
-              Description
+            <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
+              Title *
             </label>
-            <textarea
-              id="description"
-              value={newTodo.description}
-              onChange={(e) => setNewTodo({ ...newTodo, description: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              rows={3}
-              placeholder="Add more details..."
-              disabled={loading}
+            <input
+              type="text"
+              id="title"
+              value={newTodo.title}
+              onChange={(e) => setNewTodo(prev => ({ ...prev, title: e.target.value }))}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="What needs to be done?"
+              required
             />
           </div>
           
           <div>
-            <label htmlFor="tags" className="block text-sm font-medium text-gray-700 mb-1">
-              Tags
+            <label htmlFor="priority" className="block text-sm font-medium text-gray-700 mb-2">
+              Priority
             </label>
-            <div className="flex gap-2 mb-2">
-              <input
-                type="text"
-                id="tags"
-                value={tagInput}
-                onChange={(e) => setTagInput(e.target.value)}
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Add a tag..."
-                onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddTag())}
-                disabled={loading}
-              />
-              <button
-                type="button"
-                onClick={handleAddTag}
-                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
-                disabled={loading}
-              >
-                Add
-              </button>
-            </div>
-            {newTodo.tags.length > 0 && (
-              <div className="flex flex-wrap gap-2">
-                {newTodo.tags.map((tag, index) => (
-                  <span
-                    key={index}
-                    className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800"
+            <select
+              id="priority"
+              value={newTodo.priority}
+              onChange={(e) => setNewTodo(prev => ({ ...prev, priority: e.target.value }))}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
+            Description
+          </label>
+          <textarea
+            id="description"
+            value={newTodo.description}
+            onChange={(e) => setNewTodo(prev => ({ ...prev, description: e.target.value }))}
+            rows="3"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            placeholder="Additional details..."
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Tags
+          </label>
+          <div className="flex items-center space-x-2 mb-2">
+            <input
+              type="text"
+              value={newTag}
+              onChange={(e) => setNewTag(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addTag())}
+              className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="Add a tag..."
+            />
+            <button
+              type="button"
+              onClick={addTag}
+              className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            >
+              Add
+            </button>
+          </div>
+          {newTodo.tags.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {newTodo.tags.map((tag, index) => (
+                <span
+                  key={index}
+                  className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800"
+                >
+                  {tag}
+                  <button
+                    type="button"
+                    onClick={() => removeTag(tag)}
+                    className="ml-1 text-blue-600 hover:text-blue-800"
                   >
-                    {tag}
-                    <button
-                      type="button"
-                      onClick={() => handleRemoveTag(tag)}
-                      className="ml-1 text-blue-600 hover:text-blue-800"
-                      disabled={loading}
-                    >
-                      ×
-                    </button>
-                  </span>
-                ))}
-              </div>
-            )}
-          </div>
-          
-          <button
-            type="submit"
-            disabled={loading || !newTodo.title.trim()}
-            className="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {loading ? 'Adding Todo...' : 'Add Todo'}
-          </button>
-        </form>
-      </div>
-      
+                    ×
+                  </button>
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <button
+          type="submit"
+          disabled={!newTodo.title.trim()}
+          className="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          Add Todo
+        </button>
+      </form>
+
       {/* Filter Buttons */}
-      <div className="flex justify-center gap-2">
-        <button
-          onClick={() => dispatch(setFilter('all'))}
-          className={`px-4 py-2 rounded-md ${filter === 'all' ? 'bg-blue-500 text-white' : 'bg-white text-gray-700 hover:bg-gray-100'}`}
-        >
-          All
-        </button>
-        <button
-          onClick={() => dispatch(setFilter('active'))}
-          className={`px-4 py-2 rounded-md ${filter === 'active' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}
-        >
-          Active
-        </button>
-        <button
-          onClick={() => dispatch(setFilter('completed'))}
-          className={`px-4 py-2 rounded-md ${filter === 'completed' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}
-        >
-          Completed
-        </button>
+      <div className="flex space-x-2 mb-6">
+        {['all', 'active', 'completed'].map((filterType) => (
+          <button
+            key={filterType}
+            onClick={() => setFilter(filterType)}
+            className={`px-4 py-2 rounded-md font-medium transition-colors ${
+              filter === filterType
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            }`}
+          >
+            {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+          </button>
+        ))}
       </div>
-      
+
       {/* Todo List */}
-      <div className="space-y-4">
-        {filteredTodos.length === 0 ? (
-          <div className="text-center py-8">
-            <p className="text-white text-lg">
-              {userTodos.length === 0 ? 'No todos yet. Add one above!' : 'No todos match your current filter.'}
-            </p>
-          </div>
-        ) : (
-          filteredTodos.map((todo) => (
-            <div key={todo.id} className="bg-white rounded-lg p-4 shadow-md">
-              <div className="flex items-start space-x-3">
-                <input
-                  type="checkbox"
-                  checked={todo.completed}
-                  onChange={() => handleToggleComplete(todo.id, todo.completed)}
-                  className="mt-1 h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
-                  disabled={loading}
-                />
-                
+      {filteredTodos.length === 0 ? (
+        <div className="text-center py-8 text-gray-500">
+          <p className="text-lg">
+            {filter === 'all' 
+              ? 'No todos yet. Create your first one above!' 
+              : `No ${filter} todos.`}
+          </p>
+        </div>
+      ) : (
+        <div className="space-y-4">
+          {filteredTodos.map((todo) => (
+            <div
+              key={todo.id}
+              className={`p-4 border rounded-lg transition-all duration-200 ${
+                todo.completed
+                  ? 'bg-green-50 border-green-200'
+                  : 'bg-white border-gray-200 hover:shadow-md'
+              }`}
+            >
+              <div className="flex items-start justify-between">
                 <div className="flex-1">
-                  <h3 className={`text-lg font-medium ${todo.completed ? 'line-through text-gray-500' : 'text-gray-900'}`}>
-                    {todo.title}
-                  </h3>
-                  
-                  {todo.description && (
-                    <p className={`mt-1 text-sm ${todo.completed ? 'text-gray-400' : 'text-gray-600'}`}>
-                      {todo.description}
-                    </p>
-                  )}
-                  
-                  <div className="mt-2 flex items-center space-x-2">
-                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                  <div className="flex items-center space-x-3">
+                    <input
+                      type="checkbox"
+                      checked={todo.completed}
+                      onChange={() => handleToggleComplete(todo.id, todo.completed)}
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    />
+                    <h3 className={`text-lg font-medium ${
+                      todo.completed ? 'text-green-800 line-through' : 'text-gray-800'
+                    }`}>
+                      {todo.title}
+                    </h3>
+                    <span className={`px-2 py-1 text-xs font-medium rounded-full ${
                       todo.priority === 'high' ? 'bg-red-100 text-red-800' :
                       todo.priority === 'medium' ? 'bg-yellow-100 text-yellow-800' :
                       'bg-green-100 text-green-800'
                     }`}>
                       {todo.priority}
                     </span>
-                    
-                    {todo.tags && todo.tags.length > 0 && (
-                      <div className="flex space-x-1">
-                        {todo.tags.map((tag, index) => (
-                          <span
-                            key={index}
-                            className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    )}
                   </div>
                   
-                  <div className="mt-2 text-xs text-gray-500">
-                    Created: {new Date(todo.createdAt).toLocaleDateString()}
-                    {todo.updatedAt && ` • Updated: ${new Date(todo.updatedAt).toLocaleDateString()}`}
+                  {todo.description && (
+                    <p className={`mt-2 ${
+                      todo.completed ? 'text-green-600' : 'text-gray-600'
+                    }`}>
+                      {todo.description}
+                    </p>
+                  )}
+                  
+                  {todo.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      {todo.tags.map((tag, index) => (
+                        <span
+                          key={index}
+                          className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  
+                  <div className="text-xs text-gray-500 mt-3">
+                    Created: {todo.createdAt.toLocaleDateString()} at {todo.createdAt.toLocaleTimeString()}
+                    {todo.updatedAt !== todo.createdAt && (
+                      <span className="ml-4">
+                        Updated: {todo.updatedAt.toLocaleDateString()} at {todo.updatedAt.toLocaleTimeString()}
+                      </span>
+                    )}
                   </div>
                 </div>
                 
                 <button
                   onClick={() => handleDeleteTodo(todo.id)}
-                  disabled={loading}
-                  className="px-3 py-1 text-sm text-red-600 hover:text-red-800 hover:bg-red-50 rounded disabled:opacity-50"
+                  className="ml-4 p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-md transition-colors"
+                  title="Delete todo"
                 >
-                  Delete
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                  </svg>
                 </button>
               </div>
             </div>
-          ))
-        )}
+          ))}
+        </div>
+      )}
+
+      {/* Real-time status */}
+      <div className="mt-8 pt-6 border-t border-gray-200">
+        <div className="flex items-center justify-between text-sm text-gray-600">
+          <span>Total todos: {todos.length}</span>
+          <div className="flex items-center">
+            <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+            <span>Connected to Firestore</span>
+          </div>
+        </div>
       </div>
     </div>
   );
