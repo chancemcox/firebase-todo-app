@@ -8,7 +8,12 @@ jest.mock('firebase/app', () => ({
 
 jest.mock('firebase/auth', () => ({
   getAuth: jest.fn(() => ({
-    currentUser: null,
+    currentUser: {
+      uid: 'test-user-id',
+      email: 'test@example.com',
+      displayName: 'Test User',
+      photoURL: null
+    },
     onAuthStateChanged: jest.fn(),
     signInWithPopup: jest.fn(),
     signOut: jest.fn(),
@@ -27,7 +32,29 @@ jest.mock('firebase/firestore', () => ({
   query: jest.fn(),
   where: jest.fn(),
   orderBy: jest.fn(),
-  onSnapshot: jest.fn(() => jest.fn()), // Return a mock unsubscribe function
+  onSnapshot: jest.fn((query, callback) => {
+    // Mock successful data callback
+    callback({
+      forEach: (fn) => {
+        // Mock empty data to avoid loading state
+        fn({
+          id: 'test-todo-1',
+          data: () => ({
+            title: 'Test Todo',
+            description: 'Test Description',
+            priority: 'medium',
+            completed: false,
+            userId: 'test-user-id',
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            dueDateTime: null,
+            tags: []
+          })
+        });
+      }
+    });
+    return jest.fn(); // Return mock unsubscribe function
+  }),
   getDocs: jest.fn(),
   serverTimestamp: jest.fn(() => new Date()),
 }));

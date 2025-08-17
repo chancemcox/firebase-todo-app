@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist",
+    "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -13,6 +13,10 @@
       "**/postcss.config.js"
     ],
     "rewrites": [
+      {
+        "source": "/app/**",
+        "destination": "/dist/index.html"
+      },
       {
         "source": "**",
         "destination": "/index.html"
@@ -41,6 +45,6 @@
   },
   "firestore": {
     "rules": "firestore.rules",
-    "indexes": "firestore.indexes.json"
+    "indexes": "firebase.indexes.json"
   }
 }

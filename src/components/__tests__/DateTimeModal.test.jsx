@@ -52,7 +52,10 @@ describe('DateTimeModal', () => {
       />
     );
 
-    const closeButton = screen.getByRole('button', { name: /close/i });
+    // Find the close button by its SVG icon (X symbol)
+    const closeButton = screen.getByRole('button', { 
+      name: '' // The button has no text, just an SVG icon
+    });
     fireEvent.click(closeButton);
 
     expect(mockOnClose).toHaveBeenCalledTimes(1);

@@ -3,124 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TaskFlow - Smart Todo Management</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-</head>
-<body class="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 min-h-screen">
-    <!-- Navigation Bar -->
-    <nav class="bg-white/80 backdrop-blur-md shadow-lg border-b border-gray-200/50 sticky top-0 z-50">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center py-4">
-                <div class="flex items-center space-x-4">
-                    <div class="flex items-center space-x-2">
-                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-                            <i class="fas fa-tasks text-white text-sm"></i>
-                        </div>
-                        <span class="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">TaskFlow</span>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <a href="/login" class="text-gray-700 hover:text-blue-600 px-4 py-2 rounded-xl hover:bg-blue-50 transition-all duration-200 font-medium">
-                        <i class="fas fa-sign-in-alt mr-2"></i>Login
-                    </a>
-                    <a href="/register" class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-2 rounded-xl hover:from-green-600 hover:to-emerald-700 transition-all duration-200 font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-                        <i class="fas fa-user-plus mr-2"></i>Get Started
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Background decorative elements -->
-    <div class="fixed inset-0 overflow-hidden pointer-events-none">
-        <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-200/20 rounded-full blur-3xl animate-pulse"></div>
-        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div class="absolute top-1/2 left-1/2 w-96 h-96 bg-indigo-200/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 animate-pulse delay-500"></div>
-    </div>
-
-    <div class="container mx-auto px-4 py-16 relative z-10">
-        <div class="text-center">
-            <div class="mb-12">
-                <div class="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mb-8 shadow-2xl animate-bounce">
-                    <i class="fas fa-rocket text-white text-4xl"></i>
-                </div>
-                <h1 class="text-6xl font-bold bg-gradient-to-r from-gray-800 via-blue-800 to-purple-800 bg-clip-text text-transparent mb-8 leading-tight">
-                    Organize Your Life
-                </h1>
-                <p class="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
-                    TaskFlow is your intelligent companion for managing tasks, projects, and goals. 
-                    Built with modern web technologies for seamless productivity.
-                </p>
+    <title>Todo App - Welcome</title>
+    <meta name="description" content="A modern, real-time todo application built with React, Node.js, and Firebase">
+    <link rel="icon" href="/favicon.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 2rem;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .feature {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-desc {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .cta-button:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .tech-stack {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+        
+        .tech-stack h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+        
+        .tech-tag {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
             
-                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20">
-                    <a href="/login" 
-                       class="group bg-white/80 backdrop-blur-sm hover:bg-white text-gray-700 hover:text-gray-900 font-semibold py-5 px-10 rounded-2xl text-lg transition-all duration-300 shadow-lg hover:shadow-xl border border-gray-200/50">
-                        <i class="fas fa-sign-in-alt mr-3 group-hover:scale-110 transition-transform duration-300"></i>
-                        Sign In
-                    </a>
-                    <a href="/register" 
-                       class="group bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold py-5 px-10 rounded-2xl text-lg transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
-                        <i class="fas fa-rocket mr-3 group-hover:scale-110 transition-transform duration-300"></i>
-                        Get Started Free
-                    </a>
-                </div>
-                
-                <div class="mt-20 p-8 bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl max-w-lg mx-auto border border-gray-200/50 transform hover:scale-105 transition-all duration-300">
-                    <div class="flex items-center justify-center w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mb-6 mx-auto shadow-lg">
-                        <i class="fas fa-rocket text-white text-3xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">Ready to get organized? 🚀</h3>
-                    <p class="text-gray-600 text-center mb-6">Join thousands of users who are already boosting their productivity with TaskFlow.</p>
-                    <div class="text-center">
-                        <a href="/register" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold rounded-xl hover:from-green-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-                            <i class="fas fa-user-plus mr-2"></i>Create Free Account
-                        </a>
-                    </div>
-                </div>
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">📝 Todo App</div>
+        <div class="tagline">Organize your life, one task at a time</div>
+        
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🔐</div>
+                <div class="feature-title">Secure</div>
+                <div class="feature-desc">Firebase authentication with email and Google sign-in</div>
             </div>
-
-            <!-- Feature Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20">
-                <div class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 p-8 border border-gray-200/50">
-                    <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                        <i class="fas fa-tasks text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Smart Task Management</h3>
-                    <p class="text-gray-600 text-center leading-relaxed">Organize tasks with due dates, priorities, and descriptions. Never miss a deadline again.</p>
-                </div>
-
-                <div class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 p-8 border border-gray-200/50">
-                    <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                        <i class="fas fa-chart-line text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Progress Tracking</h3>
-                    <p class="text-gray-600 text-center leading-relaxed">Monitor your productivity with real-time statistics and completion tracking.</p>
-                </div>
-
-                <div class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 p-8 border border-gray-200/50">
-                    <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                        <i class="fas fa-mobile-alt text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Responsive Design</h3>
-                    <p class="text-gray-600 text-center leading-relaxed">Access your tasks from anywhere with our mobile-friendly, responsive interface.</p>
-                </div>
+            
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <div class="feature-title">Real-time</div>
+                <div class="feature-desc">Live updates across all devices using Firestore</div>
             </div>
-
-            <!-- API Documentation Link -->
-            <div class="mt-20 p-8 bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl max-w-lg mx-auto border border-gray-200/50">
-                <div class="flex items-center justify-center w-20 h-20 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full mb-6 mx-auto shadow-lg">
-                    <i class="fas fa-code text-white text-3xl"></i>
-                </div>
-                <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">Developer API</h3>
-                <p class="text-gray-600 text-center mb-6">Integrate TaskFlow into your applications with our comprehensive REST API.</p>
-                <div class="text-center">
-                    <a href="/apidoc" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-xl hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-                        <i class="fas fa-book mr-2"></i>View API Documentation
-                    </a>
-                </div>
+            
+            <div class="feature">
+                <div class="feature-icon">📱</div>
+                <div class="feature-title">Responsive</div>
+                <div class="feature-desc">Works perfectly on desktop, tablet, and mobile</div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">⏰</div>
+                <div class="feature-title">Smart</div>
+                <div class="feature-desc">Due dates, reminders, and priority management</div>
             </div>
         </div>
+        
+        <a href="/app" class="cta-button">🚀 Launch App</a>
+        
+        <div class="tech-stack">
+            <h3>Built with modern technologies</h3>
+            <div class="tech-tags">
+                <span class="tech-tag">React 18</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">Firebase</span>
+                <span class="tech-tag">TailwindCSS</span>
+                <span class="tech-tag">Express</span>
+                <span class="tech-tag">TypeScript</span>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Built with ❤️ by Chance Cox</p>
+            <p>Open source • Secure • Scalable</p>
+        </div>
     </div>
+    
+    <script>
+        // Auto-redirect to app after 5 seconds
+        setTimeout(() => {
+            window.location.href = '/app';
+        }, 5000);
+        
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const features = document.querySelectorAll('.feature');
+            
+            features.forEach((feature, index) => {
+                feature.style.animationDelay = `${index * 0.1}s`;
+                feature.style.animation = 'fadeInUp 0.6s ease-out forwards';
+            });
+            
+            // Add CSS animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+                
+                .feature {
+                    opacity: 0;
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
 </body>
 </html>
