@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "public",
+    "public": "dist",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -13,22 +13,6 @@
       "**/postcss.config.js"
     ],
     "rewrites": [
-      {
-        "source": "/app",
-        "destination": "/dist/index.html"
-      },
-      {
-        "source": "/app/**",
-        "destination": "/dist/index.html"
-      },
-      {
-        "source": "/login",
-        "destination": "/dist/index.html"
-      },
-      {
-        "source": "/register",
-        "destination": "/dist/index.html"
-      },
       {
         "source": "**",
         "destination": "/index.html"

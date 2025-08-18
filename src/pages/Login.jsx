@@ -91,7 +91,7 @@ To fix this:
 3. Add these domains to "Authorized domains":
    - localhost
    - todo-list-e7788.web.app
-   - todo.chancecox.com`);
+   - todo.cox-fam.com`);
       }
     } finally {
       setLoading(false);
