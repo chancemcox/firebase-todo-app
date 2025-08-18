@@ -41,21 +41,11 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (password !== confirmPassword) {
-      setError('Failed to create account');
-      setErrorDetail('Passwords do not match');
-      return;
-    }
-    
-    if (password.length < 6) {
-      setError('Failed to create account');
-      setErrorDetail('Password must be at least 6 characters');
-      return;
-    }
-    
     try {
       setError('');
       setErrorDetail('');
+      
+      // Check required fields first
       if (!displayName) {
         setError('Failed to create account');
         setErrorDetail('Full name is required');
@@ -73,7 +63,20 @@ const Register = () => {
       }
       if (!confirmPassword) {
         setError('Failed to create account');
-        setErrorDetail('Please confirm your password');
+        setErrorDetail('Passwords do not match');
+        return;
+      }
+      
+      // Then check password rules
+      if (password.length < 6) {
+        setError('Failed to create account');
+        setErrorDetail('Password must be at least 6 characters');
+        return;
+      }
+      
+      if (password !== confirmPassword) {
+        setError('Failed to create account');
+        setErrorDetail('Passwords do not match');
         return;
       }
       setLoading(true);
@@ -153,7 +156,13 @@ To fix this:
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
                 placeholder="Display Name"
                 value={displayName}
-                onChange={(e) => setDisplayName(e.target.value)}
+                onChange={(e) => {
+                  setDisplayName(e.target.value);
+                  if (error) {
+                    setError('');
+                    setErrorDetail('');
+                  }
+                }}
               />
             </div>
             <div>
@@ -169,7 +178,13 @@ To fix this:
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
                 placeholder="Email address"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  if (error) {
+                    setError('');
+                    setErrorDetail('');
+                  }
+                }}
               />
             </div>
             <div>
@@ -185,7 +200,13 @@ To fix this:
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  if (error) {
+                    setError('');
+                    setErrorDetail('');
+                  }
+                }}
               />
             </div>
             <div>
@@ -201,7 +222,13 @@ To fix this:
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
                 placeholder="Confirm Password"
                 value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                onChange={(e) => {
+                  setConfirmPassword(e.target.value);
+                  if (error) {
+                    setError('');
+                    setErrorDetail('');
+                  }
+                }}
               />
             </div>
           </div>

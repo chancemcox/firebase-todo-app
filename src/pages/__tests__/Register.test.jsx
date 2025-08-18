@@ -50,7 +50,7 @@ describe('Register Page', () => {
       renderWithRouter(<Register />);
       
       expect(screen.getByText('Create Account')).toBeInTheDocument();
-      expect(screen.getByText('Sign up for a new account')).toBeInTheDocument();
+      expect(screen.getByText('Create your account')).toBeInTheDocument();
       expect(screen.getByPlaceholderText('Display Name')).toBeInTheDocument();
       expect(screen.getByPlaceholderText('Email address')).toBeInTheDocument();
       expect(screen.getByPlaceholderText('Password')).toBeInTheDocument();
@@ -81,6 +81,7 @@ describe('Register Page', () => {
       fireEvent.click(createAccountButton);
       
       await waitFor(() => {
+        expect(screen.getByText('Failed to create account')).toBeInTheDocument();
         expect(screen.getByText('Full name is required')).toBeInTheDocument();
       });
     });
@@ -95,6 +96,7 @@ describe('Register Page', () => {
       fireEvent.click(createAccountButton);
       
       await waitFor(() => {
+        expect(screen.getByText('Failed to create account')).toBeInTheDocument();
         expect(screen.getByText('Email is required')).toBeInTheDocument();
       });
     });
@@ -112,6 +114,7 @@ describe('Register Page', () => {
       fireEvent.click(createAccountButton);
       
       await waitFor(() => {
+        expect(screen.getByText('Failed to create account')).toBeInTheDocument();
         expect(screen.getByText('Password is required')).toBeInTheDocument();
       });
     });
@@ -131,11 +134,17 @@ describe('Register Page', () => {
       fireEvent.click(createAccountButton);
       
       await waitFor(() => {
+        expect(screen.getByText('Failed to create account')).toBeInTheDocument();
         expect(screen.getByText('Passwords do not match')).toBeInTheDocument();
       });
     });
 
     it('shows error for invalid email format', async () => {
+      mockCreateUserWithEmailAndPassword.mockRejectedValue({
+        code: 'auth/invalid-email',
+        message: 'Invalid email address.'
+      });
+      
       renderWithRouter(<Register />);
       
       const nameInput = screen.getByPlaceholderText('Display Name');
@@ -152,6 +161,7 @@ describe('Register Page', () => {
       fireEvent.click(createAccountButton);
       
       await waitFor(() => {
+        expect(screen.getByText('Failed to create account')).toBeInTheDocument();
         expect(screen.getByText('Invalid email address.')).toBeInTheDocument();
       });
     });
@@ -194,6 +204,7 @@ describe('Register Page', () => {
       fireEvent.click(createAccountButton);
       
       await waitFor(() => {
+        expect(screen.getByText('Failed to create account')).toBeInTheDocument();
         expect(screen.getByText('Passwords do not match')).toBeInTheDocument();
       });
     });
@@ -205,6 +216,7 @@ describe('Register Page', () => {
       fireEvent.click(createAccountButton);
       
       await waitFor(() => {
+        expect(screen.getByText('Failed to create account')).toBeInTheDocument();
         expect(screen.getByText('Full name is required')).toBeInTheDocument();
       });
       
@@ -212,6 +224,7 @@ describe('Register Page', () => {
       fireEvent.change(nameInput, { target: { value: 'John Doe' } });
       
       await waitFor(() => {
+        expect(screen.queryByText('Failed to create account')).not.toBeInTheDocument();
         expect(screen.queryByText('Full name is required')).not.toBeInTheDocument();
       });
     });
@@ -558,6 +571,7 @@ describe('Register Page', () => {
       fireEvent.click(createAccountButton);
       
       await waitFor(() => {
+        expect(screen.getByText('Failed to create account')).toBeInTheDocument();
         expect(screen.getByText('Full name is required')).toBeInTheDocument();
       });
       
@@ -566,6 +580,7 @@ describe('Register Page', () => {
       fireEvent.click(googleButton);
       
       await waitFor(() => {
+        expect(screen.queryByText('Failed to create account')).not.toBeInTheDocument();
         expect(screen.queryByText('Full name is required')).not.toBeInTheDocument();
       });
     });
