@@ -12,6 +12,11 @@ on:
         required: false
         default: 'Auto-fix all issues found in the codebase'
 
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
 env:
   CURSOR_API_KEY: ${{ secrets.CURSOR_API_KEY }}
   CURSOR_WORKSPACE_ID: ${{ secrets.CURSOR_WORKSPACE_ID }}
