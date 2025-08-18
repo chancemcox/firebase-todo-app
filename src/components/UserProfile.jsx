@@ -51,7 +51,7 @@ const UserProfile = () => {
       setError('Failed to set up profile updates');
       setLoading(false);
     }
-  }, [currentUser]);
+  }, [currentUser.uid]);
 
   const handleSaveProfile = async () => {
     if (!newDisplayName.trim()) return;

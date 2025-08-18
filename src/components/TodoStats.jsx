@@ -115,7 +115,7 @@ const TodoStats = () => {
       setError('Failed to set up real-time updates');
       setLoading(false);
     }
-  }, [currentUser]);
+  }, [currentUser.uid]);
 
   if (loading) {
     return (

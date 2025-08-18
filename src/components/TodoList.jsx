@@ -65,7 +65,7 @@ const TodoList = () => {
       setError('Failed to set up real-time updates');
       setLoading(false);
     }
-  }, [currentUser]);
+  }, [currentUser?.uid]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -316,11 +316,12 @@ const TodoList = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="due-date-time" className="block text-sm font-medium text-gray-700 mb-2">
               Due Date & Time
             </label>
             <div className="flex space-x-2">
               <button
+                id="due-date-time"
                 type="button"
                 onClick={() => openDateTimeModal()}
                 className={`flex-1 px-3 py-2 border rounded-md text-sm font-medium transition-colors ${
@@ -356,11 +357,12 @@ const TodoList = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="tags-input" className="block text-sm font-medium text-gray-700 mb-2">
               Tags
             </label>
             <div className="flex items-center space-x-2 mb-2">
               <input
+                id="tags-input"
                 type="text"
                 value={newTag}
                 onChange={(e) => setNewTag(e.target.value)}

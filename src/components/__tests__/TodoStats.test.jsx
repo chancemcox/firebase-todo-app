@@ -38,9 +38,10 @@ describe('TodoStats', () => {
   it('shows summary cards', () => {
     render(<TodoStats />);
     
-    expect(screen.getByText('Total Todos')).toBeInTheDocument();
-    expect(screen.getByText('Completed')).toBeInTheDocument();
-    expect(screen.getByText('Active')).toBeInTheDocument();
+    // Use getAllByText to get the first instance (summary card headers)
+    expect(screen.getAllByText('Total Todos')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('Completed')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('Active')[0]).toBeInTheDocument();
   });
 
   it('shows completion rate section', () => {

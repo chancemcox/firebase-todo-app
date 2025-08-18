@@ -18,7 +18,9 @@ jest.mock('firebase/auth', () => ({
     signInWithPopup: jest.fn(),
     signOut: jest.fn(),
   })),
-  GoogleAuthProvider: jest.fn(() => ({})),
+  GoogleAuthProvider: jest.fn(() => ({
+    setCustomParameters: jest.fn(),
+  })),
   signInWithPopup: jest.fn(),
 }));
 

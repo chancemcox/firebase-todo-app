@@ -90,6 +90,8 @@
             font-weight: 600;
             transition: all 0.3s ease;
             border: 2px solid rgba(255,255,255,0.3);
+            cursor: pointer;
+            display: inline-block;
         }
 
         .auth-button.primary {
@@ -209,8 +211,8 @@
         </div>
         
         <div class="auth-buttons">
-            <a href="/app" class="auth-button primary">🚀 Launch App</a>
-            <a href="/app" class="auth-button secondary">🔐 Login / Sign Up</a>
+            <button onclick="launchApp()" class="auth-button primary">🚀 Launch App</button>
+            <button onclick="goToLogin()" class="auth-button secondary">🔐 Login / Sign Up</button>
         </div>
         
         <div class="tech-stack">
@@ -232,10 +234,14 @@
     </div>
     
     <script>
-        // Auto-redirect to app after 5 seconds
-        setTimeout(() => {
+        // Navigation functions
+        function launchApp() {
             window.location.href = '/app';
-        }, 5000);
+        }
+        
+        function goToLogin() {
+            window.location.href = '/login';
+        }
         
         // Add some interactive effects
         document.addEventListener('DOMContentLoaded', function() {
