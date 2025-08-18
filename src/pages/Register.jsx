@@ -8,6 +8,7 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [displayName, setDisplayName] = useState('');
   const [error, setError] = useState('');
+  const [errorDetail, setErrorDetail] = useState('');
   const [loading, setLoading] = useState(false);
   
   const { signup, loginWithGoogle } = useAuth();
@@ -40,21 +41,47 @@ const Register = () => {
     e.preventDefault();
     
     if (password !== confirmPassword) {
-      return setError('Passwords do not match');
+      setError('Failed to create account');
+      setErrorDetail('Passwords do not match');
+      return;
     }
     
     if (password.length < 6) {
-      return setError('Password must be at least 6 characters');
+      setError('Failed to create account');
+      setErrorDetail('Password must be at least 6 characters');
+      return;
     }
     
     try {
       setError('');
+      setErrorDetail('');
+      if (!displayName) {
+        setError('Failed to create account');
+        setErrorDetail('Full name is required');
+        return;
+      }
+      if (!email) {
+        setError('Failed to create account');
+        setErrorDetail('Email is required');
+        return;
+      }
+      if (!password) {
+        setError('Failed to create account');
+        setErrorDetail('Password is required');
+        return;
+      }
+      if (!confirmPassword) {
+        setError('Failed to create account');
+        setErrorDetail('Please confirm your password');
+        return;
+      }
       setLoading(true);
       await signup(email, password, displayName);
       navigate('/');
     } catch (error) {
       console.error('Signup error:', error);
-      setError('Failed to create account: ' + getErrorMessage(error.code));
+      setError('Failed to create account');
+      setErrorDetail(error?.message || getErrorMessage(error?.code));
     } finally {
       setLoading(false);
     }
@@ -63,27 +90,27 @@ const Register = () => {
   const handleGoogleSignup = async () => {
     try {
       setError('');
+      setErrorDetail('');
       setLoading(true);
       await loginWithGoogle();
       navigate('/');
     } catch (error) {
       console.error('Google signup error:', error);
-      const errorMessage = getErrorMessage(error.code);
-      setError('Failed to sign up with Google: ' + errorMessage);
+      const errorMessage = error?.message || getErrorMessage(error?.code);
+      setError('Failed to sign up with Google');
+      setErrorDetail(errorMessage);
       
       // Special handling for unauthorized domain
       if (error.code === 'auth/unauthorized-domain') {
-        setError(`
-          Google sign-in is not authorized for this domain.
-          
-          To fix this:
-          1. Go to Firebase Console > Authentication > Sign-in method
-          2. Click on Google
-          3. Add these domains to "Authorized domains":
-             - localhost
-             - todo-list-e7788.web.app
-             - todo.chancecox.com
-        `);
+        setErrorDetail(`Google sign-in is not authorized for this domain.
+
+To fix this:
+1. Go to Firebase Console > Authentication > Sign-in method
+2. Click on Google
+3. Add these domains to "Authorized domains":
+   - localhost
+   - todo-list-e7788.web.app
+   - todo.chancecox.com`);
       }
     } finally {
       setLoading(false);
@@ -101,7 +128,8 @@ const Register = () => {
         
         {error && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded whitespace-pre-line">
-            {error}
+            <div>{error}</div>
+            {errorDetail && <div>{errorDetail}</div>}
           </div>
         )}
         
@@ -175,11 +203,12 @@ const Register = () => {
 
           <div>
             <button
-              type="submit"
+              type="button"
+              onClick={handleSubmit}
               disabled={loading}
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
             >
-              {loading ? 'Creating account...' : 'Sign up'}
+              {loading ? 'Creating Account...' : 'Create Account'}
             </button>
           </div>
 
@@ -212,11 +241,22 @@ const Register = () => {
           </div>
 
           <div className="text-center">
+            <div>Already have an account?</div>
             <Link
               to="/login"
+              onClick={(e) => { e.preventDefault(); navigate('/login'); }}
               className="font-medium text-blue-300 hover:text-blue-200"
             >
-              Already have an account? Sign in
+              Sign in
+            </Link>
+          </div>
+          <div className="text-center mt-2">
+            <Link
+              to="/"
+              onClick={(e) => { e.preventDefault(); navigate('/'); }}
+              className="font-medium text-blue-300 hover:text-blue-200"
+            >
+              Back to Home
             </Link>
           </div>
         </form>

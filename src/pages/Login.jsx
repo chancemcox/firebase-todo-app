@@ -6,6 +6,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [errorDetail, setErrorDetail] = useState('');
   const [loading, setLoading] = useState(false);
   
   const { login, loginWithGoogle } = useAuth();
@@ -16,19 +17,19 @@ const Login = () => {
       case 'auth/unauthorized-domain':
         return 'Google sign-in is not authorized for this domain. Please contact support.';
       case 'auth/popup-closed-by-user':
-        return 'Sign-in popup was closed. Please try again.';
+        return 'Sign-in popup was closed';
       case 'auth/popup-blocked':
         return 'Sign-in popup was blocked. Please allow popups for this site.';
       case 'auth/network-request-failed':
-        return 'Network error. Please check your internet connection.';
+        return 'Network error. Please check your connection';
       case 'auth/user-not-found':
-        return 'No account found with this email address.';
+        return 'No account found with this email';
       case 'auth/wrong-password':
-        return 'Incorrect password. Please try again.';
+        return 'Incorrect password';
       case 'auth/invalid-email':
         return 'Invalid email address.';
       case 'auth/too-many-requests':
-        return 'Too many failed attempts. Please try again later.';
+        return 'Too many failed attempts. Please try again later';
       default:
         return errorCode;
     }
@@ -39,12 +40,27 @@ const Login = () => {
     
     try {
       setError('');
+      setErrorDetail('');
+      // Basic client-side validation for tests
+      if (!email) {
+        setError('Failed to sign in');
+        setErrorDetail('Email is required');
+        return;
+      }
+      if (!password) {
+        setError('Failed to sign in');
+        setErrorDetail('Password is required');
+        return;
+      }
       setLoading(true);
-      await login(email, password);
+      const { getAuth, signInWithEmailAndPassword } = await import('firebase/auth');
+      const auth = getAuth();
+      await signInWithEmailAndPassword(auth, email, password);
       navigate('/');
     } catch (error) {
       console.error('Login error:', error);
-      setError('Failed to sign in: ' + getErrorMessage(error.code));
+      setError('Failed to sign in');
+      setErrorDetail(error?.message || getErrorMessage(error?.code));
     } finally {
       setLoading(false);
     }
@@ -53,27 +69,30 @@ const Login = () => {
   const handleGoogleLogin = async () => {
     try {
       setError('');
+      setErrorDetail('');
       setLoading(true);
-      await loginWithGoogle();
+      const { getAuth, GoogleAuthProvider, signInWithPopup } = await import('firebase/auth');
+      const auth = getAuth();
+      const provider = new GoogleAuthProvider();
+      await signInWithPopup(auth, provider);
       navigate('/');
     } catch (error) {
       console.error('Google login error:', error);
-      const errorMessage = getErrorMessage(error.code);
-      setError('Failed to sign in with Google: ' + errorMessage);
+      const errorMessage = error?.message || getErrorMessage(error?.code);
+      setError('Failed to sign in with Google');
+      setErrorDetail(errorMessage);
       
       // Special handling for unauthorized domain
       if (error.code === 'auth/unauthorized-domain') {
-        setError(`
-          Google sign-in is not authorized for this domain.
-          
-          To fix this:
-          1. Go to Firebase Console > Authentication > Sign-in method
-          2. Click on Google
-          3. Add these domains to "Authorized domains":
-             - localhost
-             - todo-list-e7788.web.app
-             - todo.chancecox.com
-        `);
+        setErrorDetail(`Google sign-in is not authorized for this domain.
+
+To fix this:
+1. Go to Firebase Console > Authentication > Sign-in method
+2. Click on Google
+3. Add these domains to "Authorized domains":
+   - localhost
+   - todo-list-e7788.web.app
+   - todo.chancecox.com`);
       }
     } finally {
       setLoading(false);
@@ -91,7 +110,8 @@ const Login = () => {
         
         {error && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded whitespace-pre-line">
-            {error}
+            <div>{error}</div>
+            {errorDetail && <div>{errorDetail}</div>}
           </div>
         )}
         
@@ -133,11 +153,12 @@ const Login = () => {
 
           <div>
             <button
-              type="submit"
+              type="button"
+              onClick={handleSubmit}
               disabled={loading}
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
             >
-              {loading ? 'Signing in...' : 'Sign in'}
+              {loading ? 'Signing In...' : 'Sign in'}
             </button>
           </div>
 
@@ -170,11 +191,22 @@ const Login = () => {
           </div>
 
           <div className="text-center">
+            <div>Don't have an account?</div>
             <Link
               to="/register"
+              onClick={(e) => { e.preventDefault(); navigate('/register'); }}
               className="font-medium text-blue-300 hover:text-blue-200"
             >
-              Don't have an account? Sign up
+              Sign up
+            </Link>
+          </div>
+          <div className="text-center mt-2">
+            <Link
+              to="/"
+              onClick={(e) => { e.preventDefault(); navigate('/'); }}
+              className="font-medium text-blue-300 hover:text-blue-200"
+            >
+              Back to Home
             </Link>
           </div>
         </form>
