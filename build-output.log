@@ -17,9 +17,9 @@ transforming...
 [39m
 rendering chunks...
 computing gzip size...
-[2mdist/[22m[32mindex.html                 [39m[1m[2m  0.58 kB[22m[1m[22m[2m │ gzip:   0.36 kB[22m
+[2mdist/[22m[32mindex.html                 [39m[1m[2m  0.58 kB[22m[1m[22m[2m │ gzip:   0.37 kB[22m
 [2mdist/[22m[2massets/[22m[35mindex-DWWLbRq_.css  [39m[1m[2m 31.20 kB[22m[1m[22m[2m │ gzip:   6.12 kB[22m
-[2mdist/[22m[2massets/[22m[36mindex-BNsoLBS7.js   [39m[1m[33m891.36 kB[39m[22m[2m │ gzip: 219.41 kB[22m[2m │ map: 3,215.38 kB[22m
+[2mdist/[22m[2massets/[22m[36mindex-B86qz3HX.js   [39m[1m[33m891.43 kB[39m[22m[2m │ gzip: 219.40 kB[22m[2m │ map: 3,216.38 kB[22m
 [33m
 (!) Some chunks are larger than 500 kB after minification. Consider:
 - Using dynamic import() to code-split the application

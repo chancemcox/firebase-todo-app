@@ -52,14 +52,8 @@
   15:11  error  'signup' is assigned a value but never used           no-unused-vars
   15:19  error  'loginWithGoogle' is assigned a value but never used  no-unused-vars
 
-/home/runner/work/firebase-todo-app/firebase-todo-app/src/pages/__tests__/Login.test.jsx
-   7:7   error  'mockGoogleAuthProvider' is assigned a value but never used  no-unused-vars
-  93:14  error  'mockLogin' is not defined                                   no-undef
-  97:7   error  'mockLogin' is not defined                                   no-undef
-
 /home/runner/work/firebase-todo-app/firebase-todo-app/src/pages/__tests__/Register.test.jsx
-  1:8  error  'React' is defined but never used                            no-unused-vars
-  8:7  error  'mockGoogleAuthProvider' is assigned a value but never used  no-unused-vars
+  1:8  error  'React' is defined but never used  no-unused-vars
 
-✖ 32 problems (28 errors, 4 warnings)
+✖ 28 problems (24 errors, 4 warnings)
 
