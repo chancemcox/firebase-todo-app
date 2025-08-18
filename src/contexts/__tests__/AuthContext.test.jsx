@@ -1,13 +1,11 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import { AuthProvider, useAuth } from '../AuthContext.jsx';
 
-// Mock Firebase Auth
+// Mock Firebase Auth - must be declared before jest.mock
 const mockOnAuthStateChanged = jest.fn();
 const mockSignOut = jest.fn();
 const mockSignInWithPopup = jest.fn();
-const mockGoogleAuthProvider = jest.fn();
 
 jest.mock('firebase/auth', () => ({
   getAuth: jest.fn(() => ({
@@ -15,8 +13,14 @@ jest.mock('firebase/auth', () => ({
     signOut: mockSignOut,
     signInWithPopup: mockSignInWithPopup,
   })),
-  GoogleAuthProvider: mockGoogleAuthProvider,
+  GoogleAuthProvider: jest.fn(),
+  signInWithEmailAndPassword: jest.fn(),
+  createUserWithEmailAndPassword: jest.fn(),
+  updateProfile: jest.fn(),
+  signInWithPopup: mockSignInWithPopup,
 }));
+
+import { AuthProvider, useAuth } from '../AuthContext.jsx';
 
 // Mock Firebase Firestore
 const mockSetDoc = jest.fn();
@@ -73,7 +77,6 @@ describe('AuthContext', () => {
     jest.clearAllMocks();
     mockSignOut.mockResolvedValue();
     mockSignInWithPopup.mockResolvedValue();
-    mockGoogleAuthProvider.mockReturnValue({});
     mockSetDoc.mockResolvedValue();
     mockDoc.mockReturnValue('mock-doc-ref');
   });

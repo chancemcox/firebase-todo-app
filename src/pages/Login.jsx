@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from 'firebase/auth';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -53,7 +54,6 @@ const Login = () => {
         return;
       }
       setLoading(true);
-      const { getAuth, signInWithEmailAndPassword } = await import('firebase/auth');
       const auth = getAuth();
       await signInWithEmailAndPassword(auth, email, password);
       navigate('/');
@@ -71,7 +71,6 @@ const Login = () => {
       setError('');
       setErrorDetail('');
       setLoading(true);
-      const { getAuth, GoogleAuthProvider, signInWithPopup } = await import('firebase/auth');
       const auth = getAuth();
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);

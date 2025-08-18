@@ -1,21 +1,30 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import Register from '../Register.jsx';
-import { AuthProvider } from '../../contexts/AuthContext.jsx';
 
-// Mock Firebase Auth
-const mockCreateUserWithEmailAndPassword = jest.fn();
-const mockSignInWithPopup = jest.fn();
+// Mock Firebase Auth - must be declared before jest.mock
+const mockCreateUserWithEmailAndPasswordFromModule = jest.fn();
+const mockSignInWithPopupFromModule = jest.fn();
 const mockGoogleAuthProvider = jest.fn();
-const mockUpdateProfile = jest.fn();
+const mockUpdateProfileFromModule = jest.fn();
 
 jest.mock('firebase/auth', () => ({
-  createUserWithEmailAndPassword: mockCreateUserWithEmailAndPassword,
-  signInWithPopup: mockSignInWithPopup,
-  GoogleAuthProvider: mockGoogleAuthProvider,
-  updateProfile: mockUpdateProfile,
+  getAuth: jest.fn(() => ({})),
+  createUserWithEmailAndPassword: jest.fn(),
+  signInWithPopup: jest.fn(),
+  GoogleAuthProvider: jest.fn(),
+  updateProfile: jest.fn(),
 }));
+
+import Register from '../Register.jsx';
+import { AuthProvider } from '../../contexts/AuthContext.jsx';
+import * as firebaseAuth from 'firebase/auth';
+
+// Get the mocked functions
+const mockCreateUserWithEmailAndPasswordFromModuleFromModule = firebaseAuth.createUserWithEmailAndPassword;
+const mockSignInWithPopupFromModuleFromModule = firebaseAuth.signInWithPopup;
+const mockGoogleAuthProviderFromModule = firebaseAuth.GoogleAuthProvider;
+const mockUpdateProfileFromModuleFromModule = firebaseAuth.updateProfile;
 
 // Mock React Router
 const mockNavigate = jest.fn();
@@ -47,10 +56,10 @@ const renderWithRouter = (component) => {
 describe('Register Page', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    mockCreateUserWithEmailAndPassword.mockResolvedValue();
-    mockSignInWithPopup.mockResolvedValue();
-    mockGoogleAuthProvider.mockReturnValue({});
-    mockUpdateProfile.mockResolvedValue();
+    mockCreateUserWithEmailAndPasswordFromModuleFromModule.mockResolvedValue();
+    mockSignInWithPopupFromModuleFromModule.mockResolvedValue();
+    mockGoogleAuthProviderFromModule.mockReturnValue({});
+    mockUpdateProfileFromModuleFromModule.mockResolvedValue();
   });
 
   describe('Page Rendering', () => {
@@ -227,7 +236,7 @@ describe('Register Page', () => {
 
   describe('User Registration', () => {
     it('submits form with valid credentials', async () => {
-      mockCreateUserWithEmailAndPassword.mockResolvedValue({
+      mockCreateUserWithEmailAndPasswordFromModule.mockResolvedValue({
         user: { uid: 'new-user-uid', email: 'john@example.com' }
       });
       
@@ -247,7 +256,7 @@ describe('Register Page', () => {
       fireEvent.click(createAccountButton);
       
       await waitFor(() => {
-        expect(mockCreateUserWithEmailAndPassword).toHaveBeenCalledWith(
+        expect(mockCreateUserWithEmailAndPasswordFromModule).toHaveBeenCalledWith(
           expect.anything(),
           'john@example.com',
           'password123'
@@ -256,7 +265,7 @@ describe('Register Page', () => {
     });
 
     it('updates user profile after successful registration', async () => {
-      mockCreateUserWithEmailAndPassword.mockResolvedValue({
+      mockCreateUserWithEmailAndPasswordFromModule.mockResolvedValue({
         user: { uid: 'new-user-uid', email: 'john@example.com' }
       });
       
@@ -276,7 +285,7 @@ describe('Register Page', () => {
       fireEvent.click(createAccountButton);
       
       await waitFor(() => {
-        expect(mockUpdateProfile).toHaveBeenCalledWith(
+        expect(mockUpdateProfileFromModule).toHaveBeenCalledWith(
           expect.anything(),
           { displayName: 'John Doe' }
         );
@@ -284,7 +293,7 @@ describe('Register Page', () => {
     });
 
     it('shows loading state during registration', async () => {
-      mockCreateUserWithEmailAndPassword.mockImplementation(() => 
+      mockCreateUserWithEmailAndPasswordFromModule.mockImplementation(() => 
         new Promise(resolve => setTimeout(resolve, 100))
       );
       
@@ -308,7 +317,7 @@ describe('Register Page', () => {
     });
 
     it('handles registration success', async () => {
-      mockCreateUserWithEmailAndPassword.mockResolvedValue({
+      mockCreateUserWithEmailAndPasswordFromModule.mockResolvedValue({
         user: { uid: 'new-user-uid', email: 'john@example.com' }
       });
       
@@ -333,7 +342,7 @@ describe('Register Page', () => {
     });
 
     it('handles registration errors gracefully', async () => {
-      mockCreateUserWithEmailAndPassword.mockRejectedValue({
+      mockCreateUserWithEmailAndPasswordFromModule.mockRejectedValue({
         code: 'auth/email-already-in-use',
         message: 'Email already in use'
       });
@@ -367,7 +376,7 @@ describe('Register Page', () => {
       ];
       
       for (const { code, message } of errorCases) {
-        mockCreateUserWithEmailAndPassword.mockRejectedValue({ code, message });
+        mockCreateUserWithEmailAndPasswordFromModule.mockRejectedValue({ code, message });
         
         const { unmount } = renderWithRouter(<Register />);
         
@@ -401,12 +410,12 @@ describe('Register Page', () => {
       fireEvent.click(googleButton);
       
       await waitFor(() => {
-        expect(mockSignInWithPopup).toHaveBeenCalled();
+        expect(mockSignInWithPopupFromModule).toHaveBeenCalled();
       });
     });
 
     it('handles Google registration success', async () => {
-      mockSignInWithPopup.mockResolvedValue({
+      mockSignInWithPopupFromModule.mockResolvedValue({
         user: { uid: 'google-uid', email: 'john@gmail.com', displayName: 'John Doe' }
       });
       
@@ -421,7 +430,7 @@ describe('Register Page', () => {
     });
 
     it('handles Google registration errors', async () => {
-      mockSignInWithPopup.mockRejectedValue({
+      mockSignInWithPopupFromModule.mockRejectedValue({
         code: 'auth/popup-closed-by-user',
         message: 'Sign-up popup was closed'
       });
@@ -478,7 +487,7 @@ describe('Register Page', () => {
     });
 
     it('resets form after successful registration', async () => {
-      mockCreateUserWithEmailAndPassword.mockResolvedValue({
+      mockCreateUserWithEmailAndPasswordFromModule.mockResolvedValue({
         user: { uid: 'new-user-uid', email: 'john@example.com' }
       });
       
@@ -579,7 +588,7 @@ describe('Register Page', () => {
     });
 
     it('handles network errors gracefully', async () => {
-      mockCreateUserWithEmailAndPassword.mockRejectedValue({
+      mockCreateUserWithEmailAndPasswordFromModule.mockRejectedValue({
         code: 'auth/network-request-failed',
         message: 'Network error. Please check your connection'
       });

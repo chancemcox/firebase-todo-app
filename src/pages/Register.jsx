@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -76,7 +77,9 @@ const Register = () => {
         return;
       }
       setLoading(true);
-      await signup(email, password, displayName);
+      const auth = getAuth();
+      const result = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(result.user, { displayName });
       navigate('/');
     } catch (error) {
       console.error('Signup error:', error);
@@ -92,7 +95,9 @@ const Register = () => {
       setError('');
       setErrorDetail('');
       setLoading(true);
-      await loginWithGoogle();
+      const auth = getAuth();
+      const provider = new GoogleAuthProvider();
+      await signInWithPopup(auth, provider);
       navigate('/');
     } catch (error) {
       console.error('Google signup error:', error);

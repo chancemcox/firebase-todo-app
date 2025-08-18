@@ -1,17 +1,25 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import Login from '../Login.jsx';
 
-// Mock Firebase Auth
-const mockSignInWithEmailAndPassword = jest.fn();
-const mockSignInWithPopup = jest.fn();
+// Mock Firebase Auth - must be declared before jest.mock
+const mockSignInWithEmailAndPasswordFromModule = jest.fn();
+const mockSignInWithPopupFromModule = jest.fn();
 const mockGoogleAuthProvider = jest.fn();
 
 jest.mock('firebase/auth', () => ({
-  signInWithEmailAndPassword: mockSignInWithEmailAndPassword,
-  signInWithPopup: mockSignInWithPopup,
-  GoogleAuthProvider: mockGoogleAuthProvider,
+  getAuth: jest.fn(() => ({})),
+  signInWithEmailAndPassword: jest.fn(),
+  signInWithPopup: jest.fn(),
+  GoogleAuthProvider: jest.fn(),
 }));
+
+import Login from '../Login.jsx';
+import * as firebaseAuth from 'firebase/auth';
+
+// Get the mocked functions
+const mockSignInWithEmailAndPasswordFromModuleFromModule = firebaseAuth.signInWithEmailAndPassword;
+const mockSignInWithPopupFromModuleFromModule = firebaseAuth.signInWithPopup;
+const mockGoogleAuthProviderFromModule = firebaseAuth.GoogleAuthProvider;
 
 // Mock React Router
 const mockNavigate = jest.fn();
@@ -41,9 +49,9 @@ const renderWithRouter = (component) => {
 describe('Login Page', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    mockSignInWithEmailAndPassword.mockResolvedValue();
-    mockSignInWithPopup.mockResolvedValue();
-    mockGoogleAuthProvider.mockReturnValue({});
+    mockSignInWithEmailAndPasswordFromModuleFromModule.mockResolvedValue();
+    mockSignInWithPopupFromModuleFromModule.mockResolvedValue();
+    mockGoogleAuthProviderFromModule.mockReturnValue({});
   });
 
   describe('Page Rendering', () => {
@@ -118,7 +126,7 @@ describe('Login Page', () => {
       fireEvent.click(signInButton);
       
       await waitFor(() => {
-        expect(mockSignInWithEmailAndPassword).toHaveBeenCalledWith(
+        expect(mockSignInWithEmailAndPasswordFromModuleFromModule).toHaveBeenCalledWith(
           expect.anything(),
           'test@example.com',
           'password123'
@@ -127,7 +135,7 @@ describe('Login Page', () => {
     });
 
     it('shows loading state during authentication', async () => {
-      mockSignInWithEmailAndPassword.mockImplementation(() => 
+      mockSignInWithEmailAndPasswordFromModuleFromModule.mockImplementation(() => 
         new Promise(resolve => setTimeout(resolve, 100))
       );
       
@@ -147,7 +155,7 @@ describe('Login Page', () => {
     });
 
     it('handles authentication success', async () => {
-      mockSignInWithEmailAndPassword.mockResolvedValue({
+      mockSignInWithEmailAndPasswordFromModuleFromModule.mockResolvedValue({
         user: { uid: 'test-uid', email: 'test@example.com' }
       });
       
@@ -168,7 +176,7 @@ describe('Login Page', () => {
     });
 
     it('handles authentication errors gracefully', async () => {
-      mockSignInWithEmailAndPassword.mockRejectedValue({
+      mockSignInWithEmailAndPasswordFromModule.mockRejectedValue({
         code: 'auth/user-not-found',
         message: 'User not found'
       });
@@ -198,7 +206,7 @@ describe('Login Page', () => {
       ];
       
       for (const { code, message } of errorCases) {
-        mockSignInWithEmailAndPassword.mockRejectedValue({ code, message });
+        mockSignInWithEmailAndPasswordFromModule.mockRejectedValue({ code, message });
         
         const { unmount } = renderWithRouter(<Login />);
         
@@ -228,12 +236,12 @@ describe('Login Page', () => {
       fireEvent.click(googleButton);
       
       await waitFor(() => {
-        expect(mockSignInWithPopup).toHaveBeenCalled();
+        expect(mockSignInWithPopupFromModule).toHaveBeenCalled();
       });
     });
 
     it('handles Google authentication success', async () => {
-      mockSignInWithPopup.mockResolvedValue({
+      mockSignInWithPopupFromModule.mockResolvedValue({
         user: { uid: 'google-uid', email: 'test@gmail.com' }
       });
       
@@ -248,7 +256,7 @@ describe('Login Page', () => {
     });
 
     it('handles Google authentication errors', async () => {
-      mockSignInWithPopup.mockRejectedValue({
+      mockSignInWithPopupFromModule.mockRejectedValue({
         code: 'auth/popup-closed-by-user',
         message: 'Sign-in popup was closed'
       });
@@ -299,7 +307,7 @@ describe('Login Page', () => {
     });
 
     it('resets form after successful submission', async () => {
-      mockSignInWithEmailAndPassword.mockResolvedValue({
+      mockSignInWithEmailAndPasswordFromModule.mockResolvedValue({
         user: { uid: 'test-uid', email: 'test@example.com' }
       });
       
@@ -390,7 +398,7 @@ describe('Login Page', () => {
     });
 
     it('handles network errors gracefully', async () => {
-      mockSignInWithEmailAndPassword.mockRejectedValue({
+      mockSignInWithEmailAndPasswordFromModule.mockRejectedValue({
         code: 'auth/network-request-failed',
         message: 'Network error. Please check your connection'
       });
