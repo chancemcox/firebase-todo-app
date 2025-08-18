@@ -243,7 +243,7 @@ describe('Register Page', () => {
       fireEvent.change(passwordInput, { target: { value: 'password123' } });
       fireEvent.change(confirmPasswordInput, { target: { value: 'password123' } });
       
-      const createAccountButton = screen.getByRole('button', { name: 'Create Account' });;
+      const createAccountButton = screen.getByRole('button', { name: 'Create Account' });
       fireEvent.click(createAccountButton);
       
       await waitFor(() => {

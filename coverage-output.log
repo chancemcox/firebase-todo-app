@@ -1,0 +1,1342 @@
+
+> firebase-todo-app@0.0.0 test:coverage
+> jest --coverage
+
+FAIL src/contexts/__tests__/AuthContext.test.jsx
+  ● Test suite failed to run
+
+    Cannot find module '@babel/preset-env'
+    Require stack:
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/index.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/index.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/jest-snapshot/build/InlineSnapshots.js
+
+    Make sure that all the Babel plugins and presets you are using
+    are defined as dependencies or devDependencies in your package.json
+    file. It's possible that the missing plugin is loaded by a preset
+    you are using that forgot to add the plugin to its dependencies: you
+    can workaround this problem by explicitly adding the missing package
+    to your top-level package.json.
+
+      at tryRequireResolve (node_modules/@babel/core/src/config/files/plugins.ts:140:36)
+      at tryRequireResolve (node_modules/@babel/core/src/config/files/plugins.ts:168:19)
+      at resolveStandardizedNameForRequire (node_modules/@babel/core/src/config/files/plugins.ts:196:12)
+      at resolvePreset (node_modules/@babel/core/src/config/files/plugins.ts:50:32)
+          at loadPreset.next (<anonymous>)
+      at resolver (node_modules/@babel/core/src/config/config-descriptors.ts:326:35)
+          at createDescriptor.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at node_modules/gensync/index.js:31:34
+          at Array.map (<anonymous>)
+      at Function.sync (node_modules/gensync/index.js:31:22)
+      at Function.all (node_modules/gensync/index.js:210:24)
+      at all (node_modules/@babel/core/src/config/config-descriptors.ts:267:38)
+          at createDescriptors.next (<anonymous>)
+      at createDescriptors (node_modules/@babel/core/src/config/config-descriptors.ts:243:17)
+          at createPresetDescriptors.next (<anonymous>)
+      at fn (node_modules/@babel/core/src/gensync-utils/functional.ts:18:46)
+      at presets (node_modules/@babel/core/src/config/config-chain.ts:725:34)
+          at mergeChainOpts.next (<anonymous>)
+      at mergeChainOpts (node_modules/@babel/core/src/config/config-chain.ts:661:14)
+          at chainWalker.next (<anonymous>)
+      at loadFileChainWalker (node_modules/@babel/core/src/config/config-chain.ts:398:24)
+          at loadFileChain.next (<anonymous>)
+      at loadFileChain (node_modules/@babel/core/src/config/config-chain.ts:186:27)
+          at buildRootChain.next (<anonymous>)
+      at loadPrivatePartialConfig (node_modules/@babel/core/src/config/partial.ts:111:44)
+          at loadPrivatePartialConfig.next (<anonymous>)
+      at loadPrivatePartialConfig (node_modules/@babel/core/src/config/partial.ts:170:12)
+          at loadPartialConfig.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at sync (node_modules/gensync/index.js:89:14)
+      at fn (node_modules/@babel/core/src/errors/rewrite-stack-trace.ts:99:14)
+      at loadPartialConfigSync (node_modules/@babel/core/src/config/index.ts:51:60)
+      at loadPartialConfigSync (node_modules/@babel/core/src/config/index.ts:70:14)
+      at ScriptTransformer._getCacheKey (node_modules/@jest/transform/build/ScriptTransformer.js:228:41)
+      at ScriptTransformer._getFileCachePath (node_modules/@jest/transform/build/ScriptTransformer.js:289:27)
+      at ScriptTransformer.transformSource (node_modules/@jest/transform/build/ScriptTransformer.js:525:32)
+      at ScriptTransformer._transformAndBuildScript (node_modules/@jest/transform/build/ScriptTransformer.js:674:40)
+      at ScriptTransformer.transform (node_modules/@jest/transform/build/ScriptTransformer.js:726:19)
+
+FAIL src/pages/__tests__/Login.test.jsx
+  ● Test suite failed to run
+
+    Cannot find module '@babel/preset-env'
+    Require stack:
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/index.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/index.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/jest-snapshot/build/InlineSnapshots.js
+
+    Make sure that all the Babel plugins and presets you are using
+    are defined as dependencies or devDependencies in your package.json
+    file. It's possible that the missing plugin is loaded by a preset
+    you are using that forgot to add the plugin to its dependencies: you
+    can workaround this problem by explicitly adding the missing package
+    to your top-level package.json.
+
+      at tryRequireResolve (node_modules/@babel/core/src/config/files/plugins.ts:140:36)
+      at tryRequireResolve (node_modules/@babel/core/src/config/files/plugins.ts:168:19)
+      at resolveStandardizedNameForRequire (node_modules/@babel/core/src/config/files/plugins.ts:196:12)
+      at resolvePreset (node_modules/@babel/core/src/config/files/plugins.ts:50:32)
+          at loadPreset.next (<anonymous>)
+      at resolver (node_modules/@babel/core/src/config/config-descriptors.ts:326:35)
+          at createDescriptor.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at node_modules/gensync/index.js:31:34
+          at Array.map (<anonymous>)
+      at Function.sync (node_modules/gensync/index.js:31:22)
+      at Function.all (node_modules/gensync/index.js:210:24)
+      at all (node_modules/@babel/core/src/config/config-descriptors.ts:267:38)
+          at createDescriptors.next (<anonymous>)
+      at createDescriptors (node_modules/@babel/core/src/config/config-descriptors.ts:243:17)
+          at createPresetDescriptors.next (<anonymous>)
+      at fn (node_modules/@babel/core/src/gensync-utils/functional.ts:18:46)
+      at presets (node_modules/@babel/core/src/config/config-chain.ts:725:34)
+          at mergeChainOpts.next (<anonymous>)
+      at mergeChainOpts (node_modules/@babel/core/src/config/config-chain.ts:661:14)
+          at chainWalker.next (<anonymous>)
+      at loadFileChainWalker (node_modules/@babel/core/src/config/config-chain.ts:398:24)
+          at loadFileChain.next (<anonymous>)
+      at loadFileChain (node_modules/@babel/core/src/config/config-chain.ts:186:27)
+          at buildRootChain.next (<anonymous>)
+      at loadPrivatePartialConfig (node_modules/@babel/core/src/config/partial.ts:111:44)
+          at loadPrivatePartialConfig.next (<anonymous>)
+      at loadPrivatePartialConfig (node_modules/@babel/core/src/config/partial.ts:170:12)
+          at loadPartialConfig.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at sync (node_modules/gensync/index.js:89:14)
+      at fn (node_modules/@babel/core/src/errors/rewrite-stack-trace.ts:99:14)
+      at loadPartialConfigSync (node_modules/@babel/core/src/config/index.ts:51:60)
+      at loadPartialConfigSync (node_modules/@babel/core/src/config/index.ts:70:14)
+      at ScriptTransformer._getCacheKey (node_modules/@jest/transform/build/ScriptTransformer.js:228:41)
+      at ScriptTransformer._getFileCachePath (node_modules/@jest/transform/build/ScriptTransformer.js:289:27)
+      at ScriptTransformer.transformSource (node_modules/@jest/transform/build/ScriptTransformer.js:525:32)
+      at ScriptTransformer._transformAndBuildScript (node_modules/@jest/transform/build/ScriptTransformer.js:674:40)
+      at ScriptTransformer.transform (node_modules/@jest/transform/build/ScriptTransformer.js:726:19)
+
+FAIL src/pages/__tests__/Register.test.jsx
+  ● Test suite failed to run
+
+    Cannot find module '@babel/preset-env'
+    Require stack:
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/index.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/index.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/jest-snapshot/build/InlineSnapshots.js
+
+    Make sure that all the Babel plugins and presets you are using
+    are defined as dependencies or devDependencies in your package.json
+    file. It's possible that the missing plugin is loaded by a preset
+    you are using that forgot to add the plugin to its dependencies: you
+    can workaround this problem by explicitly adding the missing package
+    to your top-level package.json.
+
+      at tryRequireResolve (node_modules/@babel/core/src/config/files/plugins.ts:140:36)
+      at tryRequireResolve (node_modules/@babel/core/src/config/files/plugins.ts:168:19)
+      at resolveStandardizedNameForRequire (node_modules/@babel/core/src/config/files/plugins.ts:196:12)
+      at resolvePreset (node_modules/@babel/core/src/config/files/plugins.ts:50:32)
+          at loadPreset.next (<anonymous>)
+      at resolver (node_modules/@babel/core/src/config/config-descriptors.ts:326:35)
+          at createDescriptor.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at node_modules/gensync/index.js:31:34
+          at Array.map (<anonymous>)
+      at Function.sync (node_modules/gensync/index.js:31:22)
+      at Function.all (node_modules/gensync/index.js:210:24)
+      at all (node_modules/@babel/core/src/config/config-descriptors.ts:267:38)
+          at createDescriptors.next (<anonymous>)
+      at createDescriptors (node_modules/@babel/core/src/config/config-descriptors.ts:243:17)
+          at createPresetDescriptors.next (<anonymous>)
+      at fn (node_modules/@babel/core/src/gensync-utils/functional.ts:18:46)
+      at presets (node_modules/@babel/core/src/config/config-chain.ts:725:34)
+          at mergeChainOpts.next (<anonymous>)
+      at mergeChainOpts (node_modules/@babel/core/src/config/config-chain.ts:661:14)
+          at chainWalker.next (<anonymous>)
+      at loadFileChainWalker (node_modules/@babel/core/src/config/config-chain.ts:398:24)
+          at loadFileChain.next (<anonymous>)
+      at loadFileChain (node_modules/@babel/core/src/config/config-chain.ts:186:27)
+          at buildRootChain.next (<anonymous>)
+      at loadPrivatePartialConfig (node_modules/@babel/core/src/config/partial.ts:111:44)
+          at loadPrivatePartialConfig.next (<anonymous>)
+      at loadPrivatePartialConfig (node_modules/@babel/core/src/config/partial.ts:170:12)
+          at loadPartialConfig.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at sync (node_modules/gensync/index.js:89:14)
+      at fn (node_modules/@babel/core/src/errors/rewrite-stack-trace.ts:99:14)
+      at loadPartialConfigSync (node_modules/@babel/core/src/config/index.ts:51:60)
+      at loadPartialConfigSync (node_modules/@babel/core/src/config/index.ts:70:14)
+      at ScriptTransformer._getCacheKey (node_modules/@jest/transform/build/ScriptTransformer.js:228:41)
+      at ScriptTransformer._getFileCachePath (node_modules/@jest/transform/build/ScriptTransformer.js:289:27)
+      at ScriptTransformer.transformSource (node_modules/@jest/transform/build/ScriptTransformer.js:525:32)
+      at ScriptTransformer._transformAndBuildScript (node_modules/@jest/transform/build/ScriptTransformer.js:674:40)
+      at ScriptTransformer.transform (node_modules/@jest/transform/build/ScriptTransformer.js:726:19)
+
+FAIL src/components/__tests__/simple.test.js
+  ● Test suite failed to run
+
+    Cannot find module '@babel/preset-env'
+    Require stack:
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/index.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/index.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/jest-snapshot/build/InlineSnapshots.js
+
+    Make sure that all the Babel plugins and presets you are using
+    are defined as dependencies or devDependencies in your package.json
+    file. It's possible that the missing plugin is loaded by a preset
+    you are using that forgot to add the plugin to its dependencies: you
+    can workaround this problem by explicitly adding the missing package
+    to your top-level package.json.
+
+      at tryRequireResolve (node_modules/@babel/core/src/config/files/plugins.ts:140:36)
+      at tryRequireResolve (node_modules/@babel/core/src/config/files/plugins.ts:168:19)
+      at resolveStandardizedNameForRequire (node_modules/@babel/core/src/config/files/plugins.ts:196:12)
+      at resolvePreset (node_modules/@babel/core/src/config/files/plugins.ts:50:32)
+          at loadPreset.next (<anonymous>)
+      at resolver (node_modules/@babel/core/src/config/config-descriptors.ts:326:35)
+          at createDescriptor.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at node_modules/gensync/index.js:31:34
+          at Array.map (<anonymous>)
+      at Function.sync (node_modules/gensync/index.js:31:22)
+      at Function.all (node_modules/gensync/index.js:210:24)
+      at all (node_modules/@babel/core/src/config/config-descriptors.ts:267:38)
+          at createDescriptors.next (<anonymous>)
+      at createDescriptors (node_modules/@babel/core/src/config/config-descriptors.ts:243:17)
+          at createPresetDescriptors.next (<anonymous>)
+      at fn (node_modules/@babel/core/src/gensync-utils/functional.ts:18:46)
+      at presets (node_modules/@babel/core/src/config/config-chain.ts:725:34)
+          at mergeChainOpts.next (<anonymous>)
+      at mergeChainOpts (node_modules/@babel/core/src/config/config-chain.ts:661:14)
+          at chainWalker.next (<anonymous>)
+      at loadFileChainWalker (node_modules/@babel/core/src/config/config-chain.ts:398:24)
+          at loadFileChain.next (<anonymous>)
+      at loadFileChain (node_modules/@babel/core/src/config/config-chain.ts:186:27)
+          at buildRootChain.next (<anonymous>)
+      at loadPrivatePartialConfig (node_modules/@babel/core/src/config/partial.ts:111:44)
+          at loadPrivatePartialConfig.next (<anonymous>)
+      at loadPrivatePartialConfig (node_modules/@babel/core/src/config/partial.ts:170:12)
+          at loadPartialConfig.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at sync (node_modules/gensync/index.js:89:14)
+      at fn (node_modules/@babel/core/src/errors/rewrite-stack-trace.ts:99:14)
+      at loadPartialConfigSync (node_modules/@babel/core/src/config/index.ts:51:60)
+      at loadPartialConfigSync (node_modules/@babel/core/src/config/index.ts:70:14)
+      at ScriptTransformer._getCacheKey (node_modules/@jest/transform/build/ScriptTransformer.js:228:41)
+      at ScriptTransformer._getFileCachePath (node_modules/@jest/transform/build/ScriptTransformer.js:289:27)
+      at ScriptTransformer.transformSource (node_modules/@jest/transform/build/ScriptTransformer.js:525:32)
+      at ScriptTransformer._transformAndBuildScript (node_modules/@jest/transform/build/ScriptTransformer.js:674:40)
+      at ScriptTransformer.transform (node_modules/@jest/transform/build/ScriptTransformer.js:726:19)
+
+FAIL src/components/__tests__/minimal.test.jsx
+  ● Test suite failed to run
+
+    Cannot find module '@babel/preset-env'
+    Require stack:
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/index.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/index.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/jest-snapshot/build/InlineSnapshots.js
+
+    Make sure that all the Babel plugins and presets you are using
+    are defined as dependencies or devDependencies in your package.json
+    file. It's possible that the missing plugin is loaded by a preset
+    you are using that forgot to add the plugin to its dependencies: you
+    can workaround this problem by explicitly adding the missing package
+    to your top-level package.json.
+
+      at tryRequireResolve (node_modules/@babel/core/src/config/files/plugins.ts:140:36)
+      at tryRequireResolve (node_modules/@babel/core/src/config/files/plugins.ts:168:19)
+      at resolveStandardizedNameForRequire (node_modules/@babel/core/src/config/files/plugins.ts:196:12)
+      at resolvePreset (node_modules/@babel/core/src/config/files/plugins.ts:50:32)
+          at loadPreset.next (<anonymous>)
+      at resolver (node_modules/@babel/core/src/config/config-descriptors.ts:326:35)
+          at createDescriptor.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at node_modules/gensync/index.js:31:34
+          at Array.map (<anonymous>)
+      at Function.sync (node_modules/gensync/index.js:31:22)
+      at Function.all (node_modules/gensync/index.js:210:24)
+      at all (node_modules/@babel/core/src/config/config-descriptors.ts:267:38)
+          at createDescriptors.next (<anonymous>)
+      at createDescriptors (node_modules/@babel/core/src/config/config-descriptors.ts:243:17)
+          at createPresetDescriptors.next (<anonymous>)
+      at fn (node_modules/@babel/core/src/gensync-utils/functional.ts:18:46)
+      at presets (node_modules/@babel/core/src/config/config-chain.ts:725:34)
+          at mergeChainOpts.next (<anonymous>)
+      at mergeChainOpts (node_modules/@babel/core/src/config/config-chain.ts:661:14)
+          at chainWalker.next (<anonymous>)
+      at loadFileChainWalker (node_modules/@babel/core/src/config/config-chain.ts:398:24)
+          at loadFileChain.next (<anonymous>)
+      at loadFileChain (node_modules/@babel/core/src/config/config-chain.ts:186:27)
+          at buildRootChain.next (<anonymous>)
+      at loadPrivatePartialConfig (node_modules/@babel/core/src/config/partial.ts:111:44)
+          at loadPrivatePartialConfig.next (<anonymous>)
+      at loadPrivatePartialConfig (node_modules/@babel/core/src/config/partial.ts:170:12)
+          at loadPartialConfig.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at sync (node_modules/gensync/index.js:89:14)
+      at fn (node_modules/@babel/core/src/errors/rewrite-stack-trace.ts:99:14)
+      at loadPartialConfigSync (node_modules/@babel/core/src/config/index.ts:51:60)
+      at loadPartialConfigSync (node_modules/@babel/core/src/config/index.ts:70:14)
+      at ScriptTransformer._getCacheKey (node_modules/@jest/transform/build/ScriptTransformer.js:228:41)
+      at ScriptTransformer._getFileCachePath (node_modules/@jest/transform/build/ScriptTransformer.js:289:27)
+      at ScriptTransformer.transformSource (node_modules/@jest/transform/build/ScriptTransformer.js:525:32)
+      at ScriptTransformer._transformAndBuildScript (node_modules/@jest/transform/build/ScriptTransformer.js:674:40)
+      at ScriptTransformer.transform (node_modules/@jest/transform/build/ScriptTransformer.js:726:19)
+
+FAIL src/components/__tests__/import-test.test.jsx
+  ● Test suite failed to run
+
+    Cannot find module '@babel/preset-env'
+    Require stack:
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/index.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/index.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/jest-snapshot/build/InlineSnapshots.js
+
+    Make sure that all the Babel plugins and presets you are using
+    are defined as dependencies or devDependencies in your package.json
+    file. It's possible that the missing plugin is loaded by a preset
+    you are using that forgot to add the plugin to its dependencies: you
+    can workaround this problem by explicitly adding the missing package
+    to your top-level package.json.
+
+      at tryRequireResolve (node_modules/@babel/core/src/config/files/plugins.ts:140:36)
+      at tryRequireResolve (node_modules/@babel/core/src/config/files/plugins.ts:168:19)
+      at resolveStandardizedNameForRequire (node_modules/@babel/core/src/config/files/plugins.ts:196:12)
+      at resolvePreset (node_modules/@babel/core/src/config/files/plugins.ts:50:32)
+          at loadPreset.next (<anonymous>)
+      at resolver (node_modules/@babel/core/src/config/config-descriptors.ts:326:35)
+          at createDescriptor.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at node_modules/gensync/index.js:31:34
+          at Array.map (<anonymous>)
+      at Function.sync (node_modules/gensync/index.js:31:22)
+      at Function.all (node_modules/gensync/index.js:210:24)
+      at all (node_modules/@babel/core/src/config/config-descriptors.ts:267:38)
+          at createDescriptors.next (<anonymous>)
+      at createDescriptors (node_modules/@babel/core/src/config/config-descriptors.ts:243:17)
+          at createPresetDescriptors.next (<anonymous>)
+      at fn (node_modules/@babel/core/src/gensync-utils/functional.ts:18:46)
+      at presets (node_modules/@babel/core/src/config/config-chain.ts:725:34)
+          at mergeChainOpts.next (<anonymous>)
+      at mergeChainOpts (node_modules/@babel/core/src/config/config-chain.ts:661:14)
+          at chainWalker.next (<anonymous>)
+      at loadFileChainWalker (node_modules/@babel/core/src/config/config-chain.ts:398:24)
+          at loadFileChain.next (<anonymous>)
+      at loadFileChain (node_modules/@babel/core/src/config/config-chain.ts:186:27)
+          at buildRootChain.next (<anonymous>)
+      at loadPrivatePartialConfig (node_modules/@babel/core/src/config/partial.ts:111:44)
+          at loadPrivatePartialConfig.next (<anonymous>)
+      at loadPrivatePartialConfig (node_modules/@babel/core/src/config/partial.ts:170:12)
+          at loadPartialConfig.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at sync (node_modules/gensync/index.js:89:14)
+      at fn (node_modules/@babel/core/src/errors/rewrite-stack-trace.ts:99:14)
+      at loadPartialConfigSync (node_modules/@babel/core/src/config/index.ts:51:60)
+      at loadPartialConfigSync (node_modules/@babel/core/src/config/index.ts:70:14)
+      at ScriptTransformer._getCacheKey (node_modules/@jest/transform/build/ScriptTransformer.js:228:41)
+      at ScriptTransformer._getFileCachePath (node_modules/@jest/transform/build/ScriptTransformer.js:289:27)
+      at ScriptTransformer.transformSource (node_modules/@jest/transform/build/ScriptTransformer.js:525:32)
+      at ScriptTransformer._transformAndBuildScript (node_modules/@jest/transform/build/ScriptTransformer.js:674:40)
+      at ScriptTransformer.transform (node_modules/@jest/transform/build/ScriptTransformer.js:726:19)
+
+FAIL src/components/__tests__/UserProfile.test.jsx
+  ● Test suite failed to run
+
+    Cannot find module '@babel/preset-env'
+    Require stack:
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/index.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/index.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/jest-snapshot/build/InlineSnapshots.js
+
+    Make sure that all the Babel plugins and presets you are using
+    are defined as dependencies or devDependencies in your package.json
+    file. It's possible that the missing plugin is loaded by a preset
+    you are using that forgot to add the plugin to its dependencies: you
+    can workaround this problem by explicitly adding the missing package
+    to your top-level package.json.
+
+      at tryRequireResolve (node_modules/@babel/core/src/config/files/plugins.ts:140:36)
+      at tryRequireResolve (node_modules/@babel/core/src/config/files/plugins.ts:168:19)
+      at resolveStandardizedNameForRequire (node_modules/@babel/core/src/config/files/plugins.ts:196:12)
+      at resolvePreset (node_modules/@babel/core/src/config/files/plugins.ts:50:32)
+          at loadPreset.next (<anonymous>)
+      at resolver (node_modules/@babel/core/src/config/config-descriptors.ts:326:35)
+          at createDescriptor.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at node_modules/gensync/index.js:31:34
+          at Array.map (<anonymous>)
+      at Function.sync (node_modules/gensync/index.js:31:22)
+      at Function.all (node_modules/gensync/index.js:210:24)
+      at all (node_modules/@babel/core/src/config/config-descriptors.ts:267:38)
+          at createDescriptors.next (<anonymous>)
+      at createDescriptors (node_modules/@babel/core/src/config/config-descriptors.ts:243:17)
+          at createPresetDescriptors.next (<anonymous>)
+      at fn (node_modules/@babel/core/src/gensync-utils/functional.ts:18:46)
+      at presets (node_modules/@babel/core/src/config/config-chain.ts:725:34)
+          at mergeChainOpts.next (<anonymous>)
+      at mergeChainOpts (node_modules/@babel/core/src/config/config-chain.ts:661:14)
+          at chainWalker.next (<anonymous>)
+      at loadFileChainWalker (node_modules/@babel/core/src/config/config-chain.ts:398:24)
+          at loadFileChain.next (<anonymous>)
+      at loadFileChain (node_modules/@babel/core/src/config/config-chain.ts:186:27)
+          at buildRootChain.next (<anonymous>)
+      at loadPrivatePartialConfig (node_modules/@babel/core/src/config/partial.ts:111:44)
+          at loadPrivatePartialConfig.next (<anonymous>)
+      at loadPrivatePartialConfig (node_modules/@babel/core/src/config/partial.ts:170:12)
+          at loadPartialConfig.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at sync (node_modules/gensync/index.js:89:14)
+      at fn (node_modules/@babel/core/src/errors/rewrite-stack-trace.ts:99:14)
+      at loadPartialConfigSync (node_modules/@babel/core/src/config/index.ts:51:60)
+      at loadPartialConfigSync (node_modules/@babel/core/src/config/index.ts:70:14)
+      at ScriptTransformer._getCacheKey (node_modules/@jest/transform/build/ScriptTransformer.js:228:41)
+      at ScriptTransformer._getFileCachePath (node_modules/@jest/transform/build/ScriptTransformer.js:289:27)
+      at ScriptTransformer.transformSource (node_modules/@jest/transform/build/ScriptTransformer.js:525:32)
+      at ScriptTransformer._transformAndBuildScript (node_modules/@jest/transform/build/ScriptTransformer.js:674:40)
+      at ScriptTransformer.transform (node_modules/@jest/transform/build/ScriptTransformer.js:726:19)
+
+FAIL src/components/__tests__/TodoStats.test.jsx
+  ● Test suite failed to run
+
+    Cannot find module '@babel/preset-env'
+    Require stack:
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/index.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/index.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/jest-snapshot/build/InlineSnapshots.js
+
+    Make sure that all the Babel plugins and presets you are using
+    are defined as dependencies or devDependencies in your package.json
+    file. It's possible that the missing plugin is loaded by a preset
+    you are using that forgot to add the plugin to its dependencies: you
+    can workaround this problem by explicitly adding the missing package
+    to your top-level package.json.
+
+      at tryRequireResolve (node_modules/@babel/core/src/config/files/plugins.ts:140:36)
+      at tryRequireResolve (node_modules/@babel/core/src/config/files/plugins.ts:168:19)
+      at resolveStandardizedNameForRequire (node_modules/@babel/core/src/config/files/plugins.ts:196:12)
+      at resolvePreset (node_modules/@babel/core/src/config/files/plugins.ts:50:32)
+          at loadPreset.next (<anonymous>)
+      at resolver (node_modules/@babel/core/src/config/config-descriptors.ts:326:35)
+          at createDescriptor.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at node_modules/gensync/index.js:31:34
+          at Array.map (<anonymous>)
+      at Function.sync (node_modules/gensync/index.js:31:22)
+      at Function.all (node_modules/gensync/index.js:210:24)
+      at all (node_modules/@babel/core/src/config/config-descriptors.ts:267:38)
+          at createDescriptors.next (<anonymous>)
+      at createDescriptors (node_modules/@babel/core/src/config/config-descriptors.ts:243:17)
+          at createPresetDescriptors.next (<anonymous>)
+      at fn (node_modules/@babel/core/src/gensync-utils/functional.ts:18:46)
+      at presets (node_modules/@babel/core/src/config/config-chain.ts:725:34)
+          at mergeChainOpts.next (<anonymous>)
+      at mergeChainOpts (node_modules/@babel/core/src/config/config-chain.ts:661:14)
+          at chainWalker.next (<anonymous>)
+      at loadFileChainWalker (node_modules/@babel/core/src/config/config-chain.ts:398:24)
+          at loadFileChain.next (<anonymous>)
+      at loadFileChain (node_modules/@babel/core/src/config/config-chain.ts:186:27)
+          at buildRootChain.next (<anonymous>)
+      at loadPrivatePartialConfig (node_modules/@babel/core/src/config/partial.ts:111:44)
+          at loadPrivatePartialConfig.next (<anonymous>)
+      at loadPrivatePartialConfig (node_modules/@babel/core/src/config/partial.ts:170:12)
+          at loadPartialConfig.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at sync (node_modules/gensync/index.js:89:14)
+      at fn (node_modules/@babel/core/src/errors/rewrite-stack-trace.ts:99:14)
+      at loadPartialConfigSync (node_modules/@babel/core/src/config/index.ts:51:60)
+      at loadPartialConfigSync (node_modules/@babel/core/src/config/index.ts:70:14)
+      at ScriptTransformer._getCacheKey (node_modules/@jest/transform/build/ScriptTransformer.js:228:41)
+      at ScriptTransformer._getFileCachePath (node_modules/@jest/transform/build/ScriptTransformer.js:289:27)
+      at ScriptTransformer.transformSource (node_modules/@jest/transform/build/ScriptTransformer.js:525:32)
+      at ScriptTransformer._transformAndBuildScript (node_modules/@jest/transform/build/ScriptTransformer.js:674:40)
+      at ScriptTransformer.transform (node_modules/@jest/transform/build/ScriptTransformer.js:726:19)
+
+FAIL src/components/__tests__/TodoList.test.jsx
+  ● Test suite failed to run
+
+    Cannot find module '@babel/preset-env'
+    Require stack:
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/index.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/index.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/jest-snapshot/build/InlineSnapshots.js
+
+    Make sure that all the Babel plugins and presets you are using
+    are defined as dependencies or devDependencies in your package.json
+    file. It's possible that the missing plugin is loaded by a preset
+    you are using that forgot to add the plugin to its dependencies: you
+    can workaround this problem by explicitly adding the missing package
+    to your top-level package.json.
+
+      at tryRequireResolve (node_modules/@babel/core/src/config/files/plugins.ts:140:36)
+      at tryRequireResolve (node_modules/@babel/core/src/config/files/plugins.ts:168:19)
+      at resolveStandardizedNameForRequire (node_modules/@babel/core/src/config/files/plugins.ts:196:12)
+      at resolvePreset (node_modules/@babel/core/src/config/files/plugins.ts:50:32)
+          at loadPreset.next (<anonymous>)
+      at resolver (node_modules/@babel/core/src/config/config-descriptors.ts:326:35)
+          at createDescriptor.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at node_modules/gensync/index.js:31:34
+          at Array.map (<anonymous>)
+      at Function.sync (node_modules/gensync/index.js:31:22)
+      at Function.all (node_modules/gensync/index.js:210:24)
+      at all (node_modules/@babel/core/src/config/config-descriptors.ts:267:38)
+          at createDescriptors.next (<anonymous>)
+      at createDescriptors (node_modules/@babel/core/src/config/config-descriptors.ts:243:17)
+          at createPresetDescriptors.next (<anonymous>)
+      at fn (node_modules/@babel/core/src/gensync-utils/functional.ts:18:46)
+      at presets (node_modules/@babel/core/src/config/config-chain.ts:725:34)
+          at mergeChainOpts.next (<anonymous>)
+      at mergeChainOpts (node_modules/@babel/core/src/config/config-chain.ts:661:14)
+          at chainWalker.next (<anonymous>)
+      at loadFileChainWalker (node_modules/@babel/core/src/config/config-chain.ts:398:24)
+          at loadFileChain.next (<anonymous>)
+      at loadFileChain (node_modules/@babel/core/src/config/config-chain.ts:186:27)
+          at buildRootChain.next (<anonymous>)
+      at loadPrivatePartialConfig (node_modules/@babel/core/src/config/partial.ts:111:44)
+          at loadPrivatePartialConfig.next (<anonymous>)
+      at loadPrivatePartialConfig (node_modules/@babel/core/src/config/partial.ts:170:12)
+          at loadPartialConfig.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at sync (node_modules/gensync/index.js:89:14)
+      at fn (node_modules/@babel/core/src/errors/rewrite-stack-trace.ts:99:14)
+      at loadPartialConfigSync (node_modules/@babel/core/src/config/index.ts:51:60)
+      at loadPartialConfigSync (node_modules/@babel/core/src/config/index.ts:70:14)
+      at ScriptTransformer._getCacheKey (node_modules/@jest/transform/build/ScriptTransformer.js:228:41)
+      at ScriptTransformer._getFileCachePath (node_modules/@jest/transform/build/ScriptTransformer.js:289:27)
+      at ScriptTransformer.transformSource (node_modules/@jest/transform/build/ScriptTransformer.js:525:32)
+      at ScriptTransformer._transformAndBuildScript (node_modules/@jest/transform/build/ScriptTransformer.js:674:40)
+      at ScriptTransformer.transform (node_modules/@jest/transform/build/ScriptTransformer.js:726:19)
+
+FAIL src/components/__tests__/ProtectedRoute.test.jsx
+  ● Test suite failed to run
+
+    Cannot find module '@babel/preset-env'
+    Require stack:
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/index.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/index.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/jest-snapshot/build/InlineSnapshots.js
+
+    Make sure that all the Babel plugins and presets you are using
+    are defined as dependencies or devDependencies in your package.json
+    file. It's possible that the missing plugin is loaded by a preset
+    you are using that forgot to add the plugin to its dependencies: you
+    can workaround this problem by explicitly adding the missing package
+    to your top-level package.json.
+
+      at tryRequireResolve (node_modules/@babel/core/src/config/files/plugins.ts:140:36)
+      at tryRequireResolve (node_modules/@babel/core/src/config/files/plugins.ts:168:19)
+      at resolveStandardizedNameForRequire (node_modules/@babel/core/src/config/files/plugins.ts:196:12)
+      at resolvePreset (node_modules/@babel/core/src/config/files/plugins.ts:50:32)
+          at loadPreset.next (<anonymous>)
+      at resolver (node_modules/@babel/core/src/config/config-descriptors.ts:326:35)
+          at createDescriptor.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at node_modules/gensync/index.js:31:34
+          at Array.map (<anonymous>)
+      at Function.sync (node_modules/gensync/index.js:31:22)
+      at Function.all (node_modules/gensync/index.js:210:24)
+      at all (node_modules/@babel/core/src/config/config-descriptors.ts:267:38)
+          at createDescriptors.next (<anonymous>)
+      at createDescriptors (node_modules/@babel/core/src/config/config-descriptors.ts:243:17)
+          at createPresetDescriptors.next (<anonymous>)
+      at fn (node_modules/@babel/core/src/gensync-utils/functional.ts:18:46)
+      at presets (node_modules/@babel/core/src/config/config-chain.ts:725:34)
+          at mergeChainOpts.next (<anonymous>)
+      at mergeChainOpts (node_modules/@babel/core/src/config/config-chain.ts:661:14)
+          at chainWalker.next (<anonymous>)
+      at loadFileChainWalker (node_modules/@babel/core/src/config/config-chain.ts:398:24)
+          at loadFileChain.next (<anonymous>)
+      at loadFileChain (node_modules/@babel/core/src/config/config-chain.ts:186:27)
+          at buildRootChain.next (<anonymous>)
+      at loadPrivatePartialConfig (node_modules/@babel/core/src/config/partial.ts:111:44)
+          at loadPrivatePartialConfig.next (<anonymous>)
+      at loadPrivatePartialConfig (node_modules/@babel/core/src/config/partial.ts:170:12)
+          at loadPartialConfig.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at sync (node_modules/gensync/index.js:89:14)
+      at fn (node_modules/@babel/core/src/errors/rewrite-stack-trace.ts:99:14)
+      at loadPartialConfigSync (node_modules/@babel/core/src/config/index.ts:51:60)
+      at loadPartialConfigSync (node_modules/@babel/core/src/config/index.ts:70:14)
+      at ScriptTransformer._getCacheKey (node_modules/@jest/transform/build/ScriptTransformer.js:228:41)
+      at ScriptTransformer._getFileCachePath (node_modules/@jest/transform/build/ScriptTransformer.js:289:27)
+      at ScriptTransformer.transformSource (node_modules/@jest/transform/build/ScriptTransformer.js:525:32)
+      at ScriptTransformer._transformAndBuildScript (node_modules/@jest/transform/build/ScriptTransformer.js:674:40)
+      at ScriptTransformer.transform (node_modules/@jest/transform/build/ScriptTransformer.js:726:19)
+
+FAIL src/components/__tests__/Navigation.test.jsx
+  ● Test suite failed to run
+
+    Cannot find module '@babel/preset-env'
+    Require stack:
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/index.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/index.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/jest-snapshot/build/InlineSnapshots.js
+
+    Make sure that all the Babel plugins and presets you are using
+    are defined as dependencies or devDependencies in your package.json
+    file. It's possible that the missing plugin is loaded by a preset
+    you are using that forgot to add the plugin to its dependencies: you
+    can workaround this problem by explicitly adding the missing package
+    to your top-level package.json.
+
+      at tryRequireResolve (node_modules/@babel/core/src/config/files/plugins.ts:140:36)
+      at tryRequireResolve (node_modules/@babel/core/src/config/files/plugins.ts:168:19)
+      at resolveStandardizedNameForRequire (node_modules/@babel/core/src/config/files/plugins.ts:196:12)
+      at resolvePreset (node_modules/@babel/core/src/config/files/plugins.ts:50:32)
+          at loadPreset.next (<anonymous>)
+      at resolver (node_modules/@babel/core/src/config/config-descriptors.ts:326:35)
+          at createDescriptor.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at node_modules/gensync/index.js:31:34
+          at Array.map (<anonymous>)
+      at Function.sync (node_modules/gensync/index.js:31:22)
+      at Function.all (node_modules/gensync/index.js:210:24)
+      at all (node_modules/@babel/core/src/config/config-descriptors.ts:267:38)
+          at createDescriptors.next (<anonymous>)
+      at createDescriptors (node_modules/@babel/core/src/config/config-descriptors.ts:243:17)
+          at createPresetDescriptors.next (<anonymous>)
+      at fn (node_modules/@babel/core/src/gensync-utils/functional.ts:18:46)
+      at presets (node_modules/@babel/core/src/config/config-chain.ts:725:34)
+          at mergeChainOpts.next (<anonymous>)
+      at mergeChainOpts (node_modules/@babel/core/src/config/config-chain.ts:661:14)
+          at chainWalker.next (<anonymous>)
+      at loadFileChainWalker (node_modules/@babel/core/src/config/config-chain.ts:398:24)
+          at loadFileChain.next (<anonymous>)
+      at loadFileChain (node_modules/@babel/core/src/config/config-chain.ts:186:27)
+          at buildRootChain.next (<anonymous>)
+      at loadPrivatePartialConfig (node_modules/@babel/core/src/config/partial.ts:111:44)
+          at loadPrivatePartialConfig.next (<anonymous>)
+      at loadPrivatePartialConfig (node_modules/@babel/core/src/config/partial.ts:170:12)
+          at loadPartialConfig.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at sync (node_modules/gensync/index.js:89:14)
+      at fn (node_modules/@babel/core/src/errors/rewrite-stack-trace.ts:99:14)
+      at loadPartialConfigSync (node_modules/@babel/core/src/config/index.ts:51:60)
+      at loadPartialConfigSync (node_modules/@babel/core/src/config/index.ts:70:14)
+      at ScriptTransformer._getCacheKey (node_modules/@jest/transform/build/ScriptTransformer.js:228:41)
+      at ScriptTransformer._getFileCachePath (node_modules/@jest/transform/build/ScriptTransformer.js:289:27)
+      at ScriptTransformer.transformSource (node_modules/@jest/transform/build/ScriptTransformer.js:525:32)
+      at ScriptTransformer._transformAndBuildScript (node_modules/@jest/transform/build/ScriptTransformer.js:674:40)
+      at ScriptTransformer.transform (node_modules/@jest/transform/build/ScriptTransformer.js:726:19)
+
+FAIL src/components/__tests__/DateTimeModal.test.jsx
+  ● Test suite failed to run
+
+    Cannot find module '@babel/preset-env'
+    Require stack:
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/index.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/index.js
+    - /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/jest-snapshot/build/InlineSnapshots.js
+
+    Make sure that all the Babel plugins and presets you are using
+    are defined as dependencies or devDependencies in your package.json
+    file. It's possible that the missing plugin is loaded by a preset
+    you are using that forgot to add the plugin to its dependencies: you
+    can workaround this problem by explicitly adding the missing package
+    to your top-level package.json.
+
+      at tryRequireResolve (node_modules/@babel/core/src/config/files/plugins.ts:140:36)
+      at tryRequireResolve (node_modules/@babel/core/src/config/files/plugins.ts:168:19)
+      at resolveStandardizedNameForRequire (node_modules/@babel/core/src/config/files/plugins.ts:196:12)
+      at resolvePreset (node_modules/@babel/core/src/config/files/plugins.ts:50:32)
+          at loadPreset.next (<anonymous>)
+      at resolver (node_modules/@babel/core/src/config/config-descriptors.ts:326:35)
+          at createDescriptor.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at node_modules/gensync/index.js:31:34
+          at Array.map (<anonymous>)
+      at Function.sync (node_modules/gensync/index.js:31:22)
+      at Function.all (node_modules/gensync/index.js:210:24)
+      at all (node_modules/@babel/core/src/config/config-descriptors.ts:267:38)
+          at createDescriptors.next (<anonymous>)
+      at createDescriptors (node_modules/@babel/core/src/config/config-descriptors.ts:243:17)
+          at createPresetDescriptors.next (<anonymous>)
+      at fn (node_modules/@babel/core/src/gensync-utils/functional.ts:18:46)
+      at presets (node_modules/@babel/core/src/config/config-chain.ts:725:34)
+          at mergeChainOpts.next (<anonymous>)
+      at mergeChainOpts (node_modules/@babel/core/src/config/config-chain.ts:661:14)
+          at chainWalker.next (<anonymous>)
+      at loadFileChainWalker (node_modules/@babel/core/src/config/config-chain.ts:398:24)
+          at loadFileChain.next (<anonymous>)
+      at loadFileChain (node_modules/@babel/core/src/config/config-chain.ts:186:27)
+          at buildRootChain.next (<anonymous>)
+      at loadPrivatePartialConfig (node_modules/@babel/core/src/config/partial.ts:111:44)
+          at loadPrivatePartialConfig.next (<anonymous>)
+      at loadPrivatePartialConfig (node_modules/@babel/core/src/config/partial.ts:170:12)
+          at loadPartialConfig.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at sync (node_modules/gensync/index.js:89:14)
+      at fn (node_modules/@babel/core/src/errors/rewrite-stack-trace.ts:99:14)
+      at loadPartialConfigSync (node_modules/@babel/core/src/config/index.ts:51:60)
+      at loadPartialConfigSync (node_modules/@babel/core/src/config/index.ts:70:14)
+      at ScriptTransformer._getCacheKey (node_modules/@jest/transform/build/ScriptTransformer.js:228:41)
+      at ScriptTransformer._getFileCachePath (node_modules/@jest/transform/build/ScriptTransformer.js:289:27)
+      at ScriptTransformer.transformSource (node_modules/@jest/transform/build/ScriptTransformer.js:525:32)
+      at ScriptTransformer._transformAndBuildScript (node_modules/@jest/transform/build/ScriptTransformer.js:674:40)
+      at ScriptTransformer.transform (node_modules/@jest/transform/build/ScriptTransformer.js:726:19)
+
+Failed to collect coverage from /home/runner/work/firebase-todo-app/firebase-todo-app/src/firebase.js
+ERROR: Cannot find package '@babel/preset-env' imported from /home/runner/work/firebase-todo-app/firebase-todo-app/babel-virtual-resolve-base.js
+STACK: Error: Cannot find package '@babel/preset-env' imported from /home/runner/work/firebase-todo-app/firebase-todo-app/babel-virtual-resolve-base.js
+    at __node_internal_ (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:224:9)
+    at new NodeError (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:194:5)
+    at packageResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:898:9)
+    at moduleResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:938:18)
+    at defaultResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1016:15)
+    at resolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1029:12)
+    at tryImportMetaResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:149:45)
+    at resolveStandardizedNameForImport (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:174:19)
+    at resolveStandardizedName (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:186:22)
+    at loadPreset (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:68:7)
+    at loadPreset.next (<anonymous>)
+    at createDescriptor (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:140:16)
+    at createDescriptor.next (<anonymous>)
+    at step (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:261:32)
+    at evaluateAsync (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:291:5)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:44:11
+    at Array.forEach (<anonymous>)
+    at Function.async (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:43:15)
+    at Function.all (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:216:13)
+    at Generator.next (<anonymous>)
+    at createDescriptors (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:102:41)
+    at createDescriptors.next (<anonymous>)
+    at createPresetDescriptors (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:96:17)
+    at createPresetDescriptors.next (<anonymous>)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/gensync-utils/functional.js:39:27
+    at Generator.next (<anonymous>)
+    at mergeChainOpts (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:350:34)
+    at mergeChainOpts.next (<anonymous>)
+    at chainWalker (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:316:14)
+    at chainWalker.next (<anonymous>)
+    at loadFileChain (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:191:24)
+    at loadFileChain.next (<anonymous>)
+    at buildRootChain (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:77:27)
+    at buildRootChain.next (<anonymous>)
+    at loadPrivatePartialConfig (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/partial.js:72:62)
+    at loadPrivatePartialConfig.next (<anonymous>)
+    at loadPartialConfig (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/partial.js:115:25)
+    at loadPartialConfig.next (<anonymous>)
+    at step (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:269:25)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:223:11)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:37:40
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Failed to collect coverage from /home/runner/work/firebase-todo-app/firebase-todo-app/src/components/Navigation.jsx
+ERROR: Cannot find package '@babel/preset-env' imported from /home/runner/work/firebase-todo-app/firebase-todo-app/babel-virtual-resolve-base.js
+STACK: Error: Cannot find package '@babel/preset-env' imported from /home/runner/work/firebase-todo-app/firebase-todo-app/babel-virtual-resolve-base.js
+    at __node_internal_ (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:224:9)
+    at new NodeError (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:194:5)
+    at packageResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:898:9)
+    at moduleResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:938:18)
+    at defaultResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1016:15)
+    at resolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1029:12)
+    at tryImportMetaResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:149:45)
+    at resolveStandardizedNameForImport (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:174:19)
+    at resolveStandardizedName (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:186:22)
+    at loadPreset (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:68:7)
+    at loadPreset.next (<anonymous>)
+    at createDescriptor (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:140:16)
+    at createDescriptor.next (<anonymous>)
+    at step (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:261:32)
+    at evaluateAsync (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:291:5)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:44:11
+    at Array.forEach (<anonymous>)
+    at Function.async (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:43:15)
+    at Function.all (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:216:13)
+    at Generator.next (<anonymous>)
+    at createDescriptors (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:102:41)
+    at createDescriptors.next (<anonymous>)
+    at createPresetDescriptors (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:96:17)
+    at createPresetDescriptors.next (<anonymous>)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/gensync-utils/functional.js:39:27
+    at Generator.next (<anonymous>)
+    at mergeChainOpts (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:350:34)
+    at mergeChainOpts.next (<anonymous>)
+    at chainWalker (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:316:14)
+    at chainWalker.next (<anonymous>)
+    at loadFileChain (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:191:24)
+    at loadFileChain.next (<anonymous>)
+    at buildRootChain (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:77:27)
+    at buildRootChain.next (<anonymous>)
+    at loadPrivatePartialConfig (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/partial.js:72:62)
+    at loadPrivatePartialConfig.next (<anonymous>)
+    at loadPartialConfig (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/partial.js:115:25)
+    at loadPartialConfig.next (<anonymous>)
+    at step (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:269:25)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:223:11)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:37:40
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Failed to collect coverage from /home/runner/work/firebase-todo-app/firebase-todo-app/src/components/ProtectedRoute.jsx
+ERROR: Cannot find package '@babel/preset-env' imported from /home/runner/work/firebase-todo-app/firebase-todo-app/babel-virtual-resolve-base.js
+STACK: Error: Cannot find package '@babel/preset-env' imported from /home/runner/work/firebase-todo-app/firebase-todo-app/babel-virtual-resolve-base.js
+    at __node_internal_ (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:224:9)
+    at new NodeError (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:194:5)
+    at packageResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:898:9)
+    at moduleResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:938:18)
+    at defaultResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1016:15)
+    at resolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1029:12)
+    at tryImportMetaResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:149:45)
+    at resolveStandardizedNameForImport (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:174:19)
+    at resolveStandardizedName (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:186:22)
+    at loadPreset (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:68:7)
+    at loadPreset.next (<anonymous>)
+    at createDescriptor (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:140:16)
+    at createDescriptor.next (<anonymous>)
+    at step (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:261:32)
+    at evaluateAsync (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:291:5)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:44:11
+    at Array.forEach (<anonymous>)
+    at Function.async (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:43:15)
+    at Function.all (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:216:13)
+    at Generator.next (<anonymous>)
+    at createDescriptors (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:102:41)
+    at createDescriptors.next (<anonymous>)
+    at createPresetDescriptors (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:96:17)
+    at createPresetDescriptors.next (<anonymous>)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/gensync-utils/functional.js:39:27
+    at Generator.next (<anonymous>)
+    at mergeChainOpts (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:350:34)
+    at mergeChainOpts.next (<anonymous>)
+    at chainWalker (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:316:14)
+    at chainWalker.next (<anonymous>)
+    at loadFileChain (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:191:24)
+    at loadFileChain.next (<anonymous>)
+    at buildRootChain (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:77:27)
+    at buildRootChain.next (<anonymous>)
+    at loadPrivatePartialConfig (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/partial.js:72:62)
+    at loadPrivatePartialConfig.next (<anonymous>)
+    at loadPartialConfig (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/partial.js:115:25)
+    at loadPartialConfig.next (<anonymous>)
+    at step (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:269:25)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:223:11)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:37:40
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Failed to collect coverage from /home/runner/work/firebase-todo-app/firebase-todo-app/src/components/TodoList.jsx
+ERROR: Cannot find package '@babel/preset-env' imported from /home/runner/work/firebase-todo-app/firebase-todo-app/babel-virtual-resolve-base.js
+STACK: Error: Cannot find package '@babel/preset-env' imported from /home/runner/work/firebase-todo-app/firebase-todo-app/babel-virtual-resolve-base.js
+    at __node_internal_ (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:224:9)
+    at new NodeError (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:194:5)
+    at packageResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:898:9)
+    at moduleResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:938:18)
+    at defaultResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1016:15)
+    at resolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1029:12)
+    at tryImportMetaResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:149:45)
+    at resolveStandardizedNameForImport (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:174:19)
+    at resolveStandardizedName (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:186:22)
+    at loadPreset (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:68:7)
+    at loadPreset.next (<anonymous>)
+    at createDescriptor (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:140:16)
+    at createDescriptor.next (<anonymous>)
+    at step (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:261:32)
+    at evaluateAsync (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:291:5)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:44:11
+    at Array.forEach (<anonymous>)
+    at Function.async (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:43:15)
+    at Function.all (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:216:13)
+    at Generator.next (<anonymous>)
+    at createDescriptors (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:102:41)
+    at createDescriptors.next (<anonymous>)
+    at createPresetDescriptors (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:96:17)
+    at createPresetDescriptors.next (<anonymous>)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/gensync-utils/functional.js:39:27
+    at Generator.next (<anonymous>)
+    at mergeChainOpts (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:350:34)
+    at mergeChainOpts.next (<anonymous>)
+    at chainWalker (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:316:14)
+    at chainWalker.next (<anonymous>)
+    at loadFileChain (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:191:24)
+    at loadFileChain.next (<anonymous>)
+    at buildRootChain (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:77:27)
+    at buildRootChain.next (<anonymous>)
+    at loadPrivatePartialConfig (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/partial.js:72:62)
+    at loadPrivatePartialConfig.next (<anonymous>)
+    at loadPartialConfig (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/partial.js:115:25)
+    at loadPartialConfig.next (<anonymous>)
+    at step (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:269:25)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:223:11)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:37:40
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Failed to collect coverage from /home/runner/work/firebase-todo-app/firebase-todo-app/src/components/TodoStats.jsx
+ERROR: Cannot find package '@babel/preset-env' imported from /home/runner/work/firebase-todo-app/firebase-todo-app/babel-virtual-resolve-base.js
+STACK: Error: Cannot find package '@babel/preset-env' imported from /home/runner/work/firebase-todo-app/firebase-todo-app/babel-virtual-resolve-base.js
+    at __node_internal_ (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:224:9)
+    at new NodeError (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:194:5)
+    at packageResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:898:9)
+    at moduleResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:938:18)
+    at defaultResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1016:15)
+    at resolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1029:12)
+    at tryImportMetaResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:149:45)
+    at resolveStandardizedNameForImport (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:174:19)
+    at resolveStandardizedName (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:186:22)
+    at loadPreset (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:68:7)
+    at loadPreset.next (<anonymous>)
+    at createDescriptor (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:140:16)
+    at createDescriptor.next (<anonymous>)
+    at step (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:261:32)
+    at evaluateAsync (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:291:5)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:44:11
+    at Array.forEach (<anonymous>)
+    at Function.async (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:43:15)
+    at Function.all (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:216:13)
+    at Generator.next (<anonymous>)
+    at createDescriptors (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:102:41)
+    at createDescriptors.next (<anonymous>)
+    at createPresetDescriptors (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:96:17)
+    at createPresetDescriptors.next (<anonymous>)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/gensync-utils/functional.js:39:27
+    at Generator.next (<anonymous>)
+    at mergeChainOpts (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:350:34)
+    at mergeChainOpts.next (<anonymous>)
+    at chainWalker (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:316:14)
+    at chainWalker.next (<anonymous>)
+    at loadFileChain (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:191:24)
+    at loadFileChain.next (<anonymous>)
+    at buildRootChain (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:77:27)
+    at buildRootChain.next (<anonymous>)
+    at loadPrivatePartialConfig (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/partial.js:72:62)
+    at loadPrivatePartialConfig.next (<anonymous>)
+    at loadPartialConfig (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/partial.js:115:25)
+    at loadPartialConfig.next (<anonymous>)
+    at step (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:269:25)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:223:11)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:37:40
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Failed to collect coverage from /home/runner/work/firebase-todo-app/firebase-todo-app/src/components/UserProfile.jsx
+ERROR: Cannot find package '@babel/preset-env' imported from /home/runner/work/firebase-todo-app/firebase-todo-app/babel-virtual-resolve-base.js
+STACK: Error: Cannot find package '@babel/preset-env' imported from /home/runner/work/firebase-todo-app/firebase-todo-app/babel-virtual-resolve-base.js
+    at __node_internal_ (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:224:9)
+    at new NodeError (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:194:5)
+    at packageResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:898:9)
+    at moduleResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:938:18)
+    at defaultResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1016:15)
+    at resolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1029:12)
+    at tryImportMetaResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:149:45)
+    at resolveStandardizedNameForImport (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:174:19)
+    at resolveStandardizedName (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:186:22)
+    at loadPreset (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:68:7)
+    at loadPreset.next (<anonymous>)
+    at createDescriptor (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:140:16)
+    at createDescriptor.next (<anonymous>)
+    at step (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:261:32)
+    at evaluateAsync (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:291:5)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:44:11
+    at Array.forEach (<anonymous>)
+    at Function.async (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:43:15)
+    at Function.all (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:216:13)
+    at Generator.next (<anonymous>)
+    at createDescriptors (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:102:41)
+    at createDescriptors.next (<anonymous>)
+    at createPresetDescriptors (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:96:17)
+    at createPresetDescriptors.next (<anonymous>)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/gensync-utils/functional.js:39:27
+    at Generator.next (<anonymous>)
+    at mergeChainOpts (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:350:34)
+    at mergeChainOpts.next (<anonymous>)
+    at chainWalker (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:316:14)
+    at chainWalker.next (<anonymous>)
+    at loadFileChain (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:191:24)
+    at loadFileChain.next (<anonymous>)
+    at buildRootChain (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:77:27)
+    at buildRootChain.next (<anonymous>)
+    at loadPrivatePartialConfig (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/partial.js:72:62)
+    at loadPrivatePartialConfig.next (<anonymous>)
+    at loadPartialConfig (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/partial.js:115:25)
+    at loadPartialConfig.next (<anonymous>)
+    at step (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:269:25)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:223:11)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:37:40
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Failed to collect coverage from /home/runner/work/firebase-todo-app/firebase-todo-app/src/contexts/AuthContext.jsx
+ERROR: Cannot find package '@babel/preset-env' imported from /home/runner/work/firebase-todo-app/firebase-todo-app/babel-virtual-resolve-base.js
+STACK: Error: Cannot find package '@babel/preset-env' imported from /home/runner/work/firebase-todo-app/firebase-todo-app/babel-virtual-resolve-base.js
+    at __node_internal_ (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:224:9)
+    at new NodeError (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:194:5)
+    at packageResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:898:9)
+    at moduleResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:938:18)
+    at defaultResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1016:15)
+    at resolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1029:12)
+    at tryImportMetaResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:149:45)
+    at resolveStandardizedNameForImport (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:174:19)
+    at resolveStandardizedName (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:186:22)
+    at loadPreset (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:68:7)
+    at loadPreset.next (<anonymous>)
+    at createDescriptor (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:140:16)
+    at createDescriptor.next (<anonymous>)
+    at step (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:261:32)
+    at evaluateAsync (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:291:5)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:44:11
+    at Array.forEach (<anonymous>)
+    at Function.async (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:43:15)
+    at Function.all (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:216:13)
+    at Generator.next (<anonymous>)
+    at createDescriptors (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:102:41)
+    at createDescriptors.next (<anonymous>)
+    at createPresetDescriptors (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:96:17)
+    at createPresetDescriptors.next (<anonymous>)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/gensync-utils/functional.js:39:27
+    at Generator.next (<anonymous>)
+    at mergeChainOpts (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:350:34)
+    at mergeChainOpts.next (<anonymous>)
+    at chainWalker (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:316:14)
+    at chainWalker.next (<anonymous>)
+    at loadFileChain (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:191:24)
+    at loadFileChain.next (<anonymous>)
+    at buildRootChain (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:77:27)
+    at buildRootChain.next (<anonymous>)
+    at loadPrivatePartialConfig (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/partial.js:72:62)
+    at loadPrivatePartialConfig.next (<anonymous>)
+    at loadPartialConfig (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/partial.js:115:25)
+    at loadPartialConfig.next (<anonymous>)
+    at step (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:269:25)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:223:11)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:37:40
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Failed to collect coverage from /home/runner/work/firebase-todo-app/firebase-todo-app/src/pages/Login.jsx
+ERROR: Cannot find package '@babel/preset-env' imported from /home/runner/work/firebase-todo-app/firebase-todo-app/babel-virtual-resolve-base.js
+STACK: Error: Cannot find package '@babel/preset-env' imported from /home/runner/work/firebase-todo-app/firebase-todo-app/babel-virtual-resolve-base.js
+    at __node_internal_ (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:224:9)
+    at new NodeError (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:194:5)
+    at packageResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:898:9)
+    at moduleResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:938:18)
+    at defaultResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1016:15)
+    at resolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1029:12)
+    at tryImportMetaResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:149:45)
+    at resolveStandardizedNameForImport (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:174:19)
+    at resolveStandardizedName (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:186:22)
+    at loadPreset (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:68:7)
+    at loadPreset.next (<anonymous>)
+    at createDescriptor (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:140:16)
+    at createDescriptor.next (<anonymous>)
+    at step (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:261:32)
+    at evaluateAsync (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:291:5)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:44:11
+    at Array.forEach (<anonymous>)
+    at Function.async (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:43:15)
+    at Function.all (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:216:13)
+    at Generator.next (<anonymous>)
+    at createDescriptors (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:102:41)
+    at createDescriptors.next (<anonymous>)
+    at createPresetDescriptors (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:96:17)
+    at createPresetDescriptors.next (<anonymous>)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/gensync-utils/functional.js:39:27
+    at Generator.next (<anonymous>)
+    at mergeChainOpts (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:350:34)
+    at mergeChainOpts.next (<anonymous>)
+    at chainWalker (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:316:14)
+    at chainWalker.next (<anonymous>)
+    at loadFileChain (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:191:24)
+    at loadFileChain.next (<anonymous>)
+    at buildRootChain (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:77:27)
+    at buildRootChain.next (<anonymous>)
+    at loadPrivatePartialConfig (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/partial.js:72:62)
+    at loadPrivatePartialConfig.next (<anonymous>)
+    at loadPartialConfig (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/partial.js:115:25)
+    at loadPartialConfig.next (<anonymous>)
+    at step (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:269:25)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:223:11)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:37:40
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Failed to collect coverage from /home/runner/work/firebase-todo-app/firebase-todo-app/src/pages/Register.jsx
+ERROR: Cannot find package '@babel/preset-env' imported from /home/runner/work/firebase-todo-app/firebase-todo-app/babel-virtual-resolve-base.js
+STACK: Error: Cannot find package '@babel/preset-env' imported from /home/runner/work/firebase-todo-app/firebase-todo-app/babel-virtual-resolve-base.js
+    at __node_internal_ (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:224:9)
+    at new NodeError (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:194:5)
+    at packageResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:898:9)
+    at moduleResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:938:18)
+    at defaultResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1016:15)
+    at resolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1029:12)
+    at tryImportMetaResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:149:45)
+    at resolveStandardizedNameForImport (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:174:19)
+    at resolveStandardizedName (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:186:22)
+    at loadPreset (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:68:7)
+    at loadPreset.next (<anonymous>)
+    at createDescriptor (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:140:16)
+    at createDescriptor.next (<anonymous>)
+    at step (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:261:32)
+    at evaluateAsync (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:291:5)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:44:11
+    at Array.forEach (<anonymous>)
+    at Function.async (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:43:15)
+    at Function.all (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:216:13)
+    at Generator.next (<anonymous>)
+    at createDescriptors (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:102:41)
+    at createDescriptors.next (<anonymous>)
+    at createPresetDescriptors (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:96:17)
+    at createPresetDescriptors.next (<anonymous>)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/gensync-utils/functional.js:39:27
+    at Generator.next (<anonymous>)
+    at mergeChainOpts (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:350:34)
+    at mergeChainOpts.next (<anonymous>)
+    at chainWalker (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:316:14)
+    at chainWalker.next (<anonymous>)
+    at loadFileChain (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:191:24)
+    at loadFileChain.next (<anonymous>)
+    at buildRootChain (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:77:27)
+    at buildRootChain.next (<anonymous>)
+    at loadPrivatePartialConfig (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/partial.js:72:62)
+    at loadPrivatePartialConfig.next (<anonymous>)
+    at loadPartialConfig (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/partial.js:115:25)
+    at loadPartialConfig.next (<anonymous>)
+    at step (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:269:25)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:223:11)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:37:40
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Failed to collect coverage from /home/runner/work/firebase-todo-app/firebase-todo-app/src/services/todoService.js
+ERROR: Cannot find package '@babel/preset-env' imported from /home/runner/work/firebase-todo-app/firebase-todo-app/babel-virtual-resolve-base.js
+STACK: Error: Cannot find package '@babel/preset-env' imported from /home/runner/work/firebase-todo-app/firebase-todo-app/babel-virtual-resolve-base.js
+    at __node_internal_ (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:224:9)
+    at new NodeError (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:194:5)
+    at packageResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:898:9)
+    at moduleResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:938:18)
+    at defaultResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1016:15)
+    at resolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1029:12)
+    at tryImportMetaResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:149:45)
+    at resolveStandardizedNameForImport (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:174:19)
+    at resolveStandardizedName (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:186:22)
+    at loadPreset (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:68:7)
+    at loadPreset.next (<anonymous>)
+    at createDescriptor (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:140:16)
+    at createDescriptor.next (<anonymous>)
+    at step (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:261:32)
+    at evaluateAsync (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:291:5)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:44:11
+    at Array.forEach (<anonymous>)
+    at Function.async (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:43:15)
+    at Function.all (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:216:13)
+    at Generator.next (<anonymous>)
+    at createDescriptors (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:102:41)
+    at createDescriptors.next (<anonymous>)
+    at createPresetDescriptors (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:96:17)
+    at createPresetDescriptors.next (<anonymous>)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/gensync-utils/functional.js:39:27
+    at Generator.next (<anonymous>)
+    at mergeChainOpts (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:350:34)
+    at mergeChainOpts.next (<anonymous>)
+    at chainWalker (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:316:14)
+    at chainWalker.next (<anonymous>)
+    at loadFileChain (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:191:24)
+    at loadFileChain.next (<anonymous>)
+    at buildRootChain (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:77:27)
+    at buildRootChain.next (<anonymous>)
+    at loadPrivatePartialConfig (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/partial.js:72:62)
+    at loadPrivatePartialConfig.next (<anonymous>)
+    at loadPartialConfig (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/partial.js:115:25)
+    at loadPartialConfig.next (<anonymous>)
+    at step (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:269:25)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:223:11)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:37:40
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Failed to collect coverage from /home/runner/work/firebase-todo-app/firebase-todo-app/src/store/index.js
+ERROR: Cannot find package '@babel/preset-env' imported from /home/runner/work/firebase-todo-app/firebase-todo-app/babel-virtual-resolve-base.js
+STACK: Error: Cannot find package '@babel/preset-env' imported from /home/runner/work/firebase-todo-app/firebase-todo-app/babel-virtual-resolve-base.js
+    at __node_internal_ (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:224:9)
+    at new NodeError (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:194:5)
+    at packageResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:898:9)
+    at moduleResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:938:18)
+    at defaultResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1016:15)
+    at resolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1029:12)
+    at tryImportMetaResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:149:45)
+    at resolveStandardizedNameForImport (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:174:19)
+    at resolveStandardizedName (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:186:22)
+    at loadPreset (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:68:7)
+    at loadPreset.next (<anonymous>)
+    at createDescriptor (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:140:16)
+    at createDescriptor.next (<anonymous>)
+    at step (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:261:32)
+    at evaluateAsync (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:291:5)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:44:11
+    at Array.forEach (<anonymous>)
+    at Function.async (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:43:15)
+    at Function.all (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:216:13)
+    at Generator.next (<anonymous>)
+    at createDescriptors (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:102:41)
+    at createDescriptors.next (<anonymous>)
+    at createPresetDescriptors (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:96:17)
+    at createPresetDescriptors.next (<anonymous>)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/gensync-utils/functional.js:39:27
+    at Generator.next (<anonymous>)
+    at mergeChainOpts (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:350:34)
+    at mergeChainOpts.next (<anonymous>)
+    at chainWalker (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:316:14)
+    at chainWalker.next (<anonymous>)
+    at loadFileChain (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:191:24)
+    at loadFileChain.next (<anonymous>)
+    at buildRootChain (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:77:27)
+    at buildRootChain.next (<anonymous>)
+    at loadPrivatePartialConfig (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/partial.js:72:62)
+    at loadPrivatePartialConfig.next (<anonymous>)
+    at loadPartialConfig (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/partial.js:115:25)
+    at loadPartialConfig.next (<anonymous>)
+    at step (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:269:25)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:223:11)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:37:40
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Failed to collect coverage from /home/runner/work/firebase-todo-app/firebase-todo-app/src/App.jsx
+ERROR: Cannot find package '@babel/preset-env' imported from /home/runner/work/firebase-todo-app/firebase-todo-app/babel-virtual-resolve-base.js
+STACK: Error: Cannot find package '@babel/preset-env' imported from /home/runner/work/firebase-todo-app/firebase-todo-app/babel-virtual-resolve-base.js
+    at __node_internal_ (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:224:9)
+    at new NodeError (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:194:5)
+    at packageResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:898:9)
+    at moduleResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:938:18)
+    at defaultResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1016:15)
+    at resolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1029:12)
+    at tryImportMetaResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:149:45)
+    at resolveStandardizedNameForImport (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:174:19)
+    at resolveStandardizedName (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:186:22)
+    at loadPreset (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:68:7)
+    at loadPreset.next (<anonymous>)
+    at createDescriptor (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:140:16)
+    at createDescriptor.next (<anonymous>)
+    at step (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:261:32)
+    at evaluateAsync (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:291:5)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:44:11
+    at Array.forEach (<anonymous>)
+    at Function.async (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:43:15)
+    at Function.all (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:216:13)
+    at Generator.next (<anonymous>)
+    at createDescriptors (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:102:41)
+    at createDescriptors.next (<anonymous>)
+    at createPresetDescriptors (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:96:17)
+    at createPresetDescriptors.next (<anonymous>)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/gensync-utils/functional.js:39:27
+    at Generator.next (<anonymous>)
+    at mergeChainOpts (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:350:34)
+    at mergeChainOpts.next (<anonymous>)
+    at chainWalker (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:316:14)
+    at chainWalker.next (<anonymous>)
+    at loadFileChain (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:191:24)
+    at loadFileChain.next (<anonymous>)
+    at buildRootChain (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:77:27)
+    at buildRootChain.next (<anonymous>)
+    at loadPrivatePartialConfig (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/partial.js:72:62)
+    at loadPrivatePartialConfig.next (<anonymous>)
+    at loadPartialConfig (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/partial.js:115:25)
+    at loadPartialConfig.next (<anonymous>)
+    at step (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:269:25)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:223:11)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:37:40
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Failed to collect coverage from /home/runner/work/firebase-todo-app/firebase-todo-app/src/store/todoSlice.js
+ERROR: Cannot find package '@babel/preset-env' imported from /home/runner/work/firebase-todo-app/firebase-todo-app/babel-virtual-resolve-base.js
+STACK: Error: Cannot find package '@babel/preset-env' imported from /home/runner/work/firebase-todo-app/firebase-todo-app/babel-virtual-resolve-base.js
+    at __node_internal_ (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:224:9)
+    at new NodeError (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:194:5)
+    at packageResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:898:9)
+    at moduleResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:938:18)
+    at defaultResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1016:15)
+    at resolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1029:12)
+    at tryImportMetaResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:149:45)
+    at resolveStandardizedNameForImport (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:174:19)
+    at resolveStandardizedName (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:186:22)
+    at loadPreset (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:68:7)
+    at loadPreset.next (<anonymous>)
+    at createDescriptor (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:140:16)
+    at createDescriptor.next (<anonymous>)
+    at step (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:261:32)
+    at evaluateAsync (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:291:5)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:44:11
+    at Array.forEach (<anonymous>)
+    at Function.async (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:43:15)
+    at Function.all (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:216:13)
+    at Generator.next (<anonymous>)
+    at createDescriptors (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:102:41)
+    at createDescriptors.next (<anonymous>)
+    at createPresetDescriptors (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:96:17)
+    at createPresetDescriptors.next (<anonymous>)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/gensync-utils/functional.js:39:27
+    at Generator.next (<anonymous>)
+    at mergeChainOpts (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:350:34)
+    at mergeChainOpts.next (<anonymous>)
+    at chainWalker (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:316:14)
+    at chainWalker.next (<anonymous>)
+    at loadFileChain (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:191:24)
+    at loadFileChain.next (<anonymous>)
+    at buildRootChain (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:77:27)
+    at buildRootChain.next (<anonymous>)
+    at loadPrivatePartialConfig (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/partial.js:72:62)
+    at loadPrivatePartialConfig.next (<anonymous>)
+    at loadPartialConfig (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/partial.js:115:25)
+    at loadPartialConfig.next (<anonymous>)
+    at step (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:269:25)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:223:11)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:37:40
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Failed to collect coverage from /home/runner/work/firebase-todo-app/firebase-todo-app/src/components/DateTimeModal.jsx
+ERROR: Cannot find package '@babel/preset-env' imported from /home/runner/work/firebase-todo-app/firebase-todo-app/babel-virtual-resolve-base.js
+STACK: Error: Cannot find package '@babel/preset-env' imported from /home/runner/work/firebase-todo-app/firebase-todo-app/babel-virtual-resolve-base.js
+    at __node_internal_ (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:224:9)
+    at new NodeError (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:194:5)
+    at packageResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:898:9)
+    at moduleResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:938:18)
+    at defaultResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1016:15)
+    at resolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1029:12)
+    at tryImportMetaResolve (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:149:45)
+    at resolveStandardizedNameForImport (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:174:19)
+    at resolveStandardizedName (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:186:22)
+    at loadPreset (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/files/plugins.js:68:7)
+    at loadPreset.next (<anonymous>)
+    at createDescriptor (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:140:16)
+    at createDescriptor.next (<anonymous>)
+    at step (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:261:32)
+    at evaluateAsync (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:291:5)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:44:11
+    at Array.forEach (<anonymous>)
+    at Function.async (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:43:15)
+    at Function.all (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:216:13)
+    at Generator.next (<anonymous>)
+    at createDescriptors (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:102:41)
+    at createDescriptors.next (<anonymous>)
+    at createPresetDescriptors (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-descriptors.js:96:17)
+    at createPresetDescriptors.next (<anonymous>)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/gensync-utils/functional.js:39:27
+    at Generator.next (<anonymous>)
+    at mergeChainOpts (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:350:34)
+    at mergeChainOpts.next (<anonymous>)
+    at chainWalker (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:316:14)
+    at chainWalker.next (<anonymous>)
+    at loadFileChain (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:191:24)
+    at loadFileChain.next (<anonymous>)
+    at buildRootChain (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/config-chain.js:77:27)
+    at buildRootChain.next (<anonymous>)
+    at loadPrivatePartialConfig (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/partial.js:72:62)
+    at loadPrivatePartialConfig.next (<anonymous>)
+    at loadPartialConfig (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/@babel/core/lib/config/partial.js:115:25)
+    at loadPartialConfig.next (<anonymous>)
+    at step (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:269:25)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:223:11)
+    at /home/runner/work/firebase-todo-app/firebase-todo-app/node_modules/gensync/index.js:37:40
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+----------|---------|----------|---------|---------|-------------------
+File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+----------|---------|----------|---------|---------|-------------------
+All files |       0 |        0 |       0 |       0 |                   
+----------|---------|----------|---------|---------|-------------------
+Test Suites: 12 failed, 12 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        1.686 s
+Ran all test suites.
