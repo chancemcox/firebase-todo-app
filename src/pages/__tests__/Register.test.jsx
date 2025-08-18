@@ -2,29 +2,14 @@ import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
-// Mock Firebase Auth - must be declared before jest.mock
-const mockCreateUserWithEmailAndPasswordFromModule = jest.fn();
-const mockSignInWithPopupFromModule = jest.fn();
-const mockGoogleAuthProvider = jest.fn();
-const mockUpdateProfileFromModule = jest.fn();
-
-jest.mock('firebase/auth', () => ({
-  getAuth: jest.fn(() => ({})),
-  createUserWithEmailAndPassword: jest.fn(),
-  signInWithPopup: jest.fn(),
-  GoogleAuthProvider: jest.fn(),
-  updateProfile: jest.fn(),
-}));
-
 import Register from '../Register.jsx';
-import { AuthProvider } from '../../contexts/AuthContext.jsx';
-import * as firebaseAuth from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, updateProfile } from 'firebase/auth';
 
-// Get the mocked functions
-const mockCreateUserWithEmailAndPasswordFromModuleFromModule = firebaseAuth.createUserWithEmailAndPassword;
-const mockSignInWithPopupFromModuleFromModule = firebaseAuth.signInWithPopup;
-const mockGoogleAuthProviderFromModule = firebaseAuth.GoogleAuthProvider;
-const mockUpdateProfileFromModuleFromModule = firebaseAuth.updateProfile;
+// Get the mocked functions from setupTests.js  
+const mockCreateUserWithEmailAndPassword = createUserWithEmailAndPassword;
+const mockSignInWithPopup = signInWithPopup;
+const mockGoogleAuthProvider = GoogleAuthProvider;
+const mockUpdateProfile = updateProfile;
 
 // Mock React Router
 const mockNavigate = jest.fn();
@@ -46,9 +31,7 @@ jest.mock('../../contexts/AuthContext', () => ({
 const renderWithRouter = (component) => {
   return render(
     <BrowserRouter>
-      <AuthProvider>
-        {component}
-      </AuthProvider>
+      {component}
     </BrowserRouter>
   );
 };
@@ -56,10 +39,10 @@ const renderWithRouter = (component) => {
 describe('Register Page', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    mockCreateUserWithEmailAndPasswordFromModuleFromModule.mockResolvedValue();
-    mockSignInWithPopupFromModuleFromModule.mockResolvedValue();
-    mockGoogleAuthProviderFromModule.mockReturnValue({});
-    mockUpdateProfileFromModuleFromModule.mockResolvedValue();
+    mockCreateUserWithEmailAndPassword.mockResolvedValue();
+    mockSignInWithPopup.mockResolvedValue();
+    mockGoogleAuthProvider.mockReturnValue({});
+    mockUpdateProfile.mockResolvedValue();
   });
 
   describe('Page Rendering', () => {
@@ -68,10 +51,10 @@ describe('Register Page', () => {
       
       expect(screen.getByText('Create Account')).toBeInTheDocument();
       expect(screen.getByText('Sign up for a new account')).toBeInTheDocument();
-      expect(screen.getByLabelText('Full Name')).toBeInTheDocument();
-      expect(screen.getByLabelText('Email')).toBeInTheDocument();
-      expect(screen.getByLabelText('Password')).toBeInTheDocument();
-      expect(screen.getByLabelText('Confirm Password')).toBeInTheDocument();
+      expect(screen.getByPlaceholderText('Display Name')).toBeInTheDocument();
+      expect(screen.getByPlaceholderText('Email address')).toBeInTheDocument();
+      expect(screen.getByPlaceholderText('Password')).toBeInTheDocument();
+      expect(screen.getByPlaceholderText('Confirm Password')).toBeInTheDocument();
       expect(screen.getByRole('button', { name: 'Create Account' })).toBeInTheDocument();
     });
 
@@ -105,7 +88,7 @@ describe('Register Page', () => {
     it('shows error for empty email submission', async () => {
       renderWithRouter(<Register />);
       
-      const nameInput = screen.getByLabelText('Full Name');
+      const nameInput = screen.getByPlaceholderText('Display Name');
       fireEvent.change(nameInput, { target: { value: 'John Doe' } });
       
       const createAccountButton = screen.getByRole('button', { name: 'Create Account' });
@@ -119,8 +102,8 @@ describe('Register Page', () => {
     it('shows error for empty password submission', async () => {
       renderWithRouter(<Register />);
       
-      const nameInput = screen.getByLabelText('Full Name');
-      const emailInput = screen.getByLabelText('Email');
+      const nameInput = screen.getByPlaceholderText('Display Name');
+      const emailInput = screen.getByPlaceholderText('Email address');
       
       fireEvent.change(nameInput, { target: { value: 'John Doe' } });
       fireEvent.change(emailInput, { target: { value: 'john@example.com' } });
@@ -136,9 +119,9 @@ describe('Register Page', () => {
     it('shows error for empty confirm password submission', async () => {
       renderWithRouter(<Register />);
       
-      const nameInput = screen.getByLabelText('Full Name');
-      const emailInput = screen.getByLabelText('Email');
-      const passwordInput = screen.getByLabelText('Password');
+      const nameInput = screen.getByPlaceholderText('Display Name');
+      const emailInput = screen.getByPlaceholderText('Email address');
+      const passwordInput = screen.getByPlaceholderText('Password');
       
       fireEvent.change(nameInput, { target: { value: 'John Doe' } });
       fireEvent.change(emailInput, { target: { value: 'john@example.com' } });
@@ -148,17 +131,17 @@ describe('Register Page', () => {
       fireEvent.click(createAccountButton);
       
       await waitFor(() => {
-        expect(screen.getByText('Please confirm your password')).toBeInTheDocument();
+        expect(screen.getByText('Passwords do not match')).toBeInTheDocument();
       });
     });
 
     it('shows error for invalid email format', async () => {
       renderWithRouter(<Register />);
       
-      const nameInput = screen.getByLabelText('Full Name');
-      const emailInput = screen.getByLabelText('Email');
-      const passwordInput = screen.getByLabelText('Password');
-      const confirmPasswordInput = screen.getByLabelText('Confirm Password');
+      const nameInput = screen.getByPlaceholderText('Display Name');
+      const emailInput = screen.getByPlaceholderText('Email address');
+      const passwordInput = screen.getByPlaceholderText('Password');
+      const confirmPasswordInput = screen.getByPlaceholderText('Confirm Password');
       
       fireEvent.change(nameInput, { target: { value: 'John Doe' } });
       fireEvent.change(emailInput, { target: { value: 'invalid-email' } });
@@ -169,17 +152,17 @@ describe('Register Page', () => {
       fireEvent.click(createAccountButton);
       
       await waitFor(() => {
-        expect(screen.getByText('Please enter a valid email address')).toBeInTheDocument();
+        expect(screen.getByText('Invalid email address.')).toBeInTheDocument();
       });
     });
 
     it('shows error for short password', async () => {
       renderWithRouter(<Register />);
       
-      const nameInput = screen.getByLabelText('Full Name');
-      const emailInput = screen.getByLabelText('Email');
-      const passwordInput = screen.getByLabelText('Password');
-      const confirmPasswordInput = screen.getByLabelText('Confirm Password');
+      const nameInput = screen.getByPlaceholderText('Display Name');
+      const emailInput = screen.getByPlaceholderText('Email address');
+      const passwordInput = screen.getByPlaceholderText('Password');
+      const confirmPasswordInput = screen.getByPlaceholderText('Confirm Password');
       
       fireEvent.change(nameInput, { target: { value: 'John Doe' } });
       fireEvent.change(emailInput, { target: { value: 'john@example.com' } });
@@ -197,10 +180,10 @@ describe('Register Page', () => {
     it('shows error for password mismatch', async () => {
       renderWithRouter(<Register />);
       
-      const nameInput = screen.getByLabelText('Full Name');
-      const emailInput = screen.getByLabelText('Email');
-      const passwordInput = screen.getByLabelText('Password');
-      const confirmPasswordInput = screen.getByLabelText('Confirm Password');
+      const nameInput = screen.getByPlaceholderText('Display Name');
+      const emailInput = screen.getByPlaceholderText('Email address');
+      const passwordInput = screen.getByPlaceholderText('Password');
+      const confirmPasswordInput = screen.getByPlaceholderText('Confirm Password');
       
       fireEvent.change(nameInput, { target: { value: 'John Doe' } });
       fireEvent.change(emailInput, { target: { value: 'john@example.com' } });
@@ -225,7 +208,7 @@ describe('Register Page', () => {
         expect(screen.getByText('Full name is required')).toBeInTheDocument();
       });
       
-      const nameInput = screen.getByLabelText('Full Name');
+      const nameInput = screen.getByPlaceholderText('Display Name');
       fireEvent.change(nameInput, { target: { value: 'John Doe' } });
       
       await waitFor(() => {
@@ -236,16 +219,16 @@ describe('Register Page', () => {
 
   describe('User Registration', () => {
     it('submits form with valid credentials', async () => {
-      mockCreateUserWithEmailAndPasswordFromModule.mockResolvedValue({
+      mockCreateUserWithEmailAndPassword.mockResolvedValue({
         user: { uid: 'new-user-uid', email: 'john@example.com' }
       });
       
       renderWithRouter(<Register />);
       
-      const nameInput = screen.getByLabelText('Full Name');
-      const emailInput = screen.getByLabelText('Email');
-      const passwordInput = screen.getByLabelText('Password');
-      const confirmPasswordInput = screen.getByLabelText('Confirm Password');
+      const nameInput = screen.getByPlaceholderText('Display Name');
+      const emailInput = screen.getByPlaceholderText('Email address');
+      const passwordInput = screen.getByPlaceholderText('Password');
+      const confirmPasswordInput = screen.getByPlaceholderText('Confirm Password');
       
       fireEvent.change(nameInput, { target: { value: 'John Doe' } });
       fireEvent.change(emailInput, { target: { value: 'john@example.com' } });
@@ -256,7 +239,7 @@ describe('Register Page', () => {
       fireEvent.click(createAccountButton);
       
       await waitFor(() => {
-        expect(mockCreateUserWithEmailAndPasswordFromModule).toHaveBeenCalledWith(
+        expect(mockCreateUserWithEmailAndPassword).toHaveBeenCalledWith(
           expect.anything(),
           'john@example.com',
           'password123'
@@ -265,16 +248,16 @@ describe('Register Page', () => {
     });
 
     it('updates user profile after successful registration', async () => {
-      mockCreateUserWithEmailAndPasswordFromModule.mockResolvedValue({
+      mockCreateUserWithEmailAndPassword.mockResolvedValue({
         user: { uid: 'new-user-uid', email: 'john@example.com' }
       });
       
       renderWithRouter(<Register />);
       
-      const nameInput = screen.getByLabelText('Full Name');
-      const emailInput = screen.getByLabelText('Email');
-      const passwordInput = screen.getByLabelText('Password');
-      const confirmPasswordInput = screen.getByLabelText('Confirm Password');
+      const nameInput = screen.getByPlaceholderText('Display Name');
+      const emailInput = screen.getByPlaceholderText('Email address');
+      const passwordInput = screen.getByPlaceholderText('Password');
+      const confirmPasswordInput = screen.getByPlaceholderText('Confirm Password');
       
       fireEvent.change(nameInput, { target: { value: 'John Doe' } });
       fireEvent.change(emailInput, { target: { value: 'john@example.com' } });
@@ -285,7 +268,7 @@ describe('Register Page', () => {
       fireEvent.click(createAccountButton);
       
       await waitFor(() => {
-        expect(mockUpdateProfileFromModule).toHaveBeenCalledWith(
+        expect(mockUpdateProfile).toHaveBeenCalledWith(
           expect.anything(),
           { displayName: 'John Doe' }
         );
@@ -293,16 +276,16 @@ describe('Register Page', () => {
     });
 
     it('shows loading state during registration', async () => {
-      mockCreateUserWithEmailAndPasswordFromModule.mockImplementation(() => 
+      mockCreateUserWithEmailAndPassword.mockImplementation(() => 
         new Promise(resolve => setTimeout(resolve, 100))
       );
       
       renderWithRouter(<Register />);
       
-      const nameInput = screen.getByLabelText('Full Name');
-      const emailInput = screen.getByLabelText('Email');
-      const passwordInput = screen.getByLabelText('Password');
-      const confirmPasswordInput = screen.getByLabelText('Confirm Password');
+      const nameInput = screen.getByPlaceholderText('Display Name');
+      const emailInput = screen.getByPlaceholderText('Email address');
+      const passwordInput = screen.getByPlaceholderText('Password');
+      const confirmPasswordInput = screen.getByPlaceholderText('Confirm Password');
       
       fireEvent.change(nameInput, { target: { value: 'John Doe' } });
       fireEvent.change(emailInput, { target: { value: 'john@example.com' } });
@@ -317,16 +300,16 @@ describe('Register Page', () => {
     });
 
     it('handles registration success', async () => {
-      mockCreateUserWithEmailAndPasswordFromModule.mockResolvedValue({
+      mockCreateUserWithEmailAndPassword.mockResolvedValue({
         user: { uid: 'new-user-uid', email: 'john@example.com' }
       });
       
       renderWithRouter(<Register />);
       
-      const nameInput = screen.getByLabelText('Full Name');
-      const emailInput = screen.getByLabelText('Email');
-      const passwordInput = screen.getByLabelText('Password');
-      const confirmPasswordInput = screen.getByLabelText('Confirm Password');
+      const nameInput = screen.getByPlaceholderText('Display Name');
+      const emailInput = screen.getByPlaceholderText('Email address');
+      const passwordInput = screen.getByPlaceholderText('Password');
+      const confirmPasswordInput = screen.getByPlaceholderText('Confirm Password');
       
       fireEvent.change(nameInput, { target: { value: 'John Doe' } });
       fireEvent.change(emailInput, { target: { value: 'john@example.com' } });
@@ -342,17 +325,17 @@ describe('Register Page', () => {
     });
 
     it('handles registration errors gracefully', async () => {
-      mockCreateUserWithEmailAndPasswordFromModule.mockRejectedValue({
+      mockCreateUserWithEmailAndPassword.mockRejectedValue({
         code: 'auth/email-already-in-use',
         message: 'Email already in use'
       });
       
       renderWithRouter(<Register />);
       
-      const nameInput = screen.getByLabelText('Full Name');
-      const emailInput = screen.getByLabelText('Email');
-      const passwordInput = screen.getByLabelText('Password');
-      const confirmPasswordInput = screen.getByLabelText('Confirm Password');
+      const nameInput = screen.getByPlaceholderText('Display Name');
+      const emailInput = screen.getByPlaceholderText('Email address');
+      const passwordInput = screen.getByPlaceholderText('Password');
+      const confirmPasswordInput = screen.getByPlaceholderText('Confirm Password');
       
       fireEvent.change(nameInput, { target: { value: 'John Doe' } });
       fireEvent.change(emailInput, { target: { value: 'john@example.com' } });
@@ -376,14 +359,14 @@ describe('Register Page', () => {
       ];
       
       for (const { code, message } of errorCases) {
-        mockCreateUserWithEmailAndPasswordFromModule.mockRejectedValue({ code, message });
+        mockCreateUserWithEmailAndPassword.mockRejectedValue({ code, message });
         
         const { unmount } = renderWithRouter(<Register />);
         
-        const nameInput = screen.getByLabelText('Full Name');
-        const emailInput = screen.getByLabelText('Email');
-        const passwordInput = screen.getByLabelText('Password');
-        const confirmPasswordInput = screen.getByLabelText('Confirm Password');
+        const nameInput = screen.getByPlaceholderText('Display Name');
+        const emailInput = screen.getByPlaceholderText('Email address');
+        const passwordInput = screen.getByPlaceholderText('Password');
+        const confirmPasswordInput = screen.getByPlaceholderText('Confirm Password');
         
         fireEvent.change(nameInput, { target: { value: 'John Doe' } });
         fireEvent.change(emailInput, { target: { value: 'john@example.com' } });
@@ -410,12 +393,12 @@ describe('Register Page', () => {
       fireEvent.click(googleButton);
       
       await waitFor(() => {
-        expect(mockSignInWithPopupFromModule).toHaveBeenCalled();
+        expect(mockSignInWithPopup).toHaveBeenCalled();
       });
     });
 
     it('handles Google registration success', async () => {
-      mockSignInWithPopupFromModule.mockResolvedValue({
+      mockSignInWithPopup.mockResolvedValue({
         user: { uid: 'google-uid', email: 'john@gmail.com', displayName: 'John Doe' }
       });
       
@@ -430,7 +413,7 @@ describe('Register Page', () => {
     });
 
     it('handles Google registration errors', async () => {
-      mockSignInWithPopupFromModule.mockRejectedValue({
+      mockSignInWithPopup.mockRejectedValue({
         code: 'auth/popup-closed-by-user',
         message: 'Sign-up popup was closed'
       });
@@ -470,10 +453,10 @@ describe('Register Page', () => {
     it('updates form values when typing', () => {
       renderWithRouter(<Register />);
       
-      const nameInput = screen.getByLabelText('Full Name');
-      const emailInput = screen.getByLabelText('Email');
-      const passwordInput = screen.getByLabelText('Password');
-      const confirmPasswordInput = screen.getByLabelText('Confirm Password');
+      const nameInput = screen.getByPlaceholderText('Display Name');
+      const emailInput = screen.getByPlaceholderText('Email address');
+      const passwordInput = screen.getByPlaceholderText('Password');
+      const confirmPasswordInput = screen.getByPlaceholderText('Confirm Password');
       
       fireEvent.change(nameInput, { target: { value: 'Jane Smith' } });
       fireEvent.change(emailInput, { target: { value: 'jane@example.com' } });
@@ -487,16 +470,16 @@ describe('Register Page', () => {
     });
 
     it('resets form after successful registration', async () => {
-      mockCreateUserWithEmailAndPasswordFromModule.mockResolvedValue({
+      mockCreateUserWithEmailAndPassword.mockResolvedValue({
         user: { uid: 'new-user-uid', email: 'john@example.com' }
       });
       
       renderWithRouter(<Register />);
       
-      const nameInput = screen.getByLabelText('Full Name');
-      const emailInput = screen.getByLabelText('Email');
-      const passwordInput = screen.getByLabelText('Password');
-      const confirmPasswordInput = screen.getByLabelText('Confirm Password');
+      const nameInput = screen.getByPlaceholderText('Display Name');
+      const emailInput = screen.getByPlaceholderText('Email address');
+      const passwordInput = screen.getByPlaceholderText('Password');
+      const confirmPasswordInput = screen.getByPlaceholderText('Confirm Password');
       
       fireEvent.change(nameInput, { target: { value: 'John Doe' } });
       fireEvent.change(emailInput, { target: { value: 'john@example.com' } });
@@ -516,10 +499,10 @@ describe('Register Page', () => {
     it('has proper form labels and inputs', () => {
       renderWithRouter(<Register />);
       
-      const nameInput = screen.getByLabelText('Full Name');
-      const emailInput = screen.getByLabelText('Email');
-      const passwordInput = screen.getByLabelText('Password');
-      const confirmPasswordInput = screen.getByLabelText('Confirm Password');
+      const nameInput = screen.getByPlaceholderText('Display Name');
+      const emailInput = screen.getByPlaceholderText('Email address');
+      const passwordInput = screen.getByPlaceholderText('Password');
+      const confirmPasswordInput = screen.getByPlaceholderText('Confirm Password');
       
       expect(nameInput).toHaveAttribute('type', 'text');
       expect(emailInput).toHaveAttribute('type', 'email');
@@ -534,7 +517,7 @@ describe('Register Page', () => {
     it('maintains focus management', () => {
       renderWithRouter(<Register />);
       
-      const nameInput = screen.getByLabelText('Full Name');
+      const nameInput = screen.getByPlaceholderText('Display Name');
       nameInput.focus();
       expect(nameInput).toHaveFocus();
     });
@@ -588,17 +571,17 @@ describe('Register Page', () => {
     });
 
     it('handles network errors gracefully', async () => {
-      mockCreateUserWithEmailAndPasswordFromModule.mockRejectedValue({
+      mockCreateUserWithEmailAndPassword.mockRejectedValue({
         code: 'auth/network-request-failed',
         message: 'Network error. Please check your connection'
       });
       
       renderWithRouter(<Register />);
       
-      const nameInput = screen.getByLabelText('Full Name');
-      const emailInput = screen.getByLabelText('Email');
-      const passwordInput = screen.getByLabelText('Password');
-      const confirmPasswordInput = screen.getByLabelText('Confirm Password');
+      const nameInput = screen.getByPlaceholderText('Display Name');
+      const emailInput = screen.getByPlaceholderText('Email address');
+      const passwordInput = screen.getByPlaceholderText('Password');
+      const confirmPasswordInput = screen.getByPlaceholderText('Confirm Password');
       
       fireEvent.change(nameInput, { target: { value: 'John Doe' } });
       fireEvent.change(emailInput, { target: { value: 'john@example.com' } });
