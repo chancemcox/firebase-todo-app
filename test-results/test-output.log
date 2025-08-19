@@ -197,8 +197,6 @@ PASS src/pages/__tests__/Register.test.jsx
     console.error
       Signup error: TypeError: Cannot read properties of undefined (reading 'user')
           at user (/home/runner/work/firebase-todo-app/firebase-todo-app/src/pages/Register.jsx:85:34)
-          at runNextTicks (node:internal/process/task_queues:60:5)
-          at processTimers (node:internal/timers:516:9)
 
     [0m [90m 127 |[39m       [36mreturn[39m[33m;[39m
      [90m 128 |[39m     }
@@ -759,7 +757,6 @@ PASS src/components/__tests__/Navigation.test.jsx
       at Object.renderWithRouter (src/components/__tests__/Navigation.test.jsx:51:7)
 
 PASS src/components/__tests__/TodoList.test.jsx
-PASS src/components/__tests__/TodoStats.test.jsx
 PASS src/components/__tests__/minimal.test.jsx
   ● Console
 
@@ -823,6 +820,7 @@ PASS src/components/__tests__/minimal.test.jsx
       at render (node_modules/@testing-library/react/dist/pure.js:271:10)
       at Object.<anonymous> (src/components/__tests__/minimal.test.jsx:15:11)
 
+PASS src/components/__tests__/TodoStats.test.jsx
 PASS src/components/__tests__/import-test.test.jsx
 PASS src/components/__tests__/simple.test.js
 /home/runner/work/firebase-todo-app/firebase-todo-app/src/firebase.js:28
@@ -867,5 +865,5 @@ FAIL src/contexts/__tests__/AuthContext.test.jsx
 Test Suites: 2 failed, 10 passed, 12 total
 Tests:       1 failed, 123 passed, 124 total
 Snapshots:   0 total
-Time:        8.47 s
+Time:        8.64 s
 Ran all test suites.
