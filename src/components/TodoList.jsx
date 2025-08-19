@@ -23,46 +23,71 @@ const TodoList = () => {
   const [editingTodo, setEditingTodo] = useState(null);
 
   useEffect(() => {
-    if (!currentUser) return;
+    if (!currentUser) {
+      console.log('No current user, skipping todo fetch');
+      return;
+    }
 
+    console.log('Setting up todo listener for user:', currentUser.uid);
     setLoading(true);
     setError(null);
 
     try {
       // Create real-time listener for todos
       const todosRef = collection(db, 'todos');
+      console.log('Todos collection reference:', todosRef);
+      
       const q = query(
         todosRef,
         where('userId', '==', currentUser.uid),
         orderBy('createdAt', 'desc')
       );
+      console.log('Query created:', q);
 
       // Set up real-time listener
       const unsubscribe = onSnapshot(q, (snapshot) => {
+        console.log('Snapshot received, size:', snapshot.size);
         const todosData = [];
         snapshot.forEach((doc) => {
-          todosData.push({
+          const todoData = {
             id: doc.id,
             ...doc.data(),
             createdAt: doc.data().createdAt?.toDate?.() || new Date(),
             updatedAt: doc.data().updatedAt?.toDate?.() || new Date(),
             dueDateTime: doc.data().dueDateTime ? new Date(doc.data().dueDateTime) : null
-          });
+          };
+          todosData.push(todoData);
+          console.log('Processed todo:', todoData);
         });
 
+        console.log('Setting todos state with', todosData.length, 'todos');
         setTodos(todosData);
         setLoading(false);
+        setError(null);
       }, (error) => {
         console.error('Error listening to todos:', error);
-        setError('Failed to load todos');
+        console.error('Error details:', {
+          code: error.code,
+          message: error.message,
+          stack: error.stack
+        });
+        setError(`Failed to load todos: ${error.message}`);
         setLoading(false);
       });
 
       // Cleanup listener on unmount
-      return () => unsubscribe();
+      return () => {
+        console.log('Cleaning up todo listener');
+        unsubscribe();
+      };
     } catch (error) {
       console.error('Error setting up real-time listener:', error);
-      setError('Failed to set up real-time updates');
+      console.error('Error details:', {
+        code: error.code,
+        message: error.message,
+        stack: error.stack
+      });
+      setError(`Failed to set up real-time updates: ${error.message}`);
       setLoading(false);
     }
   }, [currentUser?.uid]);
