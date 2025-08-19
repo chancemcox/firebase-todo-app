@@ -106,6 +106,13 @@ The application includes a comprehensive REST API with OAuth2 authentication. Ac
 - Cross-browser testing support
 - Visual regression testing
 
+### Continuous Integration
+
+- GitHub Actions workflow at `.github/workflows/ci.yml` runs on pushes and pull requests to `main`.
+- Jest outputs JUnit XML to `test-results/junit/jest-junit.xml` used for PR annotations.
+- Playwright outputs JUnit XML to `test-results/playwright-junit.xml` and HTML to `test-results/playwright-report/`.
+- The workflow annotates all test failures in the Actions UI and uploads logs and reports as artifacts.
+
 ## Deployment
 
 ### Firebase Hosting

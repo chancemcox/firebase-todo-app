@@ -36,7 +36,7 @@ module.exports = {
   ],
   // Ensure test results go to test-results folder
   testResultsProcessor: undefined,
-  reporters: ['default'],
+  reporters: ['default', ['jest-junit', { outputDirectory: 'test-results/junit', outputName: 'jest-junit.xml', addFileAttribute: 'true' }]],
   // Ensure log files go to logs folder
   verbose: true,
   silent: false,
