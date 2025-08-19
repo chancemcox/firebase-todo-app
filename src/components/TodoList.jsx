@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useAuth } from '../contexts/AuthContext';
-import { collection, query, where, onSnapshot, orderBy, addDoc, updateDoc, deleteDoc, doc, serverTimestamp } from 'firebase/firestore';
+import { useState, useEffect } from 'react';
+import { collection, query, where, onSnapshot, addDoc, updateDoc, deleteDoc, doc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase';
+import { useAuth } from '../contexts/AuthContext';
 import DateTimeModal from './DateTimeModal';
 
 const TodoList = () => {
@@ -37,12 +37,14 @@ const TodoList = () => {
       const todosRef = collection(db, 'todos');
       console.log('Todos collection reference:', todosRef);
       
+      // TEMPORARY: Remove orderBy while index is building
+      // TODO: Restore orderBy once index is ready
       const q = query(
         todosRef,
-        where('userId', '==', currentUser.uid),
-        orderBy('createdAt', 'desc')
+        where('userId', '==', currentUser.uid)
+        // orderBy('createdAt', 'desc') // Temporarily commented out while index builds
       );
-      console.log('Query created:', q);
+      console.log('Query created (temporary, no ordering):', q);
 
       // Set up real-time listener
       const unsubscribe = onSnapshot(q, (snapshot) => {
