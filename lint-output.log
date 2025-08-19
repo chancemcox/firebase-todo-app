@@ -1,0 +1,60 @@
+
+> firebase-todo-app@0.0.0 lint
+> eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0
+
+
+/home/runner/work/firebase-todo-app/firebase-todo-app/src/App.jsx
+  1:8  error  'React' is defined but never used  no-unused-vars
+
+/home/runner/work/firebase-todo-app/firebase-todo-app/src/components/ProtectedRoute.jsx
+  1:8  error  'React' is defined but never used  no-unused-vars
+
+/home/runner/work/firebase-todo-app/firebase-todo-app/src/components/TodoList.jsx
+   1:8  error    'React' is defined but never used                                                                               no-unused-vars
+  68:6  warning  React Hook useEffect has a missing dependency: 'currentUser'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+/home/runner/work/firebase-todo-app/firebase-todo-app/src/components/TodoStats.jsx
+    1:8  error    'React' is defined but never used                                                                               no-unused-vars
+  118:6  warning  React Hook useEffect has a missing dependency: 'currentUser'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+/home/runner/work/firebase-todo-app/firebase-todo-app/src/components/UserProfile.jsx
+  54:6  warning  React Hook useEffect has a missing dependency: 'currentUser'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+/home/runner/work/firebase-todo-app/firebase-todo-app/src/components/__tests__/import-test.test.jsx
+  1:8  error  'React' is defined but never used  no-unused-vars
+
+/home/runner/work/firebase-todo-app/firebase-todo-app/src/components/__tests__/minimal.test.jsx
+  1:8  error  'React' is defined but never used  no-unused-vars
+
+/home/runner/work/firebase-todo-app/firebase-todo-app/src/contexts/AuthContext.jsx
+   1:8   error    'React' is defined but never used                                                                                               no-unused-vars
+  14:17  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+  23:5   error    Unnecessary try/catch wrapper                                                                                                   no-useless-catch
+  66:5   error    Unnecessary try/catch wrapper                                                                                                   no-useless-catch
+
+/home/runner/work/firebase-todo-app/firebase-todo-app/src/contexts/__tests__/AuthContext.test.jsx
+    1:8   error  'React' is defined but never used                  no-unused-vars
+   27:9   error  'getAuth' is assigned a value but never used       no-unused-vars
+   78:7   error  'auth' is defined but never used                   no-unused-vars
+  300:11  error  'authCallback' is assigned a value but never used  no-unused-vars
+  326:11  error  'authCallback' is assigned a value but never used  no-unused-vars
+  354:11  error  'authCallback' is assigned a value but never used  no-unused-vars
+  379:11  error  'authCallback' is assigned a value but never used  no-unused-vars
+  437:11  error  'authCallback' is assigned a value but never used  no-unused-vars
+
+/home/runner/work/firebase-todo-app/firebase-todo-app/src/pages/Login.jsx
+    1:8   error  'React' is defined but never used                                no-unused-vars
+    1:27  error  'useEffect' is defined but never used                            no-unused-vars
+  220:34  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  247:21  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/home/runner/work/firebase-todo-app/firebase-todo-app/src/pages/Register.jsx
+   1:8   error  'React' is defined but never used                     no-unused-vars
+  15:11  error  'signup' is assigned a value but never used           no-unused-vars
+  15:19  error  'loginWithGoogle' is assigned a value but never used  no-unused-vars
+
+/home/runner/work/firebase-todo-app/firebase-todo-app/src/pages/__tests__/Register.test.jsx
+  1:8  error  'React' is defined but never used  no-unused-vars
+
+✖ 29 problems (25 errors, 4 warnings)
+
