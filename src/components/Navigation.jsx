@@ -20,6 +20,11 @@ const Navigation = ({ activeSection, onSectionChange }) => {
     };
   }, []);
 
+  // Debug state changes
+  useEffect(() => {
+    console.log('showProfile state changed to:', showProfile);
+  }, [showProfile]);
+
   const handleLogout = async () => {
     console.log('Navigation: handleLogout called');
     try {
@@ -32,8 +37,10 @@ const Navigation = ({ activeSection, onSectionChange }) => {
 
   const toggleProfile = () => {
     console.log('Toggle profile clicked, current state:', showProfile);
-    setShowProfile(!showProfile);
-    console.log('New state will be:', !showProfile);
+    const newState = !showProfile;
+    console.log('Setting new state to:', newState);
+    setShowProfile(newState);
+    console.log('State update triggered');
   };
 
   const sections = [
@@ -104,7 +111,13 @@ const Navigation = ({ activeSection, onSectionChange }) => {
               <div 
                 className="absolute right-0 mt-2 mobile-profile-menu bg-white rounded-md shadow-lg border border-gray-200 z-50"
                 ref={profileRef}
-                style={{ minWidth: '200px' }}
+                style={{ 
+                  minWidth: '200px',
+                  backgroundColor: 'white',
+                  border: '2px solid red',
+                  zIndex: 9999,
+                  position: 'absolute'
+                }}
               >
                 <div className="py-2">
                   <div className="px-4 py-2 border-b border-gray-100">
@@ -228,6 +241,12 @@ const Navigation = ({ activeSection, onSectionChange }) => {
               <div 
                 className="absolute right-0 mt-2 w-64 bg-white rounded-md shadow-lg border border-gray-200 z-50"
                 ref={profileRef}
+                style={{ 
+                  backgroundColor: 'white',
+                  border: '2px solid red',
+                  zIndex: 9999,
+                  position: 'absolute'
+                }}
               >
                 <div className="py-2">
                   <button
