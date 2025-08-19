@@ -1,0 +1,114 @@
+name: Playwright E2E Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  playwright-tests:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        browser: [chromium, firefox, webkit]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Install Playwright browsers
+      run: npx playwright install --with-deps
+      
+    - name: Build the application
+      run: npm run build
+      
+    - name: Start the application
+      run: |
+        npm run dev &
+        npx wait-on http://localhost:3000
+      env:
+        CI: true
+        
+    - name: Run Playwright tests
+      run: |
+        npx playwright test --project=${{ matrix.browser }} --reporter=list
+      env:
+        CI: true
+        
+    - name: Upload Playwright test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: playwright-results-${{ matrix.browser }}
+        path: |
+          test-results/
+          logs/
+        retention-days: 30
+        
+    - name: Upload Playwright report
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: playwright-report-${{ matrix.browser }}
+        path: test-results/playwright-report/
+        retention-days: 30
+        
+    - name: Upload test screenshots
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-screenshots-${{ matrix.browser }}
+        path: test-results/*.png
+        retention-days: 30
+
+  test-summary:
+    runs-on: ubuntu-latest
+    needs: playwright-tests
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Download all test results
+      uses: actions/download-artifact@v4
+      with:
+        path: test-results/
+        
+    - name: Generate test summary
+      run: |
+        echo "# Test Run Summary - $(date)" > test-results/github-actions-summary.md
+        echo "" >> test-results/github-actions-summary.md
+        echo "## GitHub Actions Test Results" >> test-results/github-actions-summary.md
+        echo "- **Workflow**: Playwright E2E Tests" >> test-results/github-actions-summary.md
+        echo "- **Triggered by**: ${{ github.event_name }}" >> test-results/github-actions-summary.md
+        echo "- **Branch**: ${{ github.ref_name }}" >> test-results/github-actions-summary.md
+        echo "- **Commit**: ${{ github.sha }}" >> test-results/github-actions-summary.md
+        echo "" >> test-results/github-actions-summary.md
+        echo "## Test Artifacts" >> test-results/github-actions-summary.md
+        echo "- **Test Results**: Available in test-results/ folder" >> test-results/github-actions-summary.md
+        echo "- **Screenshots**: Available in test-results/ folder" >> test-results/github-actions-summary.md
+        echo "- **Reports**: Available in test-results/playwright-report/ folder" >> test-results/github-actions-summary.md
+        echo "" >> test-results/github-actions-summary.md
+        echo "## Next Steps" >> test-results/github-actions-summary.md
+        echo "1. Download test artifacts from GitHub Actions" >> test-results/github-actions-summary.md
+        echo "2. Review test results and screenshots" >> test-results/github-actions-summary.md
+        echo "3. Check for any test failures or issues" >> test-results/github-actions-summary.md
+        
+    - name: Upload final test summary
+      uses: actions/upload-artifact@v4
+      with:
+        name: final-test-summary
+        path: test-results/github-actions-summary.md
+        retention-days: 30

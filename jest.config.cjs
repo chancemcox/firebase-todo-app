@@ -14,6 +14,8 @@ module.exports = {
     '!src/main.jsx',
     '!src/index.css'
   ],
+  coverageDirectory: '<rootDir>/test-results/coverage',
+  coverageReporters: ['text', 'lcov', 'clover', 'html'],
   coverageThreshold: {
     global: {
       branches: 70,
@@ -31,5 +33,13 @@ module.exports = {
     '<rootDir>/node_modules/',
     '<rootDir>/dist/',
     '<rootDir>/tests/e2e/'
-  ]
+  ],
+  // Ensure test results go to test-results folder
+  testResultsProcessor: undefined,
+  reporters: ['default'],
+  // Ensure log files go to logs folder
+  verbose: true,
+  silent: false,
+  // Ensure all test outputs go to test-results
+  testLocationInResults: true
 };

@@ -1,0 +1,218 @@
+name: Full Test Suite
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Run linting
+      run: npm run lint
+      
+    - name: Run unit tests
+      run: npm test
+      
+    - name: Run test coverage
+      run: npm run test:coverage
+      
+    - name: Upload unit test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: unit-test-results-${{ matrix.node-version }}
+        path: |
+          test-results/coverage/
+          logs/
+        retention-days: 30
+
+  e2e-tests:
+    runs-on: ubuntu-latest
+    needs: unit-tests
+    
+    strategy:
+      matrix:
+        browser: [chromium, firefox, webkit]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Install Playwright browsers
+      run: npx playwright install --with-deps
+      
+    - name: Build the application
+      run: npm run build
+      
+    - name: Start the application
+      run: |
+        npm run dev &
+        npx wait-on http://localhost:3000
+      env:
+        CI: true
+        
+    - name: Run Playwright tests
+      run: |
+        npx playwright test --project=${{ matrix.browser }} --reporter=list
+      env:
+        CI: true
+        
+    - name: Upload E2E test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: e2e-test-results-${{ matrix.browser }}
+        path: |
+          test-results/playwright-output/
+          test-results/playwright-report/
+          logs/
+        retention-days: 30
+
+  test-organization:
+    runs-on: ubuntu-latest
+    needs: [unit-tests, e2e-tests]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+        
+    - name: Download all test results
+      uses: actions/download-artifact@v4
+      with:
+        path: test-results/
+        
+    - name: Organize test results
+      run: |
+        echo "Organizing test results into test-results folder..."
+        
+        # Create necessary directories
+        mkdir -p test-results/coverage
+        mkdir -p test-results/playwright-output
+        mkdir -p test-results/playwright-report
+        mkdir -p test-results/logs
+        
+        # Move any loose test files
+        find . -maxdepth 1 -name "*.png" -type f -exec mv {} test-results/ \; 2>/dev/null || true
+        find . -maxdepth 1 -name "*.mp4" -type f -exec mv {} test-results/ \; 2>/dev/null || true
+        find . -maxdepth 1 -name "*.webm" -type f -exec mv {} test-results/ \; 2>/dev/null || true
+        
+        # Generate comprehensive test summary
+        echo "# GitHub Actions Comprehensive Test Summary" > test-results/github-actions-comprehensive-summary.md
+        echo "" >> test-results/github-actions-comprehensive-summary.md
+        echo "## Test Execution Details" >> test-results/github-actions-comprehensive-summary.md
+        echo "- **Workflow**: Full Test Suite" >> test-results/github-actions-comprehensive-summary.md
+        echo "- **Triggered by**: ${{ github.event_name }}" >> test-results/github-actions-comprehensive-summary.md
+        echo "- **Branch**: ${{ github.ref_name }}" >> test-results/github-actions-comprehensive-summary.md
+        echo "- **Commit**: ${{ github.sha }}" >> test-results/github-actions-comprehensive-summary.md
+        echo "- **Completed**: $(date)" >> test-results/github-actions-comprehensive-summary.md
+        echo "" >> test-results/github-actions-comprehensive-summary.md
+        echo "## Test Results Summary" >> test-results/github-actions-comprehensive-summary.md
+        echo "" >> test-results/github-actions-comprehensive-summary.md
+        echo "### Unit Tests" >> test-results/github-actions-comprehensive-summary.md
+        echo "- **Node.js 18.x**: ✅ Completed" >> test-results/github-actions-comprehensive-summary.md
+        echo "- **Node.js 20.x**: ✅ Completed" >> test-results/github-actions-comprehensive-summary.md
+        echo "- **Coverage Reports**: Available in test-results/coverage/" >> test-results/github-actions-comprehensive-summary.md
+        echo "" >> test-results/github-actions-comprehensive-summary.md
+        echo "### E2E Tests" >> test-results/github-actions-comprehensive-summary.md
+        echo "- **Chromium**: ✅ Completed" >> test-results/github-actions-comprehensive-summary.md
+        echo "- **Firefox**: ✅ Completed" >> test-results/github-actions-comprehensive-summary.md
+        echo "- **WebKit**: ✅ Completed" >> test-results/github-actions-comprehensive-summary.md
+        echo "- **Test Reports**: Available in test-results/playwright-report/" >> test-results/github-actions-comprehensive-summary.md
+        echo "" >> test-results/github-actions-comprehensive-summary.md
+        echo "## Artifacts Available" >> test-results/github-actions-comprehensive-summary.md
+        echo "- **Unit Test Coverage**: test-results/coverage/" >> test-results/github-actions-comprehensive-summary.md
+        echo "- **E2E Test Results**: test-results/playwright-output/" >> test-results/github-actions-comprehensive-summary.md
+        echo "- **E2E Test Reports**: test-results/playwright-report/" >> test-results/github-actions-comprehensive-summary.md
+        echo "- **Test Screenshots**: test-results/*.png" >> test-results/github-actions-comprehensive-summary.md
+        echo "- **Test Logs**: test-results/logs/" >> test-results/github-actions-comprehensive-summary.md
+        echo "" >> test-results/github-actions-comprehensive-summary.md
+        echo "## Next Steps" >> test-results/github-actions-comprehensive-summary.md
+        echo "1. Download test artifacts from GitHub Actions" >> test-results/github-actions-comprehensive-summary.md
+        echo "2. Review test coverage reports" >> test-results/github-actions-comprehensive-summary.md
+        echo "3. Check E2E test results and screenshots" >> test-results/github-actions-comprehensive-summary.md
+        echo "4. Address any test failures or issues" >> test-results/github-actions-comprehensive-summary.md
+        echo "5. Review test logs for debugging information" >> test-results/github-actions-comprehensive-summary.md
+        echo "" >> test-results/github-actions-comprehensive-summary.md
+        echo "## Test Organization" >> test-results/github-actions-comprehensive-summary.md
+        echo "All test outputs have been automatically organized into the test-results folder structure for easy access and review." >> test-results/github-actions-comprehensive-summary.md
+        
+    - name: Upload organized test results
+      uses: actions/upload-artifact@v4
+      with:
+        name: organized-test-results
+        path: test-results/
+        retention-days: 30
+        
+    - name: Upload test summary
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-summary
+        path: test-results/github-actions-comprehensive-summary.md
+        retention-days: 30
+
+  security-audit:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Run security audit
+      run: npm audit --audit-level=moderate
+      
+    - name: Check for outdated dependencies
+      run: npm outdated
+      
+    - name: Upload security report
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: security-audit-results
+        path: |
+          logs/
+        retention-days: 30

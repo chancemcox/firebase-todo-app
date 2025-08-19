@@ -1,0 +1,2378 @@
+{
+  "config": {
+    "configFile": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/playwright.config.cjs",
+    "rootDir": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 5
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "./test-results/playwright-report"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "./test-results/playwright-junit.xml"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "./test-results/playwright-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/test-results/playwright-output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 5
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/test-results/playwright-output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 5
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/test-results/playwright-output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 5
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.54.2",
+    "workers": 5,
+    "webServer": {
+      "command": "npm run dev",
+      "url": "http://localhost:3000",
+      "reuseExistingServer": true,
+      "timeout": 120000
+    }
+  },
+  "suites": [
+    {
+      "title": "custom-domain-google-login.spec.js",
+      "file": "custom-domain-google-login.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Custom Domain Google Sign-in Test",
+          "file": "custom-domain-google-login.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should test Google sign-in on custom domain",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 9607,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🚀 Testing Google sign-in on CUSTOM DOMAIN: todo.cox-fam.com\n"
+                        },
+                        {
+                          "text": "📍 Navigated to custom domain login page\n"
+                        },
+                        {
+                          "text": "✅ DOM content loaded\n"
+                        },
+                        {
+                          "text": "✅ Network idle\n"
+                        },
+                        {
+                          "text": "📄 Page title: Todo App - Chance Cox\n"
+                        },
+                        {
+                          "text": "🔗 Current URL: https://todo.cox-fam.com/login\n"
+                        },
+                        {
+                          "text": "✅ Confirmed we are on custom domain\n"
+                        },
+                        {
+                          "text": "🏗️ Root div exists: \u001b[33mtrue\u001b[39m\n"
+                        },
+                        {
+                          "text": "📏 Root div content length: \u001b[33m330\u001b[39m\n"
+                        },
+                        {
+                          "text": "🔍 Login heading visible: \u001b[33mtrue\u001b[39m\n"
+                        },
+                        {
+                          "text": "✅ Login form is rendering correctly\n"
+                        },
+                        {
+                          "text": "🔍 Google sign-in button visible: \u001b[33mtrue\u001b[39m\n"
+                        },
+                        {
+                          "text": "✅ Google sign-in button found!\n"
+                        },
+                        {
+                          "text": "🔄 Attempting Google sign-in on custom domain...\n"
+                        },
+                        {
+                          "text": "📝 Console Log: Starting Google sign-in...\n"
+                        },
+                        {
+                          "text": "👆 Clicked Google sign-in button\n"
+                        },
+                        {
+                          "text": "🎉 Google OAuth popup opened successfully!\n"
+                        },
+                        {
+                          "text": "📋 Popup title: Sign in - Google Accounts\n"
+                        },
+                        {
+                          "text": "✅ Google OAuth popup is working correctly!\n"
+                        },
+                        {
+                          "text": "🔒 Closed popup\n"
+                        },
+                        {
+                          "text": "✅ No authentication errors found\n"
+                        },
+                        {
+                          "text": "\n📊 Console Activity Summary:\n"
+                        },
+                        {
+                          "text": "Console Logs: \u001b[33m1\u001b[39m\n"
+                        },
+                        {
+                          "text": "Console Errors: \u001b[33m0\u001b[39m\n"
+                        },
+                        {
+                          "text": "📸 Screenshot saved as custom-domain-google-login-test.png\n"
+                        },
+                        {
+                          "text": "🎯 Custom domain test completed successfully!\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T15:39:55.861Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b9a40996162ec3fd856c-ab649f45b72e084c76fd",
+              "file": "custom-domain-google-login.spec.js",
+              "line": 7,
+              "column": 3
+            },
+            {
+              "title": "should test Google sign-in on custom domain",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 10915,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🚀 Testing Google sign-in on CUSTOM DOMAIN: todo.cox-fam.com\n"
+                        },
+                        {
+                          "text": "📍 Navigated to custom domain login page\n"
+                        },
+                        {
+                          "text": "✅ DOM content loaded\n"
+                        },
+                        {
+                          "text": "✅ Network idle\n"
+                        },
+                        {
+                          "text": "📄 Page title: Todo App - Chance Cox\n"
+                        },
+                        {
+                          "text": "🔗 Current URL: https://todo.cox-fam.com/login\n"
+                        },
+                        {
+                          "text": "✅ Confirmed we are on custom domain\n"
+                        },
+                        {
+                          "text": "🏗️ Root div exists: \u001b[33mtrue\u001b[39m\n"
+                        },
+                        {
+                          "text": "📏 Root div content length: \u001b[33m330\u001b[39m\n"
+                        },
+                        {
+                          "text": "🔍 Login heading visible: \u001b[33mtrue\u001b[39m\n"
+                        },
+                        {
+                          "text": "✅ Login form is rendering correctly\n"
+                        },
+                        {
+                          "text": "🔍 Google sign-in button visible: \u001b[33mtrue\u001b[39m\n"
+                        },
+                        {
+                          "text": "✅ Google sign-in button found!\n"
+                        },
+                        {
+                          "text": "🔄 Attempting Google sign-in on custom domain...\n"
+                        },
+                        {
+                          "text": "📝 Console Log: Starting Google sign-in...\n"
+                        },
+                        {
+                          "text": "👆 Clicked Google sign-in button\n"
+                        },
+                        {
+                          "text": "🎉 Google OAuth popup opened successfully!\n"
+                        },
+                        {
+                          "text": "📋 Popup title: Sign in - Google Accounts\n"
+                        },
+                        {
+                          "text": "✅ Google OAuth popup is working correctly!\n"
+                        },
+                        {
+                          "text": "🔒 Closed popup\n"
+                        },
+                        {
+                          "text": "✅ No authentication errors found\n"
+                        },
+                        {
+                          "text": "\n📊 Console Activity Summary:\n"
+                        },
+                        {
+                          "text": "Console Logs: \u001b[33m1\u001b[39m\n"
+                        },
+                        {
+                          "text": "Console Errors: \u001b[33m0\u001b[39m\n"
+                        },
+                        {
+                          "text": "📸 Screenshot saved as custom-domain-google-login-test.png\n"
+                        },
+                        {
+                          "text": "🎯 Custom domain test completed successfully!\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T15:40:11.446Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b9a40996162ec3fd856c-648a41975097e3362e70",
+              "file": "custom-domain-google-login.spec.js",
+              "line": 7,
+              "column": 3
+            },
+            {
+              "title": "should test Google sign-in on custom domain",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "b9a40996162ec3fd856c-ac48c9c4e0082d5a22f1",
+              "file": "custom-domain-google-login.spec.js",
+              "line": 7,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "google-login-test.spec.js",
+      "file": "google-login-test.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Google Sign-in Test",
+          "file": "google-login-test.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should attempt Google sign-in and handle the flow",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 5780,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Navigating to login page...\n"
+                        },
+                        {
+                          "text": "Login page loaded successfully\n"
+                        },
+                        {
+                          "text": "Google sign-in button found\n"
+                        },
+                        {
+                          "text": "Clicking Google sign-in button...\n"
+                        },
+                        {
+                          "text": "Console Log: Starting Google sign-in...\n"
+                        },
+                        {
+                          "text": "Google OAuth popup opened successfully\n"
+                        },
+                        {
+                          "text": "Popup title: Sign in - Google Accounts\n"
+                        },
+                        {
+                          "text": "✅ Google OAuth popup is working correctly\n"
+                        },
+                        {
+                          "text": "✅ No authentication errors found\n"
+                        },
+                        {
+                          "text": "\n=== Console Activity Summary ===\n"
+                        },
+                        {
+                          "text": "Console Logs: [ \u001b[32m'Starting Google sign-in...'\u001b[39m ]\n"
+                        },
+                        {
+                          "text": "Console Errors: []\n"
+                        },
+                        {
+                          "text": "Screenshot saved as google-login-test-result.png\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T15:39:55.856Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3bae3a6d61f76a6dbbf9-03bd1860a495f4770d8e",
+              "file": "google-login-test.spec.js",
+              "line": 4,
+              "column": 3
+            },
+            {
+              "title": "should handle Google sign-in in incognito mode",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 2169,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Testing Google sign-in in incognito mode...\n"
+                        },
+                        {
+                          "text": "Clicking Google sign-in button in incognito mode...\n"
+                        },
+                        {
+                          "text": "✅ Google OAuth popup opened in incognito mode\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T15:39:55.858Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3bae3a6d61f76a6dbbf9-74878661906d146aa6f2",
+              "file": "google-login-test.spec.js",
+              "line": 132,
+              "column": 3
+            },
+            {
+              "title": "should attempt Google sign-in and handle the flow",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 7090,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Navigating to login page...\n"
+                        },
+                        {
+                          "text": "Login page loaded successfully\n"
+                        },
+                        {
+                          "text": "Google sign-in button found\n"
+                        },
+                        {
+                          "text": "Clicking Google sign-in button...\n"
+                        },
+                        {
+                          "text": "Console Log: Starting Google sign-in...\n"
+                        },
+                        {
+                          "text": "Google OAuth popup opened successfully\n"
+                        },
+                        {
+                          "text": "Popup title: Sign in - Google Accounts\n"
+                        },
+                        {
+                          "text": "✅ Google OAuth popup is working correctly\n"
+                        },
+                        {
+                          "text": "✅ No authentication errors found\n"
+                        },
+                        {
+                          "text": "\n=== Console Activity Summary ===\n"
+                        },
+                        {
+                          "text": "Console Logs: [ \u001b[32m'Starting Google sign-in...'\u001b[39m ]\n"
+                        },
+                        {
+                          "text": "Console Errors: []\n"
+                        },
+                        {
+                          "text": "Screenshot saved as google-login-test-result.png\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T15:40:11.701Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3bae3a6d61f76a6dbbf9-294d8e1a183a461b616c",
+              "file": "google-login-test.spec.js",
+              "line": 4,
+              "column": 3
+            },
+            {
+              "title": "should handle Google sign-in in incognito mode",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2934,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Testing Google sign-in in incognito mode...\n"
+                        },
+                        {
+                          "text": "Clicking Google sign-in button in incognito mode...\n"
+                        },
+                        {
+                          "text": "✅ Google OAuth popup opened in incognito mode\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T15:40:11.749Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3bae3a6d61f76a6dbbf9-1fc36c2f455e70788981",
+              "file": "google-login-test.spec.js",
+              "line": 132,
+              "column": 3
+            },
+            {
+              "title": "should attempt Google sign-in and handle the flow",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "3bae3a6d61f76a6dbbf9-a0d85ca7e56e46cb8271",
+              "file": "google-login-test.spec.js",
+              "line": 4,
+              "column": 3
+            },
+            {
+              "title": "should handle Google sign-in in incognito mode",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "3bae3a6d61f76a6dbbf9-cf5e84eabef00a4376d6",
+              "file": "google-login-test.spec.js",
+              "line": 132,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "login-fix-verification.spec.js",
+      "file": "login-fix-verification.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Login Page Fix Verification",
+          "file": "login-fix-verification.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should load login page without JavaScript module errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 1440,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T15:39:55.858Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "6525887750b900f81134-c6f63d5134ddbeca9188",
+              "file": "login-fix-verification.spec.js",
+              "line": 5,
+              "column": 3
+            },
+            {
+              "title": "should not have browser extension conflicts",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 1441,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T15:39:55.856Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "6525887750b900f81134-acc9e7331ffad662aa45",
+              "file": "login-fix-verification.spec.js",
+              "line": 56,
+              "column": 3
+            },
+            {
+              "title": "should load production site without module errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 995,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Production site test passed - no MIME type errors\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T15:39:57.878Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "6525887750b900f81134-ced4b056cd96a8db7779",
+              "file": "login-fix-verification.spec.js",
+              "line": 82,
+              "column": 3
+            },
+            {
+              "title": "should load login page without JavaScript module errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1081,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Network errors found: [ \u001b[32m'101 http://localhost:3000/?token=PAwvGbxvXFrV'\u001b[39m ]\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T15:40:15.930Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "6525887750b900f81134-f0629b452790941369e9",
+              "file": "login-fix-verification.spec.js",
+              "line": 5,
+              "column": 3
+            },
+            {
+              "title": "should not have browser extension conflicts",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1048,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T15:40:17.014Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "6525887750b900f81134-9967ad029233c6865808",
+              "file": "login-fix-verification.spec.js",
+              "line": 56,
+              "column": 3
+            },
+            {
+              "title": "should load production site without module errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1164,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Production site test passed - no MIME type errors\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T15:40:18.068Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "6525887750b900f81134-6f75228f665cd2000a0f",
+              "file": "login-fix-verification.spec.js",
+              "line": 82,
+              "column": 3
+            },
+            {
+              "title": "should load login page without JavaScript module errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "6525887750b900f81134-3e7cf33193f4a82640b8",
+              "file": "login-fix-verification.spec.js",
+              "line": 5,
+              "column": 3
+            },
+            {
+              "title": "should not have browser extension conflicts",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "6525887750b900f81134-98dfaf7369b27c3dc611",
+              "file": "login-fix-verification.spec.js",
+              "line": 56,
+              "column": 3
+            },
+            {
+              "title": "should load production site without module errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "6525887750b900f81134-d7841e6dcfba295a466a",
+              "file": "login-fix-verification.spec.js",
+              "line": 82,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "production-google-login.spec.js",
+      "file": "production-google-login.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Production Google Sign-in Test",
+          "file": "production-google-login.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should test Google sign-in on production site",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 9009,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🚀 Testing Google sign-in on PRODUCTION site...\n"
+                        },
+                        {
+                          "text": "📍 Navigated to production login page\n"
+                        },
+                        {
+                          "text": "✅ DOM content loaded\n"
+                        },
+                        {
+                          "text": "✅ Network idle\n"
+                        },
+                        {
+                          "text": "📄 Page title: Todo App - Chance Cox\n"
+                        },
+                        {
+                          "text": "🔗 Current URL: https://todo-list-e7788.web.app/login\n"
+                        },
+                        {
+                          "text": "✅ Confirmed we are on production site\n"
+                        },
+                        {
+                          "text": "🏗️ Root div exists: \u001b[33mtrue\u001b[39m\n"
+                        },
+                        {
+                          "text": "📏 Root div content length: \u001b[33m330\u001b[39m\n"
+                        },
+                        {
+                          "text": "🔍 Login heading visible: \u001b[33mtrue\u001b[39m\n"
+                        },
+                        {
+                          "text": "✅ Login form is rendering correctly\n"
+                        },
+                        {
+                          "text": "🔍 Google sign-in button visible: \u001b[33mtrue\u001b[39m\n"
+                        },
+                        {
+                          "text": "✅ Google sign-in button found!\n"
+                        },
+                        {
+                          "text": "🔄 Attempting Google sign-in...\n"
+                        },
+                        {
+                          "text": "📝 Console Log: Starting Google sign-in...\n"
+                        },
+                        {
+                          "text": "👆 Clicked Google sign-in button\n"
+                        },
+                        {
+                          "text": "🎉 Google OAuth popup opened successfully!\n"
+                        },
+                        {
+                          "text": "📋 Popup title: Sign in - Google Accounts\n"
+                        },
+                        {
+                          "text": "✅ Google OAuth popup is working correctly!\n"
+                        },
+                        {
+                          "text": "🔒 Closed popup\n"
+                        },
+                        {
+                          "text": "✅ No authentication errors found\n"
+                        },
+                        {
+                          "text": "\n📊 Console Activity Summary:\n"
+                        },
+                        {
+                          "text": "Console Logs: \u001b[33m1\u001b[39m\n"
+                        },
+                        {
+                          "text": "Console Errors: \u001b[33m0\u001b[39m\n"
+                        },
+                        {
+                          "text": "📸 Screenshot saved as production-google-login-test.png\n"
+                        },
+                        {
+                          "text": "🎯 Test completed successfully!\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T15:39:57.883Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "910621e10db1fd2049d5-91598da80934db32957c",
+              "file": "production-google-login.spec.js",
+              "line": 7,
+              "column": 3
+            },
+            {
+              "title": "should test Google sign-in on production site",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "interrupted",
+                      "duration": 9963,
+                      "error": {
+                        "message": "Error: page.screenshot: Target page, context or browser has been closed",
+                        "stack": "Error: page.screenshot: Target page, context or browser has been closed\n    at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/production-google-login.spec.js:180:16",
+                        "location": {
+                          "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/production-google-login.spec.js",
+                          "column": 16,
+                          "line": 180
+                        },
+                        "snippet": "  178 |     \n  179 |     // Take a screenshot for debugging\n> 180 |     await page.screenshot({ path: 'production-google-login-test.png' });\n      |                ^\n  181 |     console.log('📸 Screenshot saved as production-google-login-test.png');\n  182 |     \n  183 |     // The test passes if we can at least load the production page"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/production-google-login.spec.js",
+                            "column": 16,
+                            "line": 180
+                          },
+                          "message": "Error: page.screenshot: Target page, context or browser has been closed\n\n  178 |     \n  179 |     // Take a screenshot for debugging\n> 180 |     await page.screenshot({ path: 'production-google-login-test.png' });\n      |                ^\n  181 |     console.log('📸 Screenshot saved as production-google-login-test.png');\n  182 |     \n  183 |     // The test passes if we can at least load the production page\n    at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/production-google-login.spec.js:180:16"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🚀 Testing Google sign-in on PRODUCTION site...\n"
+                        },
+                        {
+                          "text": "📍 Navigated to production login page\n"
+                        },
+                        {
+                          "text": "✅ DOM content loaded\n"
+                        },
+                        {
+                          "text": "✅ Network idle\n"
+                        },
+                        {
+                          "text": "📄 Page title: Todo App - Chance Cox\n"
+                        },
+                        {
+                          "text": "🔗 Current URL: https://todo-list-e7788.web.app/login\n"
+                        },
+                        {
+                          "text": "✅ Confirmed we are on production site\n"
+                        },
+                        {
+                          "text": "🏗️ Root div exists: \u001b[33mtrue\u001b[39m\n"
+                        },
+                        {
+                          "text": "📏 Root div content length: \u001b[33m330\u001b[39m\n"
+                        },
+                        {
+                          "text": "🔍 Login heading visible: \u001b[33mtrue\u001b[39m\n"
+                        },
+                        {
+                          "text": "✅ Login form is rendering correctly\n"
+                        },
+                        {
+                          "text": "🔍 Google sign-in button visible: \u001b[33mtrue\u001b[39m\n"
+                        },
+                        {
+                          "text": "✅ Google sign-in button found!\n"
+                        },
+                        {
+                          "text": "🔄 Attempting Google sign-in...\n"
+                        },
+                        {
+                          "text": "📝 Console Log: Starting Google sign-in...\n"
+                        },
+                        {
+                          "text": "👆 Clicked Google sign-in button\n"
+                        },
+                        {
+                          "text": "🎉 Google OAuth popup opened successfully!\n"
+                        },
+                        {
+                          "text": "📋 Popup title: Sign in - Google Accounts\n"
+                        },
+                        {
+                          "text": "✅ Google OAuth popup is working correctly!\n"
+                        },
+                        {
+                          "text": "🔒 Closed popup\n"
+                        },
+                        {
+                          "text": "📱 No popup opened, checking for errors or alternative flow...\n"
+                        },
+                        {
+                          "text": "❌ Error checking login form: page.waitForTimeout: Target page, context or browser has been closed\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T15:40:19.240Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/test-results/playwright-output/production-google-login-Pr-c69d4--sign-in-on-production-site-firefox/test-failed-1.png"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/production-google-login.spec.js",
+                        "column": 16,
+                        "line": 180
+                      }
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "910621e10db1fd2049d5-9bafdb6d33cb9bd2b969",
+              "file": "production-google-login.spec.js",
+              "line": 7,
+              "column": 3
+            },
+            {
+              "title": "should test Google sign-in on production site",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "910621e10db1fd2049d5-81f4ce8822b541bbf2ee",
+              "file": "production-google-login.spec.js",
+              "line": 7,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "simple-page-load.spec.js",
+      "file": "simple-page-load.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Simple Page Load Test",
+          "file": "simple-page-load.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should load the production page and check for errors",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 6204,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"todo-list-e7788.web.app\"\u001b[39m\nReceived string:    \u001b[31m\"http://localhost:3000/login\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"todo-list-e7788.web.app\"\u001b[39m\nReceived string:    \u001b[31m\"http://localhost:3000/login\"\u001b[39m\n    at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/simple-page-load.spec.js:88:17",
+                        "location": {
+                          "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/simple-page-load.spec.js",
+                          "column": 17,
+                          "line": 88
+                        },
+                        "snippet": "  86 |     // The test passes if we can at least load the page\n  87 |     expect(title).toBeTruthy();\n> 88 |     expect(url).toContain('todo-list-e7788.web.app');\n     |                 ^\n  89 |   });\n  90 | });\n  91 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/simple-page-load.spec.js",
+                            "column": 17,
+                            "line": 88
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"todo-list-e7788.web.app\"\u001b[39m\nReceived string:    \u001b[31m\"http://localhost:3000/login\"\u001b[39m\n\n  86 |     // The test passes if we can at least load the page\n  87 |     expect(title).toBeTruthy();\n> 88 |     expect(url).toContain('todo-list-e7788.web.app');\n     |                 ^\n  89 |   });\n  90 | });\n  91 |\n    at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/simple-page-load.spec.js:88:17"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Starting simple page load test...\n"
+                        },
+                        {
+                          "text": "Navigated to /login\n"
+                        },
+                        {
+                          "text": "DOM content loaded\n"
+                        },
+                        {
+                          "text": "Network idle\n"
+                        },
+                        {
+                          "text": "Page title: Todo App - Chance Cox\n"
+                        },
+                        {
+                          "text": "Current URL: http://localhost:3000/login\n"
+                        },
+                        {
+                          "text": "Root div exists: \u001b[33mtrue\u001b[39m\n"
+                        },
+                        {
+                          "text": "Root div content length: \u001b[33m330\u001b[39m\n"
+                        },
+                        {
+                          "text": "Root div content preview: Sign in to your accountEmail addressPasswordSign inOr continue withSign in with GoogleHaving issues?\n"
+                        },
+                        {
+                          "text": "Error elements found: \u001b[33m0\u001b[39m\n"
+                        },
+                        {
+                          "text": "Loading elements found: \u001b[33m0\u001b[39m\n"
+                        },
+                        {
+                          "text": "Screenshot saved as simple-page-load-test.png\n"
+                        },
+                        {
+                          "text": "\n=== Test Summary ===\n"
+                        },
+                        {
+                          "text": "Page title: Todo App - Chance Cox\n"
+                        },
+                        {
+                          "text": "URL: http://localhost:3000/login\n"
+                        },
+                        {
+                          "text": "Root div exists: \u001b[33mtrue\u001b[39m\n"
+                        },
+                        {
+                          "text": "Console errors: \u001b[33m0\u001b[39m\n"
+                        },
+                        {
+                          "text": "Console logs: \u001b[33m0\u001b[39m\n"
+                        },
+                        {
+                          "text": "Page errors: \u001b[33m0\u001b[39m\n"
+                        },
+                        {
+                          "text": "Loading indicators: \u001b[33m0\u001b[39m\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T15:39:58.605Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/test-results/playwright-output/simple-page-load-Simple-Pa-80710-n-page-and-check-for-errors-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/test-results/playwright-output/simple-page-load-Simple-Pa-80710-n-page-and-check-for-errors-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/simple-page-load.spec.js",
+                        "column": 17,
+                        "line": 88
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "1782ef7e4b5f3a0d2f5d-822dd5ac5badf9042ab6",
+              "file": "simple-page-load.spec.js",
+              "line": 4,
+              "column": 3
+            },
+            {
+              "title": "should load the production page and check for errors",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 6126,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"todo-list-e7788.web.app\"\u001b[39m\nReceived string:    \u001b[31m\"http://localhost:3000/login\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"todo-list-e7788.web.app\"\u001b[39m\nReceived string:    \u001b[31m\"http://localhost:3000/login\"\u001b[39m\n    at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/simple-page-load.spec.js:88:17",
+                        "location": {
+                          "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/simple-page-load.spec.js",
+                          "column": 17,
+                          "line": 88
+                        },
+                        "snippet": "  86 |     // The test passes if we can at least load the page\n  87 |     expect(title).toBeTruthy();\n> 88 |     expect(url).toContain('todo-list-e7788.web.app');\n     |                 ^\n  89 |   });\n  90 | });\n  91 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/simple-page-load.spec.js",
+                            "column": 17,
+                            "line": 88
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"todo-list-e7788.web.app\"\u001b[39m\nReceived string:    \u001b[31m\"http://localhost:3000/login\"\u001b[39m\n\n  86 |     // The test passes if we can at least load the page\n  87 |     expect(title).toBeTruthy();\n> 88 |     expect(url).toContain('todo-list-e7788.web.app');\n     |                 ^\n  89 |   });\n  90 | });\n  91 |\n    at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/simple-page-load.spec.js:88:17"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Starting simple page load test...\n"
+                        },
+                        {
+                          "text": "Navigated to /login\n"
+                        },
+                        {
+                          "text": "DOM content loaded\n"
+                        },
+                        {
+                          "text": "Network idle\n"
+                        },
+                        {
+                          "text": "Page title: Todo App - Chance Cox\n"
+                        },
+                        {
+                          "text": "Current URL: http://localhost:3000/login\n"
+                        },
+                        {
+                          "text": "Root div exists: \u001b[33mtrue\u001b[39m\n"
+                        },
+                        {
+                          "text": "Root div content length: \u001b[33m330\u001b[39m\n"
+                        },
+                        {
+                          "text": "Root div content preview: Sign in to your accountEmail addressPasswordSign inOr continue withSign in with GoogleHaving issues?\n"
+                        },
+                        {
+                          "text": "Error elements found: \u001b[33m0\u001b[39m\n"
+                        },
+                        {
+                          "text": "Loading elements found: \u001b[33m0\u001b[39m\n"
+                        },
+                        {
+                          "text": "Screenshot saved as simple-page-load-test.png\n"
+                        },
+                        {
+                          "text": "\n=== Test Summary ===\n"
+                        },
+                        {
+                          "text": "Page title: Todo App - Chance Cox\n"
+                        },
+                        {
+                          "text": "URL: http://localhost:3000/login\n"
+                        },
+                        {
+                          "text": "Root div exists: \u001b[33mtrue\u001b[39m\n"
+                        },
+                        {
+                          "text": "Console errors: \u001b[33m0\u001b[39m\n"
+                        },
+                        {
+                          "text": "Console logs: \u001b[33m0\u001b[39m\n"
+                        },
+                        {
+                          "text": "Page errors: \u001b[33m0\u001b[39m\n"
+                        },
+                        {
+                          "text": "Loading indicators: \u001b[33m0\u001b[39m\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T15:40:20.666Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/test-results/playwright-output/simple-page-load-Simple-Pa-80710-n-page-and-check-for-errors-firefox/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/test-results/playwright-output/simple-page-load-Simple-Pa-80710-n-page-and-check-for-errors-firefox/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/simple-page-load.spec.js",
+                        "column": 17,
+                        "line": 88
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "1782ef7e4b5f3a0d2f5d-08ac1d66b81aeafc14b9",
+              "file": "simple-page-load.spec.js",
+              "line": 4,
+              "column": 3
+            },
+            {
+              "title": "should load the production page and check for errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1782ef7e4b5f3a0d2f5d-e7fdfc5ad15e760408c3",
+              "file": "simple-page-load.spec.js",
+              "line": 4,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "styling.spec.js",
+      "file": "styling.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Todo App Styling",
+          "file": "styling.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should load the main page with proper styling",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 5316,
+                      "error": {
+                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: getByRole('heading', { name: 'Firebase Todo App' })\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Firebase Todo App' })\u001b[22m\n",
+                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: getByRole('heading', { name: 'Firebase Todo App' })\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Firebase Todo App' })\u001b[22m\n\n    at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js:8:76",
+                        "location": {
+                          "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js",
+                          "column": 76,
+                          "line": 8
+                        },
+                        "snippet": "   6 |     \n   7 |     // Check if the page title is displayed\n>  8 |     await expect(page.getByRole('heading', { name: 'Firebase Todo App' })).toBeVisible();\n     |                                                                            ^\n   9 |     \n  10 |     // Check if the main content is loaded\n  11 |     await expect(page.getByRole('heading', { name: 'My Todos' })).toBeVisible();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js",
+                            "column": 76,
+                            "line": 8
+                          },
+                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: getByRole('heading', { name: 'Firebase Todo App' })\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Firebase Todo App' })\u001b[22m\n\n\n   6 |     \n   7 |     // Check if the page title is displayed\n>  8 |     await expect(page.getByRole('heading', { name: 'Firebase Todo App' })).toBeVisible();\n     |                                                                            ^\n   9 |     \n  10 |     // Check if the main content is loaded\n  11 |     await expect(page.getByRole('heading', { name: 'My Todos' })).toBeVisible();\n    at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js:8:76"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T15:39:58.884Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/test-results/playwright-output/styling-Todo-App-Styling-s-48c50-in-page-with-proper-styling-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/test-results/playwright-output/styling-Todo-App-Styling-s-48c50-in-page-with-proper-styling-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js",
+                        "column": 76,
+                        "line": 8
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "611eab65f20220b6f6c0-e1207e3c53e80ad087d4",
+              "file": "styling.spec.js",
+              "line": 4,
+              "column": 3
+            },
+            {
+              "title": "should have TailwindCSS classes applied",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 5307,
+                      "error": {
+                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveClass\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: locator('h1')\nExpected pattern: \u001b[32m/text-4xl/\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toHaveClass\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('h1')\u001b[22m\n",
+                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveClass\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: locator('h1')\nExpected pattern: \u001b[32m/text-4xl/\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toHaveClass\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('h1')\u001b[22m\n\n    at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js:30:26",
+                        "location": {
+                          "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js",
+                          "column": 26,
+                          "line": 30
+                        },
+                        "snippet": "  28 |     // Check if TailwindCSS classes are being applied\n  29 |     const header = page.locator('h1');\n> 30 |     await expect(header).toHaveClass(/text-4xl/);\n     |                          ^\n  31 |     await expect(header).toHaveClass(/font-bold/);\n  32 |     await expect(header).toHaveClass(/text-center/);\n  33 |     await expect(header).toHaveClass(/text-white/);"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js",
+                            "column": 26,
+                            "line": 30
+                          },
+                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveClass\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: locator('h1')\nExpected pattern: \u001b[32m/text-4xl/\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toHaveClass\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('h1')\u001b[22m\n\n\n  28 |     // Check if TailwindCSS classes are being applied\n  29 |     const header = page.locator('h1');\n> 30 |     await expect(header).toHaveClass(/text-4xl/);\n     |                          ^\n  31 |     await expect(header).toHaveClass(/font-bold/);\n  32 |     await expect(header).toHaveClass(/text-center/);\n  33 |     await expect(header).toHaveClass(/text-white/);\n    at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js:30:26"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T15:40:02.217Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/test-results/playwright-output/styling-Todo-App-Styling-s-aba60-TailwindCSS-classes-applied-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/test-results/playwright-output/styling-Todo-App-Styling-s-aba60-TailwindCSS-classes-applied-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js",
+                        "column": 26,
+                        "line": 30
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "611eab65f20220b6f6c0-fe8767d3f3940d72c976",
+              "file": "styling.spec.js",
+              "line": 25,
+              "column": 3
+            },
+            {
+              "title": "should have proper color scheme and layout",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 5483,
+                      "error": {
+                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveClass\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: locator('h1')\nExpected pattern: \u001b[32m/text-white/\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toHaveClass\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('h1')\u001b[22m\n",
+                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveClass\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: locator('h1')\nExpected pattern: \u001b[32m/text-white/\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toHaveClass\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('h1')\u001b[22m\n\n    at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js:64:26",
+                        "location": {
+                          "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js",
+                          "column": 26,
+                          "line": 64
+                        },
+                        "snippet": "  62 |     // Check if the header text is white (should be visible on gradient)\n  63 |     const header = page.locator('h1');\n> 64 |     await expect(header).toHaveClass(/text-white/);\n     |                          ^\n  65 |     \n  66 |     // Check if the main content area has proper spacing\n  67 |     const main = page.locator('main');"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js",
+                            "column": 26,
+                            "line": 64
+                          },
+                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveClass\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: locator('h1')\nExpected pattern: \u001b[32m/text-white/\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toHaveClass\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('h1')\u001b[22m\n\n\n  62 |     // Check if the header text is white (should be visible on gradient)\n  63 |     const header = page.locator('h1');\n> 64 |     await expect(header).toHaveClass(/text-white/);\n     |                          ^\n  65 |     \n  66 |     // Check if the main content area has proper spacing\n  67 |     const main = page.locator('main');\n    at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js:64:26"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T15:40:05.096Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/test-results/playwright-output/styling-Todo-App-Styling-s-02ab5-per-color-scheme-and-layout-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/test-results/playwright-output/styling-Todo-App-Styling-s-02ab5-per-color-scheme-and-layout-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js",
+                        "column": 26,
+                        "line": 64
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "611eab65f20220b6f6c0-3a942c8040179242f597",
+              "file": "styling.spec.js",
+              "line": 52,
+              "column": 3
+            },
+            {
+              "title": "should have responsive design elements",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 5326,
+                      "error": {
+                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveClass\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: locator('form > div.grid')\nExpected pattern: \u001b[32m/grid/\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toHaveClass\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('form > div.grid')\u001b[22m\n",
+                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveClass\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: locator('form > div.grid')\nExpected pattern: \u001b[32m/grid/\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toHaveClass\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('form > div.grid')\u001b[22m\n\n    at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js:83:28",
+                        "location": {
+                          "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js",
+                          "column": 28,
+                          "line": 83
+                        },
+                        "snippet": "  81 |     // Check if the grid layout is responsive - look for the specific grid div\n  82 |     const formGrid = page.locator('form > div.grid');\n> 83 |     await expect(formGrid).toHaveClass(/grid/);\n     |                            ^\n  84 |     await expect(formGrid).toHaveClass(/md:grid-cols-2/);\n  85 |     \n  86 |     // Check if the container has max width"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js",
+                            "column": 28,
+                            "line": 83
+                          },
+                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveClass\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: locator('form > div.grid')\nExpected pattern: \u001b[32m/grid/\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toHaveClass\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('form > div.grid')\u001b[22m\n\n\n  81 |     // Check if the grid layout is responsive - look for the specific grid div\n  82 |     const formGrid = page.locator('form > div.grid');\n> 83 |     await expect(formGrid).toHaveClass(/grid/);\n     |                            ^\n  84 |     await expect(formGrid).toHaveClass(/md:grid-cols-2/);\n  85 |     \n  86 |     // Check if the container has max width\n    at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js:83:28"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T15:40:05.769Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/test-results/playwright-output/styling-Todo-App-Styling-s-eb024--responsive-design-elements-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/test-results/playwright-output/styling-Todo-App-Styling-s-eb024--responsive-design-elements-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js",
+                        "column": 28,
+                        "line": 83
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "611eab65f20220b6f6c0-4b7ecb9d4370cfbc3fa3",
+              "file": "styling.spec.js",
+              "line": 78,
+              "column": 3
+            },
+            {
+              "title": "should have interactive elements with hover states",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 5331,
+                      "error": {
+                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveClass\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: getByRole('button', { name: 'Add Todo' })\nExpected pattern: \u001b[32m/hover:bg-green-600/\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toHaveClass\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('button', { name: 'Add Todo' })\u001b[22m\n",
+                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveClass\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: getByRole('button', { name: 'Add Todo' })\nExpected pattern: \u001b[32m/hover:bg-green-600/\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toHaveClass\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('button', { name: 'Add Todo' })\u001b[22m\n\n    at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js:96:29",
+                        "location": {
+                          "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js",
+                          "column": 29,
+                          "line": 96
+                        },
+                        "snippet": "  94 |     // Check if buttons have hover states\n  95 |     const addButton = page.getByRole('button', { name: 'Add Todo' });\n> 96 |     await expect(addButton).toHaveClass(/hover:bg-green-600/);\n     |                             ^\n  97 |     \n  98 |     // Check if the add tag button has hover states - be more specific\n  99 |     const tagButton = page.locator('button[type=\"button\"]:has-text(\"Add\")').first();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js",
+                            "column": 29,
+                            "line": 96
+                          },
+                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveClass\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nLocator: getByRole('button', { name: 'Add Todo' })\nExpected pattern: \u001b[32m/hover:bg-green-600/\u001b[39m\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toHaveClass\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('button', { name: 'Add Todo' })\u001b[22m\n\n\n  94 |     // Check if buttons have hover states\n  95 |     const addButton = page.getByRole('button', { name: 'Add Todo' });\n> 96 |     await expect(addButton).toHaveClass(/hover:bg-green-600/);\n     |                             ^\n  97 |     \n  98 |     // Check if the add tag button has hover states - be more specific\n  99 |     const tagButton = page.locator('button[type=\"button\"]:has-text(\"Add\")').first();\n    at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js:96:29"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T15:40:06.050Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/test-results/playwright-output/styling-Todo-App-Styling-s-a7e3c--elements-with-hover-states-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/test-results/playwright-output/styling-Todo-App-Styling-s-a7e3c--elements-with-hover-states-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js",
+                        "column": 29,
+                        "line": 96
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "611eab65f20220b6f6c0-2cff7c4fa7e20cbaeec8",
+              "file": "styling.spec.js",
+              "line": 91,
+              "column": 3
+            },
+            {
+              "title": "should display todos with proper styling when added",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "interrupted",
+                      "duration": 22395,
+                      "error": {
+                        "message": "Error: locator.fill: Test ended.\nCall log:\n\u001b[2m  - waiting for getByLabel('Title *')\u001b[22m\n",
+                        "stack": "Error: locator.fill: Test ended.\nCall log:\n\u001b[2m  - waiting for getByLabel('Title *')\u001b[22m\n\n    at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js:107:38",
+                        "location": {
+                          "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js",
+                          "column": 38,
+                          "line": 107
+                        },
+                        "snippet": "  105 |     \n  106 |     // Add a new todo\n> 107 |     await page.getByLabel('Title *').fill('Test Todo');\n      |                                      ^\n  108 |     await page.getByLabel('Description').fill('This is a test todo');\n  109 |     await page.getByLabel('Priority').selectOption('high');\n  110 |     "
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js",
+                            "column": 38,
+                            "line": 107
+                          },
+                          "message": "Error: locator.fill: Test ended.\nCall log:\n\u001b[2m  - waiting for getByLabel('Title *')\u001b[22m\n\n\n  105 |     \n  106 |     // Add a new todo\n> 107 |     await page.getByLabel('Title *').fill('Test Todo');\n      |                                      ^\n  108 |     await page.getByLabel('Description').fill('This is a test todo');\n  109 |     await page.getByLabel('Priority').selectOption('high');\n  110 |     \n    at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js:107:38"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T15:40:06.900Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/test-results/playwright-output/styling-Todo-App-Styling-s-aa05e-h-proper-styling-when-added-chromium/test-failed-1.png"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js",
+                        "column": 38,
+                        "line": 107
+                      }
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "611eab65f20220b6f6c0-b52c7c37e430fda99977",
+              "file": "styling.spec.js",
+              "line": 103,
+              "column": 3
+            },
+            {
+              "title": "should have proper form validation styling",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 1,
+                      "status": "interrupted",
+                      "duration": 20940,
+                      "error": {
+                        "message": "Error: locator.click: Test ended.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Add Todo' })\u001b[22m\n",
+                        "stack": "Error: locator.click: Test ended.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Add Todo' })\u001b[22m\n\n    at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js:131:58",
+                        "location": {
+                          "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js",
+                          "column": 58,
+                          "line": 131
+                        },
+                        "snippet": "  129 |     \n  130 |     // Try to submit without title (should show validation)\n> 131 |     await page.getByRole('button', { name: 'Add Todo' }).click();\n      |                                                          ^\n  132 |     \n  133 |     // Check if the title input has required styling\n  134 |     const titleInput = page.getByLabel('Title *');"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js",
+                            "column": 58,
+                            "line": 131
+                          },
+                          "message": "Error: locator.click: Test ended.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Add Todo' })\u001b[22m\n\n\n  129 |     \n  130 |     // Try to submit without title (should show validation)\n> 131 |     await page.getByRole('button', { name: 'Add Todo' }).click();\n      |                                                          ^\n  132 |     \n  133 |     // Check if the title input has required styling\n  134 |     const titleInput = page.getByLabel('Title *');\n    at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js:131:58"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T15:40:08.137Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/test-results/playwright-output/styling-Todo-App-Styling-s-44862-per-form-validation-styling-chromium/test-failed-1.png"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js",
+                        "column": 58,
+                        "line": 131
+                      }
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "611eab65f20220b6f6c0-fef5c0447c288d6b9c88",
+              "file": "styling.spec.js",
+              "line": 127,
+              "column": 3
+            },
+            {
+              "title": "should load the main page with proper styling",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 3,
+                      "status": "interrupted",
+                      "duration": 3842,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: getByRole('heading', { name: 'Firebase Todo App' })\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Firebase Todo App' })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: getByRole('heading', { name: 'Firebase Todo App' })\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Firebase Todo App' })\u001b[22m\n\n    at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js:8:76",
+                        "location": {
+                          "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js",
+                          "column": 76,
+                          "line": 8
+                        },
+                        "snippet": "   6 |     \n   7 |     // Check if the page title is displayed\n>  8 |     await expect(page.getByRole('heading', { name: 'Firebase Todo App' })).toBeVisible();\n     |                                                                            ^\n   9 |     \n  10 |     // Check if the main content is loaded\n  11 |     await expect(page.getByRole('heading', { name: 'My Todos' })).toBeVisible();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js",
+                            "column": 76,
+                            "line": 8
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: getByRole('heading', { name: 'Firebase Todo App' })\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Firebase Todo App' })\u001b[22m\n\n\n   6 |     \n   7 |     // Check if the page title is displayed\n>  8 |     await expect(page.getByRole('heading', { name: 'Firebase Todo App' })).toBeVisible();\n     |                                                                            ^\n   9 |     \n  10 |     // Check if the main content is loaded\n  11 |     await expect(page.getByRole('heading', { name: 'My Todos' })).toBeVisible();\n    at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js:8:76"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T15:40:25.326Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/test-results/playwright-output/styling-Todo-App-Styling-s-48c50-in-page-with-proper-styling-firefox/test-failed-1.png"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js",
+                        "column": 76,
+                        "line": 8
+                      }
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "611eab65f20220b6f6c0-2175f055deb0ccf69abb",
+              "file": "styling.spec.js",
+              "line": 4,
+              "column": 3
+            },
+            {
+              "title": "should have TailwindCSS classes applied",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 2,
+                      "status": "interrupted",
+                      "duration": 403,
+                      "error": {
+                        "message": "Error: browserContext.newPage: Test ended.",
+                        "stack": "Error: browserContext.newPage: Test ended."
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserContext.newPage: Test ended."
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-19T15:40:27.775Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "611eab65f20220b6f6c0-7d061dab4ecbd39318f7",
+              "file": "styling.spec.js",
+              "line": 25,
+              "column": 3
+            },
+            {
+              "title": "should have proper color scheme and layout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "611eab65f20220b6f6c0-5328c27bcfce23219577",
+              "file": "styling.spec.js",
+              "line": 52,
+              "column": 3
+            },
+            {
+              "title": "should have responsive design elements",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "611eab65f20220b6f6c0-25597d4c695b5d025835",
+              "file": "styling.spec.js",
+              "line": 78,
+              "column": 3
+            },
+            {
+              "title": "should have interactive elements with hover states",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "611eab65f20220b6f6c0-41da9f6114a9c7a43bb3",
+              "file": "styling.spec.js",
+              "line": 91,
+              "column": 3
+            },
+            {
+              "title": "should display todos with proper styling when added",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "611eab65f20220b6f6c0-155d3ef26f5d50ba1e8d",
+              "file": "styling.spec.js",
+              "line": 103,
+              "column": 3
+            },
+            {
+              "title": "should have proper form validation styling",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "611eab65f20220b6f6c0-15c62c06225d5561a203",
+              "file": "styling.spec.js",
+              "line": 127,
+              "column": 3
+            },
+            {
+              "title": "should load the main page with proper styling",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "611eab65f20220b6f6c0-9ed58167cafaf095d3b1",
+              "file": "styling.spec.js",
+              "line": 4,
+              "column": 3
+            },
+            {
+              "title": "should have TailwindCSS classes applied",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "611eab65f20220b6f6c0-ee1dd8638c4b3ea04f17",
+              "file": "styling.spec.js",
+              "line": 25,
+              "column": 3
+            },
+            {
+              "title": "should have proper color scheme and layout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "611eab65f20220b6f6c0-88e73ec1d32f7724d9a4",
+              "file": "styling.spec.js",
+              "line": 52,
+              "column": 3
+            },
+            {
+              "title": "should have responsive design elements",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "611eab65f20220b6f6c0-e4c78d61e5ef7bfd0137",
+              "file": "styling.spec.js",
+              "line": 78,
+              "column": 3
+            },
+            {
+              "title": "should have interactive elements with hover states",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "611eab65f20220b6f6c0-4a4a39c946ae1b90f05b",
+              "file": "styling.spec.js",
+              "line": 91,
+              "column": 3
+            },
+            {
+              "title": "should display todos with proper styling when added",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "611eab65f20220b6f6c0-0d995e11ba36ad8e74b2",
+              "file": "styling.spec.js",
+              "line": 103,
+              "column": 3
+            },
+            {
+              "title": "should have proper form validation styling",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "611eab65f20220b6f6c0-f9db5d99c481a05c0bc9",
+              "file": "styling.spec.js",
+              "line": 127,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-08-19T15:39:51.861Z",
+    "duration": 38262.312000000005,
+    "expected": 13,
+    "skipped": 25,
+    "unexpected": 7,
+    "flaky": 0
+  }
+}

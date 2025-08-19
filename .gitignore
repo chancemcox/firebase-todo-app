@@ -16,3 +16,16 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+# Log files
+logs/*.log
+*.log
+
+# Test results - keep folder structure but ignore large files
+test-results/*.png
+test-results/*.mp4
+test-results/*.webm
+test-results/playwright-output/**/*.png
+test-results/playwright-output/**/*.mp4
+test-results/playwright-output/**/*.webm
+test-results/coverage/lcov-report/

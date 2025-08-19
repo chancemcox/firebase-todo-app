@@ -1,0 +1,610 @@
+<testsuites id="" name="" tests="45" failures="7" skipped="25" errors="0" time="38.26231200000001">
+<testsuite name="custom-domain-google-login.spec.js" timestamp="2025-08-19T15:39:55.391Z" hostname="chromium" tests="1" failures="0" skipped="0" time="9.607" errors="0">
+<testcase name="Custom Domain Google Sign-in Test › should test Google sign-in on custom domain" classname="custom-domain-google-login.spec.js" time="9.607">
+<system-out>
+<![CDATA[🚀 Testing Google sign-in on CUSTOM DOMAIN: todo.cox-fam.com
+📍 Navigated to custom domain login page
+✅ DOM content loaded
+✅ Network idle
+📄 Page title: Todo App - Chance Cox
+🔗 Current URL: https://todo.cox-fam.com/login
+✅ Confirmed we are on custom domain
+🏗️ Root div exists: [33mtrue[39m
+📏 Root div content length: [33m330[39m
+🔍 Login heading visible: [33mtrue[39m
+✅ Login form is rendering correctly
+🔍 Google sign-in button visible: [33mtrue[39m
+✅ Google sign-in button found!
+🔄 Attempting Google sign-in on custom domain...
+📝 Console Log: Starting Google sign-in...
+👆 Clicked Google sign-in button
+🎉 Google OAuth popup opened successfully!
+📋 Popup title: Sign in - Google Accounts
+✅ Google OAuth popup is working correctly!
+🔒 Closed popup
+✅ No authentication errors found
+
+📊 Console Activity Summary:
+Console Logs: [33m1[39m
+Console Errors: [33m0[39m
+📸 Screenshot saved as custom-domain-google-login-test.png
+🎯 Custom domain test completed successfully!
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="google-login-test.spec.js" timestamp="2025-08-19T15:39:55.391Z" hostname="chromium" tests="2" failures="0" skipped="0" time="7.949" errors="0">
+<testcase name="Google Sign-in Test › should attempt Google sign-in and handle the flow" classname="google-login-test.spec.js" time="5.78">
+<system-out>
+<![CDATA[Navigating to login page...
+Login page loaded successfully
+Google sign-in button found
+Clicking Google sign-in button...
+Console Log: Starting Google sign-in...
+Google OAuth popup opened successfully
+Popup title: Sign in - Google Accounts
+✅ Google OAuth popup is working correctly
+✅ No authentication errors found
+
+=== Console Activity Summary ===
+Console Logs: [ [32m'Starting Google sign-in...'[39m ]
+Console Errors: []
+Screenshot saved as google-login-test-result.png
+]]>
+</system-out>
+</testcase>
+<testcase name="Google Sign-in Test › should handle Google sign-in in incognito mode" classname="google-login-test.spec.js" time="2.169">
+<system-out>
+<![CDATA[Testing Google sign-in in incognito mode...
+Clicking Google sign-in button in incognito mode...
+✅ Google OAuth popup opened in incognito mode
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="login-fix-verification.spec.js" timestamp="2025-08-19T15:39:55.391Z" hostname="chromium" tests="3" failures="0" skipped="0" time="3.876" errors="0">
+<testcase name="Login Page Fix Verification › should load login page without JavaScript module errors" classname="login-fix-verification.spec.js" time="1.44">
+</testcase>
+<testcase name="Login Page Fix Verification › should not have browser extension conflicts" classname="login-fix-verification.spec.js" time="1.441">
+</testcase>
+<testcase name="Login Page Fix Verification › should load production site without module errors" classname="login-fix-verification.spec.js" time="0.995">
+<system-out>
+<![CDATA[Production site test passed - no MIME type errors
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="production-google-login.spec.js" timestamp="2025-08-19T15:39:55.391Z" hostname="chromium" tests="1" failures="0" skipped="0" time="9.009" errors="0">
+<testcase name="Production Google Sign-in Test › should test Google sign-in on production site" classname="production-google-login.spec.js" time="9.009">
+<system-out>
+<![CDATA[🚀 Testing Google sign-in on PRODUCTION site...
+📍 Navigated to production login page
+✅ DOM content loaded
+✅ Network idle
+📄 Page title: Todo App - Chance Cox
+🔗 Current URL: https://todo-list-e7788.web.app/login
+✅ Confirmed we are on production site
+🏗️ Root div exists: [33mtrue[39m
+📏 Root div content length: [33m330[39m
+🔍 Login heading visible: [33mtrue[39m
+✅ Login form is rendering correctly
+🔍 Google sign-in button visible: [33mtrue[39m
+✅ Google sign-in button found!
+🔄 Attempting Google sign-in...
+📝 Console Log: Starting Google sign-in...
+👆 Clicked Google sign-in button
+🎉 Google OAuth popup opened successfully!
+📋 Popup title: Sign in - Google Accounts
+✅ Google OAuth popup is working correctly!
+🔒 Closed popup
+✅ No authentication errors found
+
+📊 Console Activity Summary:
+Console Logs: [33m1[39m
+Console Errors: [33m0[39m
+📸 Screenshot saved as production-google-login-test.png
+🎯 Test completed successfully!
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="simple-page-load.spec.js" timestamp="2025-08-19T15:39:55.391Z" hostname="chromium" tests="1" failures="1" skipped="0" time="6.204" errors="0">
+<testcase name="Simple Page Load Test › should load the production page and check for errors" classname="simple-page-load.spec.js" time="6.204">
+<failure message="simple-page-load.spec.js:4:3 should load the production page and check for errors" type="FAILURE">
+<![CDATA[  [chromium] › simple-page-load.spec.js:4:3 › Simple Page Load Test › should load the production page and check for errors 
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "todo-list-e7788.web.app"
+    Received string:    "http://localhost:3000/login"
+
+      86 |     // The test passes if we can at least load the page
+      87 |     expect(title).toBeTruthy();
+    > 88 |     expect(url).toContain('todo-list-e7788.web.app');
+         |                 ^
+      89 |   });
+      90 | });
+      91 |
+        at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/simple-page-load.spec.js:88:17
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/playwright-output/simple-page-load-Simple-Pa-80710-n-page-and-check-for-errors-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/playwright-output/simple-page-load-Simple-Pa-80710-n-page-and-check-for-errors-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[Starting simple page load test...
+Navigated to /login
+DOM content loaded
+Network idle
+Page title: Todo App - Chance Cox
+Current URL: http://localhost:3000/login
+Root div exists: [33mtrue[39m
+Root div content length: [33m330[39m
+Root div content preview: Sign in to your accountEmail addressPasswordSign inOr continue withSign in with GoogleHaving issues?
+Error elements found: [33m0[39m
+Loading elements found: [33m0[39m
+Screenshot saved as simple-page-load-test.png
+
+=== Test Summary ===
+Page title: Todo App - Chance Cox
+URL: http://localhost:3000/login
+Root div exists: [33mtrue[39m
+Console errors: [33m0[39m
+Console logs: [33m0[39m
+Page errors: [33m0[39m
+Loading indicators: [33m0[39m
+
+[[ATTACHMENT|playwright-output/simple-page-load-Simple-Pa-80710-n-page-and-check-for-errors-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|playwright-output/simple-page-load-Simple-Pa-80710-n-page-and-check-for-errors-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="styling.spec.js" timestamp="2025-08-19T15:39:55.391Z" hostname="chromium" tests="7" failures="5" skipped="2" time="70.098" errors="0">
+<testcase name="Todo App Styling › should load the main page with proper styling" classname="styling.spec.js" time="5.316">
+<failure message="styling.spec.js:4:3 should load the main page with proper styling" type="FAILURE">
+<![CDATA[  [chromium] › styling.spec.js:4:3 › Todo App Styling › should load the main page with proper styling 
+
+    Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
+
+    Locator: getByRole('heading', { name: 'Firebase Todo App' })
+    Expected: visible
+    Received: <element(s) not found>
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'Firebase Todo App' })
+
+
+       6 |     
+       7 |     // Check if the page title is displayed
+    >  8 |     await expect(page.getByRole('heading', { name: 'Firebase Todo App' })).toBeVisible();
+         |                                                                            ^
+       9 |     
+      10 |     // Check if the main content is loaded
+      11 |     await expect(page.getByRole('heading', { name: 'My Todos' })).toBeVisible();
+        at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js:8:76
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/playwright-output/styling-Todo-App-Styling-s-48c50-in-page-with-proper-styling-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/playwright-output/styling-Todo-App-Styling-s-48c50-in-page-with-proper-styling-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|playwright-output/styling-Todo-App-Styling-s-48c50-in-page-with-proper-styling-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|playwright-output/styling-Todo-App-Styling-s-48c50-in-page-with-proper-styling-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Todo App Styling › should have TailwindCSS classes applied" classname="styling.spec.js" time="5.307">
+<failure message="styling.spec.js:25:3 should have TailwindCSS classes applied" type="FAILURE">
+<![CDATA[  [chromium] › styling.spec.js:25:3 › Todo App Styling › should have TailwindCSS classes applied ───
+
+    Error: Timed out 5000ms waiting for expect(locator).toHaveClass(expected)
+
+    Locator: locator('h1')
+    Expected pattern: /text-4xl/
+    Received: <element(s) not found>
+    Call log:
+      - Expect "toHaveClass" with timeout 5000ms
+      - waiting for locator('h1')
+
+
+      28 |     // Check if TailwindCSS classes are being applied
+      29 |     const header = page.locator('h1');
+    > 30 |     await expect(header).toHaveClass(/text-4xl/);
+         |                          ^
+      31 |     await expect(header).toHaveClass(/font-bold/);
+      32 |     await expect(header).toHaveClass(/text-center/);
+      33 |     await expect(header).toHaveClass(/text-white/);
+        at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js:30:26
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/playwright-output/styling-Todo-App-Styling-s-aba60-TailwindCSS-classes-applied-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/playwright-output/styling-Todo-App-Styling-s-aba60-TailwindCSS-classes-applied-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|playwright-output/styling-Todo-App-Styling-s-aba60-TailwindCSS-classes-applied-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|playwright-output/styling-Todo-App-Styling-s-aba60-TailwindCSS-classes-applied-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Todo App Styling › should have proper color scheme and layout" classname="styling.spec.js" time="5.483">
+<failure message="styling.spec.js:52:3 should have proper color scheme and layout" type="FAILURE">
+<![CDATA[  [chromium] › styling.spec.js:52:3 › Todo App Styling › should have proper color scheme and layout 
+
+    Error: Timed out 5000ms waiting for expect(locator).toHaveClass(expected)
+
+    Locator: locator('h1')
+    Expected pattern: /text-white/
+    Received: <element(s) not found>
+    Call log:
+      - Expect "toHaveClass" with timeout 5000ms
+      - waiting for locator('h1')
+
+
+      62 |     // Check if the header text is white (should be visible on gradient)
+      63 |     const header = page.locator('h1');
+    > 64 |     await expect(header).toHaveClass(/text-white/);
+         |                          ^
+      65 |     
+      66 |     // Check if the main content area has proper spacing
+      67 |     const main = page.locator('main');
+        at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js:64:26
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/playwright-output/styling-Todo-App-Styling-s-02ab5-per-color-scheme-and-layout-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/playwright-output/styling-Todo-App-Styling-s-02ab5-per-color-scheme-and-layout-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|playwright-output/styling-Todo-App-Styling-s-02ab5-per-color-scheme-and-layout-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|playwright-output/styling-Todo-App-Styling-s-02ab5-per-color-scheme-and-layout-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Todo App Styling › should have responsive design elements" classname="styling.spec.js" time="5.326">
+<failure message="styling.spec.js:78:3 should have responsive design elements" type="FAILURE">
+<![CDATA[  [chromium] › styling.spec.js:78:3 › Todo App Styling › should have responsive design elements ────
+
+    Error: Timed out 5000ms waiting for expect(locator).toHaveClass(expected)
+
+    Locator: locator('form > div.grid')
+    Expected pattern: /grid/
+    Received: <element(s) not found>
+    Call log:
+      - Expect "toHaveClass" with timeout 5000ms
+      - waiting for locator('form > div.grid')
+
+
+      81 |     // Check if the grid layout is responsive - look for the specific grid div
+      82 |     const formGrid = page.locator('form > div.grid');
+    > 83 |     await expect(formGrid).toHaveClass(/grid/);
+         |                            ^
+      84 |     await expect(formGrid).toHaveClass(/md:grid-cols-2/);
+      85 |     
+      86 |     // Check if the container has max width
+        at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js:83:28
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/playwright-output/styling-Todo-App-Styling-s-eb024--responsive-design-elements-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/playwright-output/styling-Todo-App-Styling-s-eb024--responsive-design-elements-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|playwright-output/styling-Todo-App-Styling-s-eb024--responsive-design-elements-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|playwright-output/styling-Todo-App-Styling-s-eb024--responsive-design-elements-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Todo App Styling › should have interactive elements with hover states" classname="styling.spec.js" time="5.331">
+<failure message="styling.spec.js:91:3 should have interactive elements with hover states" type="FAILURE">
+<![CDATA[  [chromium] › styling.spec.js:91:3 › Todo App Styling › should have interactive elements with hover states 
+
+    Error: Timed out 5000ms waiting for expect(locator).toHaveClass(expected)
+
+    Locator: getByRole('button', { name: 'Add Todo' })
+    Expected pattern: /hover:bg-green-600/
+    Received: <element(s) not found>
+    Call log:
+      - Expect "toHaveClass" with timeout 5000ms
+      - waiting for getByRole('button', { name: 'Add Todo' })
+
+
+      94 |     // Check if buttons have hover states
+      95 |     const addButton = page.getByRole('button', { name: 'Add Todo' });
+    > 96 |     await expect(addButton).toHaveClass(/hover:bg-green-600/);
+         |                             ^
+      97 |     
+      98 |     // Check if the add tag button has hover states - be more specific
+      99 |     const tagButton = page.locator('button[type="button"]:has-text("Add")').first();
+        at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/styling.spec.js:96:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/playwright-output/styling-Todo-App-Styling-s-a7e3c--elements-with-hover-states-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/playwright-output/styling-Todo-App-Styling-s-a7e3c--elements-with-hover-states-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|playwright-output/styling-Todo-App-Styling-s-a7e3c--elements-with-hover-states-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|playwright-output/styling-Todo-App-Styling-s-a7e3c--elements-with-hover-states-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Todo App Styling › should display todos with proper styling when added" classname="styling.spec.js" time="22.395">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Todo App Styling › should have proper form validation styling" classname="styling.spec.js" time="20.94">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="custom-domain-google-login.spec.js" timestamp="2025-08-19T15:39:55.391Z" hostname="firefox" tests="1" failures="0" skipped="0" time="10.915" errors="0">
+<testcase name="Custom Domain Google Sign-in Test › should test Google sign-in on custom domain" classname="custom-domain-google-login.spec.js" time="10.915">
+<system-out>
+<![CDATA[🚀 Testing Google sign-in on CUSTOM DOMAIN: todo.cox-fam.com
+📍 Navigated to custom domain login page
+✅ DOM content loaded
+✅ Network idle
+📄 Page title: Todo App - Chance Cox
+🔗 Current URL: https://todo.cox-fam.com/login
+✅ Confirmed we are on custom domain
+🏗️ Root div exists: [33mtrue[39m
+📏 Root div content length: [33m330[39m
+🔍 Login heading visible: [33mtrue[39m
+✅ Login form is rendering correctly
+🔍 Google sign-in button visible: [33mtrue[39m
+✅ Google sign-in button found!
+🔄 Attempting Google sign-in on custom domain...
+📝 Console Log: Starting Google sign-in...
+👆 Clicked Google sign-in button
+🎉 Google OAuth popup opened successfully!
+📋 Popup title: Sign in - Google Accounts
+✅ Google OAuth popup is working correctly!
+🔒 Closed popup
+✅ No authentication errors found
+
+📊 Console Activity Summary:
+Console Logs: [33m1[39m
+Console Errors: [33m0[39m
+📸 Screenshot saved as custom-domain-google-login-test.png
+🎯 Custom domain test completed successfully!
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="google-login-test.spec.js" timestamp="2025-08-19T15:39:55.391Z" hostname="firefox" tests="2" failures="0" skipped="0" time="10.024" errors="0">
+<testcase name="Google Sign-in Test › should attempt Google sign-in and handle the flow" classname="google-login-test.spec.js" time="7.09">
+<system-out>
+<![CDATA[Navigating to login page...
+Login page loaded successfully
+Google sign-in button found
+Clicking Google sign-in button...
+Console Log: Starting Google sign-in...
+Google OAuth popup opened successfully
+Popup title: Sign in - Google Accounts
+✅ Google OAuth popup is working correctly
+✅ No authentication errors found
+
+=== Console Activity Summary ===
+Console Logs: [ [32m'Starting Google sign-in...'[39m ]
+Console Errors: []
+Screenshot saved as google-login-test-result.png
+]]>
+</system-out>
+</testcase>
+<testcase name="Google Sign-in Test › should handle Google sign-in in incognito mode" classname="google-login-test.spec.js" time="2.934">
+<system-out>
+<![CDATA[Testing Google sign-in in incognito mode...
+Clicking Google sign-in button in incognito mode...
+✅ Google OAuth popup opened in incognito mode
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="login-fix-verification.spec.js" timestamp="2025-08-19T15:39:55.391Z" hostname="firefox" tests="3" failures="0" skipped="0" time="3.293" errors="0">
+<testcase name="Login Page Fix Verification › should load login page without JavaScript module errors" classname="login-fix-verification.spec.js" time="1.081">
+<system-out>
+<![CDATA[Network errors found: [ [32m'101 http://localhost:3000/?token=PAwvGbxvXFrV'[39m ]
+]]>
+</system-out>
+</testcase>
+<testcase name="Login Page Fix Verification › should not have browser extension conflicts" classname="login-fix-verification.spec.js" time="1.048">
+</testcase>
+<testcase name="Login Page Fix Verification › should load production site without module errors" classname="login-fix-verification.spec.js" time="1.164">
+<system-out>
+<![CDATA[Production site test passed - no MIME type errors
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="production-google-login.spec.js" timestamp="2025-08-19T15:39:55.391Z" hostname="firefox" tests="1" failures="0" skipped="1" time="9.963" errors="0">
+<testcase name="Production Google Sign-in Test › should test Google sign-in on production site" classname="production-google-login.spec.js" time="9.963">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="simple-page-load.spec.js" timestamp="2025-08-19T15:39:55.391Z" hostname="firefox" tests="1" failures="1" skipped="0" time="6.126" errors="0">
+<testcase name="Simple Page Load Test › should load the production page and check for errors" classname="simple-page-load.spec.js" time="6.126">
+<failure message="simple-page-load.spec.js:4:3 should load the production page and check for errors" type="FAILURE">
+<![CDATA[  [firefox] › simple-page-load.spec.js:4:3 › Simple Page Load Test › should load the production page and check for errors 
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "todo-list-e7788.web.app"
+    Received string:    "http://localhost:3000/login"
+
+      86 |     // The test passes if we can at least load the page
+      87 |     expect(title).toBeTruthy();
+    > 88 |     expect(url).toContain('todo-list-e7788.web.app');
+         |                 ^
+      89 |   });
+      90 | });
+      91 |
+        at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/simple-page-load.spec.js:88:17
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/playwright-output/simple-page-load-Simple-Pa-80710-n-page-and-check-for-errors-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/playwright-output/simple-page-load-Simple-Pa-80710-n-page-and-check-for-errors-firefox/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[Starting simple page load test...
+Navigated to /login
+DOM content loaded
+Network idle
+Page title: Todo App - Chance Cox
+Current URL: http://localhost:3000/login
+Root div exists: [33mtrue[39m
+Root div content length: [33m330[39m
+Root div content preview: Sign in to your accountEmail addressPasswordSign inOr continue withSign in with GoogleHaving issues?
+Error elements found: [33m0[39m
+Loading elements found: [33m0[39m
+Screenshot saved as simple-page-load-test.png
+
+=== Test Summary ===
+Page title: Todo App - Chance Cox
+URL: http://localhost:3000/login
+Root div exists: [33mtrue[39m
+Console errors: [33m0[39m
+Console logs: [33m0[39m
+Page errors: [33m0[39m
+Loading indicators: [33m0[39m
+
+[[ATTACHMENT|playwright-output/simple-page-load-Simple-Pa-80710-n-page-and-check-for-errors-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|playwright-output/simple-page-load-Simple-Pa-80710-n-page-and-check-for-errors-firefox/error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="styling.spec.js" timestamp="2025-08-19T15:39:55.391Z" hostname="firefox" tests="7" failures="0" skipped="7" time="4.245" errors="0">
+<testcase name="Todo App Styling › should load the main page with proper styling" classname="styling.spec.js" time="3.842">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Todo App Styling › should have TailwindCSS classes applied" classname="styling.spec.js" time="0.403">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Todo App Styling › should have proper color scheme and layout" classname="styling.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Todo App Styling › should have responsive design elements" classname="styling.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Todo App Styling › should have interactive elements with hover states" classname="styling.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Todo App Styling › should display todos with proper styling when added" classname="styling.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Todo App Styling › should have proper form validation styling" classname="styling.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="custom-domain-google-login.spec.js" timestamp="2025-08-19T15:39:55.391Z" hostname="webkit" tests="1" failures="0" skipped="1" time="0" errors="0">
+<testcase name="Custom Domain Google Sign-in Test › should test Google sign-in on custom domain" classname="custom-domain-google-login.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="google-login-test.spec.js" timestamp="2025-08-19T15:39:55.391Z" hostname="webkit" tests="2" failures="0" skipped="2" time="0" errors="0">
+<testcase name="Google Sign-in Test › should attempt Google sign-in and handle the flow" classname="google-login-test.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Google Sign-in Test › should handle Google sign-in in incognito mode" classname="google-login-test.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="login-fix-verification.spec.js" timestamp="2025-08-19T15:39:55.391Z" hostname="webkit" tests="3" failures="0" skipped="3" time="0" errors="0">
+<testcase name="Login Page Fix Verification › should load login page without JavaScript module errors" classname="login-fix-verification.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Login Page Fix Verification › should not have browser extension conflicts" classname="login-fix-verification.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Login Page Fix Verification › should load production site without module errors" classname="login-fix-verification.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="production-google-login.spec.js" timestamp="2025-08-19T15:39:55.391Z" hostname="webkit" tests="1" failures="0" skipped="1" time="0" errors="0">
+<testcase name="Production Google Sign-in Test › should test Google sign-in on production site" classname="production-google-login.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="simple-page-load.spec.js" timestamp="2025-08-19T15:39:55.391Z" hostname="webkit" tests="1" failures="0" skipped="1" time="0" errors="0">
+<testcase name="Simple Page Load Test › should load the production page and check for errors" classname="simple-page-load.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="styling.spec.js" timestamp="2025-08-19T15:39:55.391Z" hostname="webkit" tests="7" failures="0" skipped="7" time="0" errors="0">
+<testcase name="Todo App Styling › should load the main page with proper styling" classname="styling.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Todo App Styling › should have TailwindCSS classes applied" classname="styling.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Todo App Styling › should have proper color scheme and layout" classname="styling.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Todo App Styling › should have responsive design elements" classname="styling.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Todo App Styling › should have interactive elements with hover states" classname="styling.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Todo App Styling › should display todos with proper styling when added" classname="styling.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Todo App Styling › should have proper form validation styling" classname="styling.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+</testsuites>
