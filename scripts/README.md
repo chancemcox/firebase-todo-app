@@ -1,101 +1,156 @@
 # Scripts Directory
 
-This directory contains utility scripts for automating common development and testing tasks.
+This directory contains utility scripts for testing, deployment, and project management.
 
-## Available Scripts
+## 🧪 Test Scripts
 
-### **Playwright Test Organizer**
+### `organize-test-results.sh` / `organize-test-results.bat`
+**Purpose**: Organizes all test results into the proper folder structure
+**Usage**: 
+- macOS/Linux: `npm run test:organize`
+- Windows: `npm run test:organize:win`
 
-#### **Unix/Linux/macOS** (`run-playwright-tests.sh`)
+**What it does**:
+- Moves Jest coverage reports to `test-results/coverage/`
+- Moves Playwright reports to `test-results/playwright-report/`
+- Moves Playwright artifacts (screenshots, videos, traces) to `test-results/playwright-output/`
+- Moves all log files to `logs/`
+- Moves loose test files from root to `test-results/`
+- Creates an organization summary
+- Cleans up empty directories
+
+### `run-tests-and-organize.sh`
+**Purpose**: Runs all tests with timeouts and then organizes results
+**Usage**: `npm run test:run:all`
+
+**What it does**:
+- Runs Jest unit tests with coverage (5 min timeout)
+- Runs Playwright E2E tests (10 min timeout)
+- Runs ESLint (2 min timeout)
+- Organizes all test results automatically
+- Provides comprehensive test summary
+- Shows any failures or issues
+
+## 🚀 Deployment Scripts
+
+### `setup-deployment.sh`
+**Purpose**: Sets up deployment configuration
+**Usage**: `npm run deploy:setup`
+
+### `prepare-deploy.sh`
+**Purpose**: Prepares the project for deployment
+**Usage**: `npm run prepare-deploy`
+
+## 📋 Available NPM Scripts
+
+### Test Scripts
 ```bash
-# Make executable (first time only)
-chmod +x scripts/run-playwright-tests.sh
-
-# Run the script
-./scripts/run-playwright-tests.sh
-
-# Or use npm script
-npm run test:organize
+npm run test                    # Run Jest unit tests
+npm run test:watch             # Run Jest in watch mode
+npm run test:coverage          # Run Jest with coverage
+npm run test:e2e               # Run Playwright E2E tests
+npm run test:e2e:ui            # Run Playwright with UI
+npm run test:e2e:headed        # Run Playwright in headed mode
+npm run test:e2e:debug         # Run Playwright in debug mode
+npm run test:organize          # Organize test results (macOS/Linux)
+npm run test:organize:win      # Organize test results (Windows)
+npm run test:organize:all      # Run tests then organize
+npm run test:run:all           # Run all tests with timeouts and organize
 ```
 
-#### **Windows** (`run-playwright-tests.bat`)
-```cmd
-# Run the script
-scripts\run-playwright-tests.bat
-
-# Or use npm script
-npm run test:organize:win
-```
-
-### **What the Playwright Organizer Does:**
-
-1. **🧹 Cleanup**: Removes any existing test artifacts from root directory
-2. **📁 Setup**: Creates necessary directory structure in `test-results/`
-3. **🚀 Testing**: Runs all Playwright E2E tests
-4. **📦 Organization**: Moves all test outputs to appropriate folders:
-   - Screenshots → `test-results/`
-   - Videos → `test-results/`
-   - Reports → `test-results/playwright-report/`
-   - Coverage → `test-results/coverage/`
-   - Logs → `logs/`
-5. **📋 Summary**: Generates a comprehensive report of what was organized
-6. **🎯 Results**: All test outputs are centralized in `test-results/`
-
-### **Other Scripts**
-
-- **`setup-deployment.sh`** - Sets up Firebase deployment configuration
-- **`prepare-deploy.sh`** - Prepares the project for deployment
-- **`setup-auto-fix.sh`** - Sets up automatic code fixing
-
-## Usage Examples
-
-### **Run Tests and Organize Outputs**
+### Code Quality
 ```bash
-# Unix/Linux/macOS
-npm run test:organize
-
-# Windows
-npm run test:organize:win
+npm run lint                    # Run ESLint
+npm run lint:fix               # Run ESLint with auto-fix
 ```
 
-### **Manual Script Execution**
+### Build & Deploy
 ```bash
-# Unix/Linux/macOS
-./scripts/run-playwright-tests.sh
-
-# Windows
-scripts\run-playwright-tests.bat
+npm run build                  # Build the project
+npm run deploy                 # Build and deploy to Firebase
+npm run deploy:setup           # Setup deployment configuration
+npm run prepare-deploy         # Prepare for deployment
 ```
 
-## Output Structure
+## 🎯 Quick Start
 
-After running the organizer script, your `test-results/` folder will contain:
+### Run All Tests and Organize Results
+```bash
+npm run test:run:all
+```
+
+### Just Organize Existing Results
+```bash
+npm run test:organize          # macOS/Linux
+npm run test:organize:win      # Windows
+```
+
+### Run Specific Test Types
+```bash
+npm run test:coverage          # Unit tests with coverage
+npm run test:e2e               # E2E tests
+npm run lint                   # Code quality check
+```
+
+## 📁 Output Structure
+
+After running tests and organizing results:
 
 ```
 test-results/
-├── README.md
-├── test-run-summary-YYYYMMDD-HHMMSS.md  # Generated summary
-├── *.png                                 # Test screenshots
-├── *.mp4                                 # Test videos (if enabled)
-├── *.webm                                # Test videos (if enabled)
-├── playwright-output/                    # Test artifacts
-├── playwright-report/                    # HTML reports
-├── coverage/                             # Coverage reports
-└── diagnostic-summary.md
+├── coverage/                  # Jest coverage reports
+│   └── lcov-report/
+│       └── index.html        # Coverage HTML report
+├── playwright-report/         # Playwright HTML reports
+│   └── index.html            # E2E test report
+├── playwright-output/         # Playwright artifacts
+│   ├── screenshots/          # Test screenshots
+│   ├── videos/               # Test videos
+│   └── traces/               # Test traces
+├── artifacts/                 # Additional artifacts
+└── organization-summary.md    # What was organized
+
+logs/                          # All test logs
+├── test-output.log           # Jest output
+├── coverage-output.log       # Coverage output
+├── playwright-output.log     # Playwright output
+└── lint-output.log           # ESLint output
 ```
 
-## Benefits
+## 🔧 Troubleshooting
 
-- **🎯 Centralized**: All test outputs in one location
-- **🧹 Clean**: No test files cluttering the root directory
-- **📊 Organized**: Logical folder structure for different output types
-- **📋 Documented**: Automatic summary reports for each test run
-- **🔄 Automated**: No manual file moving required
-- **📱 Cross-platform**: Works on Unix/Linux/macOS and Windows
+### Script Permission Issues
+If you get permission errors on macOS/Linux:
+```bash
+chmod +x scripts/*.sh
+```
 
-## Requirements
+### Timeout Issues
+The scripts include timeouts to prevent hanging:
+- Jest: 5 minutes
+- Playwright: 10 minutes
+- ESLint: 2 minutes
 
-- **Node.js**: For running npm scripts
-- **Playwright**: For E2E testing
-- **Bash** (Unix/Linux/macOS) or **Command Prompt** (Windows)
-- **Git**: For version control integration
+### Cross-Platform Compatibility
+- `.sh` files for macOS/Linux
+- `.bat` files for Windows
+- Both provide the same functionality
+
+## 📝 Customization
+
+You can modify the timeout values in `run-tests-and-organize.sh`:
+```bash
+run_test_with_timeout "Jest Unit Tests" "npm run test:coverage" 300  # 5 minutes
+run_test_with_timeout "Playwright E2E Tests" "npm run test:e2e" 600  # 10 minutes
+run_test_with_timeout "ESLint" "npm run lint" 120                    # 2 minutes
+```
+
+## 🚀 Integration with CI/CD
+
+These scripts are designed to work with:
+- GitHub Actions
+- Local development
+- CI/CD pipelines
+- Docker environments
+
+The scripts create consistent output structures regardless of the environment they run in.

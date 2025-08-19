@@ -1,51 +1,38 @@
-# File Organization Summary
+# Test Results Organization Summary
 
-## Organization Completed: $(date)
+Generated on: Tue Aug 19 11:28:21 CDT 2025
 
-### **Files Moved to test-results/**
+## What was organized:
 
-#### **Test Screenshots (PNG)**
-- `simple-page-load-test.png` (200KB) - Basic page load test screenshot
-- `custom-domain-google-login-test.png` (205KB) - Custom domain login test
-- `google-login-test-result.png` (205KB) - Google login test result
-- `google-login-incognito-test.png` (205KB) - Incognito mode login test
-- `production-google-login-test.png` (379KB) - Production environment login test
+### Coverage Results
+- Jest coverage reports moved to: `test-results/coverage/`
 
-### **Current test-results/ Structure**
+### Playwright Results
+- HTML reports moved to: `test-results/playwright-report/`
+- Artifacts (screenshots, videos, traces) moved to: `test-results/playwright-output/`
 
+### Logs
+- All log files moved to: `logs/`
+
+### Other Files
+- Screenshots, videos, and traces moved to: `test-results/`
+- Diagnostic files moved to: `test-results/`
+
+## Directory Structure:
 ```
 test-results/
-├── README.md (3.7KB) - Complete documentation
-├── organization-summary.md - This file
-├── diagnostic-summary.md (526B) - Test diagnostics
-├── .last-run.json (292B) - Last test run metadata
-├── playwright-results.json (111KB) - Playwright test results
-├── playwright-junit.xml (30KB) - JUnit XML test results
-├── *.png (5 files) - All test screenshots
-├── coverage/ - Jest unit test coverage reports
-├── playwright-output/ - Playwright test artifacts
-├── playwright-report/ - Playwright HTML reports
-└── login-fix-verification-*/ - Specific test run artifacts
+├── coverage/           # Jest coverage reports
+├── playwright-report/  # Playwright HTML reports
+├── playwright-output/  # Playwright artifacts
+├── artifacts/          # Additional artifacts
+└── organization-summary.md
+
+logs/                   # All log files
 ```
 
-### **Organization Benefits**
+## Next Steps:
+1. View Jest coverage: Open `test-results/coverage/lcov-report/index.html`
+2. View Playwright report: Open `test-results/playwright-report/index.html`
+3. Check logs: Look in `logs/` directory
+4. Run tests again: `npm run test:organize`
 
-✅ **Clean Root Directory**: No test files cluttering the main project folder
-✅ **Centralized Testing**: All test outputs in one organized location
-✅ **Easy Access**: Logical folder structure for different output types
-✅ **Version Control**: Folder structure tracked, large files ignored
-✅ **Consistent**: Same structure as GitHub Actions workflows
-
-### **Next Steps**
-
-1. **Run Tests**: Use `npm run test:organize` for automated organization
-2. **View Results**: Check `test-results/` folder for all test outputs
-3. **GitHub Actions**: Workflows will automatically maintain this structure
-4. **Local Development**: Scripts automatically organize new test runs
-
-### **Maintenance**
-
-- **Automatic**: Scripts handle file organization automatically
-- **Manual**: Can manually move files to test-results/ if needed
-- **Git**: Large files ignored, folder structure tracked
-- **Documentation**: README files explain organization and usage

@@ -2,8 +2,8 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Navigation Dropdown and Logout', () => {
   test.beforeEach(async ({ page }) => {
-    // Navigate to the app
-    await page.goto('http://localhost:3000');
+    // Navigate to the deployed app
+    await page.goto('https://todo-list-e7788.web.app');
     
     // Wait for the page to load
     await page.waitForLoadState('networkidle');

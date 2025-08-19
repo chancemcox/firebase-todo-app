@@ -14,7 +14,7 @@ module.exports = defineConfig({
     ['json', { outputFile: './test-results/playwright-results.json' }]
   ],
   use: {
-    baseURL: 'http://localhost:3000',
+    baseURL: 'https://todo-list-e7788.web.app',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
   },
@@ -23,10 +23,10 @@ module.exports = defineConfig({
   video: 'retain-on-failure',
   // Ensure all artifacts go to test-results
   artifactsDir: './test-results/artifacts',
-  // Global timeout settings
-  timeout: 30000,
+  // Global timeout settings - increased for better reliability
+  timeout: 60000,
   expect: {
-    timeout: 5000,
+    timeout: 10000,
   },
 
   projects: [
@@ -43,11 +43,4 @@ module.exports = defineConfig({
       use: { ...devices['Desktop Safari'] },
     },
   ],
-
-  webServer: {
-    command: 'npm run dev',
-    url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
-    timeout: 120 * 1000,
-  },
 });
