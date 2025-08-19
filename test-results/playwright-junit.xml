@@ -1,546 +1,1586 @@
-<testsuites id="" name="" tests="30" failures="13" skipped="17" errors="0" time="150.385965">
-<testsuite name="dropdown-logout.spec.js" timestamp="2025-08-19T16:42:19.700Z" hostname="chromium" tests="10" failures="10" skipped="0" time="456.678" errors="0">
-<testcase name="Navigation Dropdown and Logout › should open profile dropdown on mobile" classname="dropdown-logout.spec.js" time="12.027">
+<testsuites id="" name="" tests="96" failures="96" skipped="0" errors="0" time="21.207168">
+<testsuite name="authentication-logout.spec.js" timestamp="2025-08-19T17:01:45.336Z" hostname="chromium" tests="7" failures="7" skipped="0" time="0.008" errors="0">
+<testcase name="Authentication and Logout › should show login page when not authenticated" classname="authentication-logout.spec.js" time="0.001">
+<failure message="authentication-logout.spec.js:12:3 should show login page when not authenticated" type="FAILURE">
+<![CDATA[  [chromium] › authentication-logout.spec.js:12:3 › Authentication and Logout › should show login page when not authenticated 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Authentication and Logout › should handle Google sign-in process" classname="authentication-logout.spec.js" time="0.001">
+<failure message="authentication-logout.spec.js:27:3 should handle Google sign-in process" type="FAILURE">
+<![CDATA[  [chromium] › authentication-logout.spec.js:27:3 › Authentication and Logout › should handle Google sign-in process 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Authentication and Logout › should show user profile when authenticated" classname="authentication-logout.spec.js" time="0.001">
+<failure message="authentication-logout.spec.js:44:3 should show user profile when authenticated" type="FAILURE">
+<![CDATA[  [chromium] › authentication-logout.spec.js:44:3 › Authentication and Logout › should show user profile when authenticated 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Authentication and Logout › should logout successfully" classname="authentication-logout.spec.js" time="0.001">
+<failure message="authentication-logout.spec.js:64:3 should logout successfully" type="FAILURE">
+<![CDATA[  [chromium] › authentication-logout.spec.js:64:3 › Authentication and Logout › should logout successfully 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Authentication and Logout › should handle logout errors gracefully" classname="authentication-logout.spec.js" time="0.002">
+<failure message="authentication-logout.spec.js:101:3 should handle logout errors gracefully" type="FAILURE">
+<![CDATA[  [chromium] › authentication-logout.spec.js:101:3 › Authentication and Logout › should handle logout errors gracefully 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Authentication and Logout › should maintain authentication state across page reloads" classname="authentication-logout.spec.js" time="0.001">
+<failure message="authentication-logout.spec.js:130:3 should maintain authentication state across page reloads" type="FAILURE">
+<![CDATA[  [chromium] › authentication-logout.spec.js:130:3 › Authentication and Logout › should maintain authentication state across page reloads 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Authentication and Logout › should show proper loading states during authentication" classname="authentication-logout.spec.js" time="0.001">
+<failure message="authentication-logout.spec.js:159:3 should show proper loading states during authentication" type="FAILURE">
+<![CDATA[  [chromium] › authentication-logout.spec.js:159:3 › Authentication and Logout › should show proper loading states during authentication 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="custom-domain-google-login.spec.js" timestamp="2025-08-19T17:01:45.336Z" hostname="chromium" tests="1" failures="1" skipped="0" time="0.001" errors="0">
+<testcase name="Custom Domain Google Sign-in Test › should test Google sign-in on custom domain" classname="custom-domain-google-login.spec.js" time="0.001">
+<failure message="custom-domain-google-login.spec.js:7:3 should test Google sign-in on custom domain" type="FAILURE">
+<![CDATA[  [chromium] › custom-domain-google-login.spec.js:7:3 › Custom Domain Google Sign-in Test › should test Google sign-in on custom domain 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="dropdown-logout.spec.js" timestamp="2025-08-19T17:01:45.336Z" hostname="chromium" tests="10" failures="10" skipped="0" time="0.01" errors="0">
+<testcase name="Navigation Dropdown and Logout › should open profile dropdown on mobile" classname="dropdown-logout.spec.js" time="0.001">
 <failure message="dropdown-logout.spec.js:12:3 should open profile dropdown on mobile" type="FAILURE">
 <![CDATA[  [chromium] › dropdown-logout.spec.js:12:3 › Navigation Dropdown and Logout › should open profile dropdown on mobile 
 
-    Error: Timed out 10000ms waiting for expect(locator).toBeVisible()
-
-    Locator: locator('.profile-container button').first()
-    Expected: visible
-    Received: <element(s) not found>
-    Call log:
-      - Expect "toBeVisible" with timeout 10000ms
-      - waiting for locator('.profile-container button').first()
-
-
-      16 |     // Wait for the profile button to be visible
-      17 |     const profileButton = page.locator('.profile-container button').first();
-    > 18 |     await expect(profileButton).toBeVisible();
-         |                                 ^
-      19 |     
-      20 |     // Click the profile button to open dropdown
-      21 |     await profileButton.click();
-        at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/dropdown-logout.spec.js:18:33
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../../test-results/playwright-output/dropdown-logout-Navigation-d73c2--profile-dropdown-on-mobile-chromium/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../../test-results/playwright-output/dropdown-logout-Navigation-d73c2--profile-dropdown-on-mobile-chromium/error-context.md
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
 ]]>
 </failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|playwright-output/dropdown-logout-Navigation-d73c2--profile-dropdown-on-mobile-chromium/test-failed-1.png]]
-
-[[ATTACHMENT|playwright-output/dropdown-logout-Navigation-d73c2--profile-dropdown-on-mobile-chromium/error-context.md]]
-]]>
-</system-out>
 </testcase>
-<testcase name="Navigation Dropdown and Logout › should open profile dropdown on desktop" classname="dropdown-logout.spec.js" time="11.904">
+<testcase name="Navigation Dropdown and Logout › should open profile dropdown on desktop" classname="dropdown-logout.spec.js" time="0.001">
 <failure message="dropdown-logout.spec.js:33:3 should open profile dropdown on desktop" type="FAILURE">
 <![CDATA[  [chromium] › dropdown-logout.spec.js:33:3 › Navigation Dropdown and Logout › should open profile dropdown on desktop 
 
-    Error: Timed out 10000ms waiting for expect(locator).toBeVisible()
-
-    Locator: locator('.profile-container button').first()
-    Expected: visible
-    Received: <element(s) not found>
-    Call log:
-      - Expect "toBeVisible" with timeout 10000ms
-      - waiting for locator('.profile-container button').first()
-
-
-      37 |     // Wait for the profile button to be visible
-      38 |     const profileButton = page.locator('.profile-container button').first();
-    > 39 |     await expect(profileButton).toBeVisible();
-         |                                 ^
-      40 |     
-      41 |     // Click the profile button to open dropdown
-      42 |     await profileButton.click();
-        at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/dropdown-logout.spec.js:39:33
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../../test-results/playwright-output/dropdown-logout-Navigation-80f4e-profile-dropdown-on-desktop-chromium/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../../test-results/playwright-output/dropdown-logout-Navigation-80f4e-profile-dropdown-on-desktop-chromium/error-context.md
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
 ]]>
 </failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|playwright-output/dropdown-logout-Navigation-80f4e-profile-dropdown-on-desktop-chromium/test-failed-1.png]]
-
-[[ATTACHMENT|playwright-output/dropdown-logout-Navigation-80f4e-profile-dropdown-on-desktop-chromium/error-context.md]]
-]]>
-</system-out>
 </testcase>
-<testcase name="Navigation Dropdown and Logout › should close dropdown when clicking outside" classname="dropdown-logout.spec.js" time="60.198">
+<testcase name="Navigation Dropdown and Logout › should close dropdown when clicking outside" classname="dropdown-logout.spec.js" time="0.001">
 <failure message="dropdown-logout.spec.js:54:3 should close dropdown when clicking outside" type="FAILURE">
 <![CDATA[  [chromium] › dropdown-logout.spec.js:54:3 › Navigation Dropdown and Logout › should close dropdown when clicking outside 
 
-    Test timeout of 60000ms exceeded.
-
-    Error: locator.click: Test timeout of 60000ms exceeded.
-    Call log:
-      - waiting for locator('.profile-container button').first()
-
-
-      58 |     // Open dropdown
-      59 |     const profileButton = page.locator('.profile-container button').first();
-    > 60 |     await profileButton.click();
-         |                         ^
-      61 |     
-      62 |     // Verify dropdown is open
-      63 |     const dropdown = page.locator('.profile-container .absolute');
-        at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/dropdown-logout.spec.js:60:25
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../../test-results/playwright-output/dropdown-logout-Navigation-0b62c-pdown-when-clicking-outside-chromium/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../../test-results/playwright-output/dropdown-logout-Navigation-0b62c-pdown-when-clicking-outside-chromium/error-context.md
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
 ]]>
 </failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|playwright-output/dropdown-logout-Navigation-0b62c-pdown-when-clicking-outside-chromium/test-failed-1.png]]
-
-[[ATTACHMENT|playwright-output/dropdown-logout-Navigation-0b62c-pdown-when-clicking-outside-chromium/error-context.md]]
-]]>
-</system-out>
 </testcase>
-<testcase name="Navigation Dropdown and Logout › should navigate to profile section from dropdown" classname="dropdown-logout.spec.js" time="60.224">
+<testcase name="Navigation Dropdown and Logout › should navigate to profile section from dropdown" classname="dropdown-logout.spec.js" time="0.001">
 <failure message="dropdown-logout.spec.js:73:3 should navigate to profile section from dropdown" type="FAILURE">
 <![CDATA[  [chromium] › dropdown-logout.spec.js:73:3 › Navigation Dropdown and Logout › should navigate to profile section from dropdown 
 
-    Test timeout of 60000ms exceeded.
-
-    Error: locator.click: Test timeout of 60000ms exceeded.
-    Call log:
-      - waiting for locator('.profile-container button').first()
-
-
-      77 |     // Open dropdown
-      78 |     const profileButton = page.locator('.profile-container button').first();
-    > 79 |     await profileButton.click();
-         |                         ^
-      80 |     
-      81 |     // Click "View Profile" button
-      82 |     await page.locator('text=View Profile').click();
-        at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/dropdown-logout.spec.js:79:25
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../../test-results/playwright-output/dropdown-logout-Navigation-7010c-ofile-section-from-dropdown-chromium/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../../test-results/playwright-output/dropdown-logout-Navigation-7010c-ofile-section-from-dropdown-chromium/error-context.md
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
 ]]>
 </failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|playwright-output/dropdown-logout-Navigation-7010c-ofile-section-from-dropdown-chromium/test-failed-1.png]]
-
-[[ATTACHMENT|playwright-output/dropdown-logout-Navigation-7010c-ofile-section-from-dropdown-chromium/error-context.md]]
-]]>
-</system-out>
 </testcase>
-<testcase name="Navigation Dropdown and Logout › should navigate to todos section from dropdown" classname="dropdown-logout.spec.js" time="60.213">
+<testcase name="Navigation Dropdown and Logout › should navigate to todos section from dropdown" classname="dropdown-logout.spec.js" time="0.001">
 <failure message="dropdown-logout.spec.js:93:3 should navigate to todos section from dropdown" type="FAILURE">
 <![CDATA[  [chromium] › dropdown-logout.spec.js:93:3 › Navigation Dropdown and Logout › should navigate to todos section from dropdown 
 
-    Test timeout of 60000ms exceeded.
-
-    Error: locator.click: Test timeout of 60000ms exceeded.
-    Call log:
-      - waiting for locator('.profile-container button').first()
-
-
-       97 |     // Open dropdown
-       98 |     const profileButton = page.locator('.profile-container button').first();
-    >  99 |     await profileButton.click();
-          |                         ^
-      100 |     
-      101 |     // Click "My Todos" button
-      102 |     await page.locator('text=My Todos').click();
-        at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/dropdown-logout.spec.js:99:25
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../../test-results/playwright-output/dropdown-logout-Navigation-7c403-todos-section-from-dropdown-chromium/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../../test-results/playwright-output/dropdown-logout-Navigation-7c403-todos-section-from-dropdown-chromium/error-context.md
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
 ]]>
 </failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|playwright-output/dropdown-logout-Navigation-7c403-todos-section-from-dropdown-chromium/test-failed-1.png]]
-
-[[ATTACHMENT|playwright-output/dropdown-logout-Navigation-7c403-todos-section-from-dropdown-chromium/error-context.md]]
-]]>
-</system-out>
 </testcase>
-<testcase name="Navigation Dropdown and Logout › should show user information in dropdown" classname="dropdown-logout.spec.js" time="60.251">
+<testcase name="Navigation Dropdown and Logout › should show user information in dropdown" classname="dropdown-logout.spec.js" time="0.001">
 <failure message="dropdown-logout.spec.js:112:3 should show user information in dropdown" type="FAILURE">
 <![CDATA[  [chromium] › dropdown-logout.spec.js:112:3 › Navigation Dropdown and Logout › should show user information in dropdown 
 
-    Test timeout of 60000ms exceeded.
-
-    Error: locator.click: Test timeout of 60000ms exceeded.
-    Call log:
-      - waiting for locator('.profile-container button').first()
-
-
-      116 |     // Open dropdown
-      117 |     const profileButton = page.locator('.profile-container button').first();
-    > 118 |     await profileButton.click();
-          |                         ^
-      119 |     
-      120 |     // Check if user email is displayed (assuming user is logged in)
-      121 |     const userEmail = page.locator('.profile-container .text-xs.text-gray-500');
-        at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/dropdown-logout.spec.js:118:25
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../../test-results/playwright-output/dropdown-logout-Navigation-224a8-ser-information-in-dropdown-chromium/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../../test-results/playwright-output/dropdown-logout-Navigation-224a8-ser-information-in-dropdown-chromium/error-context.md
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
 ]]>
 </failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|playwright-output/dropdown-logout-Navigation-224a8-ser-information-in-dropdown-chromium/test-failed-1.png]]
-
-[[ATTACHMENT|playwright-output/dropdown-logout-Navigation-224a8-ser-information-in-dropdown-chromium/error-context.md]]
-]]>
-</system-out>
 </testcase>
-<testcase name="Navigation Dropdown and Logout › should handle logout process" classname="dropdown-logout.spec.js" time="60.237">
+<testcase name="Navigation Dropdown and Logout › should handle logout process" classname="dropdown-logout.spec.js" time="0.001">
 <failure message="dropdown-logout.spec.js:129:3 should handle logout process" type="FAILURE">
 <![CDATA[  [chromium] › dropdown-logout.spec.js:129:3 › Navigation Dropdown and Logout › should handle logout process 
 
-    Test timeout of 60000ms exceeded.
-
-    Error: locator.click: Test timeout of 60000ms exceeded.
-    Call log:
-      - waiting for locator('.profile-container button').first()
-
-
-      133 |     // Open dropdown
-      134 |     const profileButton = page.locator('.profile-container button').first();
-    > 135 |     await profileButton.click();
-          |                         ^
-      136 |     
-      137 |     // Click "Sign Out" button
-      138 |     await page.locator('text=Sign Out').click();
-        at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/dropdown-logout.spec.js:135:25
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../../test-results/playwright-output/dropdown-logout-Navigation-0dceb-hould-handle-logout-process-chromium/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../../test-results/playwright-output/dropdown-logout-Navigation-0dceb-hould-handle-logout-process-chromium/error-context.md
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
 ]]>
 </failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|playwright-output/dropdown-logout-Navigation-0dceb-hould-handle-logout-process-chromium/test-failed-1.png]]
-
-[[ATTACHMENT|playwright-output/dropdown-logout-Navigation-0dceb-hould-handle-logout-process-chromium/error-context.md]]
-]]>
-</system-out>
 </testcase>
-<testcase name="Navigation Dropdown and Logout › should show profile picture or initials" classname="dropdown-logout.spec.js" time="11.277">
+<testcase name="Navigation Dropdown and Logout › should show profile picture or initials" classname="dropdown-logout.spec.js" time="0.001">
 <failure message="dropdown-logout.spec.js:152:3 should show profile picture or initials" type="FAILURE">
 <![CDATA[  [chromium] › dropdown-logout.spec.js:152:3 › Navigation Dropdown and Logout › should show profile picture or initials 
 
-    Error: Timed out 10000ms waiting for expect(locator).toBeVisible()
-
-    Locator: locator('.profile-picture')
-    Expected: visible
-    Received: <element(s) not found>
-    Call log:
-      - Expect "toBeVisible" with timeout 10000ms
-      - waiting for locator('.profile-picture')
-
-
-      156 |     // Check if profile picture or initials are visible
-      157 |     const profilePicture = page.locator('.profile-picture');
-    > 158 |     await expect(profilePicture).toBeVisible();
-          |                                  ^
-      159 |   });
-      160 |
-      161 |   test('should handle dropdown on different screen sizes', async ({ page }) => {
-        at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/dropdown-logout.spec.js:158:34
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../../test-results/playwright-output/dropdown-logout-Navigation-02bab-profile-picture-or-initials-chromium/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../../test-results/playwright-output/dropdown-logout-Navigation-02bab-profile-picture-or-initials-chromium/error-context.md
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
 ]]>
 </failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|playwright-output/dropdown-logout-Navigation-02bab-profile-picture-or-initials-chromium/test-failed-1.png]]
-
-[[ATTACHMENT|playwright-output/dropdown-logout-Navigation-02bab-profile-picture-or-initials-chromium/error-context.md]]
-]]>
-</system-out>
 </testcase>
-<testcase name="Navigation Dropdown and Logout › should handle dropdown on different screen sizes" classname="dropdown-logout.spec.js" time="60.118">
+<testcase name="Navigation Dropdown and Logout › should handle dropdown on different screen sizes" classname="dropdown-logout.spec.js" time="0.001">
 <failure message="dropdown-logout.spec.js:161:3 should handle dropdown on different screen sizes" type="FAILURE">
 <![CDATA[  [chromium] › dropdown-logout.spec.js:161:3 › Navigation Dropdown and Logout › should handle dropdown on different screen sizes 
 
-    Test timeout of 60000ms exceeded.
-
-    Error: locator.click: Test timeout of 60000ms exceeded.
-    Call log:
-      - waiting for locator('.profile-container button').first()
-
-
-      163 |     await page.setViewportSize({ width: 375, height: 667 });
-      164 |     let profileButton = page.locator('.profile-container button').first();
-    > 165 |     await profileButton.click();
-          |                         ^
-      166 |     
-      167 |     let dropdown = page.locator('.mobile-profile-menu');
-      168 |     await expect(dropdown).toBeVisible();
-        at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/dropdown-logout.spec.js:165:25
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../../test-results/playwright-output/dropdown-logout-Navigation-2ec15-n-on-different-screen-sizes-chromium/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../../test-results/playwright-output/dropdown-logout-Navigation-2ec15-n-on-different-screen-sizes-chromium/error-context.md
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
 ]]>
 </failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|playwright-output/dropdown-logout-Navigation-2ec15-n-on-different-screen-sizes-chromium/test-failed-1.png]]
-
-[[ATTACHMENT|playwright-output/dropdown-logout-Navigation-2ec15-n-on-different-screen-sizes-chromium/error-context.md]]
-]]>
-</system-out>
 </testcase>
-<testcase name="Navigation Dropdown and Logout › should maintain dropdown state during navigation" classname="dropdown-logout.spec.js" time="60.229">
+<testcase name="Navigation Dropdown and Logout › should maintain dropdown state during navigation" classname="dropdown-logout.spec.js" time="0.001">
 <failure message="dropdown-logout.spec.js:189:3 should maintain dropdown state during navigation" type="FAILURE">
 <![CDATA[  [chromium] › dropdown-logout.spec.js:189:3 › Navigation Dropdown and Logout › should maintain dropdown state during navigation 
 
-    Test timeout of 60000ms exceeded.
-
-    Error: locator.click: Test timeout of 60000ms exceeded.
-    Call log:
-      - waiting for locator('.profile-container button').first()
-
-
-      193 |     // Open dropdown
-      194 |     const profileButton = page.locator('.profile-container button').first();
-    > 195 |     await profileButton.click();
-          |                         ^
-      196 |     
-      197 |     // Verify dropdown is open
-      198 |     const dropdown = page.locator('.profile-container .absolute');
-        at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/dropdown-logout.spec.js:195:25
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../../test-results/playwright-output/dropdown-logout-Navigation-e0982-own-state-during-navigation-chromium/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../../test-results/playwright-output/dropdown-logout-Navigation-e0982-own-state-during-navigation-chromium/error-context.md
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
 ]]>
 </failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|playwright-output/dropdown-logout-Navigation-e0982-own-state-during-navigation-chromium/test-failed-1.png]]
-
-[[ATTACHMENT|playwright-output/dropdown-logout-Navigation-e0982-own-state-during-navigation-chromium/error-context.md]]
-]]>
-</system-out>
 </testcase>
 </testsuite>
-<testsuite name="dropdown-logout.spec.js" timestamp="2025-08-19T16:42:19.700Z" hostname="firefox" tests="10" failures="3" skipped="7" time="232.615" errors="0">
-<testcase name="Navigation Dropdown and Logout › should open profile dropdown on mobile" classname="dropdown-logout.spec.js" time="12.525">
+<testsuite name="google-login-test.spec.js" timestamp="2025-08-19T17:01:45.336Z" hostname="chromium" tests="2" failures="2" skipped="0" time="0.004" errors="0">
+<testcase name="Google Sign-in Test › should attempt Google sign-in and handle the flow" classname="google-login-test.spec.js" time="0.003">
+<failure message="google-login-test.spec.js:4:3 should attempt Google sign-in and handle the flow" type="FAILURE">
+<![CDATA[  [chromium] › google-login-test.spec.js:4:3 › Google Sign-in Test › should attempt Google sign-in and handle the flow 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Google Sign-in Test › should handle Google sign-in in incognito mode" classname="google-login-test.spec.js" time="0.001">
+<failure message="google-login-test.spec.js:132:3 should handle Google sign-in in incognito mode" type="FAILURE">
+<![CDATA[  [chromium] › google-login-test.spec.js:132:3 › Google Sign-in Test › should handle Google sign-in in incognito mode 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="login-fix-verification.spec.js" timestamp="2025-08-19T17:01:45.336Z" hostname="chromium" tests="3" failures="3" skipped="0" time="0.003" errors="0">
+<testcase name="Login Page Fix Verification › should load login page without JavaScript module errors" classname="login-fix-verification.spec.js" time="0.001">
+<failure message="login-fix-verification.spec.js:5:3 should load login page without JavaScript module errors" type="FAILURE">
+<![CDATA[  [chromium] › login-fix-verification.spec.js:5:3 › Login Page Fix Verification › should load login page without JavaScript module errors 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Login Page Fix Verification › should not have browser extension conflicts" classname="login-fix-verification.spec.js" time="0.001">
+<failure message="login-fix-verification.spec.js:56:3 should not have browser extension conflicts" type="FAILURE">
+<![CDATA[  [chromium] › login-fix-verification.spec.js:56:3 › Login Page Fix Verification › should not have browser extension conflicts 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Login Page Fix Verification › should load production site without module errors" classname="login-fix-verification.spec.js" time="0.001">
+<failure message="login-fix-verification.spec.js:82:3 should load production site without module errors" type="FAILURE">
+<![CDATA[  [chromium] › login-fix-verification.spec.js:82:3 › Login Page Fix Verification › should load production site without module errors 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="production-google-login.spec.js" timestamp="2025-08-19T17:01:45.336Z" hostname="chromium" tests="1" failures="1" skipped="0" time="0.001" errors="0">
+<testcase name="Production Google Sign-in Test › should test Google sign-in on production site" classname="production-google-login.spec.js" time="0.001">
+<failure message="production-google-login.spec.js:7:3 should test Google sign-in on production site" type="FAILURE">
+<![CDATA[  [chromium] › production-google-login.spec.js:7:3 › Production Google Sign-in Test › should test Google sign-in on production site 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="simple-page-load.spec.js" timestamp="2025-08-19T17:01:45.336Z" hostname="chromium" tests="1" failures="1" skipped="0" time="0.001" errors="0">
+<testcase name="Simple Page Load Test › should load the production page and check for errors" classname="simple-page-load.spec.js" time="0.001">
+<failure message="simple-page-load.spec.js:4:3 should load the production page and check for errors" type="FAILURE">
+<![CDATA[  [chromium] › simple-page-load.spec.js:4:3 › Simple Page Load Test › should load the production page and check for errors 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="styling.spec.js" timestamp="2025-08-19T17:01:45.336Z" hostname="chromium" tests="7" failures="7" skipped="0" time="0.007" errors="0">
+<testcase name="Todo App Styling › should load the main page with proper styling" classname="styling.spec.js" time="0.001">
+<failure message="styling.spec.js:4:3 should load the main page with proper styling" type="FAILURE">
+<![CDATA[  [chromium] › styling.spec.js:4:3 › Todo App Styling › should load the main page with proper styling 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Todo App Styling › should have TailwindCSS classes applied" classname="styling.spec.js" time="0.001">
+<failure message="styling.spec.js:25:3 should have TailwindCSS classes applied" type="FAILURE">
+<![CDATA[  [chromium] › styling.spec.js:25:3 › Todo App Styling › should have TailwindCSS classes applied ───
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Todo App Styling › should have proper color scheme and layout" classname="styling.spec.js" time="0.001">
+<failure message="styling.spec.js:52:3 should have proper color scheme and layout" type="FAILURE">
+<![CDATA[  [chromium] › styling.spec.js:52:3 › Todo App Styling › should have proper color scheme and layout 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Todo App Styling › should have responsive design elements" classname="styling.spec.js" time="0.001">
+<failure message="styling.spec.js:78:3 should have responsive design elements" type="FAILURE">
+<![CDATA[  [chromium] › styling.spec.js:78:3 › Todo App Styling › should have responsive design elements ────
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Todo App Styling › should have interactive elements with hover states" classname="styling.spec.js" time="0.001">
+<failure message="styling.spec.js:91:3 should have interactive elements with hover states" type="FAILURE">
+<![CDATA[  [chromium] › styling.spec.js:91:3 › Todo App Styling › should have interactive elements with hover states 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Todo App Styling › should display todos with proper styling when added" classname="styling.spec.js" time="0.001">
+<failure message="styling.spec.js:103:3 should display todos with proper styling when added" type="FAILURE">
+<![CDATA[  [chromium] › styling.spec.js:103:3 › Todo App Styling › should display todos with proper styling when added 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Todo App Styling › should have proper form validation styling" classname="styling.spec.js" time="0.001">
+<failure message="styling.spec.js:127:3 should have proper form validation styling" type="FAILURE">
+<![CDATA[  [chromium] › styling.spec.js:127:3 › Todo App Styling › should have proper form validation styling 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/chromium_headless_shell-1181/chrome-linux/headless_shell
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="authentication-logout.spec.js" timestamp="2025-08-19T17:01:45.336Z" hostname="firefox" tests="7" failures="7" skipped="0" time="0.008" errors="0">
+<testcase name="Authentication and Logout › should show login page when not authenticated" classname="authentication-logout.spec.js" time="0.001">
+<failure message="authentication-logout.spec.js:12:3 should show login page when not authenticated" type="FAILURE">
+<![CDATA[  [firefox] › authentication-logout.spec.js:12:3 › Authentication and Logout › should show login page when not authenticated 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Authentication and Logout › should handle Google sign-in process" classname="authentication-logout.spec.js" time="0.001">
+<failure message="authentication-logout.spec.js:27:3 should handle Google sign-in process" type="FAILURE">
+<![CDATA[  [firefox] › authentication-logout.spec.js:27:3 › Authentication and Logout › should handle Google sign-in process 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Authentication and Logout › should show user profile when authenticated" classname="authentication-logout.spec.js" time="0.001">
+<failure message="authentication-logout.spec.js:44:3 should show user profile when authenticated" type="FAILURE">
+<![CDATA[  [firefox] › authentication-logout.spec.js:44:3 › Authentication and Logout › should show user profile when authenticated 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Authentication and Logout › should logout successfully" classname="authentication-logout.spec.js" time="0.001">
+<failure message="authentication-logout.spec.js:64:3 should logout successfully" type="FAILURE">
+<![CDATA[  [firefox] › authentication-logout.spec.js:64:3 › Authentication and Logout › should logout successfully 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Authentication and Logout › should handle logout errors gracefully" classname="authentication-logout.spec.js" time="0.001">
+<failure message="authentication-logout.spec.js:101:3 should handle logout errors gracefully" type="FAILURE">
+<![CDATA[  [firefox] › authentication-logout.spec.js:101:3 › Authentication and Logout › should handle logout errors gracefully 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Authentication and Logout › should maintain authentication state across page reloads" classname="authentication-logout.spec.js" time="0.001">
+<failure message="authentication-logout.spec.js:130:3 should maintain authentication state across page reloads" type="FAILURE">
+<![CDATA[  [firefox] › authentication-logout.spec.js:130:3 › Authentication and Logout › should maintain authentication state across page reloads 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Authentication and Logout › should show proper loading states during authentication" classname="authentication-logout.spec.js" time="0.002">
+<failure message="authentication-logout.spec.js:159:3 should show proper loading states during authentication" type="FAILURE">
+<![CDATA[  [firefox] › authentication-logout.spec.js:159:3 › Authentication and Logout › should show proper loading states during authentication 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="custom-domain-google-login.spec.js" timestamp="2025-08-19T17:01:45.336Z" hostname="firefox" tests="1" failures="1" skipped="0" time="0.001" errors="0">
+<testcase name="Custom Domain Google Sign-in Test › should test Google sign-in on custom domain" classname="custom-domain-google-login.spec.js" time="0.001">
+<failure message="custom-domain-google-login.spec.js:7:3 should test Google sign-in on custom domain" type="FAILURE">
+<![CDATA[  [firefox] › custom-domain-google-login.spec.js:7:3 › Custom Domain Google Sign-in Test › should test Google sign-in on custom domain 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="dropdown-logout.spec.js" timestamp="2025-08-19T17:01:45.336Z" hostname="firefox" tests="10" failures="10" skipped="0" time="0.01" errors="0">
+<testcase name="Navigation Dropdown and Logout › should open profile dropdown on mobile" classname="dropdown-logout.spec.js" time="0.001">
 <failure message="dropdown-logout.spec.js:12:3 should open profile dropdown on mobile" type="FAILURE">
 <![CDATA[  [firefox] › dropdown-logout.spec.js:12:3 › Navigation Dropdown and Logout › should open profile dropdown on mobile 
 
-    Error: Timed out 10000ms waiting for expect(locator).toBeVisible()
-
-    Locator: locator('.profile-container button').first()
-    Expected: visible
-    Received: <element(s) not found>
-    Call log:
-      - Expect "toBeVisible" with timeout 10000ms
-      - waiting for locator('.profile-container button').first()
-
-
-      16 |     // Wait for the profile button to be visible
-      17 |     const profileButton = page.locator('.profile-container button').first();
-    > 18 |     await expect(profileButton).toBeVisible();
-         |                                 ^
-      19 |     
-      20 |     // Click the profile button to open dropdown
-      21 |     await profileButton.click();
-        at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/dropdown-logout.spec.js:18:33
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../../test-results/playwright-output/dropdown-logout-Navigation-d73c2--profile-dropdown-on-mobile-firefox/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../../test-results/playwright-output/dropdown-logout-Navigation-d73c2--profile-dropdown-on-mobile-firefox/error-context.md
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
 ]]>
 </failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|playwright-output/dropdown-logout-Navigation-d73c2--profile-dropdown-on-mobile-firefox/test-failed-1.png]]
-
-[[ATTACHMENT|playwright-output/dropdown-logout-Navigation-d73c2--profile-dropdown-on-mobile-firefox/error-context.md]]
-]]>
-</system-out>
 </testcase>
-<testcase name="Navigation Dropdown and Logout › should open profile dropdown on desktop" classname="dropdown-logout.spec.js" time="12.714">
+<testcase name="Navigation Dropdown and Logout › should open profile dropdown on desktop" classname="dropdown-logout.spec.js" time="0.001">
 <failure message="dropdown-logout.spec.js:33:3 should open profile dropdown on desktop" type="FAILURE">
 <![CDATA[  [firefox] › dropdown-logout.spec.js:33:3 › Navigation Dropdown and Logout › should open profile dropdown on desktop 
 
-    Error: Timed out 10000ms waiting for expect(locator).toBeVisible()
-
-    Locator: locator('.profile-container button').first()
-    Expected: visible
-    Received: <element(s) not found>
-    Call log:
-      - Expect "toBeVisible" with timeout 10000ms
-      - waiting for locator('.profile-container button').first()
-
-
-      37 |     // Wait for the profile button to be visible
-      38 |     const profileButton = page.locator('.profile-container button').first();
-    > 39 |     await expect(profileButton).toBeVisible();
-         |                                 ^
-      40 |     
-      41 |     // Click the profile button to open dropdown
-      42 |     await profileButton.click();
-        at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/dropdown-logout.spec.js:39:33
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../../test-results/playwright-output/dropdown-logout-Navigation-80f4e-profile-dropdown-on-desktop-firefox/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../../test-results/playwright-output/dropdown-logout-Navigation-80f4e-profile-dropdown-on-desktop-firefox/error-context.md
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
 ]]>
 </failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|playwright-output/dropdown-logout-Navigation-80f4e-profile-dropdown-on-desktop-firefox/test-failed-1.png]]
-
-[[ATTACHMENT|playwright-output/dropdown-logout-Navigation-80f4e-profile-dropdown-on-desktop-firefox/error-context.md]]
-]]>
-</system-out>
 </testcase>
-<testcase name="Navigation Dropdown and Logout › should close dropdown when clicking outside" classname="dropdown-logout.spec.js" time="60.142">
+<testcase name="Navigation Dropdown and Logout › should close dropdown when clicking outside" classname="dropdown-logout.spec.js" time="0.001">
 <failure message="dropdown-logout.spec.js:54:3 should close dropdown when clicking outside" type="FAILURE">
 <![CDATA[  [firefox] › dropdown-logout.spec.js:54:3 › Navigation Dropdown and Logout › should close dropdown when clicking outside 
 
-    Test timeout of 60000ms exceeded.
-
-    Error: locator.click: Test timeout of 60000ms exceeded.
-    Call log:
-      - waiting for locator('.profile-container button').first()
-
-
-      58 |     // Open dropdown
-      59 |     const profileButton = page.locator('.profile-container button').first();
-    > 60 |     await profileButton.click();
-         |                         ^
-      61 |     
-      62 |     // Verify dropdown is open
-      63 |     const dropdown = page.locator('.profile-container .absolute');
-        at /Users/ccox/Dropbox/@Chance/Aptana Studio 3 Workspace/personal/firebase-todo-app/tests/e2e/dropdown-logout.spec.js:60:25
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../../test-results/playwright-output/dropdown-logout-Navigation-0b62c-pdown-when-clicking-outside-firefox/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../../test-results/playwright-output/dropdown-logout-Navigation-0b62c-pdown-when-clicking-outside-firefox/error-context.md
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
 ]]>
 </failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|playwright-output/dropdown-logout-Navigation-0b62c-pdown-when-clicking-outside-firefox/test-failed-1.png]]
+</testcase>
+<testcase name="Navigation Dropdown and Logout › should navigate to profile section from dropdown" classname="dropdown-logout.spec.js" time="0.001">
+<failure message="dropdown-logout.spec.js:73:3 should navigate to profile section from dropdown" type="FAILURE">
+<![CDATA[  [firefox] › dropdown-logout.spec.js:73:3 › Navigation Dropdown and Logout › should navigate to profile section from dropdown 
 
-[[ATTACHMENT|playwright-output/dropdown-logout-Navigation-0b62c-pdown-when-clicking-outside-firefox/error-context.md]]
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
 ]]>
-</system-out>
+</failure>
 </testcase>
-<testcase name="Navigation Dropdown and Logout › should navigate to profile section from dropdown" classname="dropdown-logout.spec.js" time="51.089">
-<skipped>
-</skipped>
+<testcase name="Navigation Dropdown and Logout › should navigate to todos section from dropdown" classname="dropdown-logout.spec.js" time="0.001">
+<failure message="dropdown-logout.spec.js:93:3 should navigate to todos section from dropdown" type="FAILURE">
+<![CDATA[  [firefox] › dropdown-logout.spec.js:93:3 › Navigation Dropdown and Logout › should navigate to todos section from dropdown 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
 </testcase>
-<testcase name="Navigation Dropdown and Logout › should navigate to todos section from dropdown" classname="dropdown-logout.spec.js" time="50.186">
-<skipped>
-</skipped>
+<testcase name="Navigation Dropdown and Logout › should show user information in dropdown" classname="dropdown-logout.spec.js" time="0.001">
+<failure message="dropdown-logout.spec.js:112:3 should show user information in dropdown" type="FAILURE">
+<![CDATA[  [firefox] › dropdown-logout.spec.js:112:3 › Navigation Dropdown and Logout › should show user information in dropdown 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
 </testcase>
-<testcase name="Navigation Dropdown and Logout › should show user information in dropdown" classname="dropdown-logout.spec.js" time="21.176">
-<skipped>
-</skipped>
+<testcase name="Navigation Dropdown and Logout › should handle logout process" classname="dropdown-logout.spec.js" time="0.001">
+<failure message="dropdown-logout.spec.js:129:3 should handle logout process" type="FAILURE">
+<![CDATA[  [firefox] › dropdown-logout.spec.js:129:3 › Navigation Dropdown and Logout › should handle logout process 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
 </testcase>
-<testcase name="Navigation Dropdown and Logout › should handle logout process" classname="dropdown-logout.spec.js" time="20.485">
-<skipped>
-</skipped>
+<testcase name="Navigation Dropdown and Logout › should show profile picture or initials" classname="dropdown-logout.spec.js" time="0.001">
+<failure message="dropdown-logout.spec.js:152:3 should show profile picture or initials" type="FAILURE">
+<![CDATA[  [firefox] › dropdown-logout.spec.js:152:3 › Navigation Dropdown and Logout › should show profile picture or initials 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
 </testcase>
-<testcase name="Navigation Dropdown and Logout › should show profile picture or initials" classname="dropdown-logout.spec.js" time="4.298">
-<skipped>
-</skipped>
+<testcase name="Navigation Dropdown and Logout › should handle dropdown on different screen sizes" classname="dropdown-logout.spec.js" time="0.001">
+<failure message="dropdown-logout.spec.js:161:3 should handle dropdown on different screen sizes" type="FAILURE">
+<![CDATA[  [firefox] › dropdown-logout.spec.js:161:3 › Navigation Dropdown and Logout › should handle dropdown on different screen sizes 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
 </testcase>
-<testcase name="Navigation Dropdown and Logout › should handle dropdown on different screen sizes" classname="dropdown-logout.spec.js" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Navigation Dropdown and Logout › should maintain dropdown state during navigation" classname="dropdown-logout.spec.js" time="0">
-<skipped>
-</skipped>
+<testcase name="Navigation Dropdown and Logout › should maintain dropdown state during navigation" classname="dropdown-logout.spec.js" time="0.001">
+<failure message="dropdown-logout.spec.js:189:3 should maintain dropdown state during navigation" type="FAILURE">
+<![CDATA[  [firefox] › dropdown-logout.spec.js:189:3 › Navigation Dropdown and Logout › should maintain dropdown state during navigation 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
 </testcase>
 </testsuite>
-<testsuite name="dropdown-logout.spec.js" timestamp="2025-08-19T16:42:19.700Z" hostname="webkit" tests="10" failures="0" skipped="10" time="0" errors="0">
-<testcase name="Navigation Dropdown and Logout › should open profile dropdown on mobile" classname="dropdown-logout.spec.js" time="0">
-<skipped>
-</skipped>
+<testsuite name="google-login-test.spec.js" timestamp="2025-08-19T17:01:45.336Z" hostname="firefox" tests="2" failures="2" skipped="0" time="0.002" errors="0">
+<testcase name="Google Sign-in Test › should attempt Google sign-in and handle the flow" classname="google-login-test.spec.js" time="0.001">
+<failure message="google-login-test.spec.js:4:3 should attempt Google sign-in and handle the flow" type="FAILURE">
+<![CDATA[  [firefox] › google-login-test.spec.js:4:3 › Google Sign-in Test › should attempt Google sign-in and handle the flow 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
 </testcase>
-<testcase name="Navigation Dropdown and Logout › should open profile dropdown on desktop" classname="dropdown-logout.spec.js" time="0">
-<skipped>
-</skipped>
+<testcase name="Google Sign-in Test › should handle Google sign-in in incognito mode" classname="google-login-test.spec.js" time="0.001">
+<failure message="google-login-test.spec.js:132:3 should handle Google sign-in in incognito mode" type="FAILURE">
+<![CDATA[  [firefox] › google-login-test.spec.js:132:3 › Google Sign-in Test › should handle Google sign-in in incognito mode 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
 </testcase>
-<testcase name="Navigation Dropdown and Logout › should close dropdown when clicking outside" classname="dropdown-logout.spec.js" time="0">
-<skipped>
-</skipped>
+</testsuite>
+<testsuite name="login-fix-verification.spec.js" timestamp="2025-08-19T17:01:45.336Z" hostname="firefox" tests="3" failures="3" skipped="0" time="0.004" errors="0">
+<testcase name="Login Page Fix Verification › should load login page without JavaScript module errors" classname="login-fix-verification.spec.js" time="0.001">
+<failure message="login-fix-verification.spec.js:5:3 should load login page without JavaScript module errors" type="FAILURE">
+<![CDATA[  [firefox] › login-fix-verification.spec.js:5:3 › Login Page Fix Verification › should load login page without JavaScript module errors 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
 </testcase>
-<testcase name="Navigation Dropdown and Logout › should navigate to profile section from dropdown" classname="dropdown-logout.spec.js" time="0">
-<skipped>
-</skipped>
+<testcase name="Login Page Fix Verification › should not have browser extension conflicts" classname="login-fix-verification.spec.js" time="0.002">
+<failure message="login-fix-verification.spec.js:56:3 should not have browser extension conflicts" type="FAILURE">
+<![CDATA[  [firefox] › login-fix-verification.spec.js:56:3 › Login Page Fix Verification › should not have browser extension conflicts 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
 </testcase>
-<testcase name="Navigation Dropdown and Logout › should navigate to todos section from dropdown" classname="dropdown-logout.spec.js" time="0">
-<skipped>
-</skipped>
+<testcase name="Login Page Fix Verification › should load production site without module errors" classname="login-fix-verification.spec.js" time="0.001">
+<failure message="login-fix-verification.spec.js:82:3 should load production site without module errors" type="FAILURE">
+<![CDATA[  [firefox] › login-fix-verification.spec.js:82:3 › Login Page Fix Verification › should load production site without module errors 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
 </testcase>
-<testcase name="Navigation Dropdown and Logout › should show user information in dropdown" classname="dropdown-logout.spec.js" time="0">
-<skipped>
-</skipped>
+</testsuite>
+<testsuite name="production-google-login.spec.js" timestamp="2025-08-19T17:01:45.336Z" hostname="firefox" tests="1" failures="1" skipped="0" time="0.001" errors="0">
+<testcase name="Production Google Sign-in Test › should test Google sign-in on production site" classname="production-google-login.spec.js" time="0.001">
+<failure message="production-google-login.spec.js:7:3 should test Google sign-in on production site" type="FAILURE">
+<![CDATA[  [firefox] › production-google-login.spec.js:7:3 › Production Google Sign-in Test › should test Google sign-in on production site 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
 </testcase>
-<testcase name="Navigation Dropdown and Logout › should handle logout process" classname="dropdown-logout.spec.js" time="0">
-<skipped>
-</skipped>
+</testsuite>
+<testsuite name="simple-page-load.spec.js" timestamp="2025-08-19T17:01:45.336Z" hostname="firefox" tests="1" failures="1" skipped="0" time="0.002" errors="0">
+<testcase name="Simple Page Load Test › should load the production page and check for errors" classname="simple-page-load.spec.js" time="0.002">
+<failure message="simple-page-load.spec.js:4:3 should load the production page and check for errors" type="FAILURE">
+<![CDATA[  [firefox] › simple-page-load.spec.js:4:3 › Simple Page Load Test › should load the production page and check for errors 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
 </testcase>
-<testcase name="Navigation Dropdown and Logout › should show profile picture or initials" classname="dropdown-logout.spec.js" time="0">
-<skipped>
-</skipped>
+</testsuite>
+<testsuite name="styling.spec.js" timestamp="2025-08-19T17:01:45.336Z" hostname="firefox" tests="7" failures="7" skipped="0" time="0.007" errors="0">
+<testcase name="Todo App Styling › should load the main page with proper styling" classname="styling.spec.js" time="0.001">
+<failure message="styling.spec.js:4:3 should load the main page with proper styling" type="FAILURE">
+<![CDATA[  [firefox] › styling.spec.js:4:3 › Todo App Styling › should load the main page with proper styling 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
 </testcase>
-<testcase name="Navigation Dropdown and Logout › should handle dropdown on different screen sizes" classname="dropdown-logout.spec.js" time="0">
-<skipped>
-</skipped>
+<testcase name="Todo App Styling › should have TailwindCSS classes applied" classname="styling.spec.js" time="0.001">
+<failure message="styling.spec.js:25:3 should have TailwindCSS classes applied" type="FAILURE">
+<![CDATA[  [firefox] › styling.spec.js:25:3 › Todo App Styling › should have TailwindCSS classes applied ────
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
 </testcase>
-<testcase name="Navigation Dropdown and Logout › should maintain dropdown state during navigation" classname="dropdown-logout.spec.js" time="0">
-<skipped>
-</skipped>
+<testcase name="Todo App Styling › should have proper color scheme and layout" classname="styling.spec.js" time="0.001">
+<failure message="styling.spec.js:52:3 should have proper color scheme and layout" type="FAILURE">
+<![CDATA[  [firefox] › styling.spec.js:52:3 › Todo App Styling › should have proper color scheme and layout ─
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Todo App Styling › should have responsive design elements" classname="styling.spec.js" time="0.001">
+<failure message="styling.spec.js:78:3 should have responsive design elements" type="FAILURE">
+<![CDATA[  [firefox] › styling.spec.js:78:3 › Todo App Styling › should have responsive design elements ─────
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Todo App Styling › should have interactive elements with hover states" classname="styling.spec.js" time="0.001">
+<failure message="styling.spec.js:91:3 should have interactive elements with hover states" type="FAILURE">
+<![CDATA[  [firefox] › styling.spec.js:91:3 › Todo App Styling › should have interactive elements with hover states 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Todo App Styling › should display todos with proper styling when added" classname="styling.spec.js" time="0.001">
+<failure message="styling.spec.js:103:3 should display todos with proper styling when added" type="FAILURE">
+<![CDATA[  [firefox] › styling.spec.js:103:3 › Todo App Styling › should display todos with proper styling when added 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Todo App Styling › should have proper form validation styling" classname="styling.spec.js" time="0.001">
+<failure message="styling.spec.js:127:3 should have proper form validation styling" type="FAILURE">
+<![CDATA[  [firefox] › styling.spec.js:127:3 › Todo App Styling › should have proper form validation styling 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/firefox-1489/firefox/firefox
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="authentication-logout.spec.js" timestamp="2025-08-19T17:01:45.336Z" hostname="webkit" tests="7" failures="7" skipped="0" time="0.01" errors="0">
+<testcase name="Authentication and Logout › should show login page when not authenticated" classname="authentication-logout.spec.js" time="0.001">
+<failure message="authentication-logout.spec.js:12:3 should show login page when not authenticated" type="FAILURE">
+<![CDATA[  [webkit] › authentication-logout.spec.js:12:3 › Authentication and Logout › should show login page when not authenticated 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Authentication and Logout › should handle Google sign-in process" classname="authentication-logout.spec.js" time="0.002">
+<failure message="authentication-logout.spec.js:27:3 should handle Google sign-in process" type="FAILURE">
+<![CDATA[  [webkit] › authentication-logout.spec.js:27:3 › Authentication and Logout › should handle Google sign-in process 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Authentication and Logout › should show user profile when authenticated" classname="authentication-logout.spec.js" time="0.001">
+<failure message="authentication-logout.spec.js:44:3 should show user profile when authenticated" type="FAILURE">
+<![CDATA[  [webkit] › authentication-logout.spec.js:44:3 › Authentication and Logout › should show user profile when authenticated 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Authentication and Logout › should logout successfully" classname="authentication-logout.spec.js" time="0.001">
+<failure message="authentication-logout.spec.js:64:3 should logout successfully" type="FAILURE">
+<![CDATA[  [webkit] › authentication-logout.spec.js:64:3 › Authentication and Logout › should logout successfully 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Authentication and Logout › should handle logout errors gracefully" classname="authentication-logout.spec.js" time="0.002">
+<failure message="authentication-logout.spec.js:101:3 should handle logout errors gracefully" type="FAILURE">
+<![CDATA[  [webkit] › authentication-logout.spec.js:101:3 › Authentication and Logout › should handle logout errors gracefully 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Authentication and Logout › should maintain authentication state across page reloads" classname="authentication-logout.spec.js" time="0.002">
+<failure message="authentication-logout.spec.js:130:3 should maintain authentication state across page reloads" type="FAILURE">
+<![CDATA[  [webkit] › authentication-logout.spec.js:130:3 › Authentication and Logout › should maintain authentication state across page reloads 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Authentication and Logout › should show proper loading states during authentication" classname="authentication-logout.spec.js" time="0.001">
+<failure message="authentication-logout.spec.js:159:3 should show proper loading states during authentication" type="FAILURE">
+<![CDATA[  [webkit] › authentication-logout.spec.js:159:3 › Authentication and Logout › should show proper loading states during authentication 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="custom-domain-google-login.spec.js" timestamp="2025-08-19T17:01:45.336Z" hostname="webkit" tests="1" failures="1" skipped="0" time="0.001" errors="0">
+<testcase name="Custom Domain Google Sign-in Test › should test Google sign-in on custom domain" classname="custom-domain-google-login.spec.js" time="0.001">
+<failure message="custom-domain-google-login.spec.js:7:3 should test Google sign-in on custom domain" type="FAILURE">
+<![CDATA[  [webkit] › custom-domain-google-login.spec.js:7:3 › Custom Domain Google Sign-in Test › should test Google sign-in on custom domain 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="dropdown-logout.spec.js" timestamp="2025-08-19T17:01:45.336Z" hostname="webkit" tests="10" failures="10" skipped="0" time="0.01" errors="0">
+<testcase name="Navigation Dropdown and Logout › should open profile dropdown on mobile" classname="dropdown-logout.spec.js" time="0.001">
+<failure message="dropdown-logout.spec.js:12:3 should open profile dropdown on mobile" type="FAILURE">
+<![CDATA[  [webkit] › dropdown-logout.spec.js:12:3 › Navigation Dropdown and Logout › should open profile dropdown on mobile 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Navigation Dropdown and Logout › should open profile dropdown on desktop" classname="dropdown-logout.spec.js" time="0.001">
+<failure message="dropdown-logout.spec.js:33:3 should open profile dropdown on desktop" type="FAILURE">
+<![CDATA[  [webkit] › dropdown-logout.spec.js:33:3 › Navigation Dropdown and Logout › should open profile dropdown on desktop 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Navigation Dropdown and Logout › should close dropdown when clicking outside" classname="dropdown-logout.spec.js" time="0.001">
+<failure message="dropdown-logout.spec.js:54:3 should close dropdown when clicking outside" type="FAILURE">
+<![CDATA[  [webkit] › dropdown-logout.spec.js:54:3 › Navigation Dropdown and Logout › should close dropdown when clicking outside 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Navigation Dropdown and Logout › should navigate to profile section from dropdown" classname="dropdown-logout.spec.js" time="0.001">
+<failure message="dropdown-logout.spec.js:73:3 should navigate to profile section from dropdown" type="FAILURE">
+<![CDATA[  [webkit] › dropdown-logout.spec.js:73:3 › Navigation Dropdown and Logout › should navigate to profile section from dropdown 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Navigation Dropdown and Logout › should navigate to todos section from dropdown" classname="dropdown-logout.spec.js" time="0.001">
+<failure message="dropdown-logout.spec.js:93:3 should navigate to todos section from dropdown" type="FAILURE">
+<![CDATA[  [webkit] › dropdown-logout.spec.js:93:3 › Navigation Dropdown and Logout › should navigate to todos section from dropdown 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Navigation Dropdown and Logout › should show user information in dropdown" classname="dropdown-logout.spec.js" time="0.001">
+<failure message="dropdown-logout.spec.js:112:3 should show user information in dropdown" type="FAILURE">
+<![CDATA[  [webkit] › dropdown-logout.spec.js:112:3 › Navigation Dropdown and Logout › should show user information in dropdown 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Navigation Dropdown and Logout › should handle logout process" classname="dropdown-logout.spec.js" time="0.001">
+<failure message="dropdown-logout.spec.js:129:3 should handle logout process" type="FAILURE">
+<![CDATA[  [webkit] › dropdown-logout.spec.js:129:3 › Navigation Dropdown and Logout › should handle logout process 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Navigation Dropdown and Logout › should show profile picture or initials" classname="dropdown-logout.spec.js" time="0.001">
+<failure message="dropdown-logout.spec.js:152:3 should show profile picture or initials" type="FAILURE">
+<![CDATA[  [webkit] › dropdown-logout.spec.js:152:3 › Navigation Dropdown and Logout › should show profile picture or initials 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Navigation Dropdown and Logout › should handle dropdown on different screen sizes" classname="dropdown-logout.spec.js" time="0.001">
+<failure message="dropdown-logout.spec.js:161:3 should handle dropdown on different screen sizes" type="FAILURE">
+<![CDATA[  [webkit] › dropdown-logout.spec.js:161:3 › Navigation Dropdown and Logout › should handle dropdown on different screen sizes 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Navigation Dropdown and Logout › should maintain dropdown state during navigation" classname="dropdown-logout.spec.js" time="0.001">
+<failure message="dropdown-logout.spec.js:189:3 should maintain dropdown state during navigation" type="FAILURE">
+<![CDATA[  [webkit] › dropdown-logout.spec.js:189:3 › Navigation Dropdown and Logout › should maintain dropdown state during navigation 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="google-login-test.spec.js" timestamp="2025-08-19T17:01:45.336Z" hostname="webkit" tests="2" failures="2" skipped="0" time="0.003" errors="0">
+<testcase name="Google Sign-in Test › should attempt Google sign-in and handle the flow" classname="google-login-test.spec.js" time="0.001">
+<failure message="google-login-test.spec.js:4:3 should attempt Google sign-in and handle the flow" type="FAILURE">
+<![CDATA[  [webkit] › google-login-test.spec.js:4:3 › Google Sign-in Test › should attempt Google sign-in and handle the flow 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Google Sign-in Test › should handle Google sign-in in incognito mode" classname="google-login-test.spec.js" time="0.002">
+<failure message="google-login-test.spec.js:132:3 should handle Google sign-in in incognito mode" type="FAILURE">
+<![CDATA[  [webkit] › google-login-test.spec.js:132:3 › Google Sign-in Test › should handle Google sign-in in incognito mode 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="login-fix-verification.spec.js" timestamp="2025-08-19T17:01:45.336Z" hostname="webkit" tests="3" failures="3" skipped="0" time="0.004" errors="0">
+<testcase name="Login Page Fix Verification › should load login page without JavaScript module errors" classname="login-fix-verification.spec.js" time="0.002">
+<failure message="login-fix-verification.spec.js:5:3 should load login page without JavaScript module errors" type="FAILURE">
+<![CDATA[  [webkit] › login-fix-verification.spec.js:5:3 › Login Page Fix Verification › should load login page without JavaScript module errors 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Login Page Fix Verification › should not have browser extension conflicts" classname="login-fix-verification.spec.js" time="0.001">
+<failure message="login-fix-verification.spec.js:56:3 should not have browser extension conflicts" type="FAILURE">
+<![CDATA[  [webkit] › login-fix-verification.spec.js:56:3 › Login Page Fix Verification › should not have browser extension conflicts 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Login Page Fix Verification › should load production site without module errors" classname="login-fix-verification.spec.js" time="0.001">
+<failure message="login-fix-verification.spec.js:82:3 should load production site without module errors" type="FAILURE">
+<![CDATA[  [webkit] › login-fix-verification.spec.js:82:3 › Login Page Fix Verification › should load production site without module errors 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="production-google-login.spec.js" timestamp="2025-08-19T17:01:45.336Z" hostname="webkit" tests="1" failures="1" skipped="0" time="0.001" errors="0">
+<testcase name="Production Google Sign-in Test › should test Google sign-in on production site" classname="production-google-login.spec.js" time="0.001">
+<failure message="production-google-login.spec.js:7:3 should test Google sign-in on production site" type="FAILURE">
+<![CDATA[  [webkit] › production-google-login.spec.js:7:3 › Production Google Sign-in Test › should test Google sign-in on production site 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="simple-page-load.spec.js" timestamp="2025-08-19T17:01:45.336Z" hostname="webkit" tests="1" failures="1" skipped="0" time="0.001" errors="0">
+<testcase name="Simple Page Load Test › should load the production page and check for errors" classname="simple-page-load.spec.js" time="0.001">
+<failure message="simple-page-load.spec.js:4:3 should load the production page and check for errors" type="FAILURE">
+<![CDATA[  [webkit] › simple-page-load.spec.js:4:3 › Simple Page Load Test › should load the production page and check for errors 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="styling.spec.js" timestamp="2025-08-19T17:01:45.336Z" hostname="webkit" tests="7" failures="7" skipped="0" time="0.007" errors="0">
+<testcase name="Todo App Styling › should load the main page with proper styling" classname="styling.spec.js" time="0.001">
+<failure message="styling.spec.js:4:3 should load the main page with proper styling" type="FAILURE">
+<![CDATA[  [webkit] › styling.spec.js:4:3 › Todo App Styling › should load the main page with proper styling 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Todo App Styling › should have TailwindCSS classes applied" classname="styling.spec.js" time="0.001">
+<failure message="styling.spec.js:25:3 should have TailwindCSS classes applied" type="FAILURE">
+<![CDATA[  [webkit] › styling.spec.js:25:3 › Todo App Styling › should have TailwindCSS classes applied ─────
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Todo App Styling › should have proper color scheme and layout" classname="styling.spec.js" time="0.001">
+<failure message="styling.spec.js:52:3 should have proper color scheme and layout" type="FAILURE">
+<![CDATA[  [webkit] › styling.spec.js:52:3 › Todo App Styling › should have proper color scheme and layout ──
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Todo App Styling › should have responsive design elements" classname="styling.spec.js" time="0.001">
+<failure message="styling.spec.js:78:3 should have responsive design elements" type="FAILURE">
+<![CDATA[  [webkit] › styling.spec.js:78:3 › Todo App Styling › should have responsive design elements ──────
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Todo App Styling › should have interactive elements with hover states" classname="styling.spec.js" time="0.001">
+<failure message="styling.spec.js:91:3 should have interactive elements with hover states" type="FAILURE">
+<![CDATA[  [webkit] › styling.spec.js:91:3 › Todo App Styling › should have interactive elements with hover states 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Todo App Styling › should display todos with proper styling when added" classname="styling.spec.js" time="0.001">
+<failure message="styling.spec.js:103:3 should display todos with proper styling when added" type="FAILURE">
+<![CDATA[  [webkit] › styling.spec.js:103:3 › Todo App Styling › should display todos with proper styling when added 
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
+</testcase>
+<testcase name="Todo App Styling › should have proper form validation styling" classname="styling.spec.js" time="0.001">
+<failure message="styling.spec.js:127:3 should have proper form validation styling" type="FAILURE">
+<![CDATA[  [webkit] › styling.spec.js:127:3 › Todo App Styling › should have proper form validation styling ─
+
+    Error: browserType.launch: Executable doesn't exist at /home/ubuntu/.cache/ms-playwright/webkit-2191/pw_run.sh
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+]]>
+</failure>
 </testcase>
 </testsuite>
 </testsuites>
