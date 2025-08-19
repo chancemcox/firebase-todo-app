@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  tests:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.test
+    volumes:
+      - ..:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=test
+      - CI=true
+    command: npm test
+    stdin_open: true
+    tty: true

@@ -2,39 +2,41 @@ import React from 'react';
 import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
-// Mock Firebase Auth - must be declared before jest.mock
-const mockOnAuthStateChanged = jest.fn();
-const mockSignOut = jest.fn();
-const mockSignInWithPopup = jest.fn();
-
+// Mock Firebase Auth
 jest.mock('firebase/auth', () => ({
   getAuth: jest.fn(() => ({
-    onAuthStateChanged: mockOnAuthStateChanged,
-    signOut: mockSignOut,
-    signInWithPopup: mockSignInWithPopup,
+    onAuthStateChanged: jest.fn(),
+    signOut: jest.fn(),
+    signInWithPopup: jest.fn(),
   })),
-  GoogleAuthProvider: jest.fn(),
+  onAuthStateChanged: jest.fn(),
+  signOut: jest.fn(),
+  signInWithPopup: jest.fn(),
+  GoogleAuthProvider: jest.fn(() => ({
+    setCustomParameters: jest.fn(),
+    addScope: jest.fn(),
+  })),
   signInWithEmailAndPassword: jest.fn(),
   createUserWithEmailAndPassword: jest.fn(),
   updateProfile: jest.fn(),
-  signInWithPopup: mockSignInWithPopup,
 }));
 
 import { AuthProvider, useAuth } from '../AuthContext.jsx';
 
-// Mock Firebase Firestore
-const mockSetDoc = jest.fn();
-const mockDoc = jest.fn();
+// Get mocked functions from the auth object and module
+const { getAuth, onAuthStateChanged, signOut, signInWithPopup, createUserWithEmailAndPassword, updateProfile } = require('firebase/auth');
 
+// Mock Firebase Firestore
 jest.mock('firebase/firestore', () => ({
-  doc: mockDoc,
-  setDoc: mockSetDoc,
+  getFirestore: jest.fn(() => ({})),
+  doc: jest.fn(),
+  setDoc: jest.fn(),
   serverTimestamp: jest.fn(() => new Date()),
 }));
 
 // Test component to access context
 const TestComponent = () => {
-  const { currentUser, login, logout, register } = useAuth();
+  const { currentUser, login, logout, signup } = useAuth();
   
   return (
     <div>
@@ -52,7 +54,7 @@ const TestComponent = () => {
       <button onClick={() => login('test@example.com', 'password')} data-testid="login-btn">
         Login
       </button>
-      <button onClick={() => register('test@example.com', 'password', 'Test User')} data-testid="register-btn">
+      <button onClick={() => signup('test@example.com', 'password', 'Test User')} data-testid="register-btn">
         Register
       </button>
       <button onClick={logout} data-testid="logout-btn">
@@ -73,17 +75,21 @@ const renderWithAuth = (component) => {
 };
 
 describe('AuthContext', () => {
+  let auth;
+  
   beforeEach(() => {
     jest.clearAllMocks();
-    mockSignOut.mockResolvedValue();
-    mockSignInWithPopup.mockResolvedValue();
-    mockSetDoc.mockResolvedValue();
-    mockDoc.mockReturnValue('mock-doc-ref');
+    // Reset module-level mocked functions
+    onAuthStateChanged.mockReset();
+    signOut.mockReset();
+    signInWithPopup.mockReset();
+    createUserWithEmailAndPassword.mockReset();
+    updateProfile.mockReset();
   });
 
   describe('Provider Initialization', () => {
     it('initializes with no user', () => {
-      mockOnAuthStateChanged.mockImplementation((auth, callback) => {
+      onAuthStateChanged.mockImplementation((auth, callback) => {
         callback(null);
         return jest.fn();
       });
@@ -94,19 +100,19 @@ describe('AuthContext', () => {
     });
 
     it('sets up auth state listener on mount', () => {
-      mockOnAuthStateChanged.mockImplementation((auth, callback) => {
+      onAuthStateChanged.mockImplementation((auth, callback) => {
         callback(null);
         return jest.fn();
       });
       
       renderWithAuth(<TestComponent />);
       
-      expect(mockOnAuthStateChanged).toHaveBeenCalled();
+      expect(onAuthStateChanged).toHaveBeenCalled();
     });
 
     it('returns unsubscribe function from auth listener', () => {
       const mockUnsubscribe = jest.fn();
-      mockOnAuthStateChanged.mockImplementation((auth, callback) => {
+      onAuthStateChanged.mockImplementation((auth, callback) => {
         callback(null);
         return mockUnsubscribe;
       });
@@ -117,14 +123,14 @@ describe('AuthContext', () => {
       
       // Note: In a real implementation, the unsubscribe would be called
       // This test verifies the listener setup
-      expect(mockOnAuthStateChanged).toHaveBeenCalled();
+      expect(onAuthStateChanged).toHaveBeenCalled();
     });
   });
 
   describe('Authentication State Changes', () => {
     it('updates state when user signs in', async () => {
       let authCallback;
-      mockOnAuthStateChanged.mockImplementation((auth, callback) => {
+      onAuthStateChanged.mockImplementation((auth, callback) => {
         authCallback = callback;
         callback(null); // Initial state: no user
         return jest.fn();
@@ -161,7 +167,7 @@ describe('AuthContext', () => {
         displayName: 'Test User'
       };
       
-      mockOnAuthStateChanged.mockImplementation((auth, callback) => {
+      onAuthStateChanged.mockImplementation((auth, callback) => {
         authCallback = callback;
         callback(mockUser); // Initial state: user logged in
         return jest.fn();
@@ -183,7 +189,7 @@ describe('AuthContext', () => {
 
     it('handles user state changes with photo URL', async () => {
       let authCallback;
-      mockOnAuthStateChanged.mockImplementation((auth, callback) => {
+      onAuthStateChanged.mockImplementation((auth, callback) => {
         authCallback = callback;
         callback(null);
         return jest.fn();
@@ -212,7 +218,7 @@ describe('AuthContext', () => {
 
   describe('Login Functionality', () => {
     it('calls Firebase signInWithPopup for Google login', async () => {
-      mockOnAuthStateChanged.mockImplementation((auth, callback) => {
+      onAuthStateChanged.mockImplementation((auth, callback) => {
         callback(null);
         return jest.fn();
       });
@@ -228,7 +234,7 @@ describe('AuthContext', () => {
     });
 
     it('handles login errors gracefully', async () => {
-      mockOnAuthStateChanged.mockImplementation((auth, callback) => {
+      onAuthStateChanged.mockImplementation((auth, callback) => {
         callback(null);
         return jest.fn();
       });
@@ -245,7 +251,20 @@ describe('AuthContext', () => {
 
   describe('Registration Functionality', () => {
     it('calls Firebase createUserWithEmailAndPassword for registration', async () => {
-      mockOnAuthStateChanged.mockImplementation((auth, callback) => {
+      // Mock successful user creation
+      const mockUser = {
+        uid: 'test-uid',
+        email: 'test@example.com',
+        displayName: 'Test User'
+      };
+      
+      createUserWithEmailAndPassword.mockResolvedValue({
+        user: mockUser
+      });
+      
+      updateProfile.mockResolvedValue();
+      
+      onAuthStateChanged.mockImplementation((auth, callback) => {
         callback(null);
         return jest.fn();
       });
@@ -255,13 +274,13 @@ describe('AuthContext', () => {
       const registerButton = screen.getByTestId('register-btn');
       fireEvent.click(registerButton);
       
-      // Note: This test verifies the register function is called
-      // In a real implementation, this would trigger Firebase auth
-      expect(registerButton).toBeInTheDocument();
+      await waitFor(() => {
+        expect(createUserWithEmailAndPassword).toHaveBeenCalled();
+      });
     });
 
     it('handles registration errors gracefully', async () => {
-      mockOnAuthStateChanged.mockImplementation((auth, callback) => {
+      onAuthStateChanged.mockImplementation((auth, callback) => {
         callback(null);
         return jest.fn();
       });
@@ -285,7 +304,7 @@ describe('AuthContext', () => {
         displayName: 'Test User'
       };
       
-      mockOnAuthStateChanged.mockImplementation((auth, callback) => {
+      onAuthStateChanged.mockImplementation((auth, callback) => {
         authCallback = callback;
         callback(mockUser);
         return jest.fn();
@@ -299,7 +318,7 @@ describe('AuthContext', () => {
       fireEvent.click(logoutButton);
       
       await waitFor(() => {
-        expect(mockSignOut).toHaveBeenCalled();
+        expect(signOut).toHaveBeenCalled();
       });
     });
 
@@ -311,7 +330,7 @@ describe('AuthContext', () => {
         displayName: 'Test User'
       };
       
-      mockOnAuthStateChanged.mockImplementation((auth, callback) => {
+      onAuthStateChanged.mockImplementation((auth, callback) => {
         authCallback = callback;
         callback(mockUser);
         return jest.fn();
@@ -325,12 +344,12 @@ describe('AuthContext', () => {
       fireEvent.click(logoutButton);
       
       await waitFor(() => {
-        expect(mockSignOut).toHaveBeenCalled();
+        expect(signOut).toHaveBeenCalled();
       });
     });
 
     it('handles logout errors gracefully', async () => {
-      mockSignOut.mockRejectedValue(new Error('Logout failed'));
+      signOut.mockRejectedValue(new Error('Logout failed'));
       
       let authCallback;
       const mockUser = {
@@ -339,7 +358,7 @@ describe('AuthContext', () => {
         displayName: 'Test User'
       };
       
-      mockOnAuthStateChanged.mockImplementation((auth, callback) => {
+      onAuthStateChanged.mockImplementation((auth, callback) => {
         authCallback = callback;
         callback(mockUser);
         return jest.fn();
@@ -358,7 +377,7 @@ describe('AuthContext', () => {
   describe('User Profile Management', () => {
     it('creates user profile in Firestore on registration', async () => {
       let authCallback;
-      mockOnAuthStateChanged.mockImplementation((auth, callback) => {
+      onAuthStateChanged.mockImplementation((auth, callback) => {
         authCallback = callback;
         callback(null);
         return jest.fn();
@@ -375,7 +394,7 @@ describe('AuthContext', () => {
 
     it('updates user profile when user data changes', async () => {
       let authCallback;
-      mockOnAuthStateChanged.mockImplementation((auth, callback) => {
+      onAuthStateChanged.mockImplementation((auth, callback) => {
         authCallback = callback;
         callback(null);
         return jest.fn();
@@ -401,7 +420,7 @@ describe('AuthContext', () => {
 
   describe('Context Provider Behavior', () => {
     it('provides auth context to child components', () => {
-      mockOnAuthStateChanged.mockImplementation((auth, callback) => {
+      onAuthStateChanged.mockImplementation((auth, callback) => {
         callback(null);
         return jest.fn();
       });
@@ -416,7 +435,7 @@ describe('AuthContext', () => {
 
     it('maintains context state across re-renders', () => {
       let authCallback;
-      mockOnAuthStateChanged.mockImplementation((auth, callback) => {
+      onAuthStateChanged.mockImplementation((auth, callback) => {
         authCallback = callback;
         callback(null);
         return jest.fn();
@@ -441,7 +460,7 @@ describe('AuthContext', () => {
 
     it('handles multiple auth state changes correctly', async () => {
       let authCallback;
-      mockOnAuthStateChanged.mockImplementation((auth, callback) => {
+      onAuthStateChanged.mockImplementation((auth, callback) => {
         authCallback = callback;
         callback(null);
         return jest.fn();
@@ -475,7 +494,7 @@ describe('AuthContext', () => {
 
   describe('Error Handling', () => {
     it('handles Firebase auth errors gracefully', () => {
-      mockOnAuthStateChanged.mockImplementation((auth, callback) => {
+      onAuthStateChanged.mockImplementation((auth, callback) => {
         // Simulate an error in the auth listener
         try {
           callback(undefined); // This might cause issues
@@ -493,7 +512,7 @@ describe('AuthContext', () => {
 
     it('handles missing user properties gracefully', async () => {
       let authCallback;
-      mockOnAuthStateChanged.mockImplementation((auth, callback) => {
+      onAuthStateChanged.mockImplementation((auth, callback) => {
         authCallback = callback;
         callback(null);
         return jest.fn();
@@ -520,19 +539,19 @@ describe('AuthContext', () => {
 
   describe('Performance and Memory', () => {
     it('does not create multiple auth listeners', () => {
-      mockOnAuthStateChanged.mockImplementation((auth, callback) => {
+      onAuthStateChanged.mockImplementation((auth, callback) => {
         callback(null);
         return jest.fn();
       });
       
       renderWithAuth(<TestComponent />);
       
-      expect(mockOnAuthStateChanged).toHaveBeenCalledTimes(1);
+      expect(onAuthStateChanged).toHaveBeenCalledTimes(1);
     });
 
     it('properly cleans up on unmount', () => {
       const mockUnsubscribe = jest.fn();
-      mockOnAuthStateChanged.mockImplementation((auth, callback) => {
+      onAuthStateChanged.mockImplementation((auth, callback) => {
         callback(null);
         return mockUnsubscribe;
       });
@@ -542,7 +561,7 @@ describe('AuthContext', () => {
       unmount();
       
       // Note: In a real implementation, unsubscribe would be called
-      expect(mockOnAuthStateChanged).toHaveBeenCalled();
+      expect(onAuthStateChanged).toHaveBeenCalled();
     });
   });
 });

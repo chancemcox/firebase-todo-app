@@ -2,12 +2,6 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
 import Login from '../Login.jsx';
-import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-
-// Get the mocked functions from setupTests.js
-const mockSignInWithEmailAndPassword = signInWithEmailAndPassword;
-const mockSignInWithPopup = signInWithPopup;
-const mockGoogleAuthProvider = GoogleAuthProvider;
 
 // Mock React Router
 const mockNavigate = jest.fn();
@@ -20,6 +14,7 @@ jest.mock('react-router-dom', () => ({
 const mockUseAuth = {
   currentUser: null,
   login: jest.fn(),
+  loginWithGoogle: jest.fn(),
 };
 
 jest.mock('../../contexts/AuthContext', () => ({
@@ -37,9 +32,8 @@ const renderWithRouter = (component) => {
 describe('Login Page', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    mockSignInWithEmailAndPassword.mockResolvedValue();
-    mockSignInWithPopup.mockResolvedValue();
-    mockGoogleAuthProvider.mockReturnValue({});
+    mockUseAuth.login.mockResolvedValue();
+    mockUseAuth.loginWithGoogle.mockResolvedValue();
   });
 
   describe('Page Rendering', () => {
@@ -78,18 +72,14 @@ describe('Login Page', () => {
       fireEvent.change(passwordInput, { target: { value: 'password123' } });
       fireEvent.click(signInButton);
       
-      // Should attempt Firebase auth (mocked)
+      // Should call the auth context login function
       await waitFor(() => {
-        expect(mockSignInWithEmailAndPassword).toHaveBeenCalledWith(
-          expect.anything(),
-          'test@example.com',
-          'password123'
-        );
+        expect(mockUseAuth.login).toHaveBeenCalledWith('test@example.com', 'password123');
       });
     });
 
     it('handles form submission errors', async () => {
-      mockSignInWithEmailAndPassword.mockRejectedValueOnce(new Error('Invalid credentials'));
+      mockUseAuth.login.mockRejectedValueOnce(new Error('Invalid credentials'));
       
       renderWithRouter(<Login />);
       
@@ -121,16 +111,12 @@ describe('Login Page', () => {
       fireEvent.click(signInButton);
       
       await waitFor(() => {
-        expect(mockSignInWithEmailAndPassword).toHaveBeenCalledWith(
-          expect.anything(),
-          'test@example.com',
-          'password123'
-        );
+        expect(mockUseAuth.login).toHaveBeenCalledWith('test@example.com', 'password123');
       });
     });
 
     it('shows loading state during authentication', async () => {
-      mockSignInWithEmailAndPassword.mockImplementation(() => 
+      mockUseAuth.login.mockImplementation(() => 
         new Promise(resolve => setTimeout(resolve, 100))
       );
       
@@ -150,7 +136,7 @@ describe('Login Page', () => {
     });
 
     it('handles authentication success', async () => {
-      mockSignInWithEmailAndPassword.mockResolvedValue({
+      mockUseAuth.login.mockResolvedValue({
         user: { uid: 'test-uid', email: 'test@example.com' }
       });
       
@@ -171,7 +157,7 @@ describe('Login Page', () => {
     });
 
     it('handles authentication errors gracefully', async () => {
-      mockSignInWithEmailAndPassword.mockRejectedValue({
+      mockUseAuth.login.mockRejectedValue({
         code: 'auth/user-not-found',
         message: 'User not found'
       });
@@ -201,7 +187,7 @@ describe('Login Page', () => {
       ];
       
       for (const { code, message } of errorCases) {
-        mockSignInWithEmailAndPassword.mockRejectedValue({ code, message });
+        mockUseAuth.login.mockRejectedValue({ code, message });
         
         const { unmount } = renderWithRouter(<Login />);
         
@@ -225,18 +211,24 @@ describe('Login Page', () => {
 
   describe('Google Authentication', () => {
     it('initiates Google sign-in when button is clicked', async () => {
+      // Mock successful Google sign-in
+      mockUseAuth.loginWithGoogle.mockResolvedValue({
+        user: { uid: 'google-uid', email: 'test@gmail.com' }
+      });
+      
       renderWithRouter(<Login />);
       
       const googleButton = screen.getByRole('button', { name: /Sign in with Google/ });
       fireEvent.click(googleButton);
       
       await waitFor(() => {
-        expect(mockSignInWithPopup).toHaveBeenCalled();
+        expect(mockUseAuth.loginWithGoogle).toHaveBeenCalled();
       });
     });
 
     it('handles Google authentication success', async () => {
-      mockSignInWithPopup.mockResolvedValue({
+      // Mock successful Google sign-in
+      mockUseAuth.loginWithGoogle.mockResolvedValue({
         user: { uid: 'google-uid', email: 'test@gmail.com' }
       });
       
@@ -251,9 +243,10 @@ describe('Login Page', () => {
     });
 
     it('handles Google authentication errors', async () => {
-      mockSignInWithPopup.mockRejectedValue({
-        code: 'auth/popup-closed-by-user',
-        message: 'Sign-in popup was closed'
+      // Mock Google sign-in failure
+      mockUseAuth.loginWithGoogle.mockRejectedValue({
+        code: 'auth/popup-blocked',
+        message: 'Popup blocked by browser'
       });
       
       renderWithRouter(<Login />);
@@ -262,7 +255,7 @@ describe('Login Page', () => {
       fireEvent.click(googleButton);
       
       await waitFor(() => {
-        expect(screen.getByText('Sign-in popup was closed')).toBeInTheDocument();
+        expect(screen.getByText(/Failed to sign in with Google/)).toBeInTheDocument();
       });
     });
   });
@@ -302,7 +295,7 @@ describe('Login Page', () => {
     });
 
     it('resets form after successful submission', async () => {
-      mockSignInWithEmailAndPassword.mockResolvedValue({
+      mockUseAuth.login.mockResolvedValue({
         user: { uid: 'test-uid', email: 'test@example.com' }
       });
       
@@ -393,8 +386,8 @@ describe('Login Page', () => {
     });
 
     it('handles network errors gracefully', async () => {
-      mockSignInWithEmailAndPassword.mockRejectedValue({
-        code: 'auth/network-request-failed',
+      mockUseAuth.login.mockRejectedValue({
+        code: 'auth/network-request_failed',
         message: 'Network error. Please check your connection'
       });
       

@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from 'firebase/auth';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -9,9 +8,13 @@ const Login = () => {
   const [error, setError] = useState('');
   const [errorDetail, setErrorDetail] = useState('');
   const [loading, setLoading] = useState(false);
+  const [googleFailCount, setGoogleFailCount] = useState(0);
   
   const { login, loginWithGoogle } = useAuth();
   const navigate = useNavigate();
+
+  // Note: Redirect handling removed for now to simplify the login process
+  // Will be re-implemented once the basic login flow is working properly
 
   const getErrorMessage = (errorCode) => {
     switch (errorCode) {
@@ -54,8 +57,7 @@ const Login = () => {
         return;
       }
       setLoading(true);
-      const auth = getAuth();
-      await signInWithEmailAndPassword(auth, email, password);
+      await login(email, password);
       navigate('/');
     } catch (error) {
       console.error('Login error:', error);
@@ -71,10 +73,21 @@ const Login = () => {
       setError('');
       setErrorDetail('');
       setLoading(true);
-      const auth = getAuth();
-      const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
-      navigate('/');
+      
+      console.log('Starting Google sign-in...');
+      
+      // Use the auth context's loginWithGoogle function
+      const result = await loginWithGoogle();
+      
+      if (result) {
+        console.log('Google sign-in successful:', result);
+        navigate('/');
+      } else {
+        // Google sign-in failed
+        setError('Failed to sign in with Google');
+        setErrorDetail('Google sign-in was not completed. Please try again.');
+      }
+      
     } catch (error) {
       console.error('Google login error:', error);
       const errorMessage = error?.message || getErrorMessage(error?.code);
@@ -92,6 +105,19 @@ To fix this:
    - localhost
    - todo-list-e7788.web.app
    - todo.cox-fam.com`);
+      }
+      
+      // Special handling for extension conflicts
+      if (error.code === 'auth/popup-closed-by-user' || 
+          error.code === 'auth/popup-blocked' ||
+          error.message?.includes('popup')) {
+        setGoogleFailCount(prev => prev + 1);
+        setErrorDetail(`Popup blocked or closed. This often happens due to browser extensions.
+
+Try:
+1. Disable browser extensions temporarily
+2. Use incognito/private browsing mode
+3. Or use email/password login instead`);
       }
     } finally {
       setLoading(false);
@@ -186,6 +212,34 @@ To fix this:
                 </svg>
                 <span className="ml-2">Sign in with Google</span>
               </button>
+              <p className="mt-2 text-xs text-gray-400 text-center">
+                Having issues? Try incognito mode or disable browser extensions
+              </p>
+              <div className="mt-3 p-2 bg-yellow-50 border border-yellow-200 rounded text-xs text-yellow-800">
+                <p className="font-medium mb-1">Chrome Users:</p>
+                <p>If popup doesn't work, the app will automatically use redirect method.</p>
+                <p>This may take a few extra seconds but will work reliably.</p>
+              </div>
+              
+              {/* Alternative sign-in options when Google fails */}
+              {(error && error.includes('Google')) || googleFailCount > 0 ? (
+                <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
+                  <p className="text-sm text-blue-800 font-medium mb-2">
+                    {googleFailCount > 1 ? 'Google sign-in still having issues?' : 'Google sign-in having issues?'} Try these alternatives:
+                  </p>
+                  <div className="space-y-2 text-xs text-blue-700">
+                    <p>• <strong>Email/Password:</strong> Use the form above</p>
+                    <p>• <strong>Incognito Mode:</strong> Open in private browsing</p>
+                    <p>• <strong>Disable Extensions:</strong> Temporarily turn off browser extensions</p>
+                    <p>• <strong>Different Browser:</strong> Try Chrome, Firefox, or Safari</p>
+                  </div>
+                  {googleFailCount > 1 && (
+                    <p className="mt-2 text-xs text-blue-600 font-medium">
+                      💡 Tip: Email/password login is often more reliable than Google sign-in
+                    </p>
+                  )}
+                </div>
+              ) : null}
             </div>
           </div>
 

@@ -42,7 +42,7 @@ test.describe('Login Page Fix Verification', () => {
     // Verify login form elements are present
     await expect(page.locator('input[type="email"]')).toBeVisible();
     await expect(page.locator('input[type="password"]')).toBeVisible();
-    await expect(page.locator('button', { hasText: 'Sign in' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Sign in', exact: true })).toBeVisible();
     
     // Log any remaining errors for debugging
     if (jsErrors.length > 0) {

@@ -1,4 +1,13 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { auth, db } from '../firebase';
+import { 
+  createUserWithEmailAndPassword, 
+  updateProfile, 
+  signInWithEmailAndPassword, 
+  signOut,
+  onAuthStateChanged 
+} from 'firebase/auth';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
 
 const AuthContext = createContext();
 
@@ -12,15 +21,13 @@ export function AuthProvider({ children }) {
 
   async function signup(email, password, displayName) {
     try {
-      const [{ default: firebaseModule }, authPkg, firestorePkg] = await Promise.all([
-        import('../firebase'),
-        import('firebase/auth'),
-        import('firebase/firestore')
-      ]);
-      const { auth, db } = firebaseModule;
-      const { createUserWithEmailAndPassword, updateProfile } = authPkg;
-      const { doc, setDoc } = firestorePkg;
-
+      if (!auth) {
+        throw new Error('Firebase auth is not initialized');
+      }
+      if (!db) {
+        throw new Error('Firebase Firestore is not initialized');
+      }
+      
       const result = await createUserWithEmailAndPassword(auth, email, password);
       
       // Update profile with display name
@@ -42,31 +49,22 @@ export function AuthProvider({ children }) {
   }
 
   async function login(email, password) {
-    const [{ default: firebaseModule }, { signInWithEmailAndPassword }] = await Promise.all([
-      import('../firebase'),
-      import('firebase/auth')
-    ]);
-    const { auth } = firebaseModule;
+    if (!auth) {
+      throw new Error('Firebase auth is not initialized');
+    }
     return signInWithEmailAndPassword(auth, email, password);
   }
 
   async function logout() {
-    const [{ default: firebaseModule }, { signOut }] = await Promise.all([
-      import('../firebase'),
-      import('firebase/auth')
-    ]);
-    const { auth } = firebaseModule;
+    if (!auth) {
+      throw new Error('Firebase auth is not initialized');
+    }
     return signOut(auth);
   }
 
   async function loginWithGoogle() {
     try {
-      const [{ signInWithGoogle, default: firebaseModule }, firestorePkg] = await Promise.all([
-        import('../firebase'),
-        import('firebase/firestore')
-      ]);
-      const { db } = firebaseModule;
-      const { doc, setDoc, getDoc } = firestorePkg;
+      const { signInWithGoogle } = await import('../firebase');
 
       const result = await signInWithGoogle();
       
@@ -91,11 +89,9 @@ export function AuthProvider({ children }) {
 
   async function getUserProfile(uid) {
     try {
-      const [{ default: firebaseModule }, { doc, getDoc }] = await Promise.all([
-        import('../firebase'),
-        import('firebase/firestore')
-      ]);
-      const { db } = firebaseModule;
+      if (!db) {
+        throw new Error('Firebase Firestore is not initialized');
+      }
       const userDoc = await getDoc(doc(db, 'users', uid));
       if (userDoc.exists()) {
         return userDoc.data();
@@ -109,28 +105,43 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     let unsubscribe = () => {};
-    (async () => {
-      const [{ default: firebaseModule }] = await Promise.all([
-        import('../firebase')
-      ]);
-      const { auth } = firebaseModule;
-      // Use auth's onAuthStateChanged if available from mocks
-      const listener = auth && typeof auth.onAuthStateChanged === 'function'
-        ? auth.onAuthStateChanged
-        : null;
-      if (listener) {
-        unsubscribe = listener((user) => {
+    
+    console.log('AuthContext: Setting up auth state listener...');
+    console.log('AuthContext: Auth object:', auth);
+    console.log('AuthContext: onAuthStateChanged available:', typeof onAuthStateChanged === 'function');
+    
+    // Check if Firebase is properly initialized
+    if (!auth) {
+      console.error('AuthContext: Firebase auth is not initialized!');
+      setLoading(false);
+      return;
+    }
+    
+    if (typeof onAuthStateChanged === 'function') {
+      try {
+        console.log('AuthContext: Setting up listener...');
+        unsubscribe = onAuthStateChanged(auth, (user) => {
+          console.log('AuthContext: Auth state changed:', user);
           setCurrentUser(user);
           setLoading(false);
         });
-      } else {
-        // Fallback: mark loading false
+        console.log('AuthContext: Listener set up successfully');
+      } catch (error) {
+        console.error('AuthContext: Error setting up auth listener:', error);
         setLoading(false);
       }
-    })();
+    } else {
+      console.error('AuthContext: onAuthStateChanged is not available');
+      setLoading(false);
+    }
 
     return () => {
-      try { unsubscribe && unsubscribe(); } catch {}
+      try { 
+        console.log('AuthContext: Cleaning up listener...');
+        unsubscribe && unsubscribe(); 
+      } catch (e) {
+        console.log('AuthContext: Error cleaning up listener:', e);
+      }
     };
   }, []);
 
