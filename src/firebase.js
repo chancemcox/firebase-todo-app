@@ -25,38 +25,58 @@ console.log('Firebase auth initialized:', auth);
 export const db = getFirestore(app);
 console.log('Firebase Firestore initialized:', db);
 
-// Google Auth Provider
+// Google Auth Provider with proper configuration
 export const googleProvider = new GoogleAuthProvider();
+
+// Set custom parameters for better OAuth flow
 googleProvider.setCustomParameters({
-  prompt: 'select_account'
+  prompt: 'select_account',
+  // Add login hint if available
+  ...(window.location.hostname !== 'localhost' && {
+    hd: 'cox-fam.com' // Restrict to your domain
+  })
 });
 
-// Chrome-specific optimizations
-if (typeof window !== 'undefined' && window.navigator && window.navigator.userAgent.includes('Chrome')) {
-  // Add Chrome-specific parameters for better compatibility
-  googleProvider.addScope('email');
-  googleProvider.addScope('profile');
-}
+// Add required scopes
+googleProvider.addScope('email');
+googleProvider.addScope('profile');
 
-// Auth functions
+// Auth functions with better error handling
 export const signInWithGoogle = async () => {
   try {
-    // Try popup first (faster, better UX)
-    return await signInWithPopup(auth, googleProvider);
-  } catch (error) {
-    console.log('Popup failed, falling back to redirect:', error);
+    console.log('Attempting Google sign-in...');
+    console.log('Current domain:', window.location.hostname);
     
-    // If popup fails, use redirect (more reliable across browsers)
-    if (error.code === 'auth/popup-closed-by-user' || 
-        error.code === 'auth/popup-blocked' ||
+    // Try popup first (faster, better UX)
+    const result = await signInWithPopup(auth, googleProvider);
+    console.log('Google sign-in successful via popup:', result.user.email);
+    return result;
+  } catch (error) {
+    console.error('Google sign-in error:', error);
+    
+    // Handle specific error cases
+    if (error.code === 'auth/popup-closed-by-user') {
+      console.log('User closed popup, not an error');
+      return null;
+    }
+    
+    if (error.code === 'auth/popup-blocked' || 
+        error.code === 'auth/unauthorized-domain' ||
         error.message?.includes('popup') ||
-        error.message?.includes('blocked')) {
+        error.message?.includes('blocked') ||
+        error.message?.includes('redirect_uri_mismatch')) {
+      
+      console.log('Popup blocked or unauthorized domain, falling back to redirect...');
       
       // Use redirect method as fallback
-      await signInWithRedirect(auth, googleProvider);
-      // Note: User will be redirected to Google and then back to your app
-      // The redirect result will be handled in the component
-      return null;
+      try {
+        await signInWithRedirect(auth, googleProvider);
+        console.log('Redirect initiated successfully');
+        return null;
+      } catch (redirectError) {
+        console.error('Redirect also failed:', redirectError);
+        throw redirectError;
+      }
     }
     
     // Re-throw other errors
@@ -65,6 +85,17 @@ export const signInWithGoogle = async () => {
 };
 
 // Export redirect result handler
-export const handleRedirectResult = () => getRedirectResult(auth);
+export const handleRedirectResult = async () => {
+  try {
+    const result = await getRedirectResult(auth);
+    if (result) {
+      console.log('Redirect result successful:', result.user.email);
+    }
+    return result;
+  } catch (error) {
+    console.error('Error handling redirect result:', error);
+    throw error;
+  }
+};
 
 export default app;
