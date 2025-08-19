@@ -7,12 +7,14 @@ const ProtectedRoute = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loading && (!currentUser || (typeof currentUser === 'object' && Object.keys(currentUser || {}).length === 0))) {
+    const isEmptyObject = typeof currentUser === 'object' && currentUser !== null && Object.values(currentUser).every(v => !v);
+    if (!loading && (!currentUser || isEmptyObject)) {
       navigate('/login');
     }
   }, [loading, currentUser, navigate]);
 
-  if (loading || !currentUser) return null;
+  const isEmptyObject = typeof currentUser === 'object' && currentUser !== null && Object.values(currentUser).every(v => !v);
+  if (loading || !currentUser || isEmptyObject) return null;
 
   return children;
 };
