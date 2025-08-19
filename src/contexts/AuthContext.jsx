@@ -63,11 +63,15 @@ export function AuthProvider({ children }) {
   }
 
   async function logout() {
+    console.log('Logout function called');
     if (!auth) {
+      console.error('Firebase auth is not initialized');
       throw new Error('Firebase auth is not initialized');
     }
+    console.log('Auth object available, attempting signOut...');
     try {
       await signOut(auth);
+      console.log('SignOut successful');
     } catch (error) {
       // Swallow sign-out errors to avoid unhandled rejections in UI/tests
       console.error('Logout failed', error);

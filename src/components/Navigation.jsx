@@ -1,16 +1,39 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 
 const Navigation = ({ activeSection, onSectionChange }) => {
   const { currentUser, logout } = useAuth();
   const [showProfile, setShowProfile] = useState(false);
+  const profileRef = useRef(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setShowProfile(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const handleLogout = async () => {
+    console.log('Navigation: handleLogout called');
     try {
       await logout();
+      console.log('Navigation: logout successful');
     } catch (error) {
-      console.error('Failed to log out:', error);
+      console.error('Navigation: logout error:', error);
     }
+  };
+
+  const toggleProfile = () => {
+    console.log('Toggle profile clicked, current state:', showProfile);
+    setShowProfile(!showProfile);
+    console.log('New state will be:', !showProfile);
   };
 
   const sections = [
@@ -51,7 +74,7 @@ const Navigation = ({ activeSection, onSectionChange }) => {
           {/* Mobile Profile Button */}
           <div className="relative profile-container">
             <button
-              onClick={() => setShowProfile(!showProfile)}
+              onClick={toggleProfile}
               className="flex items-center space-x-2 px-3 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               {hasValidPhoto ? (
@@ -78,7 +101,11 @@ const Navigation = ({ activeSection, onSectionChange }) => {
             </button>
 
             {showProfile && (
-              <div className="absolute right-0 mt-2 mobile-profile-menu bg-white rounded-md shadow-lg border border-gray-200 z-10">
+              <div 
+                className="absolute right-0 mt-2 mobile-profile-menu bg-white rounded-md shadow-lg border border-gray-200 z-50"
+                ref={profileRef}
+                style={{ minWidth: '200px' }}
+              >
                 <div className="py-2">
                   <div className="px-4 py-2 border-b border-gray-100">
                     <p className="text-sm font-medium text-gray-800">
@@ -171,7 +198,7 @@ const Navigation = ({ activeSection, onSectionChange }) => {
           
           <div className="relative profile-container">
             <button
-              onClick={() => setShowProfile(!showProfile)}
+              onClick={toggleProfile}
               className="flex items-center space-x-2 px-3 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               {hasValidPhoto ? (
@@ -198,7 +225,10 @@ const Navigation = ({ activeSection, onSectionChange }) => {
             </button>
 
             {showProfile && (
-              <div className="absolute right-0 mt-2 w-64 bg-white rounded-md shadow-lg border border-gray-200 z-10">
+              <div 
+                className="absolute right-0 mt-2 w-64 bg-white rounded-md shadow-lg border border-gray-200 z-50"
+                ref={profileRef}
+              >
                 <div className="py-2">
                   <button
                     onClick={() => {
