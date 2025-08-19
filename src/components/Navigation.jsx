@@ -4,6 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 const Navigation = ({ activeSection, onSectionChange }) => {
   const { currentUser, logout } = useAuth();
   const [showProfile, setShowProfile] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
   const profileRef = useRef(null);
 
   // Close dropdown when clicking outside
@@ -61,20 +62,22 @@ const Navigation = ({ activeSection, onSectionChange }) => {
     }
   }, [showProfile]);
 
-  // Move dropdown to body to avoid stacking context issues
+  // Note: Avoid moving dropdown node outside React tree to preserve event handling
+  
+  // Track viewport to conditionally render mobile vs desktop sections (tests don't apply CSS breakpoints)
   useEffect(() => {
-    if (showProfile && profileRef.current) {
-      // Move dropdown to body to avoid parent clipping
-      document.body.appendChild(profileRef.current);
-      
-      return () => {
-        // Clean up when component unmounts or dropdown closes
-        if (profileRef.current && profileRef.current.parentNode === document.body) {
-          document.body.removeChild(profileRef.current);
-        }
-      };
-    }
-  }, [showProfile]);
+    const updateIsDesktop = () => {
+      try {
+        const width = typeof window !== 'undefined' && window.innerWidth ? window.innerWidth : 1024;
+        setIsDesktop(width >= 768);
+      } catch {
+        setIsDesktop(true);
+      }
+    };
+    updateIsDesktop();
+    window.addEventListener('resize', updateIsDesktop);
+    return () => window.removeEventListener('resize', updateIsDesktop);
+  }, []);
 
   const handleLogout = async () => {
     console.log('Navigation: handleLogout called');
@@ -125,6 +128,7 @@ const Navigation = ({ activeSection, onSectionChange }) => {
   return (
     <div className="bg-white shadow-md rounded-lg mb-6">
       {/* Mobile Header */}
+      {!isDesktop && (
       <div className="md:hidden p-4 border-b border-gray-200">
         <div className="flex items-center justify-between mb-4">
           <h1 className="text-xl font-bold text-gray-800">Todo App</h1>
@@ -343,8 +347,10 @@ const Navigation = ({ activeSection, onSectionChange }) => {
           ))}
         </nav>
       </div>
+      )}
 
       {/* Desktop Header */}
+      {isDesktop && (
       <div className="hidden md:flex items-center justify-between p-4">
         <div className="flex items-center space-x-4">
           <h1 className="text-2xl font-bold text-gray-800">Todo App</h1>
@@ -549,6 +555,7 @@ const Navigation = ({ activeSection, onSectionChange }) => {
           </div>
         </div>
       </div>
+      )}
     </div>
   );
 };

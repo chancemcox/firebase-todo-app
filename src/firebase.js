@@ -28,18 +28,22 @@ console.log('Firebase Firestore initialized:', db);
 // Google Auth Provider with proper configuration
 export const googleProvider = new GoogleAuthProvider();
 
-// Set custom parameters for better OAuth flow
-googleProvider.setCustomParameters({
-  prompt: 'select_account',
-  // Add login hint if available
-  ...(window.location.hostname !== 'localhost' && {
-    hd: 'cox-fam.com' // Restrict to your domain
-  })
-});
-
-// Add required scopes
-googleProvider.addScope('email');
-googleProvider.addScope('profile');
+// Set custom parameters for better OAuth flow (guarded for non-browser/test envs)
+try {
+  if (typeof googleProvider.setCustomParameters === 'function') {
+    const hostname = typeof window !== 'undefined' && window.location ? window.location.hostname : 'localhost';
+    googleProvider.setCustomParameters({
+      prompt: 'select_account',
+      ...(hostname !== 'localhost' && { hd: 'cox-fam.com' })
+    });
+  }
+  if (typeof googleProvider.addScope === 'function') {
+    googleProvider.addScope('email');
+    googleProvider.addScope('profile');
+  }
+} catch (e) {
+  // In tests or SSR-like environments, provider methods may be missing; skip silently
+}
 
 // Auth functions with better error handling
 export const signInWithGoogle = async () => {
