@@ -23,6 +23,57 @@ const Navigation = ({ activeSection, onSectionChange }) => {
   // Debug state changes
   useEffect(() => {
     console.log('showProfile state changed to:', showProfile);
+    if (showProfile) {
+      console.log('🎯 DROPDOWN SHOULD BE VISIBLE NOW!');
+      console.log('🔍 Check for element with red border and yellow background');
+      // Force a DOM check
+      setTimeout(() => {
+        const dropdowns = document.querySelectorAll('[style*="border: 5px solid red"]');
+        console.log('Found dropdowns with red border:', dropdowns.length);
+        dropdowns.forEach((dropdown, index) => {
+          console.log(`Dropdown ${index}:`, dropdown);
+          console.log('Dropdown visible:', dropdown.offsetParent !== null);
+          console.log('Dropdown dimensions:', dropdown.offsetWidth, 'x', dropdown.offsetHeight);
+          
+          // Check parent container for mobile dropdown
+          if (index === 0) { // Mobile dropdown
+            const parent = dropdown.parentElement;
+            console.log('Mobile dropdown parent:', parent);
+            console.log('Parent position:', parent.style.position);
+            console.log('Parent overflow:', parent.style.overflow);
+            console.log('Parent dimensions:', parent.offsetWidth, 'x', parent.offsetHeight);
+            
+            // Check the button dimensions
+            const button = parent.querySelector('button');
+            if (button) {
+              console.log('Button dimensions:', button.offsetWidth, 'x', button.offsetHeight);
+              console.log('Button content:', button.textContent);
+              console.log('Button display:', button.style.display);
+            }
+            
+            // Check if dropdown is within viewport
+            const rect = dropdown.getBoundingClientRect();
+            console.log('Dropdown bounding rect:', rect);
+            console.log('Viewport dimensions:', window.innerWidth, 'x', window.innerHeight);
+          }
+        });
+      }, 100);
+    }
+  }, [showProfile]);
+
+  // Move dropdown to body to avoid stacking context issues
+  useEffect(() => {
+    if (showProfile && profileRef.current) {
+      // Move dropdown to body to avoid parent clipping
+      document.body.appendChild(profileRef.current);
+      
+      return () => {
+        // Clean up when component unmounts or dropdown closes
+        if (profileRef.current && profileRef.current.parentNode === document.body) {
+          document.body.removeChild(profileRef.current);
+        }
+      };
+    }
   }, [showProfile]);
 
   const handleLogout = async () => {
@@ -79,29 +130,52 @@ const Navigation = ({ activeSection, onSectionChange }) => {
           <h1 className="text-xl font-bold text-gray-800">Todo App</h1>
           
           {/* Mobile Profile Button */}
-          <div className="relative profile-container">
+          <div 
+            className={`relative profile-container ${showProfile ? 'mobile-dropdown-open' : ''}`}
+            data-dropdown-open={showProfile}
+            style={{
+              position: 'relative',
+              display: 'inline-block',
+              minWidth: '120px',
+              minHeight: '40px',
+              overflow: 'visible'
+            }}
+          >
             <button
               onClick={toggleProfile}
               className="flex items-center space-x-2 px-3 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              style={{
+                minWidth: '120px',
+                minHeight: '40px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between'
+              }}
             >
-              {hasValidPhoto ? (
-                <img
-                  src={currentUser.photoURL}
-                  alt="Profile"
-                  className="profile-picture profile-picture-mobile"
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                    e.target.nextSibling.style.display = 'flex';
-                  }}
-                />
-              ) : null}
-              
-              <div 
-                className={`profile-picture profile-picture-mobile profile-initials ${
-                  hasValidPhoto ? 'hidden' : 'flex'
-                }`}
-              >
-                {getUserInitials()}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                {hasValidPhoto ? (
+                  <img
+                    src={currentUser.photoURL}
+                    alt="Profile"
+                    className="profile-picture profile-picture-mobile"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextSibling.style.display = 'flex';
+                    }}
+                  />
+                ) : null}
+                
+                <div 
+                  className={`profile-picture profile-picture-mobile profile-initials ${
+                    hasValidPhoto ? 'hidden' : 'flex'
+                  }`}
+                >
+                  {getUserInitials()}
+                </div>
+                
+                <span style={{ fontSize: '14px', fontWeight: '500' }}>
+                  {currentUser?.displayName || currentUser?.email || 'Profile'}
+                </span>
               </div>
               
               <span className="text-sm">▼</span>
@@ -109,46 +183,140 @@ const Navigation = ({ activeSection, onSectionChange }) => {
 
             {showProfile && (
               <div 
-                className="absolute right-0 mt-2 mobile-profile-menu bg-white rounded-md shadow-lg border border-gray-200 z-50"
                 ref={profileRef}
                 style={{ 
-                  minWidth: '200px',
+                  minWidth: '280px',
                   backgroundColor: 'white',
-                  border: '2px solid red',
-                  zIndex: 9999,
-                  position: 'absolute'
+                  border: '1px solid #e5e7eb',
+                  borderRadius: '12px',
+                  zIndex: 999999,
+                  position: 'fixed',
+                  top: '80px',
+                  right: '20px',
+                  padding: '0',
+                  fontSize: '14px',
+                  fontWeight: 'normal',
+                  color: '#374151',
+                  display: 'block',
+                  visibility: 'visible',
+                  opacity: '1',
+                  width: 'auto',
+                  height: 'auto',
+                  overflow: 'visible',
+                  transform: 'translateZ(0)',
+                  boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
                 }}
               >
-                <div className="py-2">
-                  <div className="px-4 py-2 border-b border-gray-100">
-                    <p className="text-sm font-medium text-gray-800">
+                <div style={{ padding: '16px' }}>
+                  {/* User Info Header */}
+                  <div style={{ 
+                    padding: '12px 16px', 
+                    borderBottom: '1px solid #f3f4f6',
+                    marginBottom: '8px'
+                  }}>
+                    <p style={{ 
+                      fontSize: '16px', 
+                      fontWeight: '600', 
+                      color: '#111827',
+                      margin: '0 0 4px 0'
+                    }}>
                       {currentUser?.displayName || 'User'}
                     </p>
-                    <p className="text-xs text-gray-500">{currentUser?.email}</p>
+                    <p style={{ 
+                      fontSize: '14px', 
+                      color: '#6b7280',
+                      margin: '0'
+                    }}>
+                      {currentUser?.email}
+                    </p>
                   </div>
-                  <button
-                    onClick={() => {
-                      onSectionChange('profile');
-                      setShowProfile(false);
-                    }}
-                    className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  >
-                    View Profile
-                  </button>
-                  <button
-                    onClick={() => {
-                      onSectionChange('todos');
-                      setShowProfile(false);
-                    }}
-                    className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  >
-                    My Todos
-                  </button>
-                  <hr className="my-2" />
+                  
+                  {/* Navigation Buttons */}
+                  <div style={{ padding: '8px 0' }}>
+                    <button
+                      onClick={() => {
+                        onSectionChange('profile');
+                        setShowProfile(false);
+                      }}
+                      style={{
+                        width: '100%',
+                        textAlign: 'left',
+                        padding: '12px 16px',
+                        fontSize: '14px',
+                        color: '#374151',
+                        backgroundColor: 'transparent',
+                        border: 'none',
+                        borderRadius: '8px',
+                        cursor: 'pointer',
+                        transition: 'background-color 0.2s',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '12px'
+                      }}
+                      onMouseEnter={(e) => e.target.style.backgroundColor = '#f9fafb'}
+                      onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
+                    >
+                      <span style={{ fontSize: '18px' }}>👤</span>
+                      View Profile
+                    </button>
+                    
+                    <button
+                      onClick={() => {
+                        onSectionChange('todos');
+                        setShowProfile(false);
+                      }}
+                      style={{
+                        width: '100%',
+                        textAlign: 'left',
+                        padding: '12px 16px',
+                        fontSize: '14px',
+                        color: '#374151',
+                        backgroundColor: 'transparent',
+                        border: 'none',
+                        borderRadius: '8px',
+                        cursor: 'pointer',
+                        transition: 'background-color 0.2s',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '12px'
+                      }}
+                      onMouseEnter={(e) => e.target.style.backgroundColor = '#f9fafb'}
+                      onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
+                    >
+                      <span style={{ fontSize: '18px' }}>📝</span>
+                      My Todos
+                    </button>
+                  </div>
+                  
+                  {/* Divider */}
+                  <div style={{ 
+                    height: '1px', 
+                    backgroundColor: '#f3f4f6', 
+                    margin: '8px 0' 
+                  }} />
+                  
+                  {/* Logout Button */}
                   <button
                     onClick={handleLogout}
-                    className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
+                    style={{
+                      width: '100%',
+                      textAlign: 'left',
+                      padding: '12px 16px',
+                      fontSize: '14px',
+                      color: '#dc2626',
+                      backgroundColor: 'transparent',
+                      border: 'none',
+                      borderRadius: '8px',
+                      cursor: 'pointer',
+                      transition: 'background-color 0.2s',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '12px'
+                    }}
+                    onMouseEnter={(e) => e.target.style.backgroundColor = '#fef2f2'}
+                    onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
                   >
+                    <span style={{ fontSize: '18px' }}>🚪</span>
                     Sign Out
                   </button>
                 </div>
@@ -239,39 +407,140 @@ const Navigation = ({ activeSection, onSectionChange }) => {
 
             {showProfile && (
               <div 
-                className="absolute right-0 mt-2 w-64 bg-white rounded-md shadow-lg border border-gray-200 z-50"
                 ref={profileRef}
                 style={{ 
+                  minWidth: '280px',
                   backgroundColor: 'white',
-                  border: '2px solid red',
-                  zIndex: 9999,
-                  position: 'absolute'
+                  border: '1px solid #e5e7eb',
+                  borderRadius: '12px',
+                  zIndex: 999999,
+                  position: 'fixed',
+                  top: '80px',
+                  right: '20px',
+                  padding: '0',
+                  fontSize: '14px',
+                  fontWeight: 'normal',
+                  color: '#374151',
+                  display: 'block',
+                  visibility: 'visible',
+                  opacity: '1',
+                  width: 'auto',
+                  height: 'auto',
+                  overflow: 'visible',
+                  transform: 'translateZ(0)',
+                  boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
                 }}
               >
-                <div className="py-2">
-                  <button
-                    onClick={() => {
-                      onSectionChange('profile');
-                      setShowProfile(false);
-                    }}
-                    className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  >
-                    View Profile
-                  </button>
-                  <button
-                    onClick={() => {
-                      onSectionChange('todos');
-                      setShowProfile(false);
-                    }}
-                    className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  >
-                    My Todos
-                  </button>
-                  <hr className="my-2" />
+                <div style={{ padding: '16px' }}>
+                  {/* User Info Header */}
+                  <div style={{ 
+                    padding: '12px 16px', 
+                    borderBottom: '1px solid #f3f4f6',
+                    marginBottom: '8px'
+                  }}>
+                    <p style={{ 
+                      fontSize: '16px', 
+                      fontWeight: '600', 
+                      color: '#111827',
+                      margin: '0 0 4px 0'
+                    }}>
+                      {currentUser?.displayName || 'User'}
+                    </p>
+                    <p style={{ 
+                      fontSize: '14px', 
+                      color: '#6b7280',
+                      margin: '0'
+                    }}>
+                      {currentUser?.email}
+                    </p>
+                  </div>
+                  
+                  {/* Navigation Buttons */}
+                  <div style={{ padding: '8px 0' }}>
+                    <button
+                      onClick={() => {
+                        onSectionChange('profile');
+                        setShowProfile(false);
+                      }}
+                      style={{
+                        width: '100%',
+                        textAlign: 'left',
+                        padding: '12px 16px',
+                        fontSize: '14px',
+                        color: '#374151',
+                        backgroundColor: 'transparent',
+                        border: 'none',
+                        borderRadius: '8px',
+                        cursor: 'pointer',
+                        transition: 'background-color 0.2s',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '12px'
+                      }}
+                      onMouseEnter={(e) => e.target.style.backgroundColor = '#f9fafb'}
+                      onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
+                    >
+                      <span style={{ fontSize: '18px' }}>👤</span>
+                      View Profile
+                    </button>
+                    
+                    <button
+                      onClick={() => {
+                        onSectionChange('todos');
+                        setShowProfile(false);
+                      }}
+                      style={{
+                        width: '100%',
+                        textAlign: 'left',
+                        padding: '12px 16px',
+                        fontSize: '14px',
+                        color: '#374151',
+                        backgroundColor: 'transparent',
+                        border: 'none',
+                        borderRadius: '8px',
+                        cursor: 'pointer',
+                        transition: 'background-color 0.2s',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '12px'
+                      }}
+                      onMouseEnter={(e) => e.target.style.backgroundColor = '#f9fafb'}
+                      onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
+                    >
+                      <span style={{ fontSize: '18px' }}>📝</span>
+                      My Todos
+                    </button>
+                  </div>
+                  
+                  {/* Divider */}
+                  <div style={{ 
+                    height: '1px', 
+                    backgroundColor: '#f3f4f6', 
+                    margin: '8px 0' 
+                  }} />
+                  
+                  {/* Logout Button */}
                   <button
                     onClick={handleLogout}
-                    className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
+                    style={{
+                      width: '100%',
+                      textAlign: 'left',
+                      padding: '12px 16px',
+                      fontSize: '14px',
+                      color: '#dc2626',
+                      backgroundColor: 'transparent',
+                      border: 'none',
+                      borderRadius: '8px',
+                      cursor: 'pointer',
+                      transition: 'background-color 0.2s',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '12px'
+                    }}
+                    onMouseEnter={(e) => e.target.style.backgroundColor = '#fef2f2'}
+                    onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
                   >
+                    <span style={{ fontSize: '18px' }}>🚪</span>
                     Sign Out
                   </button>
                 </div>

@@ -35,6 +35,16 @@ code {
   @apply relative overflow-hidden;
 }
 
+/* Override for mobile dropdown visibility */
+.profile-container.mobile-dropdown-open {
+  overflow: visible !important;
+}
+
+/* Force mobile dropdown to be visible */
+.profile-container[data-dropdown-open="true"] {
+  overflow: visible !important;
+}
+
 /* Mobile-specific navigation improvements */
 @media (max-width: 768px) {
   .mobile-nav-tabs {
