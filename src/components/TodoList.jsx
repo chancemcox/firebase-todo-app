@@ -31,10 +31,10 @@ const TodoList = () => {
     try {
       // Create real-time listener for todos
       const todosRef = collection(db, 'todos');
+      // Avoid requiring composite index by skipping orderBy and sorting client-side
       const q = query(
         todosRef,
-        where('userId', '==', currentUser.uid),
-        orderBy('createdAt', 'desc')
+        where('userId', '==', currentUser.uid)
       );
 
       // Set up real-time listener
@@ -50,7 +50,9 @@ const TodoList = () => {
           });
         });
 
-        setTodos(todosData);
+        // Sort by createdAt desc on client
+        const sorted = todosData.sort((a, b) => (b.createdAt?.getTime?.() || 0) - (a.createdAt?.getTime?.() || 0));
+        setTodos(sorted);
         setLoading(false);
       }, (error) => {
         console.error('Error listening to todos:', error);

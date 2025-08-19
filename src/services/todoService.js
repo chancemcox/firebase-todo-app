@@ -44,10 +44,10 @@ export const getUserTodos = async (userId) => {
   try {
     console.log('Fetching todos for user:', userId);
     
+    // Fetch user todos and sort client-side to avoid composite index requirement
     const q = query(
       collection(db, 'todos'),
-      where('userId', '==', userId),
-      orderBy('createdAt', 'desc')
+      where('userId', '==', userId)
     );
     
     const querySnapshot = await getDocs(q);
@@ -62,8 +62,10 @@ export const getUserTodos = async (userId) => {
       });
     });
     
-    console.log('Fetched todos:', todos);
-    return todos;
+    // Sort by createdAt desc on client
+    const sorted = todos.sort((a, b) => (b.createdAt?.getTime?.() || 0) - (a.createdAt?.getTime?.() || 0));
+    console.log('Fetched todos:', sorted);
+    return sorted;
   } catch (error) {
     console.error('Error getting user todos:', error);
     console.error('Error details:', {

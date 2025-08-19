@@ -30,9 +30,9 @@ code {
   @apply w-24 h-24;
 }
 
-/* Ensure profile pictures don't overflow on mobile */
+/* Ensure profile dropdowns can overflow properly */
 .profile-container {
-  @apply relative overflow-hidden;
+  @apply relative;
 }
 
 /* Mobile-specific navigation improvements */
