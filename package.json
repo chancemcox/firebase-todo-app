@@ -26,6 +26,7 @@
     "deploy": "npm run build && firebase deploy --only hosting",
     "deploy:setup": "./scripts/setup-deployment.sh",
     "prepare-deploy": "./scripts/prepare-deploy.sh"
+    ,"build:pages": "npm run build && if [ -f public/_redirects ]; then cp public/_redirects dist/_redirects; fi"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",
