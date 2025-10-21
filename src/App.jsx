@@ -46,6 +46,20 @@ function App() {
               </ProtectedRoute>
             } 
           />
+          <Route 
+            path="/app"
+            element={
+              <ProtectedRoute>
+                <div className="max-w-7xl mx-auto p-6">
+                  <Navigation 
+                    activeSection={activeSection} 
+                    onSectionChange={setActiveSection} 
+                  />
+                  {renderSection()}
+                </div>
+              </ProtectedRoute>
+            }
+          />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>

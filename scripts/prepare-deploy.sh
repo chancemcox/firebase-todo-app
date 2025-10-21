@@ -20,6 +20,12 @@ rm -rf public/dist/*
 echo "📁 Copying built files to public/dist..."
 cp -r dist/* public/dist/
 
+# Copy _redirects for SPA routing (Cloudflare/Netlify style) if it exists
+if [ -f public/_redirects ]; then
+	echo "📄 Copying _redirects into public/dist/..."
+	cp public/_redirects public/dist/_redirects
+fi
+
 # Ensure the landing page is preserved
 echo "📄 Preserving landing page..."
 cp public/index.html public/dist/landing.html
